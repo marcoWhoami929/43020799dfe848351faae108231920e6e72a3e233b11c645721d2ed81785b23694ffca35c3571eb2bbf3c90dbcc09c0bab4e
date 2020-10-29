@@ -1,0 +1,7 @@
+{
+    "require": {
+        "twilio/sdk": "^5.32",
+        "phpoffice/phpspreadsheet": "^1.11",
+        "endroid/qr-code": "^3.8"
+    }
+}

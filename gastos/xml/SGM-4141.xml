@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" Sello="hlkjrWvJ2TD0gTEXVEgkzHNmSEWC3LZPt6bGHBXiu2bFxOKdDLA33Bh6HD91taSHkUbIGw+2ThR5RNW7hX9v7tZg3MNhkljwFti/UEfdTrcm+0lpjJdozIIRP7BP7FsXYgaweTa06Lp3Fs4H0ALOJU9YBBxFqVEA6IK+W4N2LU4L7nHN+e2027fEGMgk9P9Un1aAExNBRyPNgIlgK4jm21B+tWcgbw9PLrt/HmVaQ1MWehlu+WVeyHp1vC1mBxdTktThHsCNNcWApj4oSBXwtJJx9imMJm2r0AIYGfMHxKvadnjjHjqOjR9ZGUMWXCK1M9XoAoBDNxmyHiRwKg0PQA==" NoCertificado="00001000000405220911" Certificado="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" Serie="FC0768_FAC_1" Folio="5280" Fecha="2020-09-23T12:52:00" FormaPago="01" CondicionesDePago="CONTADO" SubTotal="216.96" Descuento="17.24" Moneda="MXN" TipoCambio="1" Total="221.52" TipoDeComprobante="I" MetodoPago="PUE" LugarExpedicion="72130" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<cfdi:Emisor Rfc="FLI0401164R3" Nombre="FARMACIAS LIDERES SA DE CV" RegimenFiscal="601"/>
+	<cfdi:Receptor Rfc="PCP970822467" Nombre="PINTURAS  Y  COMPLEMENTOS  DE  PUEBLA  S.A.  DE  C.V." UsoCFDI="G03"/>
+	<cfdi:Conceptos>
+		<cfdi:Concepto ClaveProdServ="42132200" NoIdentificacion="1122" Cantidad="3" ClaveUnidad="H87" Unidad="Piezas" Descripcion="GUANTES ESTERIL TALLA 7 O 7.5 P/CIRUG" ValorUnitario="8.62" Importe="25.86" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="25.86" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="4.14"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="51142009" NoIdentificacion="133" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="METAMIZOL 500MG 10COMP" ValorUnitario="8.00" Importe="8.00" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="8.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42281600" NoIdentificacion="1341" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="AGUA OXIGENADA SOL 224ML" ValorUnitario="7.76" Importe="7.76" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="7.76" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.24"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42311708" NoIdentificacion="1357" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="VENDAS ADHESIVAS 30PZAS (VARIOS TAMA?OS)" ValorUnitario="13.79" Importe="13.79" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="13.79" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2.21"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="51151700" NoIdentificacion="2147" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="LORATADINA/FENIL/PARA 12TAB" ValorUnitario="29.00" Importe="29.00" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="29.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="51142002" NoIdentificacion="3110" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="AC ACETILSALICILICO 12TAB EFER ASPIRINA" ValorUnitario="26.50" Importe="26.50" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="26.50" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42131606" NoIdentificacion="3250" Cantidad="2" ClaveUnidad="H87" Unidad="Piezas" Descripcion="CUBREBOCA TRIPLE PLIEGUE 3PZAS" ValorUnitario="34.48" Importe="68.96" Descuento="17.24">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="51.72" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="8.28"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="51102724" NoIdentificacion="933" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="CLORURO BENZALCONIO 40ML SOL" ValorUnitario="8.63" Importe="8.63" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="8.63" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.38"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42281600" NoIdentificacion="938" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="VIOLETA DE GENCIANA SOL 40ML" ValorUnitario="8.63" Importe="8.63" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="8.63" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.38"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42311512" NoIdentificacion="940" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="GASA 10X10 CAJA 10 SOBRES" ValorUnitario="12.07" Importe="12.07" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="12.07" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.93"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="42141500" NoIdentificacion="954" Cantidad="1" ClaveUnidad="H87" Unidad="Piezas" Descripcion="ALGODON PAQUETE C/50GR" ValorUnitario="7.76" Importe="7.76" Descuento="0.00">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="7.76" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.24"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+	</cfdi:Conceptos>
+	<cfdi:Impuestos TotalImpuestosTrasladados="21.80">
+		<cfdi:Traslados>
+			<cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>
+			<cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="21.80"/>
+		</cfdi:Traslados>
+	</cfdi:Impuestos>
+	<cfdi:Complemento>
+		<tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="3E78C93E-36FA-4E43-BCE4-AAF0111CB509" FechaTimbrado="2020-09-23T22:09:04" RfcProvCertif="SED1102088J7" SelloCFD="hlkjrWvJ2TD0gTEXVEgkzHNmSEWC3LZPt6bGHBXiu2bFxOKdDLA33Bh6HD91taSHkUbIGw+2ThR5RNW7hX9v7tZg3MNhkljwFti/UEfdTrcm+0lpjJdozIIRP7BP7FsXYgaweTa06Lp3Fs4H0ALOJU9YBBxFqVEA6IK+W4N2LU4L7nHN+e2027fEGMgk9P9Un1aAExNBRyPNgIlgK4jm21B+tWcgbw9PLrt/HmVaQ1MWehlu+WVeyHp1vC1mBxdTktThHsCNNcWApj4oSBXwtJJx9imMJm2r0AIYGfMHxKvadnjjHjqOjR9ZGUMWXCK1M9XoAoBDNxmyHiRwKg0PQA==" NoCertificadoSAT="00001000000503938001" SelloSAT="dtmCGHIrQ4aGfBxKY0Qva7kIE8A61pXJt7vRoMOpyg5blzCqT/3Uy77EIIuKbjO4lhksXkJ39Gx6PtLQFT7Eot4fDNtRrZn4uzlLXsyL+xknipnfBZpLnoucHZ7KERlHSgMV2+UgYRlhuCr2YvJEAg62b+0tqnrZU6hyagNRfeqUzQkK79cHq+EnW+KcTtF+zN/mc6fR0jwfY8XjEKIokkccQJjkGUD8Mr8mhJ9/k7oC1tf25hOMXfgItrVUS9DY/OI42YL3oQW3J5KTeeCYvJ5/8EBaHjVm4uDRwBQeC82RbDZwKvfflIp399IhHr2spcQYf+SJEhnvPzZw9gh2Dw==" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+	</cfdi:Complemento>
+	<cfdi:Addenda>
+		<Similares>
+			<observaciones1>DESGLOSE DE IMPUESTOS:</observaciones1>
+			<observaciones2>VENTA CON IVA: 63.50 AL 0.00%  $0.00</observaciones2>
+			<observaciones3>VENTA CON IVA: 136.22 AL 16.00%  $21.80</observaciones3>
+			<observaciones4/>
+		</Similares>
+	</cfdi:Addenda>
+</cfdi:Comprobante>

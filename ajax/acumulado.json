@@ -1,0 +1,124 @@
+{
+		 
+	 	"data": [ 
+						[
+						
+		             	"CEDIS",
+		             	"15986",
+					 	"$ 3,176,672.20",
+					 	"29747.47",
+					 	"$ 4,140,025.57",
+					 	"-13761.47",
+					 	"$-963,353.37",		      
+		             	"130.33 %",
+		             	"<button type='button' class='btn btn-success'></button>"],
+		             	
+						[
+						
+		             	"ROCIO MARTINEZ MORALES",
+		             	"15719",
+					 	"$ 3,074,001.82",
+					 	"26957.47",
+					 	"$ 3,804,722.16",
+					 	"-11238.47",
+					 	"$-730,720.34",
+		             	"123.77 %",
+		             	"<button type='button' class='btn btn-success'></button>"],
+		             	[
+						
+		             	"LUIS ENRIQUE BUSTOS MONTERD",
+		             	"",
+					 	"$ 0.00",
+					 	"",
+					 	"$ 0.00",
+					 	"0",
+					 	"$ 0.00",
+		             	"0.00 %",
+		             	"<button type='button' class='btn btn-danger'></button>"],
+		             	[
+						
+		             	"GOMEZ RODRIGUEZ ERICK",
+		             	"267",
+					 	"$ 102,670.38",
+					 	"2790",
+					 	"$ 335,303.41",
+					 	"-2523",
+					 	"$ -232,633.03",
+		             	"326.58 %",
+		             	"<button type='button' class='btn btn-success'></button>"], 	
+
+						[
+
+		             	"CUENTAS CORPORATIVAS",
+		             	"7877.26",
+					 	"$ 958,869.28",
+					 	"29747.47",
+					 	"$ 935,692.56",
+					 	"-1804",
+					 	"$23,176.72",		      
+		             	"97.58 %",
+		             	"<button type='button' class='btn btn-success'></button>"], 
+
+		             	[
+						
+		             	"ORLANDO BRIONES AGUIRRE",
+		             	"7847.26",
+					 	"$ 948,250.54",
+					 	" 9,651.26",
+					 	"$ 925,073.82",
+					 	"-1804",
+					 	"$ 23,176.72",
+		             	"97.56 %",
+		             	"<button type='button' class='btn btn-success'></button>"], 	
+
+
+		             	[
+						
+		             	"JONATHAN GONZALEZ SANCHEZ",
+		             	"30",
+					 	"$ 10,618.74",
+					 	" 30.00",
+					 	"$ 10,618.74",
+					 	"0",
+					 	"$ 0.00",
+		             	"100.00 %",
+		             	"<button type='button' class='btn btn-success'></button>"], 
+
+		             	[
+						
+		             	"ALFREDO MENDOZA SEGURA",
+		             	"",
+					 	"$ 0.00",
+					 	"",
+					 	"$ 0.00",
+					 	"0",
+					 	"$ 0.00",
+		             	"0.00 %",
+		             	"<button type='button' class='btn btn-danger'></button>"], 
+
+
+		             	[
+						
+		             	"CASTOLO GALINDO ARTURO",
+		             	"",
+					 	"$ 0.00",
+					 	"",
+					 	"$ 0.00",
+					 	"0",
+					 	"$ 0.00",
+		             	"0.00 %",
+		            	 "<button type='button' class='btn btn-danger'></button>"],
+
+		            	 [
+
+		             	"TOTALES",
+		             	"23863.26",
+					 	"$ 4,135,541.48",
+					 	"39428.73",
+					 	"$ 5,075,718.13",
+					 	"-15565.47",
+					 	"$-940,176.65",		      
+		             	"122.73 %",
+		             	"<button type='button' class='btn btn-success'></button>"]]
+			  
+		}

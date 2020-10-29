@@ -1,0 +1,53 @@
+
+#login{float:left;}
+#signup{float:right;}
+#device{margin: 0 auto;}
+#img{text-align: left;}
+form label{font-weight: bold;}
+form label, form input{display: block;margin-bottom: 5px;width: 90%}
+form input{ border: solid 1px #666666;padding: 10px;border: solid 1px #BDC7D8; margin-bottom: 20px}
+.button {
+    background-color: #5fcf80 !important;
+    border-color: #3ac162 !important;
+    font-weight: bold;
+    padding: 12px 15px;
+    max-width: 100px;
+    color: #ffffff;
+}
+.errorMsg{color: #cc0000;margin-bottom: 10px}
+.app{width: 150px}
+label.error { color: #F00; }
+
+.user-table { margin: 5% auto; width:50%}
+.user-table tr th, .user-table tr td {
+    padding: 10px 10px;
+    border: solid 1px #000;
+}
+.user-table tr th{ background:#f3f3f3; }
+.title {
+    background: #1e6496;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: cursive;
+}
+#scan_code{
+    width: 750px;
+    height: 75px;
+    background: #D8DBDC;
+    font-size: 40px;
+}
+#LI-form{
+    margin-left: 250px;
+    margin-top: -180px;
+    z-index: 101;
+}
+input:focus{
+    border: 2px blue solid;
+}
+.nota{
+    background: #A5F4FE;
+    width: 750px;
+    height: 125px;
+
+}

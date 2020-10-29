@@ -1,0 +1,52 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-06-17 10:44:58
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-03-01
+
+Fecha Final de la eliminación:2020-06-15
+
+Monto pendiente a eliminar:1.00 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJCP            11                -0.12             FACP             16785            0.02       0            2020-06-17 10:44:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16762            0.11       0            2020-06-17 10:44:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16770            0.1       0            2020-06-17 10:44:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16766            0.29       0            2020-06-17 10:44:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16760            -0.47       0            2020-06-17 10:44:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16837            0.16       0            2020-06-17 10:44:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             16834            -0.01       0            2020-06-17 10:44:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             17021            -0.26       0            2020-06-17 10:44:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             17071            0.8       0            2020-06-17 10:45:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             17063            -0.5       0            2020-06-17 10:45:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             17067            0.46       0            2020-06-17 10:45:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            11                -0.12             FACP             17074            -0.82       0            2020-06-17 10:45:00  ABONO CLIENTE / AJUSTE SALDO
+

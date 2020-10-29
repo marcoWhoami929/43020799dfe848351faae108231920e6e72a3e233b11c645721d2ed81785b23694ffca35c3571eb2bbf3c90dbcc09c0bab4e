@@ -1,0 +1,38 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-07-08 15:49:59
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-03-01
+
+Fecha Final de la eliminación:2020-06-30
+
+Monto pendiente a eliminar:1.00 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJTR            17                -106.08             FATR             9163            -50       49            2020-07-08 15:49:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            17                -106.08             FATR             9163            -50       49            2020-07-08 15:49:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            17                -106.08             FATR             9213            -3       0            2020-07-08 15:49:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            17                -106.08             FATR             9231            -0.04       0            2020-07-08 15:50:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            17                -106.08             FATR             9231            -0.04       0            2020-07-08 15:50:00  ABONO CLIENTE / AJUSTE SALDO
+

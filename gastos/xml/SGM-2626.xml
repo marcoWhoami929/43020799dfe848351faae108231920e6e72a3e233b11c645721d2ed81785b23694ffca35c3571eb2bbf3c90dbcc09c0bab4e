@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" Version="3.3" Serie="II" Folio="50436" Fecha="2020-07-23T11:59:21" Sello="KovxDEiU4ajCBHrTJThopABW7fpCxd7V8ntE/MV0km8f8OCbKbSbNIMHnGl/w5z8nZpSTb1KegBI+zm7sf2WcTvgs9XKmEW+KMsDVcxMZ4cvtSml/6rcPOMzriCQXH/aheZYRzSNwMywSVFRBwbhXGmmARLPzKIw3u3joM4/dp1swt8uxHK28Ezk7gWbotAV4p72Pq7Zba/hkL99YVv7BhUqA/1yTBZ0L3WEMLU9Jh1UJTmYPgTe7YRPJk1zKi4x/f2lYcs+AcUKQsBEo4I2akoTK4AoP9WChDwFCI5qFJ55++hN9Pa8Fo4qUOhE5E5ab4YW0zYP2ehk4a02UzS6GA==" FormaPago="01" NoCertificado="00001000000403806327" Certificado="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" SubTotal="713.91" Descuento="54.23" Moneda="MXN" Total="765.23" TipoDeComprobante="I" MetodoPago="PUE" LugarExpedicion="72440">
+	<cfdi:Emisor Rfc="LME040203812" Nombre="LUMICOLOR MATERIAL ELECTRICO S.A. DE C.V." RegimenFiscal="601"/>
+	<cfdi:Receptor Rfc="PCP970822467" Nombre="PINTURAS Y COMPLEMENTOS DE PUEBLA SA DE CV" UsoCFDI="G03"/>
+	<cfdi:Conceptos>
+		<cfdi:Concepto ClaveProdServ="40171501" NoIdentificacion="TBU046" Cantidad="6" ClaveUnidad="H87" Unidad="PZA" Descripcion="TUBO P.D. 13MM S/C 1/2&quot; " ValorUnitario="51.55" Importe="309.30" Descuento="37.12">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="272.18" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="43.5488"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="40183101" NoIdentificacion="TBU007" Cantidad="6" ClaveUnidad="H87" Unidad="PZA" Descripcion="CODO P.D. 13MM 1/2&quot; " ValorUnitario="13.29" Importe="79.74">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="79.74" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="12.7584"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="26121600" NoIdentificacion="COA-10" Cantidad="20" ClaveUnidad="MTR" Unidad="MTS" Descripcion="CABLE THW CAL. 12 NEGRO ANTIFLAMA CTE. 791 ECO." ValorUnitario="7.13" Importe="142.60" Descuento="17.11">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="125.49" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="20.0784"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="39121311" NoIdentificacion="G1E01" Cantidad="4" ClaveUnidad="H87" Unidad="PZA" Descripcion="CAJA REGISTRO CHALUPA S/TAPA GALVANIZADA." ValorUnitario="2.78" Importe="11.12">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="11.12" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.7792"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31163100" NoIdentificacion="650396" Cantidad="10" ClaveUnidad="H87" Unidad="PZA" Descripcion="CONECTOR P.D. EMT 1/2&quot; 650396 COMERCIAL (CCL 12 ANCLO)" ValorUnitario="4.97" Importe="49.70">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="49.70" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7.952"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="39121311" NoIdentificacion="650405" Cantidad="12" ClaveUnidad="H87" Unidad="PZA" Descripcion="COPLE 1/2&quot; 13MM 650405 COMERCIAL (CPD 12 ANCLO)" ValorUnitario="5.64" Importe="67.68">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="67.68" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="10.8288"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="39121311" NoIdentificacion="G1A07A" Cantidad="3" ClaveUnidad="H87" Unidad="PZA" Descripcion="CAJA DE REGISTRO S/TAPA 1/2&quot;" ValorUnitario="2.43" Importe="7.29">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="7.29" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1.1664"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31162906" NoIdentificacion="G1C01" Cantidad="3" ClaveUnidad="H87" Unidad="PZA" Descripcion="ABRAZADERA OMEGA TROQ. 1/2&quot; 11762600 COMERCIAL (OC 12 ANCLO)" ValorUnitario="1.34" Importe="4.02">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="4.02" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="0.6432"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="39121406" NoIdentificacion="05320-WCP" Cantidad="2" ClaveUnidad="H87" Unidad="PZA" Descripcion="CONTACTO DUPLEX POLARIZADO ATERRIZADO 15A/125V. BLANCO 05320-WCP" ValorUnitario="12.19" Importe="24.38">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="24.38" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3.9008"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="39121704" NoIdentificacion="80703-00W" Cantidad="2" ClaveUnidad="H87" Unidad="PZA" Descripcion="PLACA NYLON P/CONT. DUPLEX BLANCO 80703-00W LEVITON" ValorUnitario="9.04" Importe="18.08">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="18.08" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2.8928"/>
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+	</cfdi:Conceptos>
+	<cfdi:Impuestos TotalImpuestosTrasladados="105.55">
+		<cfdi:Traslados>
+			<cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="105.55"/>
+		</cfdi:Traslados>
+	</cfdi:Impuestos>
+	<cfdi:Complemento><tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" SelloSAT="q2On5qeJEJuLxFB/PREHInKLYXHevPS2Y7g+jZ3d77ShMlVRHejqaSro1CB7AciFzimt1vtPLfwYU/dueA3/fs4IbGRHZwvhPcyGb2GU5I2S/Rpc20P8w3Yu/S3LQH5xQY868DASwSbKiNovfN8QcjMk15cFxTmDp5KE+OmZG88OB430ZH3g5ZiG4nz8pSzieYp1gcivAniLVqOVQn30aYRhKsr0BzNk9N9LqNY1/jOSJEQak/KxlEzC4LMHUhqVQUL5ZWHPobZb+O95ZuEdLWLLGbvk4RASpfLi4Csh0FNmN7u4CSP4lKPZaPo5Yda1w/K0kXgb4+U40rMgXyVc7Q==" NoCertificadoSAT="00001000000502000436" SelloCFD="KovxDEiU4ajCBHrTJThopABW7fpCxd7V8ntE/MV0km8f8OCbKbSbNIMHnGl/w5z8nZpSTb1KegBI+zm7sf2WcTvgs9XKmEW+KMsDVcxMZ4cvtSml/6rcPOMzriCQXH/aheZYRzSNwMywSVFRBwbhXGmmARLPzKIw3u3joM4/dp1swt8uxHK28Ezk7gWbotAV4p72Pq7Zba/hkL99YVv7BhUqA/1yTBZ0L3WEMLU9Jh1UJTmYPgTe7YRPJk1zKi4x/f2lYcs+AcUKQsBEo4I2akoTK4AoP9WChDwFCI5qFJ55++hN9Pa8Fo4qUOhE5E5ab4YW0zYP2ehk4a02UzS6GA==" RfcProvCertif="SCD110105654" FechaTimbrado="2020-07-23T11:59:22" UUID="7D1EDF7F-BB3F-794F-BF87-03B925B21BDE" Version="1.1"/></cfdi:Complemento></cfdi:Comprobante>

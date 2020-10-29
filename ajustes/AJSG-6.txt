@@ -1,0 +1,178 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-06-08 14:41:33
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-03-01
+
+Fecha Final de la eliminación:2020-05-31
+
+Monto pendiente a eliminar:1.0 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJSG            6                -19.91             FASG             10147            0.01       0            2020-06-08 14:41:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10146            -0.49       0            2020-06-08 14:41:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10143            0.02       0            2020-06-08 14:41:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10165            -0.6       0            2020-06-08 14:41:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10167            0.3       0            2020-06-08 14:41:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10177            -0.1       0            2020-06-08 14:41:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10187            -0.01       0            2020-06-08 14:41:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10212            -0.44       0            2020-06-08 14:41:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10200            -0.11       0            2020-06-08 14:41:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10227            0.36       0            2020-06-08 14:41:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10229            -1       0            2020-06-08 14:41:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10220            -0.48       0            2020-06-08 14:41:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10216            -0.4       0            2020-06-08 14:41:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10214            -0.01       0            2020-06-08 14:41:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10219            -0.21       0            2020-06-08 14:41:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10215            -0.1       0            2020-06-08 14:41:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10231            0.21       0            2020-06-08 14:41:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10241            0.48       0            2020-06-08 14:41:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10240            -0.2       0            2020-06-08 14:41:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10234            -0.3       0            2020-06-08 14:41:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10251            -0.1       0            2020-06-08 14:41:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10246            0.04       0            2020-06-08 14:41:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10267            0.15       0            2020-06-08 14:41:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10259            0.13       0            2020-06-08 14:41:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10264            0.01       0            2020-06-08 14:41:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10273            0.08       0            2020-06-08 14:41:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10275            0.45       0            2020-06-08 14:41:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10286            0.8       0            2020-06-08 14:41:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10288            0.09       0            2020-06-08 14:41:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10299            -0.7       0            2020-06-08 14:41:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10302            -0.01       0            2020-06-08 14:41:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10313            -0.13       0            2020-06-08 14:41:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10331            -0.35       0            2020-06-08 14:41:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10332            0.24       0            2020-06-08 14:41:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10333            0.4       0            2020-06-08 14:41:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10323            -0.1       0            2020-06-08 14:41:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10330            -0.16       0            2020-06-08 14:41:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10362            -0.01       0            2020-06-08 14:41:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10355            -0.4       0            2020-06-08 14:41:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10352            -0.14       0            2020-06-08 14:41:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10392            -0.43       0            2020-06-08 14:41:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10393            -0.34       0            2020-06-08 14:41:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10388            0.51       0            2020-06-08 14:41:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10410            0.3       0            2020-06-08 14:41:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10403            0.36       0            2020-06-08 14:41:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10382            -2       2            2020-06-08 14:41:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10389            0.1       0            2020-06-08 14:41:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10088            0.35       0            2020-06-08 14:41:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10088            0.35       1            2020-06-08 14:41:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10428            -0.1       0            2020-06-08 14:41:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10421            -0.3       0            2020-06-08 14:41:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10431            -0.36       0            2020-06-08 14:41:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10422            -0.2       0            2020-06-08 14:41:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10446            0.05       0            2020-06-08 14:41:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10462            -0.4       0            2020-06-08 14:41:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10450            0.01       0            2020-06-08 14:41:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10443            0.2       0            2020-06-08 14:41:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10464            0.3       0            2020-06-08 14:41:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10463            0.33       0            2020-06-08 14:41:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10473            -0.49       0            2020-06-08 14:41:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10476            0.3       0            2020-06-08 14:41:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10479            -0.45       0            2020-06-08 14:41:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10495            0.3       0            2020-06-08 14:41:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10482            -0.4       0            2020-06-08 14:41:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10519            -0.26       0            2020-06-08 14:41:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10513            -0.4       0            2020-06-08 14:41:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10507            -0.29       0            2020-06-08 14:41:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10539            0.07       0            2020-06-08 14:41:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10561            -0.27       0            2020-06-08 14:41:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10568            0.15       0            2020-06-08 14:41:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10551            -0.26       0            2020-06-08 14:41:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10563            -13       4            2020-06-08 14:41:49  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10591            -0.43       0            2020-06-08 14:41:49  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10584            0.26       0            2020-06-08 14:41:49  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            6                -19.91             FASG             10622            -0.69       0            2020-06-08 14:41:49  ABONO CLIENTE / AJUSTE SALDO
+

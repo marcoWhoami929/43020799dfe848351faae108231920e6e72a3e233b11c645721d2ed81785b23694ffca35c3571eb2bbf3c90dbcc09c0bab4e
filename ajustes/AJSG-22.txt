@@ -1,0 +1,92 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-09-15 10:26:32
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-01-01
+
+Fecha Final de la eliminación:2020-08-01
+
+Monto pendiente a eliminar:1.00 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJSG            22                9.52             FASG             11258            -0.52       0            2020-09-15 10:26:32  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11273            0.2       0            2020-09-15 10:26:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11282            0.16       0            2020-09-15 10:26:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11285            0.66       0            2020-09-15 10:26:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11280            0.74       0            2020-09-15 10:26:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11313            0.07       0            2020-09-15 10:26:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11311            0.98       0            2020-09-15 10:26:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11337            0.01       0            2020-09-15 10:26:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11350            0.01       0            2020-09-15 10:26:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11340            0.68       0            2020-09-15 10:26:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11359            0.07       0            2020-09-15 10:26:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11354            0.6       0            2020-09-15 10:26:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11375            0.01       0            2020-09-15 10:26:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11393            -0.55       0            2020-09-15 10:26:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11411            -0.55       0            2020-09-15 10:26:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11391            0.15       0            2020-09-15 10:26:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11430            0.46       0            2020-09-15 10:26:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11413            0.9       0            2020-09-15 10:26:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11439            -0.28       0            2020-09-15 10:26:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11457            -0.3       0            2020-09-15 10:26:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11440            -0.33       0            2020-09-15 10:26:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11477            -0.63       0            2020-09-15 10:26:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11505            0.78       0            2020-09-15 10:26:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11513            -0.01       0            2020-09-15 10:26:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11488            0.13       0            2020-09-15 10:26:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11519            0.46       0            2020-09-15 10:26:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11537            -0.82       0            2020-09-15 10:26:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11550            -0.77       0            2020-09-15 10:26:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11551            0.29       0            2020-09-15 10:26:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11552            0.8       0            2020-09-15 10:26:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11562            0.11       0            2020-09-15 10:26:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            22                9.52             FASG             11557            0.01       0            2020-09-15 10:26:43  ABONO CLIENTE / AJUSTE SALDO
+

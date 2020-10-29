@@ -1,0 +1,94 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-07-14 12:55:52
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-03-01
+
+Fecha Final de la eliminación:2020-07-14
+
+Monto pendiente a eliminar:1.00 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJCP            20                1.25             FACP             17397            0.1       0            2020-07-14 12:55:52  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17399            -0.01       0            2020-07-14 12:55:52  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17394            0.1       0            2020-07-14 12:55:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17387            -0.39       0            2020-07-14 12:55:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17395            0.37       0            2020-07-14 12:55:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17388            -0.27       0            2020-07-14 12:55:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17405            -0.5       0            2020-07-14 12:55:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17431            -0.01       0            2020-07-14 12:55:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17439            0.5       0            2020-07-14 12:55:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17455            0.2       0            2020-07-14 12:55:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17447            -0.09       0            2020-07-14 12:55:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17449            -0.01       0            2020-07-14 12:55:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17444            -0.1       0            2020-07-14 12:55:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17461            0.11       0            2020-07-14 12:55:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17465            -0.03       0            2020-07-14 12:55:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17470            0.66       0            2020-07-14 12:55:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17480            -0.51       0            2020-07-14 12:55:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17496            0.55       0            2020-07-14 12:55:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17481            -0.1       0            2020-07-14 12:55:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17482            -0.1       0            2020-07-14 12:55:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17484            0.01       0            2020-07-14 12:55:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17479            0.34       0            2020-07-14 12:55:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17514            0.44       0            2020-07-14 12:55:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17511            -0.3       0            2020-07-14 12:55:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17506            -0.49       0            2020-07-14 12:55:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17536            0.01       0            2020-07-14 12:55:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17530            -0.01       0            2020-07-14 12:55:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17533            0.49       0            2020-07-14 12:55:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17518            -0.14       0            2020-07-14 12:55:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17538            -0.71       0            2020-07-14 12:56:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17555            0.49       -3.49            2020-07-14 12:56:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17555            0.49       -3.98            2020-07-14 12:56:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            20                1.25             FACP             17562            0.16       0            2020-07-14 12:56:00  ABONO CLIENTE / AJUSTE SALDO
+
