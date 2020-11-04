@@ -6410,12 +6410,23 @@ class ControladorReportes{
 
 			                     	 if ($value["tieneIva"] == "No") {
 
-											$iva = 0;
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
 											
 										}else {
 
 											
-											$iva1 = ($value["parcial1"]/1.16)*0.16;
+											$iva1 = ($value["parcial"]/1.16)*0.16;
 											$iva2 = ($value["parcial2"]/1.16)*0.16;
 											$iva3 = ($value["parcial3"]/1.16)*0.16;
 											$iva4 = ($value["parcial4"]/1.16)*0.16;
@@ -11641,12 +11652,24 @@ class ControladorReportes{
 
 										 if ($value["tieneIva"] == "No") {
 
-											$iva = 0;
+											
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
 											
 										}else {
 
 											
-											$iva1 = ($value["parcial1"]/1.16)*0.16;
+											$iva1 = ($value["parcial"]/1.16)*0.16;
 											$iva2 = ($value["parcial2"]/1.16)*0.16;
 											$iva3 = ($value["parcial3"]/1.16)*0.16;
 											$iva4 = ($value["parcial4"]/1.16)*0.16;
@@ -14249,12 +14272,23 @@ class ControladorReportes{
 
 										 if ($value["tieneIva"] == "No") {
 
-											$iva = 0;
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
 											
 										}else {
 
 											
-											$iva1 = ($value["parcial1"]/1.16)*0.16;
+											$iva1 = ($value["parcial"]/1.16)*0.16;
 											$iva2 = ($value["parcial2"]/1.16)*0.16;
 											$iva3 = ($value["parcial3"]/1.16)*0.16;
 											$iva4 = ($value["parcial4"]/1.16)*0.16;
@@ -19465,12 +19499,23 @@ class ControladorReportes{
 
 										 if ($value["tieneIva"] == "No") {
 
-											$iva = 0;
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
 											
 										}else {
 
 											
-											$iva1 = ($value["parcial1"]/1.16)*0.16;
+											$iva1 = ($value["parcial"]/1.16)*0.16;
 											$iva2 = ($value["parcial2"]/1.16)*0.16;
 											$iva3 = ($value["parcial3"]/1.16)*0.16;
 											$iva4 = ($value["parcial4"]/1.16)*0.16;
