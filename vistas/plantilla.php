@@ -239,7 +239,7 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
     JS PERSONALIZADO DE AUTENTICACION
     ======================================-->
     <script type="text/javascript" src="vistas/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="vistas/js/chat.js"></script>
+    <!--<script type="text/javascript" src="vistas/js/chat.js"></script>-->
     <script type="text/javascript" src="vistas/js/push.min.js"></script>
 
     <!--INPUT MASK PARA FORMATEAR CAMPOS DE TEXTO-->

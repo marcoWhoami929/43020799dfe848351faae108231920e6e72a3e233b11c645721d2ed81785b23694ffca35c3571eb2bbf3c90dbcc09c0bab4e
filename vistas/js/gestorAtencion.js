@@ -147,44 +147,6 @@ $(".tablaAtencion").on("click", ".Cancelado", function(){
 
 })
 
-
-/*=============================================
-REVISAR SI EL FOLIO DEL PEDIDO EXISTE
-=============================================*/
-
-$(".validarFolio").keyup(function(){
-
-  $(".alert").remove();
-
-  var Folio = $(this).val();
-
-  var datos = new FormData();
-  datos.append("validarFolio", Folio);
-
-   $.ajax({
-      url:"ajax/atencion.ajax.php",
-      method:"POST",
-      data: datos,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
-      success:function(respuesta){
-
-        if(respuesta.length != 0){
-
-          $(".validarFolio").parent().after('<div class="alert alert-warning">Ya existe un pedido registrado con este folio.</div>');
-
-          $(".validarFolio").val("");
-      
-
-        }
-
-      }
-
-    })
-
-})
 /*=============================================
 CANCELAR PEDIDO
 =============================================*/
@@ -265,3 +227,158 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
     }
 
 })
+/**
+ * NUEVAS FUNCIONES
+ */
+ function obtenerPedidosNuevos(){
+
+  n =  new Date();
+  //Año
+  y = n.getFullYear();
+//Mes
+  m = n.getMonth() + 1;
+//Día
+  d = n.getDate();
+
+  var fechaActual = y+"-"+m+"-"+d;
+
+  var datos = new  FormData();
+
+  datos.append('fechaActual',fechaActual);
+
+  $.ajax({
+      url:"ajax/atencion.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var json = JSON.stringify(respuesta);
+         
+          if (json === null) {
+
+            
+
+          }else{
+
+             var datosPedidos = new FormData();
+              datosPedidos.append('listaPedidos',json);
+
+              localStorage.setItem("pausado",1);
+               $.ajax({
+                url:"ajax/atencion.ajax.php",
+                method:"POST",
+                data: datosPedidos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success:function(respuesta){
+               
+                     if (respuesta === "finalizado") {
+
+                         localStorage.setItem("pausado",0);
+                     }
+                    
+                   
+
+                    
+                }
+
+          })
+      
+         
+
+
+          }
+          
+
+          
+      }
+
+
+    })
+
+              
+}
+ function obtenerFacturasNuevas(){
+
+  n =  new Date();
+  //Año
+  y = n.getFullYear();
+//Mes
+  m = n.getMonth() + 1;
+//Día
+  d = n.getDate();
+
+  var fechaActual = y+"-"+m+"-"+d;
+
+  var datos = new  FormData();
+
+  datos.append('fechaActualFacturas',fechaActual);
+
+  $.ajax({
+      url:"ajax/atencion.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var json = JSON.stringify(respuesta);
+         
+          if (json === null) {
+
+             
+
+          }else{
+
+              var datosFacturas = new FormData();
+              datosFacturas.append('listaFacturas',json);
+
+              console.log(datosFacturas);
+
+
+              localStorage.setItem("pausadoFacturas",1);
+               $.ajax({
+                url:"ajax/atencion.ajax.php",
+                method:"POST",
+                data: datosFacturas,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success:function(respuesta){
+               
+                     if (respuesta === "finalizado") {
+
+                         localStorage.setItem("pausadoFacturas",0);
+                     }else{
+
+                        console.log(respuesta);
+                     }
+                    
+                   
+
+                    
+                }
+
+          })
+      
+         
+
+
+          }
+          
+
+          
+      }
+
+
+    })
+
+              
+}

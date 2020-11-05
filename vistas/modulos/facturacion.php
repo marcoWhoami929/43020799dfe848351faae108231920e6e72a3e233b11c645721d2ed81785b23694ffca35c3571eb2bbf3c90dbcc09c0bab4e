@@ -1059,3 +1059,18 @@ $(document).ready(function(){
     }
      
     </script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+      $.timer(15000, function(temporizador){
+
+            if (localStorage.getItem("pausadoFacturas") == 1) {
+               
+            }else{
+               obtenerFacturasNuevas();
+               
+            }
+             
+             
+          })
+    });
+    </script>
