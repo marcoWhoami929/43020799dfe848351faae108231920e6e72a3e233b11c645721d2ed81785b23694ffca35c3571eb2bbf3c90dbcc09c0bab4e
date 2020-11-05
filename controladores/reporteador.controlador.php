@@ -279,12 +279,49 @@ class ControladorReporteador
 			                =========================================*/
 			                if ($value["tieneIva"] == "No") {
 
-											$iva = 0;
+											$importe1 = $value["parcial"];
+											$importe2 = $value["parcial2"];
+											$importe3 = $value["parcial3"];
+											$importe4 = $value["parcial4"];
+											$importe5 = $value["parcial5"];
+											$importe6 = $value["parcial6"];
+											$importe7 = $value["parcial7"];
+											$importe8 = $value["parcial8"];
+											$importe9 = $value["parcial9"];
+											$importe10 = $value["parcial10"];
+											$importe11 = $value["parcial11"];
+											$importe12 = $value["parcial12"];
+											
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
 											
 										}else {
 
 											
-											$iva1 = ($value["parcial1"]/1.16)*0.16;
+											$importe1 = ($value["parcial"]/1.16);
+											$importe2 = ($value["parcial2"]/1.16);
+											$importe3 = ($value["parcial3"]/1.16);
+											$importe4 = ($value["parcial4"]/1.16);
+											$importe5 = ($value["parcial5"]/1.16);
+											$importe6 = ($value["parcial6"]/1.16);
+											$importe7 = ($value["parcial7"]/1.16);
+											$importe8 = ($value["parcial8"]/1.16);
+											$importe9 = ($value["parcial9"]/1.16);
+											$importe10 = ($value["parcial10"]/1.16);
+											$importe11 = ($value["parcial11"]/1.16);
+											$importe12 = ($value["parcial12"]/1.16);
+
+											$iva1 = ($value["parcial"]/1.16)*0.16;
 											$iva2 = ($value["parcial2"]/1.16)*0.16;
 											$iva3 = ($value["parcial3"]/1.16)*0.16;
 											$iva4 = ($value["parcial4"]/1.16)*0.16;
@@ -356,7 +393,7 @@ class ControladorReporteador
 				 	  		
 					 	  						
 					 	  		}else{
-					 	  			/* AQUI INICIAN LAS MUESTRAS DE LOS PARCIALES */
+					 	  											/* AQUI INICIAN LAS MUESTRAS DE LOS PARCIALES */
 								if ($value["parciales"] == 1) {
 										
 									
@@ -381,7 +418,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -417,7 +454,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -447,7 +484,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -483,7 +520,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -513,7 +550,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -543,7 +580,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -580,7 +617,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -610,7 +647,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -640,7 +677,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -670,7 +707,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -706,7 +743,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -736,7 +773,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -766,7 +803,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -796,7 +833,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -826,7 +863,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -859,7 +896,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -889,7 +926,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -919,7 +956,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -949,7 +986,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -979,7 +1016,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1009,7 +1046,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1043,7 +1080,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1073,7 +1110,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1103,7 +1140,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1133,7 +1170,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1163,7 +1200,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1193,7 +1230,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1223,7 +1260,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1257,7 +1294,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1287,7 +1324,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1317,7 +1354,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1347,7 +1384,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1377,7 +1414,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1407,7 +1444,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1437,7 +1474,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1467,7 +1504,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial8"]/1.16."</td>
+				 						<td style='color:black;'>".$importe8."</td>
 				 						<td style='color:black;'>".$iva8."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1500,7 +1537,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1530,7 +1567,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1560,7 +1597,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1590,7 +1627,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1620,7 +1657,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1650,7 +1687,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1680,7 +1717,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1710,7 +1747,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial8"]/1.16."</td>
+				 						<td style='color:black;'>".$importe8."</td>
 				 						<td style='color:black;'>".$iva8."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1740,7 +1777,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial9"]/1.16."</td>
+				 						<td style='color:black;'>".$importe9."</td>
 				 						<td style='color:black;'>".$iva9."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1774,7 +1811,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1804,7 +1841,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1834,7 +1871,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1864,7 +1901,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1894,7 +1931,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1924,7 +1961,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1954,7 +1991,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -1984,7 +2021,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial8"]/1.16."</td>
+				 						<td style='color:black;'>".$importe8."</td>
 				 						<td style='color:black;'>".$iva8."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2014,7 +2051,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial9"]/1.16."</td>
+				 						<td style='color:black;'>".$importe9."</td>
 				 						<td style='color:black;'>".$iva9."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2044,7 +2081,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial10"]/1.16."</td>
+				 						<td style='color:black;'>".$importe10."</td>
 				 						<td style='color:black;'>".$iva10."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2077,7 +2114,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2107,7 +2144,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2137,7 +2174,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2167,7 +2204,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2197,7 +2234,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2227,7 +2264,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2257,7 +2294,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2287,7 +2324,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial8"]/1.16."</td>
+				 						<td style='color:black;'>".$importe8."</td>
 				 						<td style='color:black;'>".$iva8."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2317,7 +2354,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial9"]/1.16."</td>
+				 						<td style='color:black;'>".$importe9."</td>
 				 						<td style='color:black;'>".$iva9."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2347,7 +2384,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial10"]/1.16."</td>
+				 						<td style='color:black;'>".$importe10."</td>
 				 						<td style='color:black;'>".$iva10."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2377,7 +2414,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial11"]/1.16."</td>
+				 						<td style='color:black;'>".$importe11."</td>
 				 						<td style='color:black;'>".$iva11."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2410,7 +2447,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+				 						<td style='color:black;'>".$importe1."</td>
 				 						<td style='color:black;'>".$iva1."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2440,7 +2477,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial2"]/1.16."</td>
+				 						<td style='color:black;'>".$importe2."</td>
 				 						<td style='color:black;'>".$iva2."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2470,7 +2507,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial3"]/1.16."</td>
+				 						<td style='color:black;'>".$importe3."</td>
 				 						<td style='color:black;'>".$iva3."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2500,7 +2537,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial4"]/1.16."</td>
+				 						<td style='color:black;'>".$importe4."</td>
 				 						<td style='color:black;'>".$iva4."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2530,7 +2567,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial5"]/1.16."</td>
+				 						<td style='color:black;'>".$importe5."</td>
 				 						<td style='color:black;'>".$iva5."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2560,7 +2597,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial6"]/1.16."</td>
+				 						<td style='color:black;'>".$importe6."</td>
 				 						<td style='color:black;'>".$iva6."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2590,7 +2627,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial7"]/1.16."</td>
+				 						<td style='color:black;'>".$importe7."</td>
 				 						<td style='color:black;'>".$iva7."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2620,7 +2657,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial8"]/1.16."</td>
+				 						<td style='color:black;'>".$importe8."</td>
 				 						<td style='color:black;'>".$iva8."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2650,7 +2687,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial9"]/1.16."</td>
+				 						<td style='color:black;'>".$importe9."</td>
 				 						<td style='color:black;'>".$iva9."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2680,7 +2717,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial10"]/1.16."</td>
+				 						<td style='color:black;'>".$importe10."</td>
 				 						<td style='color:black;'>".$iva10."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2710,7 +2747,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial11"]/1.16."</td>
+				 						<td style='color:black;'>".$importe11."</td>
 				 						<td style='color:black;'>".$iva11."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
@@ -2740,7 +2777,7 @@ class ControladorReporteador
 				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
 				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
-				 						<td style='color:black;'>".$value["parcial12"]/1.16."</td>
+				 						<td style='color:black;'>".$importe12."</td>
 				 						<td style='color:black;'>".$iva12."</td>
 				 						<td style='color:black;'>0</td>
 				 						<td style='color:black;'>0</td>
