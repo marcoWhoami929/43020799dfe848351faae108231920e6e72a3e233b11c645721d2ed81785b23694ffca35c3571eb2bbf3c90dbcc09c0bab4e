@@ -126,7 +126,7 @@ PÁGINA DE INICIO
          ?>
 
          <div class="col-lg-12">
-           <center><h2 style="font-weight: bold;color:tomato;">BIENVENIDO A CONTROL MATRIZ Versión 3.3.0</h2></center>
+          <center><h2 class="coloresTema">CONTROL MATRIZ <br>Versión 4.0.0</h2></center>
          </div>
          <div class="col-lg-6">
             <span id="liveclock" style="left:0;top:0; font-size:36px; font-family:'Lucida Sans'"></span>

@@ -48,6 +48,7 @@ require_once "controladores/ordenTrabajo.controlador.php";
 require_once "controladores/almacenRuta.controlador.php";
 require_once "controladores/facturacionRuta.controlador.php";
 require_once "controladores/facturacionTiendas.controlador.php";
+require_once "controladores/entregas.controlador.php";
 /*CONTROLADORES DE CONTROL MATRIZ*/
 
 
@@ -100,9 +101,14 @@ require_once "modelos/ordenTrabajo.modelo.php";
 require_once "modelos/almacenRuta.modelo.php";
 require_once "modelos/facturacionRuta.modelo.php";
 require_once "modelos/facturacionTiendas.modelo.php";
+require_once "modelos/entregas.modelo.php";
 /*MODELOS DE CONTROL MATRIZ*/
 require_once "extensiones/PHPMailer/PHPMailerAutoload.php";
 require_once "extensiones/vendor/autoload.php";
 
+/**
+ * CONEXION SERVER 
+ */
+require_once "modelos/conexion-api-server.modelo.php";
 $plantilla = new ControladorPlantilla();
 $plantilla -> plantilla();

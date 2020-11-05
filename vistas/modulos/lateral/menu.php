@@ -4,6 +4,7 @@ MENU
 
 <ul class="sidebar-menu">
   <?php
+  error_reporting(0);
   if ($_SESSION["cotizador"] == 0 || $_SESSION["perfil"] != "Tiendas") {
     
     if ($_SESSION["cotizador"] == 1) {

@@ -114,9 +114,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
 
         </div>
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaCompras" width="100%" id="compras" style="border: 2px solid #605ca8">
+        <table class="table-bordered table-striped dt-responsive tablaCompras estilosBordesTablas" width="100%" id="compras" >
          
-          <thead style="background:#605ca8;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              

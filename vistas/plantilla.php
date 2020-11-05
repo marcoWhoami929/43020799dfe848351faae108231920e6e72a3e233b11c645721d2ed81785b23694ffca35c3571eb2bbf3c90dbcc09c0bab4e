@@ -114,6 +114,22 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
 
   <link rel="stylesheet" href="vistas/css/plantilla.css">
 
+   <?php
+   if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"] === "ok"){
+
+   
+   }else{
+     if(isset($_GET["ruta"]) == "ingreso" || isset($_GET["ruta"]) == "login"){
+
+      echo '<link rel="stylesheet" href="vistas/css/login.css">';
+
+    }else{
+
+        echo '<link rel="stylesheet" href="vistas/css/login.css">';
+    }
+   }
+  ?>
+
   <link rel="stylesheet" href="vistas/css/slide.css">
 
     <!--Jquery UI-->
@@ -266,192 +282,18 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
 
      if(isset($_GET["ruta"])){
 
-          if($_GET["ruta"]== "inicio" ||
+          $carpeta = "vistas/modulos/";
+          $class = $carpeta . $_GET["ruta"]. '.php';
 
-              $_GET["ruta"]== "almacen"||
 
-              $_GET["ruta"] == "atencionClientes" ||
+          if (!file_exists($class)) {
+              include "modulos/404.php";
+          }else{
 
-              $_GET["ruta"] == "facturacion"||
+            include "modulos/".$_GET["ruta"].".php";
+            
 
-              $_GET["ruta"] == "laboratorioColor"||
-              
-              $_GET["ruta"] == "logistica"||
-
-              $_GET["ruta"] == "compras"||
-
-              $_GET["ruta"] == "creditoCobranza" ||
-
-              $_GET["ruta"] == "clientes" ||
-
-              $_GET["ruta"] == "proveedores" ||
-
-              $_GET["ruta"] == "estatusPedidos" ||
-          
-               $_GET["ruta"] == "perfiles" ||
-
-               $_GET["ruta"] == "usuarios" ||
-
-               $_GET["ruta"] == "respaldo" ||
-
-               $_GET["ruta"] == "accesocaja" ||
-
-               $_GET["ruta"] == "acceso0198" ||
-
-               $_GET["ruta"] == "acceso6278" ||
-
-               $_GET["ruta"] == "acceso3450" ||
-
-               $_GET["ruta"] == "acceso1286" ||
-
-               $_GET["ruta"] == "acceso1219" ||
-
-               $_GET["ruta"] == "acceso0840" ||
-
-               $_GET["ruta"] == "acceso1340" ||
-   
-               $_GET["ruta"] == "userConfirm0198" ||
-
-               $_GET["ruta"] == "userConfirm3450" ||
-
-               $_GET["ruta"] == "userConfirm6278" ||
-
-               $_GET["ruta"] == "userConfirmCaja" ||
-
-               $_GET["ruta"] == "userConfirm1286" ||
-
-               $_GET["ruta"] == "userConfirm1219" ||
-
-               $_GET["ruta"] == "userConfirm0840" ||
-
-               $_GET["ruta"] == "userConfirm1340" ||
-
-               $_GET["ruta"] == "banco6278" ||
-
-               $_GET["ruta"] == "banco3450" ||
-
-               $_GET["ruta"] == "banco0198" ||
-
-               $_GET["ruta"] == "banco1286" ||
-
-               $_GET["ruta"] == "banco1219" ||
-
-               $_GET["ruta"] == "banco0840" ||
-
-               $_GET["ruta"] == "banco1340" ||
-
-               $_GET["ruta"] == "bitacora" ||
-
-               $_GET["ruta"] == "caja" ||
-
-               $_GET["ruta"] == "restauracion" ||
-
-               $_GET["ruta"] == "restauracionBancos" ||
-
-               $_GET["ruta"] == "flujodeefectivo" ||
-
-               $_GET["ruta"] == "flujodeefectivoR" ||
-
-               $_GET["ruta"] == "flujodeefectivoDiario" ||
-
-               $_GET["ruta"] == "valores" ||
-
-               $_GET["ruta"] == "salaChat" ||
-
-               $_GET["ruta"] == "indicadores" ||
-
-               $_GET["ruta"] == "cronUpdate" ||
-
-               $_GET["ruta"] == "cotizador" ||
-
-               $_GET["ruta"] == "realizarCotizacion" ||
-
-               $_GET["ruta"] == "editarCotizacion" ||
-
-               $_GET["ruta"] == "verCotizaciones" ||
-
-               $_GET["ruta"] == "enviarCotizaciones" ||
-
-               $_GET["ruta"] == "mostrarCotizacion" ||
-
-               $_GET["ruta"] == "reportAcumulado" ||
-
-               $_GET["ruta"] == "reportAcumuladoMensual" ||
-
-               $_GET["ruta"] == "prospectos" ||
-
-               $_GET["ruta"] == "productos" ||
-
-               $_GET["ruta"] == "controlMuestras" ||
-
-               $_GET["ruta"] == "reporteCotizacion" ||
-
-               $_GET["ruta"] == "catalogoProductos" ||
-
-               $_GET["ruta"] == "subcategoriasProducto" ||
-
-               $_GET["ruta"] == "carteraClientes" ||
-
-               $_GET["ruta"] == "ticketsSoporte" ||
-
-               $_GET["ruta"] == "estatusTickets" ||
-
-               $_GET["ruta"] == "dashboardTickets" ||
-
-               $_GET["ruta"] == "generadorTickets" ||
-
-               $_GET["ruta"] == "editarTicket" ||
-
-               $_GET["ruta"] == "saldos" ||
-
-               $_GET["ruta"] == "ordenTrabajo" ||
-
-               $_GET["ruta"] == "almacenRuta" ||
-
-               $_GET["ruta"] == "facturacionRuta" ||
-
-               $_GET["ruta"] == "estatusRuta" ||
-
-               $_GET["ruta"] == "indicadoresRutas" ||
-
-               $_GET["ruta"] == "tableroCortes" ||
-
-               $_GET["ruta"] == "facturasTiendas" ||
-
-               $_GET["ruta"] == "ventasTiendas" ||
-
-               $_GET["ruta"] == "cobrosTiendas" ||
-
-               $_GET["ruta"] == "misDepositos" ||
-
-               $_GET["ruta"] == "gastosTiendas" ||
-
-               $_GET["ruta"] == "gastosSolicitudes" ||
-
-               $_GET["ruta"] == "facturasCanceladas" ||
-
-               $_GET["ruta"] == "ajusteSaldos" ||
-
-               $_GET["ruta"] == "ajustesGenerados" ||
-
-               $_GET["ruta"] == "corteCaja" ||
-
-               $_GET["ruta"] == "abonos" ||
-
-               $_GET["ruta"] == "nuevoCorteCaja" ||
-
-               $_GET["ruta"] == "importesVenta" ||
-
-               $_GET["ruta"] == "gastosCorteCaja" ||
-
-               $_GET["ruta"] == "depositoEfectivoBanco" ||
-             
-               $_GET["ruta"] == "salir"){
-
-
-          include "modulos/".$_GET["ruta"].".php";
-
-        }
+          }   
 
      }else{
 
@@ -527,6 +369,8 @@ JS PERSONALIZADO
 
 <script src="vistas/js/gestorCatalogoProductos.js"></script>
 <script src="vistas/js/mapaUbicacionCliente.js"></script>
+<script src="vistas/js/gestorEntregas.js"></script>
+<script src="vistas/js/timer.js"></script>
 <!-- GESTORES DE CONTROL MATRIZ -->
 
 </body>

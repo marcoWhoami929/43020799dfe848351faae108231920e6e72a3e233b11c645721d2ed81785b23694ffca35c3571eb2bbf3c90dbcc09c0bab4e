@@ -117,9 +117,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Lab
           ?>
         </div>
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaLaboratorio" width="100%" id="laboratorio" style="border: 2px solid #dd4b39">
+        <table class="table-bordered table-striped dt-responsive tablaLaboratorio estilosBordesTablas" width="100%" id="laboratorio" >
          
-          <thead style="background:#dd4b39;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              

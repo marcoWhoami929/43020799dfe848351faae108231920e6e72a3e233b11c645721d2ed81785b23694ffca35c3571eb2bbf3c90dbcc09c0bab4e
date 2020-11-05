@@ -145,9 +145,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
               
             ?>
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaFacturacion" width="100%" id="facturacion" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaFacturacion estilosBordesTablas" width="100%" id="facturacion" style="border: 2px solid #001f3f">
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              

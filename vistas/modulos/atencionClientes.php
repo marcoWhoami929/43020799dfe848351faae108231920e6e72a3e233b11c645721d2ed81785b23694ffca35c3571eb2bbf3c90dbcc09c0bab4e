@@ -153,9 +153,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
         
 
          <br>
-        <table class="table-bordered table-striped dt-responsive tablaAtencion" width="100%" id="atencion" style="border: 2px solid #F3826A ">
+        <table class="table-bordered table-striped dt-responsive tablaAtencion estilosBordesTablas" width="100%" id="atencion" >
          
-          <thead style="background:#F3826A;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              

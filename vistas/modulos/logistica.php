@@ -109,9 +109,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
         <br>
          
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaLogistica" width="100%" id="logistica" style="border: 2px solid #f39c12">
+        <table class="table-bordered table-striped dt-responsive tablaLogistica estilosBordesTablas" width="100%" id="logistica" >
          
-          <thead style="background:#f39c12;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
