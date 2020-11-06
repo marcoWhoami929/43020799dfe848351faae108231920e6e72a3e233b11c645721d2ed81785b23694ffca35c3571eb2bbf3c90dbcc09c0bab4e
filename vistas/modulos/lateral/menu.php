@@ -128,6 +128,7 @@ MENU
 
        if ($_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez") {
         echo '<li><a href="logistica"><i class="fa fa-truck"></i><span>Logística</span></a></li>';
+        echo '<li><a href="entregas"><i class="fa fa-archive"></i><span>Entregas</span></a></li>';
         }
         else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
             echo '<li><a href="logistica"><i class="fa fa-truck"></i><span>Logística</span></a></li>';

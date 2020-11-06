@@ -1,20 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-/*
-if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"] === "ok"){
-    if(isset($_GET["ruta"])){
 
-        if (strpos($_GET["ruta"], 'pedido') !== false) {
-            
-            $id_pedido = explode('/', $_GET["ruta"])[1];
-
-            return ControladorReporte::ctrReporteExcelPedido($id_pedido);
-        }
-
-    }
-}
-*/
 ?>
 <!DOCTYPE html>
 <html>

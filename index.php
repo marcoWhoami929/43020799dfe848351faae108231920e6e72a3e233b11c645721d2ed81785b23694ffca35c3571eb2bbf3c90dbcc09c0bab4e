@@ -109,6 +109,6 @@ require_once "extensiones/vendor/autoload.php";
 /**
  * CONEXION SERVER 
  */
-require_once "modelos/conexion-api-server.modelo.php";
+//require_once "modelos/conexion-api-server.modelo.php";
 $plantilla = new ControladorPlantilla();
 $plantilla -> plantilla();

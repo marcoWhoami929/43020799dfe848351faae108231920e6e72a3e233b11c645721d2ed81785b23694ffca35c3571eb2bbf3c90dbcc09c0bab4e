@@ -598,28 +598,6 @@ class ControladorFacturacion{
 
 		$arreglo = json_decode($arregloGeneral, true);
 
-		$itemNombre = 'nombreCliente';
-        $valorNombre = $editarNombreCliente;
-
-		$datosCliente = ModeloFacturacion::mdlBuscarCliente($tabla3, $itemNombre, $valorNombre);
-
-		if ($datosCliente[0]["nombreCliente"] == "") {
-
-			$nombreCliente = "";
-			$codigoCliente = "";
-			$rfc = "";
-			$statusClienteFg = "activado";
-			$diasCredito = "0";
-			
-		}else{
-
-			$nombreCliente = $datosCliente[0]["nombreCliente"];
-			$codigoCliente = $datosCliente[0]["codigoCliente"];
-			$rfc = $datosCliente[0]["rfc"];
-			$statusClienteFg = $datosCliente[0]["statusCliente"];
-			$diasCredito = $datosCliente[0]["diasCredito"];
-
-		}
 		
 		$estatus = 'Vigente';
 
@@ -684,7 +662,7 @@ class ControladorFacturacion{
 									  		 "facturaPendiente" => 0,
 									  		 "ordenCompra" => $editarOrdenCompra,
 									  		 "tipo" => $editarTipo,
-									  		 "statusCliente" => $statusClienteFg,
+									  		 
 									  		 "tipoRuta" => $editarTipoRuta,
 									  		 "cantidad" => $cantidad,
 									  		 "fechaRecepcion" => $editarFechaRecepcion,
@@ -694,11 +672,7 @@ class ControladorFacturacion{
 									  		 "neto" => number_format($neto,4, '.', ''),
 									  	   	 "impuesto" => number_format($impuesto,4, '.', ''),
 									  	   	 "total" => $total,
-									  	   	 "codigoCliente" => $codigoCliente,
-									  	   	 "rfc" => $rfc,
-									  	   	 "nombreCliente" => $nombreCliente,
-									  	   	 "statusClienteFg" => $statusClienteFg,
-									  	   	 "diasCredito" => $diasCredito,
+									  	   	 
 									  	   	 "pendiente" => $total,
 									  	   	 "estatus" => $estatus);
 
@@ -817,7 +791,7 @@ class ControladorFacturacion{
 								  		 "facturaPendiente" => 0,
 								  		 "ordenCompra" => $editarOrdenCompra,
 								  		 "tipo" => $editarTipo,
-								  		 "statusCliente" => $statusClienteFg,
+								  	
 								  		 "tipoRuta" => $editarTipoRuta,
 								  		 "cantidad" => $cantidad,
 								  		 "fechaRecepcion" => $editarFechaRecepcion,
@@ -860,11 +834,7 @@ class ControladorFacturacion{
 									  	   "neto" => number_format($neto,4, '.', ''),
 									  	   "impuesto" => number_format($impuesto,4, '.', ''),
 									  	   "total" => $total,
-									  	   "codigoCliente" => $codigoCliente,
-									  	   "rfc" => $rfc,
-									  	   "nombreCliente" => $nombreCliente,
-									  	   "statusClienteFg" => $statusClienteFg,
-									  	   "diasCredito" => $diasCredito,
+									  	   
 									  	   "pendiente" => $total,
 									  	   "estatus" => $estatus,
 									  	   "formaPago" => $formaPago,
@@ -983,7 +953,7 @@ class ControladorFacturacion{
 								  		 "facturaPendiente" => 0,
 								  		 "ordenCompra" => $editarOrdenCompra,
 								  		 "tipo" => $editarTipo,
-								  		 "statusCliente" => $statusClienteFg,
+								  		 
 								  		 "tipoRuta" => $editarTipoRuta,
 								  		 "cantidad" => $cantidad,
 								  		 "fechaRecepcion" => $editarFechaRecepcion,

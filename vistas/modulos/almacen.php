@@ -152,7 +152,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Alm
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background:tomato; color:white">
+      <div class="modal-header  headerModal" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -187,7 +187,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:tomato; color:white">
+        <div class="modal-header  headerModal" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

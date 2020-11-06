@@ -107,7 +107,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
 
           </a>
 
-          <a href="vistas/modulos/reportes.php?reporteFacturacion=facturacion">
+          <a href="vistas/modulos/reportes.php?reporteFacturacion=facturasgenerales">
 
             <button class="report btn btn-warning" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte Detallado</button>
 
@@ -145,7 +145,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
               
             ?>
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaFacturacion estilosBordesTablas" width="100%" id="facturacion" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaFacturacion estilosBordesTablas" width="100%" id="facturacion" >
          
           <thead class="estilosTablas">
            
@@ -192,7 +192,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background:tomato; color:white">
+      <div class="modal-header headerModal" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -285,7 +285,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:tomato; color:white">
+        <div class="modal-header headerModal" >
 
           <button type="button" class="close" data-dismiss="modal" id="xEditar" name="xEditar">&times;</button>
 
@@ -720,91 +720,10 @@ MODAL EDITAR PEDIDO
         </div>
            <?php
 
-          
-          /*=============================*/
-
-          //$editarCompra = new ControladorFacturacion();
-          //$editarCompra -> ctrEditarPedido();
-
-          //$actualizarFormatoPedido = new ControladorFacturacion();
-          //$actualizarFormatoPedido -> ctrActualizarFormatoPedido();
-
-          //$actualizarTipoRuta = new ControladorFacturacion();
-          //$actualizarTipoRuta -> ctrActualizarTipoRuta();
-
-          //$actualizarNiveles = new ControladorFacturacion();
-          //$actualizarNiveles -> ctrActualizarNiveles();
-
-          //$actualizarEstatusFacturaAlmacen = new ControladorFacturacion();
-          //$actualizarEstatusFacturaAlmacen -> ctrActualizarEstatusFacturaAlmacen();
-
-          //$actualizarFormatoPedidoAtencion = new ControladorFacturacion();
-          //$actualizarFormatoPedidoAtencion -> ctrActualizarFormatoPedidoAtencion();
-
-          //$actualizarNombreCliente = new ControladorFacturacion();
-          //$actualizarNombreCliente -> ctrActualizarNombreCliente();
-
-          //$actualizarNombreCliente2 = new ControladorFacturacion();
-          //$actualizarNombreCliente2 -> ctrActualizarNombreCliente2();
-
-          
-          //$actualizarFechaRecepcionAlmacen = new ControladorFacturacion();
-          //$actualizarFechaRecepcionAlmacen -> ctrMostrarFechaRecepcionAlmacen();
-
-          //$actualizarFechaTerminoAlmacen = new ControladorFacturacion();
-          //$actualizarFechaTerminoAlmacen -> ctrMostrarFechaTerminoAlmacen();
-
-          //$actualizarTiempoProcesoLogistica = new ControladorFacturacion();
-          //$actualizarTiempoProcesoLogistica -> ctrActualizarTiempoLogistica();
-
-          //$actualizarFolioFacturaLogistica = new ControladorFacturacion();
-          //$actualizarFolioFacturaLogistica -> ctrActualizarFolioFacturaLogistica();
-
-          //$actualizarSerieFacturaLogistica = new ControladorFacturacion();
-          //$actualizarSerieFacturaLogistica -> ctrActualizarSerieFacturaLogistica();
-          
           $registroBitacora =  new ControladorFacturacion();
           $registroBitacora -> ctrRegistroBitacora(); 
 
-          //$mostrarTiempoEdicion = new ControladorFacturacion();
-          //$mostrarTiempoEdicion -> ctrMostrarTiempoProcesoEdicion();
-
-          //$actualizarStatusFacturacionEdicion = new ControladorFacturacion();
-          //$actualizarStatusFacturacionEdicion -> ctrActualizarStatusFacturacionEdicion();
-
-          //$actualizarEstado = new ControladorFacturacion();
-          //$actualizarEstado -> ctrActualizarEstadoFacturacion();
-
-          //$actualizarEstadoPedido = new ControladorFacturacion();
-          //$actualizarEstadoPedido -> ctrActualizarEstadoPedido();
-
-          //$actualizarStatusPedido = new ControladorFacturacion();
-          //$actualizarStatusPedido -> ctrActualizarStatusPedido();
-
-          //$actualizarFolioFactura = new ControladorFacturacion();
-          //$actualizarFolioFactura -> ctrActualizarFolioFactura();
-
-          //$actualizarSerieFactura = new ControladorFacturacion();
-          //$actualizarSerieFactura -> ctrActualizarSerieFactura();
-
-          //$actualizarSaldoFacturado = new ControladorFacturacion();
-          //$actualizarSaldoFacturado -> ctrActualizarSaldoFacturado();
-
-          //$actualizarTiempoAlmacen = new ControladorFacturacion();
-          //$actualizarTiempoAlmacen -> ctrMostrarTiempoProcesoAlmacen();
-
-          //$actualizarTiempoProcesoAlmacen = new ControladorFacturacion();
-          //$actualizarTiempoProcesoAlmacen -> ctrActualizarTiempoAlmacen();
-
-          //$actualizarFechaRecepcionLogistica = new ControladorFacturacion();
-          //$actualizarFechaRecepcionLogistica -> ctrMostrarFechaRecepcionLogistica();
-
-          //$actualizarFechaTerminoLogistica = new ControladorFacturacion();
-          //$actualizarFechaTerminoLogistica -> ctrMostrarFechaTerminoLogistica();
-
-          //$actualizarTiempoLogistica = new ControladorFacturacion();
-          //$actualizarTiempoLogistica -> ctrMostrarTiempoProcesoLogistica();
-
+        
           ?>
 
       </form>

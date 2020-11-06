@@ -614,7 +614,7 @@ MODAL EDITAR ORDEN DE TRABAJO
             
             <button type="button" class="btn btn-warning" style="background: #2667ce;" data-dismiss="modal" id="minimizarOrden">Salir</button>
 
-            <button type="submit" class="btn btn-success" style="background: #2667ce;" id="modificarOrden">Editar Almacen</button>
+            <button type="submit" class="btn btn-success" style="background: #2667ce;" id="modificarOrden">Editar</button>
         
         </div>
 
