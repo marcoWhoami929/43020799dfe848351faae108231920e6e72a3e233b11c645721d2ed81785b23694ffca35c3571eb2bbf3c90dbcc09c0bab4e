@@ -280,19 +280,15 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="editarCreado">Creado por</option>
 
-                          <option value="Nataly Fuentes">Nataly Fuentes</option>
-
                           <option value="Rocio Martínez">Rocio Martínez</option>
-
-                          <option value="Enrique Bustos">Enrique Bustos</option>
-
+                         
                           <option value="Jose Luis Texis">Jose Luis Texis</option>
 
                           <option value="Miguel Gutierrez">Miguel Gutierrez</option>
 
                           <option value="Orlando Briones">Orlando Briones</option>
 
-                          <option value="Erick Gomez Rodriguez">Erick Gomez Rodriguez</option>
+                          <option value="Diego Avila">Diego Avila</option>
 
                           <option value="Aurora Fernandez">Aurora Fernandez</option>
 
