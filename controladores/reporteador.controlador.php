@@ -2819,6 +2819,7 @@ class ControladorReporteador
 		if(isset($_GET["bancoRangoFechasCredito"])){
 			session_start();
 
+
 			$tabla = $_GET["bancoRangoFechasCredito"];
 
 			$item = "fecha";
@@ -2856,6 +2857,7 @@ class ControladorReporteador
 		        $fecha = str_replace('-', '/', $valor2);
 	        	$fechaFinal = date('d/m/Y', strtotime($fecha));
 
+
 		    }else{
 		        $hoy = date("Y-m-d");
 
@@ -2867,7 +2869,7 @@ class ControladorReporteador
 			$datos = "&nbsp; DEL &nbsp; DIA &nbsp;<br>".$fechaInicio." AL ".$fechaFinal;
 
 
-			$reporteRangoFechas = ModeloReporteador::mdlDescargarReporteRangoFechasCredito($tabla,$item,$valor1,$valor2);
+			$reporteRangoFechasCredito = ModeloReporteador::mdlDescargarReporteRangoFechasCredito($tabla,$item,$valor1,$valor2);
 			/*=============================================
 			CREAMOS EL ARCHIVO DE EXCEL
 			=============================================*/
@@ -2918,8 +2920,9 @@ class ControladorReporteador
 	
 				}
 				echo utf8_decode("</tr>");
+
 	
-				foreach ($reporteRangoFechas as $key => $value) {
+				foreach ($reporteRangoFechasCredito as $key => $value) {
 
 					echo utf8_decode("<tr>
 				 			
@@ -2996,17 +2999,78 @@ class ControladorReporteador
 			                            /*=========================================
 					                =            MOSTRAR PARCIALES            =
 					                =========================================*/
+					                  if ($value["tieneIva"] == "No") {
+
+											$importe1 = $value["parcial"];
+											$importe2 = $value["parcial2"];
+											$importe3 = $value["parcial3"];
+											$importe4 = $value["parcial4"];
+											$importe5 = $value["parcial5"];
+											$importe6 = $value["parcial6"];
+											$importe7 = $value["parcial7"];
+											$importe8 = $value["parcial8"];
+											$importe9 = $value["parcial9"];
+											$importe10 = $value["parcial10"];
+											$importe11 = $value["parcial11"];
+											$importe12 = $value["parcial12"];
+											
+											$iva1 = 0;
+											$iva2 = 0;
+											$iva3 = 0;
+											$iva4 = 0;
+											$iva5 = 0;
+											$iva6 = 0;
+											$iva7 = 0;
+											$iva8 = 0;
+											$iva9 = 0;
+											$iva10 =  0;
+											$iva11 =  0;
+											$iva12 =  0;
+											
+										}else {
+
+											
+											$importe1 = ($value["parcial"]/1.16);
+											$importe2 = ($value["parcial2"]/1.16);
+											$importe3 = ($value["parcial3"]/1.16);
+											$importe4 = ($value["parcial4"]/1.16);
+											$importe5 = ($value["parcial5"]/1.16);
+											$importe6 = ($value["parcial6"]/1.16);
+											$importe7 = ($value["parcial7"]/1.16);
+											$importe8 = ($value["parcial8"]/1.16);
+											$importe9 = ($value["parcial9"]/1.16);
+											$importe10 = ($value["parcial10"]/1.16);
+											$importe11 = ($value["parcial11"]/1.16);
+											$importe12 = ($value["parcial12"]/1.16);
+
+											$iva1 = ($value["parcial"]/1.16)*0.16;
+											$iva2 = ($value["parcial2"]/1.16)*0.16;
+											$iva3 = ($value["parcial3"]/1.16)*0.16;
+											$iva4 = ($value["parcial4"]/1.16)*0.16;
+											$iva5 = ($value["parcial5"]/1.16)*0.16;
+											$iva6 = ($value["parcial6"]/1.16)*0.16;
+											$iva7 = ($value["parcial7"]/1.16)*0.16;
+											$iva8 = ($value["parcial8"]/1.16)*0.16;
+											$iva9 = ($value["parcial9"]/1.16)*0.16;
+											$iva10 = ($value["parcial10"]/1.16)*0.16;
+											$iva11 = ($value["parcial11"]/1.16)*0.16;
+											$iva12 = ($value["parcial12"]/1.16)*0.16;
+
+
+										}
 					                if ($value["parciales"] == 0 || $value["parciales"] == 1) {
 
 						 	  		
 						 	  						
 						 	  		}else{
+						 	  			if ($value["departamento"] ==  "SANTIAGO" || $value["departamento"] ==  "REFORMA" || $value["departamento"] ==  "SAN MANUEL" || $value["departamento"] ==  "VERGEL" || $value["departamento"] ==  "XONACA" || $value["departamento"] ==  "MAYOREO"  || $value["departamento"] ==  "MAYORAZGO" || $value["departamento"] ==  "LAS TORRES" || $value["departamento"] ==  "INDUSTRIAL"  || $value["departamento"] ==  "DIAGONAL" || $value["departamento"] ==  "CAPU" || $value["departamento"] ==  "CEDIS" ) {
 
-						 	  			$tablaB = $tabla;
+						 	  				$tablaB = $tabla;
 						                $item = "idMovimientoBanco";
 						                $valor =  $value["id"];
+						                $tipo = "cerrado";
 
-						                $mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB,$item,$valor);
+						                $mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB,$item,$valor,$tipo);
 
 						                foreach ($mostrarParciales as $key => $value) {
 						                	
@@ -3030,13 +3094,1797 @@ class ControladorReporteador
 							 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
 							 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
 							 					
-							 					
-							 						<td style='color:black;'>0</td>
-							 						<td style='color:black;'>0</td></tr>");
+							 						<td style='color:black;'>".$value["parcial"]/1.16."</td>
+					 								<td style='color:black;'>".($value["parcial"]/1.16)*0.16."</td></tr>");
 
 
 
 						                }
+
+						 	  			}else{
+
+						 	  												/* AQUI INICIAN LAS MUESTRAS DE LOS PARCIALES */
+								if ($value["parciales"] == 1) {
+										
+									
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 					
+
+										}
+								else if ($value["parciales"] == 2) {
+
+									
+											echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+
+				 					
+
+										}
+								else if ($value["parciales"] == 3) {
+
+									echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+
+				 					
+
+										}
+								else if ($value["parciales"] == 4) {
+
+									
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+				 					
+
+										}
+
+								else if ($value["parciales"] == 5) {
+
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+										}
+								else if ($value["parciales"] == 6) {
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+										
+										}
+								else if ($value["parciales"] == 7) {
+
+									
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+										}
+							else if ($value["parciales"] == 8) {
+
+										
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial8"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial8"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe8."</td>
+				 						<td style='color:black;'>".$iva8."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+										}
+							else if ($value["parciales"] == 9) {
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial8"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial8"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe8."</td>
+				 						<td style='color:black;'>".$iva8."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial9"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial9"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe9."</td>
+				 						<td style='color:black;'>".$iva9."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+										
+
+										}
+							else if ($value["parciales"] == 10) {
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial8"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial8"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe8."</td>
+				 						<td style='color:black;'>".$iva8."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial9"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial9"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe9."</td>
+				 						<td style='color:black;'>".$iva9."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial10"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["comprobacion"]."</td>
+				 						<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
+				 						<td style='color:black;'>".$value["parcial10"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe10."</td>
+				 						<td style='color:black;'>".$iva10."</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td>
+				 						<td style='color:black;'>0</td></tr>");
+
+										}
+						else if ($value["parciales"] == 11) {
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial8"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial8"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe8."</td>
+				 						<td style='color:black;'>".$iva8."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial9"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial9"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe9."</td>
+				 						<td style='color:black;'>".$iva9."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial10"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial10"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe10."</td>
+				 						<td style='color:black;'>".$iva10."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial11"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial11"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe11."</td>
+				 						<td style='color:black;'>".$iva11."</td></tr>");
+
+										}
+							else if ($value["parciales"] == 12) {
+
+										echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial1"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe1."</td>
+				 						<td style='color:black;'>".$iva1."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial2"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial2"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe2."</td>
+				 						<td style='color:black;'>".$iva2."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial3"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial3"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe3."</td>
+				 						<td style='color:black;'>".$iva3."</td></tr>");
+
+				 							echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial4"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial4"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe4."</td>
+				 						<td style='color:black;'>".$iva4."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial5"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial5"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe5."</td>
+				 						<td style='color:black;'>".$iva5."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial6"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial6"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe6."</td>
+				 						<td style='color:black;'>".$iva6."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial7"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial7"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe7."</td>
+				 						<td style='color:black;'>".$iva7."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial8"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial8"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe8."</td>
+				 						<td style='color:black;'>".$iva8."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial9"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial9"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe9."</td>
+				 						<td style='color:black;'>".$iva9."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial10"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial10"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe10."</td>
+				 						<td style='color:black;'>".$iva10."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial11"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial11"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe11."</td>
+				 						<td style='color:black;'>".$iva11."</td></tr>");
+
+				 						echo utf8_decode("<tr>
+				 			
+				 						<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["departamentoParcial12"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;'>".$value["mes"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;width:600px'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>0</td>
+				 						
+				 						<td style='color:black;'>".$value["parcial12"]."</td>
+				 						<td style='color:black;'>".$value["serie"]."</td>
+				 						<td style='color:black;'>".$value["folio"]."</td>
+				 						<td style='color:black;'>".$value["numeroMovimiento"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;'>".$importe12."</td>
+				 						<td style='color:black;'>".$iva12."</td></tr>");
+
+										}
+								/* AQUI INICIAN LAS MUESTRAS DE LOS PARCIALES */
+
+
+
+
+
+						 	  			}
+
+						 	  			
 					                
 
 						 	  		}
