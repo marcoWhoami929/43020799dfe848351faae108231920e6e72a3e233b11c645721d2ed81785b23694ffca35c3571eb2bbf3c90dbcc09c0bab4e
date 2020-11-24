@@ -111,8 +111,16 @@ $google_QR_Code = $gauth->getQRCodeGoogleUrl($email, $secret_key,'Matriz');
 					}).then(function(result){
 
 						if(result.value){
+
+							if (localStorage.getItem('tablaBanco') == 'tablaBanco6278Credito') {
+
+								window.location = 'banco6278Credito';
+							}else {
+
+								window.location = 'banco6278';
+							}
 						
-							window.location = 'banco6278';
+						
 
 						}
 

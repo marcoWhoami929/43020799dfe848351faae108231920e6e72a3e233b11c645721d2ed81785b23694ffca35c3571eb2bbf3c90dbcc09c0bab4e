@@ -293,11 +293,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
          
         
         <br>
-        <?php
-
-        if ($_SESSION["perfil"] ==  "Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Contabilidad") {
-          
-          echo '<table class="table-bordered table-striped dt-responsive tablaBanco6278" width="100%" id="banco6278" style="border: 2px solid #187092">
+        <table class="table-bordered table-striped dt-responsive tablaBanco6278" width="100%" id="banco6278" style="border: 2px solid #187092">
          
           <thead style="background:#187092;color: white">
            
@@ -336,41 +332,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
 
           </thead>
 
-        </table>';
-        }else if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
-              
-              echo '<table class="table-bordered table-striped dt-responsive tablaBanco6278Credito" width="100%" id="banco6278credito" style="border: 2px solid #187092">
-         
-          <thead style="background:#187092;color: white">
-           
-           <tr style="">
-             <th style="width:20px;height: 40px;border:none;">N°</th>
-             <th style="border:none">Departamento</th>
-             <th style="border:none">Grupo</th>
-             <th style="border:none">Subgrupo</th>
-             <th style="border:none">Mes</th>
-             <th style="border:none">Fecha</th>
-             <th style="border:none">Descripción</th>
-             <th style="border:none">Abono</th>
-             <th style="border:none">Parcial</th>
-             <th style="border:none">Serie</th>
-             <th style="border:none">Folio</th>
-             <th style="border:none">Numero de Movimiento</th>
-             <th style="border:none">Cliente / Proveedor / Acreedor</th>
-             <th style="border:none">Concepto</th>
-             <th style="border:none">Número Documento</th>
-             <th style="border:none">Importe</th>
-             <th style="border:none">IVA</th>
-             <th style="border:none">Acciones</th>
-
-           </tr> 
-
-          </thead>
-
-        </table>';
-
-        }
-        ?>
+        </table>
 
       </div>
 

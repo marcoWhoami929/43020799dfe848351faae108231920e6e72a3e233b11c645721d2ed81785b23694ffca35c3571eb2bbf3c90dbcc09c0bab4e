@@ -7830,7 +7830,7 @@ class ModeloBanco6278{
 			$fFin = str_replace('-', '/', $valor2);
 			$fechaFinal = date('d/m/Y',strtotime($fFin));
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')  AND abono > 0 ORDER BY id ASC");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')  AND abono > 0");
 			
 			$stmt -> execute();
 

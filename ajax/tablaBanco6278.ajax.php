@@ -22,7 +22,7 @@ class TablaBanco6278{
         }else{
 
          
-            $valor1 = date('Y-m-d', strtotime($fecha."- 5 month"));
+            $valor1 = date('Y-m-d', strtotime($fecha."- 3 month"));
         }
 
         if($_GET["fechaFin"] != '') {

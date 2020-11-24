@@ -183,14 +183,14 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
   <script src="vistas/plugins/bootstrap-slider/bootstrap-slider.js"></script>
 
   <!-- DataTables https://datatables.net/-->
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="vistas/js/jquery.dataTables.min.js"></script>
+  <script src="vistas/js/dataTables.responsive.min.js"></script>
   <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js"></script>
+  <script type="text/javascript" src="vistas/js/dataTables.fixedHeader.min.js"></script>
+  <script type="text/javascript" src="vistas/js/dataTables.fixedColumns.min.js"></script>
 
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+  <script type="text/javascript" src="vistas/js/dataTables.semanticui.min.js"></script>
+  <script type="text/javascript" src="vistas/js/semantic.min.js"></script>
 
   <!-- bootstrap tags input https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/-->
   <script src="vistas/plugins/tags/bootstrap-tagsinput.min.js"></script>
@@ -445,6 +445,8 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
                $_GET["ruta"] == "gastosCorteCaja" ||
 
                $_GET["ruta"] == "depositoEfectivoBanco" ||
+
+               $_GET["ruta"] == "banco6278Credito" ||
              
                $_GET["ruta"] == "salir"){
 

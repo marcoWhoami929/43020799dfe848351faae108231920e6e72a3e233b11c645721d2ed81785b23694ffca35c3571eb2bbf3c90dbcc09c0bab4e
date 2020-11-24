@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 ini_set('memory_limit', '-1');
 require_once "../controladores/banco6278.controlador.php";
 require_once "../modelos/banco6278.modelo.php";
@@ -20,7 +21,7 @@ class TablaBanco6278Credito{
 
     	}else{
 	      
-	        $valor1 =  date('Y-m-d', strtotime($fecha."- 7 days"));
+	        $valor1 =  date('Y-m-d', strtotime($fecha."- 1 month"));
     	}
 
 	    if($_GET["fechaFin"] != '') {

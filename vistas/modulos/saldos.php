@@ -386,7 +386,7 @@ margin-left: -10%;
 
       <div class="col-lg-3 col-xs-6">
         <div class="">
-          <a href="banco6278"  class="btnBancoElegido" banco="banco6278" tabla="<?php echo 'tablaBanco6278'.$tabla ?>"><img src="vistas/img/bancos/Crd_6278.png" alt="" style="width: 90%; height: 60%"></a>
+          <a href="<?php echo 'banco6278'.$tabla ?>"  class="btnBancoElegido" banco="banco6278" tabla="<?php echo 'tablaBanco6278'.$tabla ?>"><img src="vistas/img/bancos/Crd_6278.png" alt="" style="width: 90%; height: 60%"></a>
           <div class="alert alert-info alert-dismissable" style="width:90%">
             <div>
               <?php
