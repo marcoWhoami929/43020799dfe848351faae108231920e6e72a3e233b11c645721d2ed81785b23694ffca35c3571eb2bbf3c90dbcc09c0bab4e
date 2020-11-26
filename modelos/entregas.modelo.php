@@ -49,7 +49,7 @@ class ModeloEntregas{
 	}
 	static public function mdlMostrarListaFacturas($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT id,serie,folio,nombreCliente,total,tipoCliente,procesoEntrega FROM $tabla where idEntrega = 0");
+		$stmt = Conexion::conectar()->prepare("SELECT id,seriePedido,folioPedido,serie,folio,nombreCliente,total,tipoCliente,procesoEntrega FROM $tabla where idEntrega = 0");
 
 		$stmt -> execute();
 
@@ -231,7 +231,7 @@ class ModeloEntregas{
 	static public function mdlInsertarFacturaEntrega($tabla,$datosFactura){
 
 		
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idEntrega,idFactura,tipoCliente,costoHora,promedio) VALUES (:idEntrega,:idFactura,:tipoCliente,:costoHora,:promedio)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idEntrega,idFactura,tipoCliente,costoHora,promedio,estatusEntrega) VALUES (:idEntrega,:idFactura,:tipoCliente,:costoHora,:promedio,'En Ruta')");
 
 		$stmt->bindParam(":idEntrega", $datosFactura["idEntrega"], PDO::PARAM_INT);
 		$stmt->bindParam(":idFactura", $datosFactura["idFactura"], PDO::PARAM_INT);
@@ -342,6 +342,26 @@ class ModeloEntregas{
 		return $stmt -> fetch();
 
 		$stmt-> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlActualizarDatosEntregaLogistica($tabla,$datosActualizacion){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set tipoRuta = :tipoRuta,operador = :operador,fechaRecepcion = :fechaRecepcion,status = 1,estado = 1 WHERE serie = :serie and idPedido = :folio");
+
+		$stmt->bindParam(":serie", $datosActualizacion["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":folio", $datosActualizacion["folio"], PDO::PARAM_STR);
+		$stmt->bindParam(":tipoRuta", $datosActualizacion["tipoRuta"], PDO::PARAM_STR);
+		$stmt->bindParam(":operador", $datosActualizacion["operador"], PDO::PARAM_STR);
+		$stmt->bindParam(":fechaRecepcion", $datosActualizacion["fechaRecepcion"], PDO::PARAM_STR);
+
+		if ($stmt -> execute()) {
+			return "ok";
+		}else{
+			return "error";
+		}
+		$stmt -> close();
 
 		$stmt = null;
 

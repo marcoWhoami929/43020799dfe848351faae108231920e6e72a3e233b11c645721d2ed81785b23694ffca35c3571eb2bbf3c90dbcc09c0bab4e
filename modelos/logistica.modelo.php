@@ -67,7 +67,7 @@ class ModeloLogistica{
 			
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY idPedido asc");
+			$stmt = Conexion::conectar()->prepare("SELECT  log.*,op.nombre as nombreOperador FROM $tabla as log INNER JOIN operadores as op ON op.id = log.operador ORDER BY idPedido asc");
 
 			$stmt -> execute();
 

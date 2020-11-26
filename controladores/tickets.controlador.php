@@ -1238,7 +1238,16 @@ class ControladorTickets{
 
 
 	}
+	static public function ctrMostrarTicketsPendientesPorDepartamento($item,$valor){
 
+		$tabla = "estatustickets";
+
+		$respuesta = ModeloTickets::mdlMostrarTicketsPendientesPorDepartamento($tabla, $item, $valor);
+
+		return $respuesta;
+
+
+	}
 	
 
 

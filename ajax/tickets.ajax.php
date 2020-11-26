@@ -92,7 +92,22 @@ class AjaxTickets{
 		echo $respuesta;
 
 	}
+	/*=============================================
+	AGENTES CON TICKETS PENDIENTES
+	=============================================*/	
 
+	public $idDepartamentoTicket;
+
+	public function ajaxVerTicketsPendientes(){
+
+		$item = "idDepartamento";
+		$valor = $this->idDepartamentoTicket;
+
+		$respuesta = ControladorTickets::ctrMostrarTicketsPendientesPorDepartamento($item, $valor);
+	
+		echo json_encode($respuesta);
+
+	}
 
 
 
@@ -140,6 +155,14 @@ if(isset($_POST["statusVisto"])){
 	$status1 -> autorTicket = $_POST["autorTicket"];
 	$status1 -> ajaxVisto();
 }
-
+/*=============================================
+VER TICKETS PENDIENTES
+=============================================*/
+if (isset($_POST["idDepartamentoTicket"])) {
+	
+	$ticketPendiente = new AjaxTickets();
+	$ticketPendiente -> idDepartamentoTicket = $_POST["idDepartamentoTicket"];
+	$ticketPendiente -> ajaxVerTicketsPendientes();
+}
 
 

@@ -3,6 +3,8 @@
 require_once "../controladores/entregas.controlador.php";
 require_once "../modelos/entregas.modelo.php";
 
+
+
 class AjaxEntregas{
 
 	public $idRuta;
@@ -53,6 +55,7 @@ class AjaxEntregas{
 	public $unidad;
 	public $tipoEntrega;
 	public $arregloFacturas;
+	public $arregloPedidos;
 
 	public function generarNuevaEntrega(){
 
@@ -63,8 +66,10 @@ class AjaxEntregas{
 		$tipoEntrega = $this->tipoEntrega;
 		$nombreRuta = $this->nombreRutaEntrega;
 		$arregloFacturas = $this->arregloFacturas;
+		$arregloPedidos = $this->arregloPedidos;
 
 		$facturas = explode(',',$arregloFacturas);
+		$pedidos = explode(',',$arregloPedidos);
 
 		$item = "id";
 		$valor = $arregloFacturas;
@@ -74,8 +79,31 @@ class AjaxEntregas{
 		$costo = ControladorEntregas::ctrObtenerCostoHoraEntrega($nombreRuta,$unidad);
 		$costoHora = $costo["costo"];
 
+		if ($entrega == 7 || $entrega == 8 || $entrega == 9 || $entrega == 10 || $entrega == 11 || $entrega == 12) {
+			
+			$tipoRuta = "Local";
 
+		}else{
+
+			$tipoRuta = "Foraneo";
+		}
+
+		date_default_timezone_set('America/Mexico_City');
+		$fechaCreacion = date("Y-m-d H:i:s");
 		for ($i=0; $i < count($facturas); $i++) { 
+
+			$pedido = explode('-',$pedidos[$i]);
+			$serie = $pedido[0];
+			$folio = $pedido[1];
+
+			$datosActualizacion = array("serie"=>$serie,
+								"folio"=>$folio,
+								"tipoRuta"=>$tipoRuta,
+								"operador"=>$operador,
+								"fechaRecepcion"=>$fechaCreacion);
+
+			$actualizarLogistica = ControladorEntregas::ctrActualizarDatosEntregaLogistica($datosActualizacion);
+
 			$item = "id";
 			$valor = $facturas[$i];
 
@@ -227,6 +255,7 @@ if(isset($_POST["fechaEntrega"])){
 	$nuevaEntrega -> unidad = $_POST["unidad"];
 	$nuevaEntrega -> tipoEntrega = $_POST["tipoEntrega"];
 	$nuevaEntrega -> arregloFacturas = $_POST["arregloFacturas"];
+	$nuevaEntrega -> arregloPedidos = $_POST["arregloPedidos"];
 	$nuevaEntrega -> generarNuevaEntrega();
 
 }

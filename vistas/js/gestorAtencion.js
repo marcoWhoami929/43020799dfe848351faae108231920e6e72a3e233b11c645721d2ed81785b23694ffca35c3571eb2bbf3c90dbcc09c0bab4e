@@ -4,7 +4,7 @@
 CARGAR LA TABLA DINÁMICA DE ATENCION A CLIENTES
 =============================================*/
 
- $(".tablaAtencion").DataTable({
+ tablaAtencion = $(".tablaAtencion").DataTable({
    "ajax":"ajax/tablaAtencion.ajax.php",
    "deferRender": true,
    "retrieve": true,
@@ -241,6 +241,7 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
   d = n.getDate();
 
   var fechaActual = y+"-"+m+"-"+d;
+  //var fechaActual = "2020-11-05";
 
   var datos = new  FormData();
 
@@ -314,6 +315,7 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
   d = n.getDate();
 
   var fechaActual = y+"-"+m+"-"+d;
+  //var fechaActual = "2020-11-05";
 
   var datos = new  FormData();
 
@@ -382,3 +384,6 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
 
               
 }
+$("#updatePedidos").on("click",function(){
+  tablaAtencion.ajax.reload();
+})

@@ -133,7 +133,9 @@ function borraItemValor(array, valor){
 }
 $(".tablaListaFacturasEntregas").on("click", ".btnAddFacturaEntrega", function(){
       var idFactura = $(this).attr("idFactura");
-     
+      var seriePedido = $(this).attr("seriePedido");
+      var folioPedido = $(this).attr("folioPedido");  
+      var pedido = seriePedido+"-"+folioPedido;   
       
        if (localStorage.getItem("arregloIdFacturas") == null || localStorage.getItem("arregloIdFacturas") == "") {
          var arregloIdFacturas = [];
@@ -141,6 +143,12 @@ $(".tablaListaFacturasEntregas").on("click", ".btnAddFacturaEntrega", function()
          arregloIdFacturas.push(idFactura);
 
           localStorage.setItem("arregloIdFacturas", arregloIdFacturas);
+
+          var arregloPedidos = [];
+
+         arregloPedidos.push(pedido);
+
+          localStorage.setItem("arregloPedidos", arregloPedidos);
        }else{
 
           var arregloIdFacturas = localStorage.getItem("arregloIdFacturas").split(',');
@@ -148,6 +156,12 @@ $(".tablaListaFacturasEntregas").on("click", ".btnAddFacturaEntrega", function()
           arregloIdFacturas.push(idFactura);
 
           localStorage.setItem("arregloIdFacturas", arregloIdFacturas);
+
+          var arregloPedidos = localStorage.getItem("arregloPedidos").split(',');
+        
+         arregloPedidos.push(pedido);
+
+          localStorage.setItem("arregloPedidos", arregloPedidos);
        }
 
         var datos = new FormData();
@@ -175,18 +189,30 @@ $(".tablaListaFacturasEntregas").on("click", ".btnAddFacturaEntrega", function()
 });
 $(".tablaListaFacturasEntregas").on("click", ".btnDelFacturaEntrega", function(){
       var idFactura = $(this).attr("idFactura");
+      var seriePedido = $(this).attr("seriePedido");
+      var folioPedido = $(this).attr("folioPedido");  
+      var pedido = seriePedido+"-"+folioPedido;  
      
       
        if (localStorage.getItem("arregloIdFacturas") == null) {
          var arregloIdFacturas = [];
          localStorage.setItem("arregloIdFacturas",arregloIdFacturas);
+
+         var arregloPedidos = [];
+
+         localStorage.setItem("arregloPedidos", arregloPedidos);
+
        }else{
 
           var arregloIdFacturas = localStorage.getItem("arregloIdFacturas").split(',');
 
+          var arregloPedidos = localStorage.getItem("arregloPedidos").split(',');
+
           borraItemValor(arregloIdFacturas, idFactura);
+          borraItemValor(arregloPedidos, pedido);
 
           localStorage.setItem("arregloIdFacturas", arregloIdFacturas);
+          localStorage.setItem("arregloPedidos", arregloPedidos);
        }
 
         var datos = new FormData();
@@ -221,6 +247,7 @@ $(".btnGenerarNuevaEntrega").click(function(){
     var tipoEntrega = $("#tipoEntrega").val();
 
     var facturas = localStorage.getItem("arregloIdFacturas");
+    var pedidos = localStorage.getItem("arregloPedidos");
 
     if (facturas == null || facturas.length == 0  || facturas.length == "") {
 
@@ -242,6 +269,7 @@ $(".btnGenerarNuevaEntrega").click(function(){
 
     }else{
       var arregloFacturas = localStorage.getItem("arregloIdFacturas").split(',');
+      var arregloPedidos = localStorage.getItem("arregloPedidos").split(',');
 
       var datos = new FormData();
 
@@ -252,6 +280,7 @@ $(".btnGenerarNuevaEntrega").click(function(){
     datos.append("unidad",unidad);
     datos.append("tipoEntrega",tipoEntrega);
     datos.append("arregloFacturas",arregloFacturas);
+    datos.append("arregloPedidos",arregloPedidos);
 
         $.ajax({
 
@@ -269,6 +298,7 @@ $(".btnGenerarNuevaEntrega").click(function(){
              if (responseFinal == "ok") { 
 
               localStorage.removeItem("arregloIdFacturas");
+              localStorage.removeItem("arregloPedidos");
               swal({
 
                 type: "success",
@@ -283,6 +313,7 @@ $(".btnGenerarNuevaEntrega").click(function(){
                       $(".btnSalirEntrega").click();
 
                       entregas.ajax.reload();
+                      window.location.reload();
 
                 }
 

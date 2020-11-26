@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila"){
 
 
 
@@ -71,15 +71,15 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
          
          <div class="box-tools">
            
-          <div class='btn-group'><button class='btn btn-warning btnGenerarEntrega' data-toggle='modal' data-target='#modalGenerarEntrega' style="background: #001f3f"><i class='fa fa-plus-square-o'></i>Nueva Entrega</button></div>
+          <div class='btn-group'><button class='btn btn-warning btnGenerarEntrega' data-toggle='modal' data-target='#modalGenerarEntrega' class="estilosTablas"><i class='fa fa-plus-square-o'></i>Nueva Entrega</button></div>
         </div>
         <br>
         <br>
          
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaEntregas" width="100%" id="entregas" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaEntregas estilosBordesTablas" width="100%" id="entregas">
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -253,12 +253,13 @@ MODAL GENERAR ENTREGA
                 </div>
                 <div class="row">
 
-                     <table class="table-bordered table-striped dt-responsive tablaListaFacturasEntregas" width="100%" id="tablaListaFacturasEntregas" style="border: 2px solid #001f3f">
+                     <table class="table-bordered table-striped dt-responsive tablaListaFacturasEntregas estilosBordesTablas" width="100%" id="tablaListaFacturasEntregas">
                        
-                        <thead style="background:#001f3f;color: white">
+                        <thead class="estilosTablas">
                          
                          <tr style="">
-                           
+                           <th style="border: none;">Serie Pedido</th>
+                           <th style="border: none;">Folio Pedido</th>
                            <th style="width:20px;height: 40px;border: none;">Serie</th>
                            <th style="border: none">Folio</th>
                            <th style="border:none">Cliente</th>
@@ -408,13 +409,13 @@ EDICION ENTREGA
                 </div>
                 <div class="row">
 
-                     <table class="table-bordered table-striped dt-responsive tablaFacturasEntrega" width="100%" id="tablaFacturasEntrega" style="border: 2px solid #001f3f">
+                     <table class="table-bordered table-striped dt-responsive tablaFacturasEntrega estilosBordesTablas" width="100%" id="tablaFacturasEntrega">
                        
-                        <thead style="background:#001f3f;color: white">
+                        <thead class="estilosTablas">
                          
                          <tr style="">
                            
-                           <th style="width:20px;height: 40px;border: none;">Serie</th>
+                           <th style="border: none;">Serie</th>
                            <th style="border: none">Folio</th>
                            <th style="border:none">Cliente</th>
                            <th style="border:none">Inicio</th>

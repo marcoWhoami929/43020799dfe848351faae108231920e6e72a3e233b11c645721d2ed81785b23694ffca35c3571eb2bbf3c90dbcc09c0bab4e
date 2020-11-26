@@ -746,7 +746,7 @@ class ModeloTickets{
 	}
 	static public function mdlMostrarTicketsPorDpto($tabla,$item,$valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT d.nombreDepartamento as departamento, COUNT(numeroTicket) as total FROM $tabla AS dt INNER JOIN departamento AS d ON d.id = dt.idDepartamento GROUP by idDepartamento");
+		$stmt = Conexion::conectar()->prepare("SELECT d.id,d.nombreDepartamento as departamento, COUNT(numeroTicket) as total FROM $tabla AS dt INNER JOIN departamento AS d ON d.id = dt.idDepartamento GROUP by idDepartamento");
 
 		$stmt -> execute();
 
@@ -772,7 +772,7 @@ class ModeloTickets{
 				
 			}else{
 
-				$stmt = Conexion::conectar()->prepare("SELECT et.*,adm.nombre,t.numeroTicket FROM $tabla as et INNER JOIN administradores as adm ON et.idAutorUser = adm.id INNER JOIN ticket as t ON et.idTicket = t.idTicket ORDER BY fecha desc");
+				$stmt = Conexion::conectar()->prepare("SELECT et.*,adm.nombre,t.numeroTicket FROM $tabla as et INNER JOIN administradores as adm ON et.idAutorUser = adm.id INNER JOIN ticket as t ON et.idTicket = t.idTicket ORDER BY fecha desc limit 100");
 
 				$stmt -> execute();
 
@@ -787,7 +787,7 @@ class ModeloTickets{
 	}
 	static public function mdlMostrarUltimasConexiones($tabla,$item,$valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT et.*,adm.nombre FROM $tabla as et INNER JOIN administradores as adm ON et.idAutorUser = adm.id where tipo = 'LOGIN' ORDER BY fecha desc");
+		$stmt = Conexion::conectar()->prepare("SELECT et.*,adm.nombre FROM $tabla as et INNER JOIN administradores as adm ON et.idAutorUser = adm.id where tipo = 'LOGIN' ORDER BY fecha desc limit 100");
 
 		$stmt -> execute();
 
@@ -998,6 +998,21 @@ class ModeloTickets{
 		}
 
 		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlMostrarTicketsPendientesPorDepartamento($tabla,$item,$valor){
+
+		$stmt = Conexion::conectar()->prepare("SELECT ad.nombre as usuario,count(numeroTicket) as total FROM estatustickets as est INNER JOIN administradores  as ad ON est.usuarioDepartamento = ad.id where $item = :$item and clase = 'PAUSED' and aprobado = 0 and cerrado = 0 GROUP by usuarioDepartamento");
+
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt-> close();
 
 		$stmt = null;
 

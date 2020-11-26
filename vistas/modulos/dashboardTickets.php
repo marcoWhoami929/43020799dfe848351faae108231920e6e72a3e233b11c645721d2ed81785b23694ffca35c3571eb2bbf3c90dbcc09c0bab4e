@@ -218,7 +218,7 @@ $totalMisTickets = ControladorTickets::ctrMostrarTotalMisTickets($item,$valor);
 
                                 $contador = $contador+1;
                               
-                                echo "<div class='progress-group'><span class='progress-text'>".$value["departamento"]."</span><span class='progress-number'><b>".$value["total"]."</b> Tickets</span><div class='progress sm'><div class='progress-bar progress-bar-blue' style='width: 50%;background: ".$colores[$contador-1]."'></div></div></div>";
+                                echo "<div class='progress-group'><a class='btnVerTicketsPendientes' data-toggle='modal' data-target='#myModal' style='color: ".$colores[$contador-1]."' idDepartamento = '".$value["id"]."'><span class='progress-text'>".$value["departamento"]."</span></a><span class='progress-number'><b>".$value["total"]."</b> Tickets</span><div class='progress sm'><div class='progress-bar progress-bar-blue' style='width: 50%;background: ".$colores[$contador-1]."'></div></div></div>";
 
                                 
                               }
@@ -236,6 +236,35 @@ $totalMisTickets = ControladorTickets::ctrMostrarTotalMisTickets($item,$valor);
   
         </div>
     
+      </div>
+      <!-- Modal -->
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="background: #1853C3;color: white">
+              <button type="button" class="close btnCerrarListaTicketsPendientes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">USUARIOS CON TICKETS PENDIENTES</h4>
+            </div>
+            <div class="modal-body">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div id="detalleTicketsPendientes" name="detalleTicketsPendientes">
+
+                              <div class="table-responsive">
+                                  <table class="table" id="tablaTicketsPendientes">
+                                    
+                                  </table>
+                                </div>
+                          
+                           </div>
+                        </div>
+            </div>
+            <div class="modal-footer">
+     
+              <button type="button" class="btn btn-success btnCerrarListaTicketsPendientes" data-dismiss="modal">Salir</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row">

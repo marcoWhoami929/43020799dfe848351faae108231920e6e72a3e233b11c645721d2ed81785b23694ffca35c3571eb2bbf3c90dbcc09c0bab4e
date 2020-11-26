@@ -111,7 +111,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
 
             <button class="report btn btn-warning" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte Detallado</button>
 
-          </a>';
+          </a>
+          <button class="report btn btn-success" id="updateFacturas"><i class="fa fa-spinner"></i>Actualizar</button>';
             }
 
           ?>
@@ -120,7 +121,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
         <?php
 
                     if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila") {
-                      
+                      /*
                         echo '<div class="">
                       <div class="row">
                         <form action="importFacturacion.php" method="post" enctype="multipart/form-data" id="import_form">
@@ -140,6 +141,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
                        echo '</form>
                       </div>
                     </div>';
+                    */
 
                     }
               
@@ -215,55 +217,49 @@ MODAL VER FACTURAS
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalVerFacturas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-    <div class="modal-content" style="width: 110%">
+<div class="modal fade" id="modalVerFacturas" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
     <div class="modal-header" style="background: #2667ce;">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <button type="button" class="close btnDismissFactura" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
       <center><h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i> LISTA DE FACTURAS</h3></center>       
     </div>
-      <div class="modal-body" >
-        <div class="container-fluid">
-            <div class="row" style="width: 100%">
+      <div class="modal-body">
+        <div class="container col-lg-12">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+               <table class="table-bordered table-striped dt-responsive tablaListaFacturasVista estilosBordesTablas" width="100%" >
+         
+                <thead class="estilosTablas">
+                 
+                 <tr>
+                   
+                   <th style="width:20px;height: 40px;border:none">Serie</th>
+                   <th style="border: none">Folio</th>
+                   <th style="border:none">Partidas</th>
+                   <th style="border:none">Unidades</th>
+                   <th style="border:none">Importe</th>
+                   <th style="border:none">Estatus</th>
+                   <th style="border:none">Fecha</th>
+                   <th style="border:none">Estatus Entrega</th>
+                  
+                 </tr> 
 
-              <div class="col-md-2 col-sm-2" >
-                <input type="text" class="titulosFacturas form-control" value="SERIE" readonly style="background: transparent;
-border: none;">
-              </div>
-              <div class="col-md-2 col-sm-2" style="margin-left: 4%">
-                <input type="text" class="titulosFacturas form-control" value="FOLIO" readonly style="background: transparent;
-border: none;">
-              </div>
-              <div class="col-md-3 col-sm-3" style="margin-left: 3%">
-                <input type="text" class="titulosFacturas form-control" value="PARTIDAS" readonly style="background: transparent;
-border: none;">
-              </div>
-              <div class="col-md-3 col-sm-3" style="margin-left: -3%">
-                <input type="text" class="titulosFacturas form-control" value="UNIDADES" readonly style="background: transparent;
-border: none;">
-              </div>
-              <div class="col-md-3 col-sm-3" style="margin-left: -2%; margin-right: -15%">
-                <input type="text" class="titulosFacturas form-control" value="IMPORTE" readonly style="background: transparent;
-border: none;">
-              </div>
-                
+                </thead>
+               
+
+              </table>
             </div>
-        </div>
-
-        <div class=" col-lg-12 col-sm-12 col-md-12 container" style="margin-top:20px" id="datosConsulta">
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 3%;border-top: #2667ce 2px double">
+            
+          </div>
           
         </div>
         
-        <div class="col-lg-12 col-sm-12 col-md-12" id="totales" style="margin-top: 2%; margin:5px;">
-          
-        </div>
       </div>
       <div class="modal-footer" style="margin-top:100px">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info btnDismissFactura" data-dismiss="modal" style="margin-top: 30px">Cerrar</button>
       </div>
     </div>
   </div>

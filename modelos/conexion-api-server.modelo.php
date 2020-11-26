@@ -1,7 +1,7 @@
 <?php
 
 	$serverName = "192.168.1.222";
-	$connectionInfo = array("Database"=>"adNEURAL_CODE", "UID"=>"sa", "PWD"=>"Whoami929","CharacterSet"=>"UTF-8");
+	$connectionInfo = array("Database"=>"adNEURAL_CODE", "UID"=>"sa", "PWD"=>"Whoami92","CharacterSet"=>"UTF-8");
 
 	$conn = sqlsrv_connect($serverName,$connectionInfo);
 

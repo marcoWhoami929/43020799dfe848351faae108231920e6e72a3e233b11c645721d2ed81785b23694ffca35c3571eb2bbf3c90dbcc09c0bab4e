@@ -20,9 +20,9 @@ class TablaListaFacturasEntregas{
 
        
         if ($facturas[$i]["procesoEntrega"] != 1) {
-          $acciones = "<button type='button' class='btn btn-info btnAddFacturaEntrega' idFactura='".$facturas[$i]["id"]."' ><i class='fa fa-plus'></i></button>";
+          $acciones = "<button type='button' class='btn btn-info btnAddFacturaEntrega' idFactura='".$facturas[$i]["id"]."' seriePedido = '".$facturas[$i]["seriePedido"]."' folioPedido = '".$facturas[$i]["folioPedido"]."' ><i class='fa fa-plus'></i></button>";
         }else{
-          $acciones = "<button type='button' class='btn btn-warning btnDelFacturaEntrega' idFactura='".$facturas[$i]["id"]."' ><i class='fa fa-minus'></i></button>";
+          $acciones = "<button type='button' class='btn btn-warning btnDelFacturaEntrega' idFactura='".$facturas[$i]["id"]."'  seriePedido = '".$facturas[$i]["seriePedido"]."' folioPedido = '".$facturas[$i]["folioPedido"]."' ><i class='fa fa-minus'></i></button>";
         }
         
 
@@ -33,6 +33,8 @@ class TablaListaFacturasEntregas{
       =============================================*/
       
       $datosJson   .= '[
+              "'.$facturas[$i]["seriePedido"].'",
+              "'.$facturas[$i]["folioPedido"].'",
               "'.$facturas[$i]["serie"].'",
               "'.$facturas[$i]["folio"].'",
               "'.$facturas[$i]["nombreCliente"].'",

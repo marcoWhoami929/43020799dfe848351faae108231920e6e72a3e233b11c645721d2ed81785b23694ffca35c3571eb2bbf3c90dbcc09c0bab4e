@@ -1,5 +1,6 @@
 <?php
 
+
 class ControladorAtencion{
 
 	/*=============================================
@@ -402,40 +403,45 @@ class ControladorAtencion{
 	CANCELAR PEDIDO
 	=============================================*/
 
-	static public function ctrEliminarPedido(){
+	static public function ctrEliminarPedido($idPedido,$serie,$folio,$motivo){
+		require_once "../modelos/almacen.modelo.php";
+		require_once "../modelos/facturacion.modelo.php";
+		require_once "../modelos/laboratorio.modelo.php";
+		require_once "../modelos/compras.modelo.php";
+		require_once "../modelos/logistica.modelo.php";
 
-		if(isset($_GET["idPedido"])){
+		if(isset($idPedido)){
 
 			$tabla = "atencionaclientes";
-			$datos = array("id" => $_GET["idPedido"],
-						   "motivoCancelacion" => $_GET['motivo']);
+			$datos = array("id" => $idPedido,
+						   "motivoCancelacion" => $motivo);
 
 			$tabla1 = "almacen";
-			$datos1 = array("folio" => $_GET["folio"],
-						   "serie" => $_GET["serie"]);
+			$datos1 = array("folio" => $folio,
+						   "serie" => $serie);
 
 			$tabla2 = "laboratoriocolor";
-			$datos2 = array("folio" => $_GET["folio"],
-						   "serie" => $_GET["serie"]);
+			$datos2 = array("folio" => $folio,
+						   "serie" => $serie);
 
 			$tabla3 = "facturacion";
-			$datos3 = array("folio" => $_GET["folio"],
-						   "serie" => $_GET["serie"]);
+			$datos3 = array("folio" => $folio,
+						   "serie" => $serie);
 
 			$tabla4 = "compras";
-			$datos4 = array("folio" => $_GET["folio"],
-						   "serie" => $_GET["serie"]);
+			$datos4 = array("folio" => $folio,
+						   "serie" => $serie);
 
 			$tabla5 = "logistica";
-			$datos5 = array("folio" => $_GET["folio"],
-						   "serie" => $_GET["serie"]);
+			$datos5 = array("folio" => $folio,
+						   "serie" => $serie);
 
 			$tabla6 = "bitacora";
 
-			$datos6 = array("usuario" => $_SESSION['nombre'],
-								   "perfil" => $_SESSION['perfil'],
+			$datos6 = array("usuario" => "Aurora Fernandez",
+								   "perfil" => "Atencion a Clientes",
 								   "accion" => 'Cancelación de Pedido',
-								   "folio" => $_GET["folio"]);
+								   "folio" => $folio);
 
 			
 
@@ -448,28 +454,8 @@ class ControladorAtencion{
 			$respuesta5 = ModeloLogistica::mdlEliminarPedidoLogistica($tabla5, $datos5);
 			$respuesta6 = ModeloAtencion::mdlRegistroBitacoraEliminar($tabla6, $datos6);
 
-			if($respuesta == "ok" && $respuesta1 == "ok" && $respuesta2 == "ok" && $respuesta3 == "ok" && $respuesta4 == "ok" && $respuesta5 == "ok" && $respuesta6 == "ok"){
-
-				echo'<script>
-
-				swal({
-					  type: "success",
-					  title: "El pedido ha sido cancelado correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
-								if (result.value) {
-
-								window.location = "atencionClientes";
-
-								}
-							})
-
-				</script>';
-
-			}		
-
+					
+			return $respuesta;
 		}
 
 	}

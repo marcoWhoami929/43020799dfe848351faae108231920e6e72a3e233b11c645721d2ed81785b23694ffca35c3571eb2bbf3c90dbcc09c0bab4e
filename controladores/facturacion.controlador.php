@@ -726,6 +726,8 @@ class ControladorFacturacion{
 						$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 						/*-----------ACTUALIZAR TIPO RUTA---------------*/
 						$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+						/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+						$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 						/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 						$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 						/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/
@@ -884,6 +886,8 @@ class ControladorFacturacion{
 						$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 						/*-----------ACTUALIZAR TIPO RUTA---------------*/
 						$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+						/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+						$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 						/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 						$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 						/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/
@@ -996,6 +1000,8 @@ class ControladorFacturacion{
 				$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 				/*-----------ACTUALIZAR TIPO RUTA---------------*/
 				$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+				/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+				$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 				/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 				$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 				/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/

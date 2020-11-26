@@ -117,31 +117,31 @@ class TablaAtencion{
                           
                         if ($atencion[$i]["estado"] == 0 && $atencion[$i]["estadoAlmacen"] == 0 && $atencion[$i]["estadoFacturacion"] == 0 && $atencion[$i]["estadoCompras"] == 0 && $atencion[$i]["estadoLogistica"] == 0) {
 
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."'><i class='fa fa-times'></i>Cancelar pedido</button></div>"; 
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button></div>"; 
 
                     }else if ($atencion[$i]["estado"] == 1 && $atencion[$i]["estadoAlmacen"] == 1 && $atencion[$i]["estadoFacturacion"] == 1 && $atencion[$i]["statusFacturacion"] == 1 && $atencion[$i]["estadoCompras"] == 1 && $atencion[$i]["estadoLogistica"] == 1 && $atencion[$i]["habilitado"] == 0) {
 
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."'><i class='fa fa-times'></i>Cancelar pedido</button></div>"; 
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button></div>"; 
 
                     }else if ($atencion[$i]["estado"] == 1 && $atencion[$i]["estadoAlmacen"] == 1 && $atencion[$i]["estadoFacturacion"] == 1 && $atencion[$i]["statusFacturacion"] == 1 && $atencion[$i]["estadoCompras"] == 1 && $atencion[$i]["estadoLogistica"] == 1 && $atencion[$i]["habilitado"] == 1) {
 
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."'><i class='fa fa-times'></i>Cancelar pedido</button></div>"; 
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar pedido</button></div>"; 
 
                     }
                     else if ($atencion[$i]["estado"] == 1 && $atencion[$i]["estadoAlmacen"] == 1 && $atencion[$i]["estadoFacturacion"] == 1
                     && $atencion[$i]["statusFacturacion"] == 0  && $atencion[$i]["estadoCompras"] == 1 && $atencion[$i]["estadoLogistica"] == 1) {
 
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."'><i class='fa fa-times'></i>Cancelar pedido</button></div>"; 
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar pedido</button></div>"; 
 
                     }
                     else{
 
-                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' id='editarPed'><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."'><i class='fa fa-times'></i>Cancelar pedido</button></div>"; 
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' id='editarPed'><i class='fa fa-pencil'></i>Editar pedido</button></div>"; 
 
                          }
 
                       }else{
-                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button><button class='btn btn-danger btnEliminarPedidos' idPedido='".$atencion[$i]["id"]."' folio='".$atencion[$i]["folio"]."' serie='".$atencion[$i]["serie"]."' disabled><i class='fa fa-times'></i>Cancelar pedido</button></div>";
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idPedido='".$atencion[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar pedido</button></div>";
                       }           
                        /*========HABILITAR FOLIO============*/
 

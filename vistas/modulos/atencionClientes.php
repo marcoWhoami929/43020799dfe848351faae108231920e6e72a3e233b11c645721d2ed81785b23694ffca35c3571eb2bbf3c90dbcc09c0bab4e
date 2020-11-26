@@ -90,7 +90,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
 
             <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
-          </a>';
+          </a><button class="report btn btn-success" id="updatePedidos"><i class="fa fa-spinner"></i>Actualizar</button>';
             }
 
           ?>
@@ -101,7 +101,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
             <?php
 
                     if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Generador de Reportes") {
-                      
+                      /*
                       
                         echo '<div class="">
                       <div class="row">
@@ -122,11 +122,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
                        echo '</form>
                       </div>
                     </div>';
+                    */
 
                     }
                      if ($_SESSION["perfil"] == "Administrador General") {
              
-
+                      /*
                         echo '<div class="">
                       <div class="row">
                         <form action="importAtencionPartidas.php" method="post" enctype="multipart/form-data" id="import_form">
@@ -146,6 +147,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
                        echo '</form>
                       </div>
                     </div>';
+                    */
 
                     }
               
@@ -280,11 +282,7 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="editarCreado">Creado por</option>
 
-                          <option value="Nataly Fuentes">Nataly Fuentes</option>
-
                           <option value="Rocio Martínez">Rocio Martínez</option>
-
-                          <option value="Enrique Bustos">Enrique Bustos</option>
 
                           <option value="Jose Luis Texis">Jose Luis Texis</option>
 
@@ -643,9 +641,11 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="tieneIgualado">Seleccionar</option>
 
+                          <option value="0">No</option>
+
                           <option value="1">Si</option>
 
-                          <option value="0">No</option>
+                         
 
 
                         </select>
@@ -864,13 +864,6 @@ MODAL EDITAR PEDIDO
   </div>
 
 </div>
-
-<?php
-
-  $eliminarPedido = new ControladorAtencion();
-  $eliminarPedido -> ctrEliminarPedido();
-
-?> 
 
 <script>
 $(document).ready(function(){

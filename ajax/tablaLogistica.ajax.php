@@ -232,7 +232,7 @@ class TablaLogistica{
               "'.$ubicacion.'",
               "'.$estatusPedido.'",
               "'.$tipoRuta.'",
-              "'.$logistica[$i]["operador"].'",
+              "'.$logistica[$i]["nombreOperador"].'",
               "'.$logistica[$i]["fechaEntregaCliente"].'",
               "'.$importante.'",
               "'.$logistica[$i]["observaciones"].'",

@@ -191,6 +191,16 @@
  			return $respuesta;
 
  		}
+ 		public function ctrActualizarDatosEntregaLogistica($datosActualizacion){
+
+ 			$tabla = "logistica";
+
+ 			$respuesta = ModeloEntregas::mdlActualizarDatosEntregaLogistica($tabla,$datosActualizacion);
+
+ 			return $respuesta;
+
+ 		}
+
 
 
 

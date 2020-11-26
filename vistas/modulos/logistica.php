@@ -367,18 +367,15 @@ MODAL EDITAR PEDIDO
 
                           <option value="Sin Operador">Sin Operador</option>
 
+                          <option value="1">Angel De La Cruz</option>
 
-                          <option value="Roció Martínez Morales">Roció Martínez Morales</option>
+                          <option value="2">Ernesto Cuanalo</option>
 
-                          <option value="Jonathan Gonzalez Sanchez">Jonathan Gonzalez Sanchez</option>
+                          <option value="3">Ventas</option>
 
-                          <option value="Orlando Raúl Briones Aguirre">Orlando Raúl Briones Aguirre</option>
+                          <option value="4">Jesus</option>
 
-                          <option value="Ernesto Cuanalo">Ernesto Cuanalo</option>
-
-                          <option value="Jesus Totolhua">Jesus Totolhua</option>
-
-                          <option value="Angel De La Cruz">Angel De La Cruz</option>
+                          <option value="5">Motociclistas</option>
 
 
                         </select>

@@ -75,7 +75,7 @@ class TablaFacturacion{
 
       }else if($facturacion[$i]["estatusFactura"] == 2 && $facturacion[$i]["status"] == 0 and $facturacion[$i]["formatoPedido"] == 0){
 
-        $estatusFactura = "<button class='btn btn-danger btn-xs'>Factura Cancelada</button>";
+        $estatusFactura = "<button class='btn btn-danger btn-xs'>Pedido Cancelado</button>";
 
       }
       /*=====================ESTATUS DE PEDIDO==========*/
