@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Credito y Cobranza"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Compras"){
 
     if (isset($_SESSION["user_id"]) == true && $_SESSION['googleVerifyCode'] == true) {
       

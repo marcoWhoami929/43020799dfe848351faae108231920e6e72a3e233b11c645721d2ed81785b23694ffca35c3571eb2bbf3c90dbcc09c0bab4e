@@ -89,10 +89,10 @@ class TablaListaFacturasDepositos{
                     }else{
 
                       if ($listaFacturasDepositos[$i]["depositada"] != 0 ) {
-                        if (number_format($listaFacturasDepositos[$i]["abono"],2) != 0) {
+                        if (number_format(str_replace(',','',$listaFacturasDepositos[$i]["abono"]),2, '.', '') != 0) {
                          
 
-                          if (number_format($listaFacturasDepositos[$i]["abono"],2) < number_format(str_replace(',','',$listaFacturasDepositos[$i]["total"]),2, '.', '')) {
+                          if (number_format(str_replace(',','',$listaFacturasDepositos[$i]["abono"]),2, '.', '') < number_format(str_replace(',','',$listaFacturasDepositos[$i]["total"]),2, '.', '')) {
                           $acciones = "<div class='btn-group'><button class='btn btn-info btnVincularFacturaDepositada' idFacturaDepositada='".$listaFacturasDepositos[$i]["id"]."' nombreSucursal = '".$usuario."' montoFactura = '".str_replace(',','',$listaFacturasDepositos[$i]["total"])."' serieFactura = '".$listaFacturasDepositos[$i]["serie"]."' folioFactura = '".$listaFacturasDepositos[$i]["folio"]."' nombreCliente = '".$listaFacturasDepositos[$i]["nombreCliente"]."' identificador = '$i' valorDocumento = '".str_replace(',','',$listaFacturasDepositos[$i]["total"])."'><i class='fa fa-plus'></i></button><button class='btn btn-warning btnQuitarFacturaDepositada' idFacturaDepositadaRemove='".$listaFacturasDepositos[$i]["id"]."' montoFacturaRemove = '".str_replace(',','',$listaFacturasDepositos[$i]["total"])."' nombreSucursal = '".$usuario."' serieFactura = '".$listaFacturasDepositos[$i]["serie"]."' folioFactura = '".$listaFacturasDepositos[$i]["folio"]."' nombreCliente = '".$listaFacturasDepositos[$i]["nombreCliente"]."' identificadorRemove = '$i' valorDocumentoRemove = '".str_replace(',','',$listaFacturasDepositos[$i]["total"])."' title='La factura ha sido vinculada'><i class='fa fa-minus'></i></button></div>";
                             }else{
 

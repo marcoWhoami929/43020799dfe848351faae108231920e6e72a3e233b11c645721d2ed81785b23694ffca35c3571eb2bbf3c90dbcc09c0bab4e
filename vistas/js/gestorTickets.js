@@ -543,3 +543,85 @@ $(".tablaListaTickets").on("click", ".verDetalleTicketBtn", function() {
     
 
 });
+$(".btnVerTicketsPendientes").click(function(){
+
+    var idDepartamentoTicket = $(this).attr("idDepartamento");
+   
+    var datos = new FormData();
+    datos.append("idDepartamentoTicket",idDepartamentoTicket);
+
+    $.ajax({
+
+    url:"ajax/tickets.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(respuesta){ 
+            
+            
+
+
+            var listaCabeceras = ['Usuario','Tickets Pendientes'];
+
+            body = document.getElementById("tablaTicketsPendientes");
+
+            thead = document.createElement("thead");
+            thead.setAttribute('style','background:#2667ce;color: white');
+
+            theadTr = document.createElement("tr");
+
+            for (var h = 0; h < listaCabeceras.length; h++) {
+                
+                var celdaThead = document.createElement("th");
+                var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                celdaThead.appendChild(textoCeldaThead);
+                theadTr.appendChild(celdaThead);
+
+            }
+          
+            thead.appendChild(theadTr);
+ 
+            tblBody = document.createElement("tbody");
+
+            var arregloDatos = ['usuario','total'];
+
+            // Crea las celdas
+            for (var i = 0; i < respuesta.length; i++) {
+              // Crea las hileras de la tabla
+              var hilera = document.createElement("tr");
+           
+              for (var j = 0; j < arregloDatos.length; j++) {
+               
+
+                var celda = document.createElement("td");
+                var textoCelda = document.createTextNode(respuesta[i][arregloDatos[j]]);
+                celda.appendChild(textoCelda);
+                hilera.appendChild(celda);
+               
+              }
+           
+              // agrega la hilera al final de la tabla (al final del elemento tblbody)
+              tblBody.appendChild(hilera);
+            }
+           
+            // appends <table> into <body>
+            body.appendChild(tblBody);
+            body.appendChild(thead);
+          
+        }
+
+
+
+  })
+
+});
+ $(".btnCerrarListaTicketsPendientes").on("click", function() {
+
+        var nodos = document.getElementById('tablaTicketsPendientes');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+        }
+});
