@@ -344,8 +344,6 @@ JS PERSONALIZADO
 <script src="vistas/js/gestorAcumuladoMensual.js"></script>
 <script src="vistas/js/gestorProspectos.js"></script>
 <script src="vistas/js/gestorProductos.js"></script>
-<script src="vistas/js/gestorControlMuestras.js"></script>
-<script src="vistas/js/gestorPromociones.js"></script>
 <script src="vistas/js/ScriptGrafico3.js"></script>
 <script src="vistas/js/gestorTickets.js"></script>
 <script src="vistas/js/gestorOrdenTrabajo.js"></script>
@@ -354,8 +352,6 @@ JS PERSONALIZADO
 <script src="vistas/js/gestorEstatusOrdenes.js"></script>
 <script src="vistas/js/gestorFacturasTiendas.js"></script>
 
-<script src="vistas/js/gestorCatalogoProductos.js"></script>
-<script src="vistas/js/mapaUbicacionCliente.js"></script>
 <script src="vistas/js/gestorEntregas.js"></script>
 <script src="vistas/js/timer.js"></script>
 <!-- GESTORES DE CONTROL MATRIZ -->

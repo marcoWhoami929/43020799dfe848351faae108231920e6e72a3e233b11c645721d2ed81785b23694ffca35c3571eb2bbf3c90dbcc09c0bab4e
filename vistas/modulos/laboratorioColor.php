@@ -124,10 +124,10 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Lab
            <tr style="">
              
              <th style="width:20px;height: 40px;border:none;">#</th>
-             <th style="border:none">Folio de Pedido</th>
-             <th style="border:none">Nombre de Igualador</th>
-             <th style="border:none">Número de Serie</th>
-             <th style="border:none">Nombre del Cliente</th>
+             <th style="border:none">Serie</th>
+             <th style="border:none">Folio</th>
+             <th style="border:none">Igualador</th>
+             <th style="border:none">Cliente</th>
              <th style="border:none">Número de Órden</th>
              <th style="border:none">Código de Color</th>
              <th style="border:none">Descripción Color</th>
@@ -162,7 +162,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Lab
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -188,7 +188,7 @@ MODAL VER IGUALADOS
 <div class="modal fade" id="modalVerIgualados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" style="color: white">LISTA DE IGUALADOS</h4>
       </div>
@@ -344,7 +344,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header headerModal">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -885,7 +885,7 @@ MODAL EDITAR PEDIDO
 <div class="modal fade" id="mostrarIgualados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel" style="font-size:18px; color: white; font-weight: bold">PEDIDOS QUE TIENEN IGUALADO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -1051,55 +1051,7 @@ $(document).ready(function(){
 
 });
 </script>
-<script>
-  $(document).ready(function(){
-        
-        $("#serie").click(function(e){
-          ;
-          var url = "atencionLaboratorio.php";
-          $.getJSON(url, { _num1 : $("#serie").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#idPedido").append('<option value="' + cliente.folio + '">' + cliente.folio + '</option>');
 
-              if(cliente.resultado == "1"){
-                $("#resultado1").hide();
-                $("#resultado0").show();
-                $("#resultado").css("color","white");
-                $("#resultado").text("Hay folios en esta serie");
-              }else{
-                $("#resultado1").show();
-                $("#resultado0").hide();
-                $("#resultados").css("color","white");
-                $("#resultados").text("Folios no disponibles");
-              }
-            });
-          });
-        });
-        $("#serie").click(function(){
-          $('#idPedido').html('');
-          $("#nombreCliente").val('');
-          $("#numeroOrden").val('');
-    });
-          
-    });
-
-</script>
-<script type="text/javascript">
-      $(document).ready(function(){
-
-        $("#idPedido").click(function(e){
-          ;
-          var url = "laboratorioc.php";
-          $.getJSON(url, { _num1 : $("#idPedido").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#nombreCliente").val(cliente.nombreCliente);
-              $("#numeroOrden").val(cliente.ordenCompra);
-            });
-          });
-        });
-    });
-      
-    </script> 
     <script type="text/javascript">
 
       function myFunction(){

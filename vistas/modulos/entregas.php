@@ -126,7 +126,7 @@ MODAL GENERAR ENTREGA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#001f3f; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -325,7 +325,7 @@ EDICION ENTREGA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#001f3f; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -479,7 +479,7 @@ DETALLE ENTREGA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#001f3f; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

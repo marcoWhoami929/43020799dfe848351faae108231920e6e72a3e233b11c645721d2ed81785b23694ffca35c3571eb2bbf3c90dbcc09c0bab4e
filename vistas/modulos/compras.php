@@ -90,6 +90,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
                <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateCompras"><i class="fa fa-spinner"></i>Actualizar</button>';
             }else{
 
                 echo ' <a href="vistas/modulos/reportes.php?reporteCompras=compras">
@@ -97,6 +98,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
               <button class="btn btn-info" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateCompras"><i class="fa fa-spinner"></i>Actualizar</button>';
 
             }
                 
@@ -108,6 +110,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
                <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateCompras"><i class="fa fa-spinner"></i>Actualizar</button>';
               }
 
             ?>
@@ -121,13 +124,13 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
            <tr style="">
              
              <th style="width:20px;height: 40px;border: none;">#</th>
-             <th style="border:none">Folio de Pedido</th>
-             <th style="border:none">Nombre del Vendedor</th>
-             <th style="border:none">Nombre de Usuario</th>
-             <th style="border:none">Número de Serie</th>
+             <th style="border:none">Número</th>
+             <th style="border:none">Folio</th>
+             <th style="border:none">Vendedor</th>
+             <th style="border:none">Usuario</th>
              <th style="border:none">Folio de Compra</th>
              <th style="border:none">Fecha de Cotización</th>
-             <th style="border:none">Nombre del Cliente</th>
+             <th style="border:none">Cliente</th>
              <th style="border:none">Estatus de Compra</th>
              <th style="border:none">Tiempo de Entrega</th>
              <th style="border:none">Fecha de Recepción</th>
@@ -162,7 +165,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Com
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -197,7 +200,7 @@ MODAL HACER COMPRA INTERNA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header headerModal" >
+        <div class="modal-header estilosTablas" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -446,7 +449,7 @@ MODAL VER COMPRAS
 <div class="modal fade" id="modalVerCompras" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" style="color: white">LISTA DE COMPRAS</h4>
       </div>
@@ -791,7 +794,7 @@ MODAL EDITAR COMPRA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header headerModal">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -823,12 +826,11 @@ MODAL EDITAR COMPRA
                           
                           <option value="" id="editarVendedor">Seleccionar vendedor</option>
 
-                          <option value="Luis Enrique Bustos Monterd">Luis Enrique Bustos Monterd</option>
+                         
                           <option value="Jose Luis Texis Rosas">Jose Luis Texis Rosas</option>
                           <option value="Orlando Raúl Briones Aguirre">Orlando Raúl Briones Aguirre</option>
-                          <option value="Iván Chavez Campos">Iván Chavez Campos</option>
-                          <option value="Edgar Pintle Huerta">Edgar Pintle Huerta</option>
                           <option value="Jonathan Gonzalez Sanchez">Jonathan Gonzalez Sanchez</option>
+                          <option value="Jesús García Manjarrez">Jesús García Manjarrez</option>
 
                         </select>
 
@@ -1700,7 +1702,7 @@ MODAL EDITAR COMPRA
 <div class="modal fade" id="comprasInternas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel" style="font-size:18px; color: white; font-weight: bold">COMPRAS INTERNAS</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -1710,7 +1712,7 @@ MODAL EDITAR COMPRA
           
            <?php foreach ($comprasInter as $key => $value){
 
-              echo '<span style="font-size:14px; font-weight:bold">Folio:</span> '.$value["idPedido"].' <span style="font-size:14px; font-weight:bold">Serie:</span> '.$value["serie"].'';
+              echo '<span style="font-size:14px; font-weight:bold">Serie:</span> '.$value["serie"].' <span style="font-size:14px; font-weight:bold">Folio:</span> '.$value["idPedido"].'';
               echo '<br>';
               
            }
@@ -1736,7 +1738,7 @@ MODAL EDITAR COMPRA
 <div class="modal fade" id="comprasExternas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel" style="font-size:18px; color: white; font-weight: bold">COMPRAS CON PROVEEDORES EXTERNOS</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -1746,7 +1748,7 @@ MODAL EDITAR COMPRA
           
            <?php foreach ($comprasProveedores as $key => $value2){
 
-              echo '<span style="font-size:14px; font-weight:bold">Folio:</span> '.$value2["folio"].' <span style="font-size:14px; font-weight:bold">Serie:</span> '.$value2["serie"].'';
+              echo '<span style="font-size:14px; font-weight:bold">Serie:</span> '.$value["serie"].' <span style="font-size:14px; font-weight:bold">Folio:</span> '.$value["idPedido"].'';
               echo '<br>';
               
            }
@@ -1828,100 +1830,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script>
-   $(document).ready(function(){
-        
-        $("#serie").click(function(e){
-          ;
-          var url = "atencionCompras.php";
-          $.getJSON(url, { _num1 : $("#serie").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#idPedido").append('<option value="' + cliente.folio + '">' + cliente.folio + '</option>');
-
-              if(cliente.resultado == "1"){
-                $("#resultado1").hide();
-                $("#resultado0").show();
-                $("#resultado").css("color","white");
-                $("#resultado").text("Hay folios en esta serie");
-              }else{
-                $("#resultado1").show();
-                $("#resultado0").hide();
-                $("#resultados").css("color","white");
-                $("#resultados").text("Folios no disponibles");
-              }
-            });
-          });
-        });
-        $("#serie").click(function(){
-          $('#idPedido').html('');
-          $("#cliente").val('');
-    });
-          
-    });
-</script>
-<script>
-   $(document).ready(function(){
-        
-        $("#serieGeneral").click(function(e){
-          ;
-          var url = "atencionCompras.php";
-          $.getJSON(url, { _num1 : $("#serieGeneral").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#idPedidoGeneral").append('<option value="' + cliente.folio + '">' + cliente.folio + '</option>');
-
-              if(cliente.resultado == "1"){
-                $("#resultado3").hide();
-                $("#resultado2").show();
-                $("#resultados2").css("color","white");
-                $("#resultados2").text("Hay folios en esta serie");
-              }else{
-                $("#resultado3").show();
-                $("#resultado2").hide();
-                $("#resultados3").css("color","white");
-                $("#resultados3").text("Folios no disponibles");
-              }
-            });
-          });
-        });
-        $("#serieGeneral").click(function(){
-          $('#idPedidoGeneral').html('');
-          $("#clienteGeneral").val('');
-    });
-          
-    });
-</script>
- <script type="text/javascript">
-      $(document).ready(function(){
-
-        $("#idPedido").click(function(e){
-          ;
-          var url = "compras.php";
-          $.getJSON(url, { _num1 : $("#idPedido").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#cliente").val(cliente.nombreCliente);
-             
-            });
-          });
-        });
-    });
-      
-    </script> 
-    <script type="text/javascript">
-      $(document).ready(function(){
-
-        $("#idPedidoGeneral").click(function(e){
-          ;
-          var url = "compras.php";
-          $.getJSON(url, { _num1 : $("#idPedidoGeneral").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#clienteGeneral").val(cliente.nombreCliente);
-             
-            });
-          });
-        });
-    });
-      
-    </script>
     <script type="text/javascript">
 
       function myFunction(){
@@ -1957,5 +1865,32 @@ $(document).ready(function(){
      jQuery(function($){
            $("#editarFechaTermino").mask("9999-99-99 99:99:99",{placeholder:"yyyy-mm-dd hh:mm:ss"});
         });
-     
+     $(document).ready(function() {
+          
+          $.timer(15000, function(temporizador){
+
+            if (localStorage.getItem("pausadoCompras") === null) {
+
+                localStorage.setItem("pausadoCompras",0);
+            }else{
+
+                 if (localStorage.getItem("pausadoCompras") == 1) {
+               
+                  }else{
+                     obtenerCompras();
+
+                  }
+             
+
+            }
+             
+          })
+
+      });
+
+
+
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
     </script>

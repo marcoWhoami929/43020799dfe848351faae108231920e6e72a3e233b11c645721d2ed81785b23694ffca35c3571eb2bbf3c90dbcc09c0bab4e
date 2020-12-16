@@ -76,18 +76,18 @@ if($_SESSION["perfil"] == "Administrador General"){
         </div>
         <br>
         <br>
-        <table class="table table-bordered table-striped dt-responsive tablaBitacora" width="100%" id="bitacora">
+        <table class="table-bordered table-striped dt-responsive tablaBitacora estilosBordesTablas" width="100%" id="bitacora" >
          
-          <thead>
+          <thead class="estilosTablas">
            
            <tr>
              
-             <th>#</th>
-             <th>Usuario</th>
-             <th>Perfil</th>
-             <th>Acción Realizada</th>
-             <th>Folio / Id / Nombre</th>
-             <th>Fecha</th>
+             <th style="border:none">#</th>
+             <th style="border:none">Usuario</th>
+             <th style="border:none">Perfil</th>
+             <th style="border:none">Acción Realizada</th>
+             <th style="border:none">Folio / Id / Nombre</th>
+             <th style="border:none">Fecha</th>
            </tr> 
 
           </thead>

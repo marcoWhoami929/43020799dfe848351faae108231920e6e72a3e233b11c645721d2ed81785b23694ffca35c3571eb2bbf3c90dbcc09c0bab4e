@@ -42,9 +42,8 @@
 
          
           $url = $_SERVER['REQUEST_URI'];
+          
           $longitud = strlen($url);
- 
-
 
           if ($longitud == 39) {
 
@@ -74,7 +73,7 @@
           }
           else if ($longitud == 56) {
             
-             $rest = substr($url, -1, 4);
+             $rest = substr($url, -3, 4);
              //echo $rest;
             
           }else if ($longitud == 59) {
@@ -127,7 +126,7 @@
 
           }else if ($longitud == 56) {
             
-             $rest = substr($url, -18, 1);
+             $rest = substr($url, -16, 3);
              //echo $rest;
             
           }else if ($longitud == 59) {
@@ -459,7 +458,7 @@
 
                             }else {
 
-                                echo "<button class='btn btn-success btnRespuestaTicket' type='submit' urlTicket = '".str_replace('/matrizServidor/','',$url)."'>Responder Ticket</button>";
+                                echo "<button class='btn btn-success btnRespuestaTicket' type='submit' urlTicket = '".str_replace('localhost/matrizServer/','',$url)."'>Responder Ticket</button>";
 
                             }
 
@@ -516,7 +515,7 @@
 
                           if ($estado == 0) {
 
-                              echo "<button class='btn btn-info btnAprobarTicket'  idTicket = '".$idTicket."' urlTicket = '".str_replace('dkmatrizz.ddns.net/','',$url)."'>Aprobar Ticket</button>";
+                              echo "<button class='btn btn-info btnAprobarTicket'  idTicket = '".$idTicket."' urlTicket = '".str_replace('localhost/matrizServer/','',$url)."'>Aprobar Ticket</button>";
 
                               $aprobarTicket = new ControladorTickets();
                               $aprobarTicket -> ctrAprobarTicket();
@@ -554,7 +553,7 @@
                           if ($estado == 0) {
 
                               
-                              echo "<button class='btn btn-warning btnCerrarTicket' urlTicket = '".str_replace('dkmatrizz.ddns.net/','',$url)."' idNumeroTicket = '".$idTicket."'>Cerrar Ticket</button>";
+                              echo "<button class='btn btn-warning btnCerrarTicket' urlTicket = '".str_replace('localhost/matrizServer/','',$url)."' idNumeroTicket = '".$idTicket."'>Cerrar Ticket</button>";
 
                               $cerrarTicket = new ControladorTickets();
                               $cerrarTicket -> ctrCerrarTicket();
@@ -563,7 +562,7 @@
                           }else{
 
                
-                              echo "<button class='btn btn-warning btnCerrarTicket' urlTicket = '".str_replace('dkmatrizz.ddns.net/','',$url)."' idNumeroTicket = '".$idTicket."' disabled>Cerrar Ticket</button>";
+                              echo "<button class='btn btn-warning btnCerrarTicket' urlTicket = '".str_replace('localhost/matrizServer/','',$url)."' idNumeroTicket = '".$idTicket."' disabled>Cerrar Ticket</button>";
 
                           }
                           

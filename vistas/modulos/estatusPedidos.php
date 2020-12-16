@@ -77,6 +77,9 @@ echo '<script>
 
           </a>';
 
+          echo '<button type="button" class="btn btn-success" id="btnEstatusOrdenes">Estatus Ordenes</button>';
+
+
             }else{
               echo '<a href="vistas/modulos/reportes.php?reportes=atencionaclientes">
 
@@ -89,21 +92,21 @@ echo '<script>
 
         </div>
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaEstatus" width="100%" id="estatusPedidos" style="border: 2px solid #605ca8">
+        <table class="table-bordered table-striped dt-responsive tablaEstatus estilosBordesTablas" width="100%" id="estatusPedidos">
          
-          <thead style="background:#605ca8;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
-             <th style="width:10px;height: 40px;">#</th>
-             <th style="width:10px;height: 40px;">Fecha</th>
-             <th style="width:10px;height: 40px;">Serie</th>
-             <th style="width:10px;height: 40px;">Folio</th>
-             <th style="width:10px;height: 40px;">Serie Factura</th>
-             <th style="width:10px;height: 40px;">Folio Factura</th>
-             <th style="width:10px;height: 40px;">Cliente</th>
-             <th>Estado del pedido</th>
-             <th style="width:20px;height: 40px;">Estatus</th>
+             <th style="width:10px;height: 40px;border:none">#</th>
+             <th style="width:10px;height: 40px;border:none">Fecha</th>
+             <th style="width:10px;height: 40px;border:none">Serie</th>
+             <th style="width:10px;height: 40px;border:none">Folio</th>
+             <th style="width:10px;height: 40px;border:none">Serie Factura</th>
+             <th style="width:10px;height: 40px;border:none">Folio Factura</th>
+             <th style="width:10px;height: 40px;border:none">Cliente</th>
+             <th style="border:none">Estado del pedido</th>
+             <th style="width:20px;height: 40px;border:none">Estatus</th>
            </tr> 
 
           </thead>

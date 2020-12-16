@@ -113,6 +113,7 @@ MENU
         if ($_SESSION["perfil"] == "Compras") {
         echo '<li><a href="compras"><i class="fa fa-shopping-cart"></i><span>Compras</span></a></li>';
         echo '<li><a href="saldos"><i class="fa fa-bank"></i> <span>Bancos</span></a></li>';
+        echo '<li><a href="gastosTiendas"><i class="fa fa-money"></i> <span>Gastos Tiendas</span></a></li>';
     }
     else if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
         echo '<li><a href="compras"><i class="fa fa-shopping-cart"></i><span>Compras</span></a></li>';

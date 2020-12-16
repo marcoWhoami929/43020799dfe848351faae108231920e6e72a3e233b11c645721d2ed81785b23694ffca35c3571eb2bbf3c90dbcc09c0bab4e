@@ -22,12 +22,12 @@ class TablaLogistica{
 
      $usuario = $_SESSION['nombre'];
 
-    if ( $usuario == "Nataly Fuentes" || $usuario == "Aurora Fernandez") {
+    if ($usuario == "Aurora Fernandez") {
       
       $idUsuario = "2";
    
 
-    }else if($usuario == "Mauricio Anaya"){
+    }else if($usuario == "Miguel Gutierrez Angeles"){
 
       $idUsuario = "1";
     
@@ -157,13 +157,17 @@ class TablaLogistica{
 
                            /*DOS NUEVAS LINEAS*/
                             
-                        if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Logistica" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez") {
+                        if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Logistica" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Aurora Fernandez") {
 
                                 if ($logistica[$i]["status"] != 3 || $logistica[$i]["habilitado"] == 1) {
                                  
                                   if ($logistica[$i]["estado"] == 0 && $logistica[$i]["status"] == 0 && $logistica[$i]["pendiente"] == 1) {
 
                                     if ($logistica[$i]["estadoPedido"] == 1 && $logistica[$i]["estadoAlmacen"] == 1 && $logistica[$i]["statusAlmacen"] == 3 && $logistica[$i]["estadoFacturacion"] == 1 && $logistica[$i]["statusFacturacion"] == 1 && $logistica[$i]["estadoCompras"] == 1 && $logistica[$i]["statusCompras"] >= 4) {
+
+                                      $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idLogis='".$logistica[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar</button></div>";  
+
+                                    }else if ($logistica[$i]["estadoPedido"] == 1 && $logistica[$i]["estadoAlmacen"] == 0 && $logistica[$i]["statusAlmacen"] == 0 && $logistica[$i]["estadoFacturacion"] == 1 && $logistica[$i]["statusFacturacion"] == 1 && $logistica[$i]["estadoCompras"] == 1 && $logistica[$i]["statusCompras"] >= 4) {
 
                                       $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idLogis='".$logistica[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar</button></div>";  
 

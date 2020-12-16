@@ -640,6 +640,8 @@ MODAL EDITAR ORDEN DE TRABAJO
 
 </div>
 
+
+
 <script type="text/javascript">
   $(document).ready(function() {
   $('.dtp1').datetimepicker({

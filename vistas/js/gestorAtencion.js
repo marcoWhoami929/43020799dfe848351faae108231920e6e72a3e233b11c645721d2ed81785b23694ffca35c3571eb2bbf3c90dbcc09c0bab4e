@@ -110,6 +110,8 @@ $(".tablaAtencion").on("click", ".btnEditarPedido", function(){
       //$("#editarTipoCompra").val(respuesta["tipoCompra"]);
       $("#editarObservaciones").val(respuesta["observaciones"]);
       $("#editarObservaciones2").val(respuesta["observaciones2"]);
+      $("#editarAsignacion").val(respuesta["asignacion1"]);
+      $("#editarAsignacion2").val(respuesta["asignacion2"]);
     }
 
 
@@ -118,7 +120,7 @@ $(".tablaAtencion").on("click", ".btnEditarPedido", function(){
 
 });
 /*=============================================
-EDITAR PEDIDO
+CANCELACION
 =============================================*/
 $(".tablaAtencion").on("click", ".Cancelado", function(){
 
@@ -340,10 +342,6 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
 
               var datosFacturas = new FormData();
               datosFacturas.append('listaFacturas',json);
-
-              console.log(datosFacturas);
-
-
               localStorage.setItem("pausadoFacturas",1);
                $.ajax({
                 url:"ajax/atencion.ajax.php",
@@ -360,11 +358,8 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
                          localStorage.setItem("pausadoFacturas",0);
                      }else{
 
-                        console.log(respuesta);
+                        
                      }
-                    
-                   
-
                     
                 }
 
@@ -384,6 +379,295 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
 
               
 }
+/***OBTENER TRASPASOS*/
+function obtenerTraspasos(){
+
+  n =  new Date();
+  //Año
+  y = n.getFullYear();
+//Mes
+  m = n.getMonth() + 1;
+//Día
+  d = n.getDate();
+
+  var fechaActual = y+"-"+m+"-"+d;
+  //var fechaActual = "2020-11-05";
+
+  var datos = new  FormData();
+
+  datos.append('fechaActualOrdenes',fechaActual);
+
+  $.ajax({
+      url:"ajax/atencion.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var json = JSON.stringify(respuesta);
+         
+          if (json === null) {
+
+              console.log(respuesta);
+             
+
+          }else{
+
+              
+              
+              var datosTraspasos = new FormData();
+              datosTraspasos.append('listaTraspasos',json);
+
+              localStorage.setItem("pausadoAlmacen",1);
+               $.ajax({
+                url:"ajax/atencion.ajax.php",
+                method:"POST",
+                data: datosTraspasos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success:function(respuesta){
+               
+                     if (respuesta === "finalizado") {
+
+                         localStorage.setItem("pausadoAlmacen",0);
+
+                     }else{
+
+                      
+                     }
+ 
+                }
+
+          })
+      
+         
+
+
+          }
+          
+
+          
+      }
+
+
+    })
+
+              
+}
+/***OBTENER TRASPASOS*/
+/***OBTENER COMPRAS*/
+function obtenerCompras(){
+
+  n =  new Date();
+  //Año
+  y = n.getFullYear();
+//Mes
+  m = n.getMonth() + 1;
+//Día
+  d = n.getDate();
+
+  var fechaActual = y+"-"+m+"-"+d;
+  //var fechaActual = "2020-11-05";
+
+  var datos = new  FormData();
+
+  datos.append('fechaActualCompras',fechaActual);
+
+  $.ajax({
+      url:"ajax/atencion.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var json = JSON.stringify(respuesta);
+         
+          if (json === null) {
+
+
+          }else{
+
+              
+              
+              var datosCompras = new FormData();
+              datosCompras.append('listaCompras',json);
+
+              localStorage.setItem("pausadoCompras",1);
+               $.ajax({
+                url:"ajax/atencion.ajax.php",
+                method:"POST",
+                data: datosCompras,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success:function(respuesta){
+               
+                     if (respuesta === "finalizado") {
+
+                         localStorage.setItem("pausadoCompras",0);
+
+                     }else{
+
+                      
+                     }
+ 
+                }
+
+          })
+      
+         
+
+
+          }
+          
+
+          
+      }
+
+
+    })
+
+              
+}
+/***OBTENER COMPRAS*/
 $("#updatePedidos").on("click",function(){
   tablaAtencion.ajax.reload();
 })
+
+$("#btnEstatusOrdenes").on("click",function(){
+
+ window.location.href = "http://dkmatrizz.ddns.net/estatusRuta";
+
+});
+$("#btnEstatusPedidos").on("click",function(){
+
+ window.location.href = "http://dkmatrizz.ddns.net/estatusPedidos";
+
+});
+/*=============================================
+OBTENER DETALLES DEL ESTATUS DEL CLIENTE
+=============================================*/
+$(".tablaAtencion").on("click", ".btnDetailClient", function(){
+
+  var codigoCliente = $(this).attr("codigoCliente");
+  var catalogo = $(this).attr("catalogo");
+  var idClienteComercial = $(this).attr("idClienteComercial");
+
+  var datos = new FormData();
+  datos.append("codigoCliente", codigoCliente);
+  datos.append("catalogo", catalogo);
+  datos.append("idClienteComercial", idClienteComercial);
+
+  
+  $.ajax({
+
+    url:"ajax/atencion.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+      success: function(respuesta){ 
+
+          var detalle = document.getElementById("detailClient")
+            
+
+                var listaCabeceras = ['Días Crédito','Límite de Crédito','Saldo Vencido','Límite de Doctos Vencidos','Documentos Vencidos','Estatus'];
+
+                body = document.getElementById("tablaDetailClient");
+
+                thead = document.createElement("thead");
+                thead.setAttribute('style','background:#2667ce;color: white');
+
+                theadTr = document.createElement("tr");
+
+                for (var h = 0; h < listaCabeceras.length; h++) {
+                    
+                    var celdaThead = document.createElement("th");
+                    var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                    celdaThead.appendChild(textoCeldaThead);
+                    theadTr.appendChild(celdaThead);
+
+                }
+              
+                thead.appendChild(theadTr);
+     
+                tblBody = document.createElement("tbody");
+
+                var arregloNombres = ['diasCredito','limiteCredito','saldoVencido','limDoctosVenc','documentosVencidos','statusCliente'];
+
+                // Crea las celdas
+                for (var i = 0; i < 1; i++) {
+                  // Crea las hileras de la tabla
+                  var hilera = document.createElement("tr");
+               
+                  for (var j = 0; j < arregloNombres.length; j++) {
+                   
+
+                    var celda = document.createElement("td");
+
+                    const button = document.createElement('button'); 
+                    button.type = 'button'; 
+
+                    if (arregloNombres[j] == 'statusCliente' && respuesta[arregloNombres[j]] == 0) {
+
+                      button.className = 'btn btn-danger';
+                      button.innerText = 'Inactivo'; 
+                      var textoCelda = button;
+
+                    }else if (arregloNombres[j] == 'statusCliente' && respuesta[arregloNombres[j]] == 1) {
+                      button.className = 'btn btn-success';
+                      button.innerText = 'Activo'; 
+                      var textoCelda = button;
+                    }
+                    else{
+                      if (arregloNombres[j] == 'limiteCredito' || arregloNombres[j] == 'saldoVencido') {
+
+                        var textoCelda = document.createTextNode("$"+respuesta[arregloNombres[j]]);
+                      
+
+                      }else{
+
+                        var textoCelda = document.createTextNode(respuesta[arregloNombres[j]]);
+
+                      }
+
+                      
+                    }
+                    
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                   
+                  }
+               
+                  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                  tblBody.appendChild(hilera);
+                }
+               
+                // appends <table> into <body>
+                body.appendChild(tblBody);
+                body.appendChild(thead);
+ 
+      }
+
+
+    })
+    
+
+})
+  $(".btnCerrarDetailClient").on("click", function() {
+
+        var nodos = document.getElementById('tablaDetailClient');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+        }
+        tablaAtencion.ajax.reload();
+});

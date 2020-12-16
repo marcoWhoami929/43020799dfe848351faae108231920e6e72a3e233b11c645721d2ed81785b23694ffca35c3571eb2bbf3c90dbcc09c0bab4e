@@ -2,7 +2,7 @@
 	
 	/*
 	$serverName = "192.168.1.250";
-	$connectionInfo = array("Database"=>"adPINTURAS2020SADEC", "UID"=>"sa", "PWD"=>"M78o03e09p56*","CharacterSet"=>"UTF-8");
+	$connectionInfo = array("Database"=>"adFLEX2020SADEC", "UID"=>"sa", "PWD"=>"M78o03e09p56*","CharacterSet"=>"UTF-8");
 	*/
 	$serverName = "192.168.1.222";
 	//$serverName = "192.168.1.123";

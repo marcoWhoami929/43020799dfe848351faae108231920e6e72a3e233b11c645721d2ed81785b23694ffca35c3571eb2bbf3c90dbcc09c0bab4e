@@ -2,11 +2,16 @@
 CARGAR LA TABLA DINÁMICA DE CLIENTES
 =============================================*/
 
-var table = $(".tablaClientes").DataTable({
+ $(".tablaClientes").DataTable({
    "ajax":"ajax/tablaClientes.ajax.php",
    "deferRender": true,
    "retrieve": true,
    "processing": true,
+    "iDisplayLength": 10,
+    "fixedHeader": true,
+    "order": [[ 0, "desc" ]],
+    /*"scrollX": true,*/
+     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
    "language": {
 
     "sProcessing":     "Procesando...",
@@ -35,9 +40,7 @@ var table = $(".tablaClientes").DataTable({
    }
 
 });
-setInterval( function () {
-    table.ajax.reload();
-}, 3000 );
+
 /*=============================================
 ACTIVAR CLIENTE
 =============================================*/

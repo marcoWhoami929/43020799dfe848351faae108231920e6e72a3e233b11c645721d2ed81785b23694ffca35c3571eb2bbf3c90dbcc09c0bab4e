@@ -1626,7 +1626,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	==================================================*/
 	public static function mdlSeleccionarDatosFacturacion($item, $valor, $item2, $valor2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item AND Fg.cancelado = 0");
 
 		$stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
 		$stmt->bindParam(":".$item2, $valor2, PDO::PARAM_STR);
@@ -1785,10 +1785,11 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	/**
 	 * ACTUALIZAR IMPORTES O DATOS DE SURTIMIENTO EN FACTURACION Y ALMACEN
 	 */
-	static public function mdlActualizarNivelesAlmacenFacturacion($tabla,$tabla2, $datos){
+	static public function mdlActualizarNivelesAlmacenFacturacion($tabla, $tabla2, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.idPedido = $tabla.idPedido SET $tabla2.sumPartidas = $tabla.partSurt,$tabla2.nivelPartidas = $tabla.nivelPartidas,$tabla2.sumUnidades = $tabla.unidSurt,$tabla2.nivelDeSum = $tabla.nivelDeSum,$tabla2.importeSurtido = $tabla.importSurt,$tabla2.nivelSumCosto = $tabla.nivelSumCosto where $tabla2.idPedido = :idPedido");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.serie = $tabla.serie AND $tabla2.idPedido = $tabla.idPedido SET $tabla2.sumPartidas = $tabla.partSurt,$tabla2.nivelPartidas = $tabla.nivelPartidas,$tabla2.sumUnidades = $tabla.unidSurt,$tabla2.nivelDeSum = $tabla.nivelDeSum,$tabla2.importeSurtido = $tabla.importSurt,$tabla2.nivelSumCosto = $tabla.nivelSumCosto where $tabla2.serie = :serie and $tabla2.idPedido = :idPedido");
 
+		$stmt->bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":idPedido", $datos["idPedido"], PDO::PARAM_STR);
 
 		if($stmt -> execute()){
@@ -1828,6 +1829,131 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 	$stmt = null;
 
-}
+	}
+	/*
+	MOSTRAR ALMACENES
+	 */
+	static public function mdlMostrarListaAlmacenes($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+
+	}
+	/*ACTUALIZAR VALORES DE NIVELES*/
+	static public function mdlRecalcularNivelesFacturas($tabla, $seriePedido,$folioPedido){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(id) as secciones,SUM(numeroPartidas) as partidasSurtidas, SUM(importeFactura) as importeSurtido, SUM(numeroUnidades) as unidadesSurtidas from $tabla where seriePedido = '".$seriePedido."' and folioPedido = '".$folioPedido."' and cancelado != 1");
+
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	}
+
+	static public function mdlActualizarDatosFacturacion($datosActualizar){
+
+		if ($datosActualizar["secciones"] == "0") {
+
+			$stmt = Conexion::conectar()->prepare("UPDATE facturacion set secciones = :secciones,partSurt = :partidasSurtidas,importSurt = :importeSurtido, unidSurt = :unidadesSurtidas, nivelSumCosto = ((:importeSurtido/importeInicial)*100), nivelDeSum = ((:unidadesSurtidas/unidSurt)*100), nivelPartidas = ((:partidasSurtidas/partSurt)*100),estado = 0,status = 0,facturaPendiente = 1,tiempoProceso = '00:00:00',serieFactura = :nuevaSerie,folioFactura = :nuevoFolio ,estatusFactura = 0  where serie = :serie and idPedido = :folio");
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("UPDATE facturacion set secciones = :secciones,partSurt = :partidasSurtidas,importSurt = :importeSurtido, unidSurt = :unidadesSurtidas, nivelSumCosto = ((:importeSurtido/importeInicial)*100), nivelDeSum = ((:unidadesSurtidas/unidSurt)*100), nivelPartidas = ((:partidasSurtidas/partSurt)*100),serieFactura = :nuevaSerie,folioFactura = :nuevoFolio  where serie = :serie and idPedido = :folio");
+		}
+		
+
+		$stmt -> bindParam(":serie", $datosActualizar["serie"], PDO::PARAM_STR);
+		$stmt -> bindParam(":folio", $datosActualizar["folio"], PDO::PARAM_STR);
+		$stmt -> bindParam(":importeSurtido", $datosActualizar["importeSurtido"], PDO::PARAM_STR);
+		$stmt -> bindParam(":unidadesSurtidas", $datosActualizar["unidadesSurtidas"], PDO::PARAM_STR);
+		$stmt -> bindParam(":secciones", $datosActualizar["secciones"], PDO::PARAM_STR);
+		$stmt -> bindParam(":partidasSurtidas", $datosActualizar["partidasSurtidas"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nuevaSerie", $datosActualizar["nuevaSerie"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nuevoFolio", $datosActualizar["nuevoFolio"], PDO::PARAM_STR);
+		
+		if($stmt->execute()){
+
+		return "ok";	
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		
+		$stmt = null;
+
+	}
+	static public function mdlRecalcularAtencion($datosPedido,$secciones){
+
+		if ($secciones == "0") {
+
+			$stmt = Conexion::conectar()->prepare("UPDATE atencionaclientes INNER JOIN facturacion ON atencionaclientes.serie = facturacion.serie AND atencionaclientes.folio = facturacion.idPedido SET atencionaclientes.saldoFacturado = facturacion.importSurt,atencionaclientes.estadoFacturacion = facturacion.estado,atencionaclientes.statusFacturacion = facturacion.status,atencionaclientes.tiempoFacturacion = facturacion.tiempoProceso,atencionaclientes.serieFactura = facturacion.serieFactura,atencionaclientes.folioFactura = facturacion.folioFactura where atencionaclientes.serie = :serie and atencionaclientes.folio = :idPedido");
+
+	
+			
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("UPDATE atencionaclientes INNER JOIN facturacion ON atencionaclientes.serie = facturacion.serie AND atencionaclientes.folio = facturacion.idPedido SET atencionaclientes.saldoFacturado = facturacion.importSurt,atencionaclientes.estadoFacturacion = facturacion.estado,atencionaclientes.statusFacturacion = facturacion.status,atencionaclientes.serieFactura = facturacion.serieFactura,atencionaclientes.folioFactura = facturacion.folioFactura where atencionaclientes.serie = :serie and atencionaclientes.folio = :idPedido");
+			
+
+		}
+	
+
+		$stmt->bindParam(":serie", $datosPedido["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":idPedido", $datosPedido["idPedido"], PDO::PARAM_STR);
+	
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlRecalcularLogistica($datosPedido){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE logistica INNER JOIN facturacion ON logistica.serie = facturacion.serie AND logistica.idPedido = facturacion.idPedido SET logistica.estadoFacturacion = facturacion.estado, logistica.statusFacturacion = facturacion.status, logistica.serieFactura = facturacion.serieFactura,logistica.folioFactura = facturacion.folioFactura  where logistica.serie = :serie and logistica.idPedido = :idPedido");
+
+		$stmt->bindParam(":serie", $datosPedido["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":idPedido", $datosPedido["idPedido"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlObtenerFacturasPedido($datosPedidoFacturas){
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio from facturasgenerales where seriePedido = :serie AND folioPedido = :folio  AND cancelado = 0  order by folio DESC limit 1");
+
+			$stmt->bindParam(":serie", $datosPedidoFacturas["serie"], PDO::PARAM_STR);
+			$stmt->bindParam(":folio", $datosPedidoFacturas["folio"], PDO::PARAM_STR);
+			$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	}
 
 }

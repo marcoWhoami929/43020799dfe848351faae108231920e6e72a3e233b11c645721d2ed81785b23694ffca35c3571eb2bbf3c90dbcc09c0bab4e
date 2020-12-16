@@ -144,7 +144,7 @@ class TablaGastos{
 					  			/*=============================================
 					  			VALIDAR ACCIONES DE BOTONES EDITAR
 					  			=============================================*/
-					  			if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma") {
+					  			if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez") {
 
 							  				if ($gastos[$i]["solicitada"] == 0 && $gastos[$i]["aprobada"] == 0) {
 

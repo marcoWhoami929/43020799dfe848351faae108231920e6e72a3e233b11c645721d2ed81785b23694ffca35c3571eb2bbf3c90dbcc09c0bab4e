@@ -898,11 +898,21 @@ class ModeloFacturasTiendas{
 
 
 	}
-	static public function mdlVerificarCancelacionSolicitud($item,$valor){
+	static public function mdlVerificarCancelacionSolicitud($tabla,$item,$valor){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT ft.id as idFacturaCancelacion from facturastiendas ft INNER JOIN ticket tk ON ft.idSolicitud = tk.numeroTicket where ft.$item = :$item");
+			if ($tabla == "facturasgenerales") {
+
+				$stmt = Conexion::conectar()->prepare("SELECT ft.id as idFacturaCancelacion,ft.seriePedido,ft.folioPedido from $tabla as ft INNER JOIN ticket tk ON ft.idSolicitud = tk.numeroTicket where ft.$item = :$item");
+				
+			}else{
+
+				$stmt = Conexion::conectar()->prepare("SELECT ft.id as idFacturaCancelacion from $tabla as ft INNER JOIN ticket tk ON ft.idSolicitud = tk.numeroTicket where ft.$item = :$item");
+
+			}
+
+			
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
 
@@ -924,11 +934,11 @@ class ModeloFacturasTiendas{
 
 
 	}
-	static public function mdlGenerarCancelacionFactura($item,$valor,$datosCancelacion){
+	static public function mdlGenerarCancelacionFactura($tabla,$item,$valor,$datosCancelacion){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE facturastiendas SET fechaCancelacion = :fechaCancelacion,estatus = :estatus, cancelado = :cancelado where $item = :$item");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fechaCancelacion = :fechaCancelacion,estatus = :estatus, cancelado = :cancelado where $item = :$item");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
 			$stmt -> bindParam(":fechaCancelacion",$datosCancelacion["fechaCancelacion"],PDO::PARAM_STR);

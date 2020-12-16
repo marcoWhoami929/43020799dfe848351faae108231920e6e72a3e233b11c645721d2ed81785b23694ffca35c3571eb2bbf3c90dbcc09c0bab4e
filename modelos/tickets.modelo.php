@@ -1017,6 +1017,19 @@ class ModeloTickets{
 		$stmt = null;
 
 	}
+
+	static public function mdlObtenerDatosTicket($itemTicket,$valorTicket){
+
+		$stmt = Conexion::conectar()->prepare("SELECT seriePedido,folioPedido,serieFactura,folioFactura from ticket WHERE $itemTicket = :$itemTicket");
+
+		$stmt -> bindParam(":".$itemTicket, $valorTicket, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+
+	}
 	
 
 	

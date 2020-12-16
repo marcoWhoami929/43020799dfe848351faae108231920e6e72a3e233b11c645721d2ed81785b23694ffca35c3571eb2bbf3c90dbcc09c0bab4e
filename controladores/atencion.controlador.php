@@ -4,64 +4,6 @@
 class ControladorAtencion{
 
 	/*=============================================
-	INGRESO DE ADMINISTRADOR
-	=============================================*/
-
-	public function ctrIngresoAdministrador(){
-
-		if(isset($_POST["ingEmail"])){
-
-			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingEmail"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
-			   
-			   $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-						
-				$tabla = "administradores";
-				$item = "email";
-				$valor = $_POST["ingEmail"];
-
-				$respuesta = ModeloAdministradores::mdlMostrarAdministradores($tabla, $item, $valor);
-
-				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
-
-					if($respuesta["estado"] == 1){
-
-						$_SESSION["validarSesionBackend"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["email"] = $respuesta["email"];
-						$_SESSION["password"] = $respuesta["password"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
-
-						echo '<script>
-
-							window.location = "inicio";
-
-						</script>';
-
-					}else{
-
-						echo '<br>
-						<div class="alert alert-warning">Este usuario aún no está activado</div>';	
-
-					}
-
-				}else{
-
-					echo '<br>
-					<div class="alert alert-danger">Error al ingresar vuelva a intentarlo</div>';
-
-				}
-
-
-			}
-
-		}
-
-	}
-
-	/*=============================================
 	MOSTRAR ATENCION A CLIENTES
 	=============================================*/
 
@@ -347,6 +289,8 @@ class ControladorAtencion{
 					           //"tipoCompra" => $_POST["editarTipoCompra"],
 					           "observaciones" => rtrim($textoObservaciones1),
 					           "observaciones2" => rtrim($textoObservaciones2),
+					           "asignacion1" => $_POST["editarAsignacion"],
+					           "asignacion2" => $_POST["editarAsignacion2"],
 					           "estado" => 1);
 
 				$respuesta = ModeloAtencion::mdlEditarPedido($tabla, $datos);
@@ -364,7 +308,7 @@ class ControladorAtencion{
 						  }).then(function(result) {
 									if (result.value) {
 
-									window.location = "atencionClientes";
+									
 
 									}
 								})
@@ -545,6 +489,8 @@ class ControladorAtencion{
 
 	static public function ctrAgregarObservacionesExtra(){
 
+		if (isset($_POST["editarAsignacion"])) {
+
 			if ($_POST["editarAsignacion"] != "") {
 				
 				$tabla = $_POST["editarAsignacion"];
@@ -563,15 +509,17 @@ class ControladorAtencion{
 		
 			}
 			
-			
+		}
+
 	}
 	/*=============================================
 	AGREGAR OBSERVACIONES EXTRA
 	=============================================*/
 
 	static public function ctrAgregarObservacionesExtra2(){
+		if (isset($_POST["editarAsignacion2"])) {
 
-			if ($_POST["editarAsignacion2"] != "") {
+				if ($_POST["editarAsignacion2"] != "") {
 				
 				$tabla2 = $_POST["editarAsignacion2"];
 
@@ -587,6 +535,8 @@ class ControladorAtencion{
 				return $respuesta;
 		
 			}
+			
+		}
 			
 			
 	}
@@ -689,5 +639,17 @@ class ControladorAtencion{
 			}
 		
 
+	}
+	/*=============================================
+	MOSTRAR ESTADO CLIENTE
+	=============================================*/
+
+	static public function ctrMostrarEstadoCliente($item, $valor,$catalogo){
+
+		$tabla = "clientes";
+
+		$respuesta = ModeloAtencion::mdlMostrarEstadoCliente($tabla, $item, $valor,$catalogo);
+
+		return $respuesta;
 	}
 }

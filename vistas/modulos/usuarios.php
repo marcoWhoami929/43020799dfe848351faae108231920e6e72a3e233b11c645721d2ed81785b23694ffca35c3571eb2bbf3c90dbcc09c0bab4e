@@ -55,19 +55,19 @@ return;
         <!--<?php //echo $USUARIOS_ACTIVOS; ?>-->
       <div class="box-body">
         
-        <table class="table table-bordered table-striped dt-responsive tablaUsuarios" width="100%" id="usuarios">
+        <table class="table-bordered table-striped dt-responsive tablaUsuarios estilosBordesTablas" width="100%" id="usuarios">
          
-          <thead>
+          <thead class="estilosTablas">
            
            <tr>
              
-             <th style="width:10px">#</th>
-             <th>Email</th>
-             <th>Foto</th>
-             <th>Nombre</th>
-             <th>Codigo de Autenticación</th>
-             <th>Estado</th>
-             <th>Acciones</th>
+             <th style="width:10px;border:none">#</th>
+             <th style="border:none">Email</th>
+             <th style="border:none">Foto</th>
+             <th style="border:none">Nombre</th>
+             <th style="border:none">Codigo de Autenticación</th>
+             <th style="border:none">Estado</th>
+             <th style="border:none">Acciones</th>
 
            </tr> 
 
@@ -155,7 +155,7 @@ MODAL EDITAR PERFIL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

@@ -58,21 +58,21 @@ return;
         <!--<?php //echo $USUARIOS_ACTIVOS; ?>-->
       <div class="box-body">
         
-        <table class="table table-bordered table-striped dt-responsive tablaPerfiles" width="100%" id="perfiles">
+        <table class="table-bordered table-striped dt-responsive tablaPerfiles estilosBordesTablas" width="100%" id="perfiles">
          
-          <thead>
+          <thead class="estilosTablas">
            
            <tr>
              
-             <th style="width:10px">#</th>
-             <th>Nombre</th>
-             <th>Email</th>
-             <th>Foto</th>
-             <th>Grupo</th>
-             <th>Perfil</th>
-             <th>Estado</th>
-             <th>Acciones</th>
-             <th>Cotizador</th>
+             <th style="width:10px;border:none">#</th>
+             <th style="border:none">Nombre</th>
+             <th style="border:none">Email</th>
+             <th style="border:none">Foto</th>
+             <th style="border:none">Grupo</th>
+             <th style="border:none">Perfil</th>
+             <th style="border:none">Estado</th>
+             <th style="border:none">Acciones</th>
+             <th style="border:none">Cotizador</th>
 
            </tr> 
 
@@ -179,7 +179,7 @@ MODAL AGREGAR PERFIL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -383,7 +383,7 @@ MODAL EDITAR PERFIL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

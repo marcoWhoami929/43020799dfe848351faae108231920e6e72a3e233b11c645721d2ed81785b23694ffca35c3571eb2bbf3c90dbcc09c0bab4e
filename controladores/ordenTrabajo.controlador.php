@@ -4,7 +4,7 @@ class ControladorOrdenes{
 
 	static public function ctrMostrarOrdenesDeTrabajo($item, $valor){
 
-		$tabla = "ordenesdetrabajo";
+		$tabla = "atencionaclientes";
 
 		$respuesta = ModeloOrdenes::mdlMostrarOrdenesDeTrabajo($tabla, $item, $valor);
 
@@ -197,9 +197,9 @@ class ControladorOrdenes{
 
 		if(isset($_POST["otIdOrdenEdit"])){
 
-                $tabla = "ordenesdetrabajo";
-                $tabla2 = "almacenot";
-                $tabla3 = "facturacionot";
+                $tabla = "atencionaclientes";
+                $tabla2 = "almacen";
+                $tabla3 = "facturacion";
                 $tabla4 = "bitacora";
                 $tabla5 = "estatusordenes";
 
@@ -211,15 +211,17 @@ class ControladorOrdenes{
                                "fechaRecepcion" => $_POST["otFechaRecepcionEdit"],
                                "fechaElaboracion" => $_POST["otFechaElaboracionEdit"],
                                "tipoRuta" => $_POST["otTipoRutaEdit"],
-                               "observaciones" => $_POST["otMovimientoEdit"],
+                               "observacionesOrden" => $_POST["otMovimientoEdit"],
                                "comentarios" => trim($_POST["otComentariosEdit"]));
 
-                $datos2 = array("folio" => $_POST["otFolioEdit"],
+                $datos2 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
                                 "numeroPartidas" => $_POST["otPartidasEdit"],
                                 "numeroUnidades" => $_POST["otUnidadesEdit"],
                                 "importeTotal" => $_POST["otImporteEdit"]);
 
-                $datos3 = array("folio" => $_POST["otFolioEdit"],
+                $datos3 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
                                 "partidasTotales" => $_POST["otPartidasEdit"],
                                 "unidadesTotales" => $_POST["otUnidadesEdit"],
                                 "importeTotal" => $_POST["otImporteEdit"]);
@@ -235,14 +237,16 @@ class ControladorOrdenes{
                 $pendiente = "1";
                 $activo = "1";
 
-                $datos5 = array("folio" => $_POST["otFolioEdit"],
-                                "observaciones" => $_POST["otMovimientoEdit"],
+                $datos5 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
+                                "observacionesOrden" => $_POST["otMovimientoEdit"],
                                 "estado" => $estado,
                                 "pendiente" => $pendiente,
                                 "activo" => $activo); 
 
-                $datos6 = array("folio" => $_POST["otFolioEdit"],
-                                "observaciones" => $_POST["otMovimientoEdit"],
+                $datos6 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
+                                "observacionesOrden" => $_POST["otMovimientoEdit"],
                                 "estado" => $estado,
                                 "facturaPendiente" => $pendiente,
                                 "activo" => $activo);   
@@ -258,21 +262,24 @@ class ControladorOrdenes{
                 $activo = "0";
 
 
-                $datos5 = array("folio" => $_POST["otFolioEdit"],
-                                "observaciones" => $_POST["otMovimientoEdit"],
+                $datos5 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
+                                "observacionesOrden" => $_POST["otMovimientoEdit"],
                                 "estado" => $estado,
                                 "pendiente" => $pendiente,
                                 "status" => 0,
                                 "tiempoProceso" => "00:00:00",
                                 "activo" => $activo); 
 
-                $datos6 = array("folio" => $_POST["otFolioEdit"],
-                                "observaciones" => $_POST["otMovimientoEdit"],
+                $datos6 = array("serie" => $_POST["otSerieEdit"],
+                                "folio" => $_POST["otFolioEdit"],
+                                "observacionesOrden" => $_POST["otMovimientoEdit"],
                                 "estado" => $estado,
                                 "facturaPendiente" => 1,
                                 "activo" => 1);  
 
-                $datos7 = array("folio" => $_POST["otFolioEdit"],
+                $datos7 = array(
+                                "folio" => $_POST["otFolioEdit"],
                                 "estadoAlmacen" => 0,
                                 "statusAlmacen" => 0,
                                 "tiempoAlmacen" => "00:00:00",
@@ -288,6 +295,19 @@ class ControladorOrdenes{
                 $respuesta6 = ModeloOrdenes::mdlActualizarObservacionesFacturacionOt($tabla,$tabla3,$datos6);
                 $respuesta7 = ModeloOrdenes::mdlActualizarObservacionesEstatusOt($tabla,$tabla5,$datos7);
 
+                $datosFactura = array(
+                                      "serie" => $_POST["otSerieEdit"],
+                                      "folio" => $_POST["otFolioEdit"]);
+                               
+                $respuesta8 = ModeloFacturacionRuta::mdlActualizarNivelesGenerales($tabla3, $datosFactura);
+
+                $tablaFac = "facturacion";
+                $tablaAl = "almacen";
+                $datos = array("folio" => $_POST["otFolioEdit"]);
+
+                $respuesta9 = ModeloFacturacionRuta::mdlActualizarNivelesAlmacen($tablaFac,$tablaAl, $datos);
+
+
 				if($respuesta == "ok" && $respuesta2 == "ok" && $respuesta3 == "ok"){
 
 					echo'<script>
@@ -300,7 +320,7 @@ class ControladorOrdenes{
 						  }).then(function(result) {
 									if (result.value) {
 
-									window.location = "ordenTrabajo";
+								
 
 									}
 								})
@@ -318,15 +338,15 @@ class ControladorOrdenes{
 
 		if(isset($_GET["idOrden"])){
 
-			$tabla = "ordenesdetrabajo";
+			$tabla = "atencionaclientes";
 			$datos = array("id" => $_GET["idOrden"],
 						   "motivoCancelacion" => $_GET['motivo']);
 
-            $tabla1 = "almacenot";
+            $tabla1 = "almacen";
             $datos1 = array("folio" => $_GET["folio"],
                             "serie" => $_GET["serie"]);
 
-            $tabla2 = "facturacionot";
+            $tabla2 = "facturacion";
             $datos2 = array("folio" => $_GET["folio"],
                             "serie" => $_GET["serie"]);
 
@@ -360,7 +380,6 @@ class ControladorOrdenes{
 					  }).then(function(result) {
 								if (result.value) {
 
-								window.location = "ordenTrabajo";
 
 								}
 							})

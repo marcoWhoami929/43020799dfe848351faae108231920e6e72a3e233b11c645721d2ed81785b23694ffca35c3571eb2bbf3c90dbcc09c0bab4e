@@ -2,32 +2,17 @@
 
 require_once "conexion.php";
 class ModeloFacturacionRuta{
-		/*==================================================
-	MODELO PARA MOSTRAR LOS DATOS DE LAS FACTURAS
-	==================================================*/
-static public function mdlMostrarDatosFacturasOT($tabla, $item, $valor){
 
-	if($item != null){
-
-		$stmt = Conexion::conectar()->prepare("SELECT f.partidasTotales AS totalPart,f.unidadesTotales AS totalUnid,f.importeTotal AS totalImport,m.serie,m.folio, m.numeroPartidas,  m.numeroUnidades, m.importeFactura  FROM $tabla m INNER JOIN facturacionot AS f ON f.folio = m.folioPedido WHERE m.folioPedido = :$item");
-
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
-		$stmt -> execute();
-
-		return $stmt -> fetchAll();
-
-	}
-
-}
 	/*==================================================
 	MODELO PARA MOSTRAR EL ULTIMO NUMERO DE LAS SECCIONES MAS 1
 	==================================================*/
-public static function mdlMostrarUltimoNumeroFactura($itemN, $valorN){
+public static function mdlMostrarUltimoNumeroFactura($itemN, $valorN,$itemN2, $valorN2){
 	if($itemN != null){
 
-		$stmt = Conexion::conectar()->prepare("SELECT IF(MAX(f.numFactura + 1) IS NULL,1,MAX(f.numFactura + 1)) as ultimoNumero FROM facturasordenes f WHERE f.folioPedido = :$itemN");
+		$stmt = Conexion::conectar()->prepare("SELECT IF(MAX(f.numFactura + 1) IS NULL,1,MAX(f.numFactura + 1)) as ultimoNumero FROM facturasgenerales f WHERE f.seriePedido = :$itemN2 and f.folioPedido = :$itemN");
 
 		$stmt -> bindParam(":".$itemN, $valorN, PDO::PARAM_INT);
+		$stmt -> bindParam(":".$itemN2, $valorN2, PDO::PARAM_STR);
 		$stmt -> execute();
 
 		return $stmt -> fetch();
@@ -35,7 +20,7 @@ public static function mdlMostrarUltimoNumeroFactura($itemN, $valorN){
 	}
 }
 	/*==================================================
-	MODELO PARA ELIMINAR UNA FACTURA DE LA TABLA FACTURASORDENES
+	MODELO PARA ELIMINAR UNA FACTURA DE LA TABLA facturasgenerales
 	==================================================*/
 public static function mdlEliminarFacturaOrden($tabla1, $item1, $valor1, $item2, $valor2){
 	$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla1 WHERE serie = :$item1 AND folio = :$item2");
@@ -73,11 +58,11 @@ public static function mdlUltimaSeccion($tabla, $itemN2, $valorN2, $itemN, $valo
 
 }
 /*==================================================
-MODELO PARA RESTAR UN 1 AL CAMPO SECCIONES DE LA TABLA FACTURACIONOT
+MODELO PARA RESTAR UN 1 AL CAMPO SECCIONES DE LA TABLA facturacion
 ==================================================*/
 public static function mdlEliminarSeccion($tabla, $itemN2, $valorN2, $itemN, $valorN){
 
-	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET secciones = secciones - 1 WHERE serie = :$itemN2 AND folio = :$itemN");
+	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET secciones = secciones - 1 WHERE serie = :$itemN2 AND idPedido = :$itemN");
 	$stmt->bindParam(":".$itemN2, $valorN2, PDO::PARAM_STR);
 	$stmt->bindParam(":".$itemN, $valorN, PDO::PARAM_INT);
 	if($stmt -> execute()){
@@ -90,11 +75,11 @@ public static function mdlEliminarSeccion($tabla, $itemN2, $valorN2, $itemN, $va
 
 }
 /*==================================================
-MODELO PARA SUMAR UN 1 AL CAMPO SECCIONES DE LA TABLA FACTURACIONOT
+MODELO PARA SUMAR UN 1 AL CAMPO SECCIONES DE LA TABLA facturacion
 ==================================================*/
 public static function mdlInsertarSeccion($tabla, $itemN2, $valorN2, $itemN, $valorN){
 
-	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET secciones = secciones + 1 WHERE serie = :$itemN2 AND folio = :$itemN");
+	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET secciones = secciones + 1 WHERE serie = :$itemN2 AND idPedido = :$itemN");
 	$stmt->bindParam(":".$itemN2, $valorN2, PDO::PARAM_STR);
 	$stmt->bindParam(":".$itemN, $valorN, PDO::PARAM_INT);
 	if($stmt -> execute()){
@@ -158,7 +143,7 @@ static public function mdlInsertarFacturasOrdenes($tabla3, $datosManuales){
 }
 
 static public function mdlMostrarSumaTotal($tabla1, $item3, $valor3){
-	$stmt = Conexion::conectar()->prepare("SELECT IF(SUM(importeFactura) IS NULL,0,SUM(importeFactura)) AS sumImporte,IF(SUM(numeroUnidades) IS NULL,0,SUM(numeroUnidades)) AS sumUnidades,IF(SUM(numeroPartidas) IS NULL,0,SUM(numeroPartidas)) AS sumPartidas FROM $tabla1 WHERE folioPedido = :$item3");
+	$stmt = Conexion::conectar()->prepare("SELECT IF(SUM(importeFactura) IS NULL,0,SUM(importeFactura)) AS sumImporte,IF(SUM(numeroUnidades) IS NULL,0,SUM(numeroUnidades)) AS sumUnidades,IF(SUM(numeroPartidas) IS NULL,0,SUM(numeroPartidas)) AS sumPartidas FROM $tabla1 WHERE folioPedido = :$item3 and seriePedido = 'OTRT'");
 
 	$stmt -> bindParam(":".$item3, $valor3, PDO::PARAM_INT);
 	$stmt -> execute();
@@ -169,7 +154,7 @@ static public function mdlMostrarSumaTotal($tabla1, $item3, $valor3){
 
 static public function mdlActualizarImprtes($tabla, $datosAr, $item3, $valor3){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET partidasSurtidas = :partidasSurtidas, unidadesSurtidas = :unidadesSurtidas, importeSurtido = :importeSurtido WHERE folio = :$item3");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET partSurt = :partidasSurtidas, unidSurt = :unidadesSurtidas, importSurt = :importeSurtido WHERE serie = 'OTRT' and idPedido = :$item3");
 
 		$stmt -> bindParam(":partidasSurtidas", $datosAr["partidasSurtidas"], PDO::PARAM_STR);
 		$stmt -> bindParam(":unidadesSurtidas", $datosAr["unidadesSurtidas"], PDO::PARAM_STR);
@@ -196,7 +181,7 @@ static public function mdlActualizarImprtes($tabla, $datosAr, $item3, $valor3){
 static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $valor2){
 	if($item1 != null){
 
-		$stmt = Conexion::conectar()->prepare("SELECT COUNT(folio) as folioValido FROM facturasordenes WHERE $item1 = :$item1 and $item2  = :$item2");
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(folio) as folioValido FROM facturasgenerales WHERE $item1 = :$item1 and $item2  = :$item2");
 
 		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
 		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_INT);
@@ -213,7 +198,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(folio) as facturas from facturasordenes  WHERE folioPedido = :$item2");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(folio) as facturas from facturasgenerales  WHERE folioPedido = :$item2 and seriePedido = 'OTRT'");
 
 			$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_INT);
 
@@ -223,7 +208,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 			foreach ($arr as $row) {
 				if($row['facturas'] != 0){
 
-					$stmt = Conexion::conectar()->prepare("SELECT facturacionot.*,facturasordenes.serie as serieFactura,facturasordenes.folio as folioFactura,facturasordenes.estatusFactura,facturasordenes.numeroPartidas,facturasordenes.numeroUnidades,facturasordenes.unidadesPendientes,facturasordenes.importeFactura,facturasordenes.pendiente,facturasordenes.fecha,facturasordenes.fechaVencimiento,facturasordenes.numFactura,facturasordenes.nombreCliente,facturasordenes.fechaImportacion from $tabla INNER JOIN facturasordenes ON facturacionot.folio = facturasordenes.folioPedido  WHERE facturacionot.$item = :$item group by facturacionot.folio");
+					$stmt = Conexion::conectar()->prepare("SELECT facturacion.*,facturasgenerales.serie as serieFactura,facturasgenerales.folio as folioFactura,facturasgenerales.estatusFactura,facturasgenerales.numeroPartidas,facturasgenerales.numeroUnidades,facturasgenerales.unidadesPendientes,facturasgenerales.importeFactura,facturasgenerales.pendiente,facturasgenerales.fechaFactura as fecha,facturasgenerales.fechaVencimiento,facturasgenerales.numFactura,facturasgenerales.nombreCliente,facturasgenerales.fechaImportacion from $tabla INNER JOIN facturasgenerales ON facturacion.serie = facturasgenerales.seriePedido and facturacion.idPedido = facturasgenerales.folioPedido  WHERE facturacion.$item = :$item group by facturacion.idPedido");
 
 					$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -249,7 +234,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT facturacionot.*, facturasordenes.serie as serieFactura,facturasordenes.folio as folioFactura,facturasordenes.importeFactura as importeFactura FROM facturacionot LEFT OUTER JOIN facturasordenes  ON facturacionot.folio = facturasordenes.folioPedido GROUP by folio");
+			$stmt = Conexion::conectar()->prepare("SELECT facturacion.*, facturasgenerales.serie as serieFactura,facturasgenerales.folio as folioFactura,facturasgenerales.importeFactura as importeFactura FROM facturacion LEFT OUTER JOIN facturasgenerales  ON facturacion.idPedido = facturasgenerales.folioPedido GROUP by folio");
 
 			$stmt -> execute();
 
@@ -265,7 +250,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlMostrarDatosFactura($tabla, $item, $valor){
 
-			$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 2");
+			$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 2");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -276,7 +261,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlMostrarDatosFactura3($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 3");
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 3");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -287,7 +272,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}	
 	static public function mdlMostrarDatosFactura4($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 4");
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 4");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -298,7 +283,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}	
 	static public function mdlMostrarDatosFactura5($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 5");
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 5");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -309,7 +294,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlMostrarDatosFactura6($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 6");
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 6");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -320,7 +305,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlMostrarDatosFactura7($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE $item = :$item and numFactura = 7");
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio,numeroPartidas,numeroUnidades,importeFactura FROM $tabla WHERE seriePedido = 'OTRT' and $item = :$item and numFactura = 7");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
@@ -584,7 +569,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 
 	static public function mdlActualizarDatosFacturacion($tabla3, $datos3){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla3 SET partidasTotales = :partidasTotales, unidadesTotales = :unidadesTotales, importeTotal = :importeTotal WHERE folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla3 SET partidas = :partidasTotales, unidades = :unidadesTotales, importeInicial = :importeTotal WHERE serie = :serie and idPedido = :folio");
 
 		
 		
@@ -592,6 +577,8 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 		$stmt->bindParam(":unidadesTotales", $datos3["unidadesTotales"], PDO::PARAM_STR);
 		$stmt->bindParam(":importeTotal", $datos3["importeTotal"], PDO::PARAM_STR);
 		$stmt->bindParam(":folio", $datos3["folio"], PDO::PARAM_STR);
+		$stmt->bindParam(":serie", $datos3["serie"], PDO::PARAM_STR);
+
 
 		if($stmt -> execute()){
 
@@ -610,7 +597,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
     static public function mdlCancelarOrdenFacturacion($tabla2, $datos2){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 set status = 0, estado = 0, estatusFactura = 2, facturaPendiente = 0 WHERE folio = :folio and serie = :serie");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 set status = 0, estado = 0, estatusFactura = 2, facturaPendiente = 0 WHERE idPedido = :folio and serie = :serie");
 
 		$stmt -> bindParam(":folio", $datos2["folio"], PDO::PARAM_INT);
 		$stmt -> bindParam(":serie", $datos2["serie"], PDO::PARAM_STR);
@@ -703,7 +690,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarTiempoProceso($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set tiempoProceso = TIMEDIFF(fechaEntrega, fechaRecepcion) where folio = :folio AND serie = :serie");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set tiempoProceso = TIMEDIFF(fechaEntrega, fechaRecepcion) where idPedido = :folio AND serie = :serie");
 
 		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_INT);
 		$stmt -> bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
@@ -725,7 +712,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarEstatusTiemposFacturacion($datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE estatusordenes INNER JOIN facturacionot ON estatusordenes.folio = facturacionot.folio  SET estatusordenes.tiempoFacturacion = facturacionot.tiempoProceso,estatusordenes.estadoFacturacion = facturacionot.estado,estatusordenes.statusFacturacion = facturacionot.status  WHERE estatusordenes.folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE estatusordenes INNER JOIN facturacion ON estatusordenes.folio = facturacion.idPedido  SET estatusordenes.tiempoFacturacion = facturacion.tiempoProceso,estatusordenes.estadoFacturacion = facturacion.estado,estatusordenes.statusFacturacion = facturacion.status  WHERE estatusordenes.folio = :folio");
 
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 
@@ -768,7 +755,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlCalcularNivelesFactura($tabla, $folio){
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(importeFactura) as importeSurtido, SUM(numeroUnidades) as unidadesSurtidas,SUM(numeroPartidas) as partidasSurtidas FROM $tabla WHERE folio = :folio ");
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(importeFactura) as importeSurtido, SUM(numeroUnidades) as unidadesSurtidas,SUM(numeroPartidas) as partidasSurtidas FROM $tabla WHERE seriePedido = 'OTRT' and folioPedido = :folio ");
 
 		$stmt -> bindParam(":folio",$folio, PDO::PARAM_INT);
 
@@ -779,9 +766,9 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarNivelesFacturacion($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE facturacionot set importeSurtido = :importeSurtido, unidadesSurtidas = :unidadesSurtidas, partidasSurtidas = :partidasSurtidas, nivelDeImporte = (:importeSurtido*100/importeTotal), nivelDeUnidades = (:unidadesSurtidas*100/unidadesTotales),nivelDePartidas = (:partidasSurtidas*100/partidasTotales)  where folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE facturacion set importSurt = :importeSurtido, unidSurt = :unidadesSurtidas, partSurt = :partidasSurtidas, nivelSumCosto = (:importeSurtido*100/importeInicial), nivelDeSum = (:unidadesSurtidas*100/unidades),nivelPartidas = (:partidasSurtidas*100/partidas)  where id = :id");
 
-		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt -> bindParam(":importeSurtido", $datos["importeSurtido"], PDO::PARAM_STR);
 		$stmt -> bindParam(":unidadesSurtidas", $datos["unidadesSurtidas"], PDO::PARAM_STR);
 		$stmt -> bindParam(":partidasSurtidas", $datos["partidasSurtidas"], PDO::PARAM_STR);
@@ -801,9 +788,32 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 
 
 	}
+	static public function mdlActualizarNivelesGenerales($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE facturacion set  nivelSumCosto = (importSurt*100/importeInicial), nivelDeSum = (unidSurt*100/unidades),nivelPartidas = (partSurt*100/partidas)  where serie = :serie and idPedido = :folio");
+
+		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
+		$stmt -> bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
+
+
+		if ($stmt -> execute()) {
+
+			return "ok";
+
+		}else {
+
+			return "error";
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+
+	}
 	static public function mdlActualizarNivelesAlmacen($tabla,$tabla2, $datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.folio = $tabla.folio SET $tabla2.sumPartidas = $tabla.partidasSurtidas,$tabla2.nivelPartidas = $tabla.nivelDePartidas,$tabla2.sumUnidades = $tabla.unidadesSurtidas,$tabla2.nivelUnidades = $tabla.nivelDeUnidades,$tabla2.importeSurtido = $tabla.importeSurtido,$tabla2.nivelImportes = $tabla.nivelDeImporte where $tabla2.folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.serie = $tabla.serie and $tabla2.idPedido = $tabla.idPedido SET $tabla2.sumPartidas = $tabla.partSurt,$tabla2.nivelPartidas = $tabla.nivelPartidas,$tabla2.sumUnidades = $tabla.unidSurt,$tabla2.nivelDeSum = $tabla.nivelDeSum,$tabla2.importeSurtido = $tabla.importSurt,$tabla2.nivelSumCosto = $tabla.nivelSumCosto where $tabla2.serie = 'OTRT' and $tabla2.idPedido = :folio");
 
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 
@@ -824,7 +834,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarTiempoSegundos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set tiempoSec = TIME_TO_SEC(tiempoProceso), tiempoAlmacenSec = TIME_TO_SEC(tiempoAlmacen), tiempoFacturacionSec = TIME_TO_SEC(tiempoFacturacion) where folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set tiempoSec = TIME_TO_SEC(tiempoProceso), tiempoAlmacenSec = TIME_TO_SEC(tiempoAlmacen), tiempoFacturacionSec = TIME_TO_SEC(tiempoFacturacion) where serie = 'OTRT' and folio = :folio");
 
 		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_INT);
 
@@ -844,7 +854,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarTiempoFinal($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tiempoFinal = $tabla.tiempoSec+$tabla.tiempoAlmacenSec+$tabla.tiempoFacturacionSec where folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tiempoFinal = $tabla.tiempoSec+$tabla.tiempoAlmacenSec+$tabla.tiempoFacturacionSec where serie = 'OTRT' and folio = :folio");
 
 		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_INT);
 
@@ -864,7 +874,7 @@ static public function mdlValidarFolioFacturasOdenes($item1, $valor1, $item2, $v
 	}
 	static public function mdlActualizarConcluido($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET concluido = '1' where folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET concluido = '1' where serie = 'OTRT' and folio = :folio");
 
 		$stmt -> bindParam(":folio", $datos["folio"], PDO::PARAM_INT);
 

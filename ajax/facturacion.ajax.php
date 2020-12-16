@@ -23,7 +23,7 @@ class AjaxFacturacion{
 	}
 
 	/*=============================================
-	EDITAR ALMACEN
+	EDITAR FACTURACION
 	=============================================*/	
 
 	public $idPedido;
@@ -254,7 +254,8 @@ class AjaxFacturacion{
 		}
 
 			
-			$datos = array("idPedido" => $valor3);
+			$datos = array("idPedido" => $valor3,
+							"serie" => $valor4);
 
 			$respuesta3 = ModeloFacturacion::mdlActualizarNivelesAlmacenFacturacion($tabla,$tabla2,$datos);
 

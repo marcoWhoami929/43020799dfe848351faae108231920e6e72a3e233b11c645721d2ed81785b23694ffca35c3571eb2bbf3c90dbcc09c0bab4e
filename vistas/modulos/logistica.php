@@ -83,6 +83,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
                <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateFacturas"><i class="fa fa-spinner"></i>Actualizar</button>';
           }else{
 
               echo ' <a href="vistas/modulos/reportes.php?reporte=logistica">
@@ -90,6 +91,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
               <button class="btn btn-info" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateFacturas"><i class="fa fa-spinner"></i>Actualizar</button>';
 
           }
               
@@ -101,6 +103,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
               <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateLogistica"><i class="fa fa-spinner"></i>Actualizar</button>';
             }
 
           ?>
@@ -154,7 +157,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header headerModal" >
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -190,7 +193,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header headerModal" >
+        <div class="modal-header estilosTablas" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

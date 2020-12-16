@@ -107,24 +107,24 @@ if($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Admini
           </div>
         </div>
         <br>
-        <table class="table table-bordered table-striped dt-responsive tablaClientes" width="100%" id="clientes">
+        <table class="table-bordered table-striped dt-responsive tablaClientes estilosBordesTablas" width="100%" id="clientes">
          
-          <thead>
+          <thead class="estilosTablas">
            
            <tr>
              
-             <th>#</th>
-             <th>Código Cliente</th>
-             <th>Rfc</th>
-             <th>Nombre del Cliente</th>
-             <th>Agente de Ventas</th>
-             <th>Agente de Cobro</th>
-             <th>Límite de Crédito</th>
-             <th>Días de Crédito</th>
-             <th>Segmento</th>
-             <th>Estatus</th>
-             <th>Descuento Documento</th>
-             <th>Descuento Movimiento</th>
+             <th style="border:none">#</th>
+             <th style="border:none">Código Cliente</th>
+             <th style="border:none">Rfc</th>
+             <th style="border:none">Nombre del Cliente</th>
+             <th style="border:none">Agente de Ventas</th>
+             <th style="border:none">Agente de Cobro</th>
+             <th style="border:none">Límite de Crédito</th>
+             <th style="border:none">Días de Crédito</th>
+             <th style="border:none">Segmento</th>
+             <th style="border:none">Estatus</th>
+             <th style="border:none">Descuento Documento</th>
+             <th style="border:none">Descuento Movimiento</th>
 
 
 
@@ -160,7 +160,7 @@ MODAL AGREGAR PERFIL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

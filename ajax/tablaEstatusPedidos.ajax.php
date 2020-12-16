@@ -53,28 +53,7 @@ class TablaEstatusPedidos{
                                $estatusPedido =  "<td style='height:120px;'><div class='checkout-wrap'><ul class='checkout-bar'><li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li><li class='active'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li><li class=''>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li><li class=''>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li><li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li></ul></div></td>";
                       
                         }
-                        /*
-                        else if ($atencionClientes[$i]["estado"] == 1 && $atencionClientes[$i]["estadoAlmacen"] == 1 && $atencionClientes[$i]["statusAlmacen"] < 3 && $atencionClientes[$i]["estadoCompras"] == 1 && $atencionClientes[$i]["statusCompras"] <= 4 && $atencionClientes[$i]["estadoFacturacion"] == 0 && $atencionClientes[$i]["statusFacturacion"] == 0  && $atencionClientes[$i]["estadoLogistica"] == 0 && $atencionClientes[$i]["statusLogistica"] == 0){
-                          $estatusPedido =  '<td style='height:120px;'>
-                                    <div class='checkout-wrap'>
-                                        <ul class='checkout-bar'>
-
-                                          <li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li>
-                                          
-                                          <li class='paused'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li>
-                                          
-                                           <li class=''>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li>
-
-                                           <li class=''>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li>
-
-                                          <li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li>
-                                             
-                                        </ul>
-                                      </div>
-                                       
-                                </td>';
-                        }
-                        */
+                       
                         if ($atencionClientes[$i]["estado"] == 1 && $atencionClientes[$i]["estadoAlmacen"] == 1 && $atencionClientes[$i]["statusAlmacen"] == 3 && $atencionClientes[$i]["estadoCompras"] == 1 && $atencionClientes[$i]["statusCompras"] >= 4  && $atencionClientes[$i]["estadoFacturacion"] == 0 && $atencionClientes[$i]["statusFacturacion"] == 0 && $atencionClientes[$i]["estadoLogistica"] == 0  && $atencionClientes[$i]["statusLogistica"] == 0) {
                                $estatusPedido =  "<td style='height:120px;'><div class='checkout-wrap'><ul class='checkout-bar'><li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li><li class='previous visited'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li><li class='active'>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li><li class=''>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li><li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li></ul></div></td>";
                       
@@ -123,30 +102,7 @@ class TablaEstatusPedidos{
                            $estatusPedido =  "<td style='height:120px;'><div class='checkout-wrap'><ul class='checkout-bar'><li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li><li class='paused'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li><li class='active'>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li><li class='paused'>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li><li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li></ul></div></td>";
 
                         }
-                        /*
-                        else if ($atencionClientes[$i]["estado"] == 1 && $atencionClientes[$i]["estadoAlmacen"] == 1 && $atencionClientes[$i]["statusAlmacen"] == 3 && $atencionClientes[$i]["estadoFacturacion"] == 1 && $atencionClientes[$i]["statusFacturacion"] == 0 && $atencionClientes[$i]["estadoCompras"] == 1 && $atencionClientes[$i]["statusCompras"] >= 4 ){
-
-                           $estatusPedido =  '<td style='height:120px;'>
-                                    <div class='checkout-wrap'>
-                                        <ul class='checkout-bar'>
-
-                                          <li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li>
-                                          
-                                          <li class='paused'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li>
-
-                                          <li class='active'>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li>
-
-                                          <li class='paused'>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li>
-
-                                          <li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li>
-                                             
-                                        </ul>
-                                      </div>
-                                       
-                                </td>';
-
-                        } 
-                        */
+                      
                         else if ($atencionClientes[$i]["estado"] == 1 && $atencionClientes[$i]["estadoAlmacen"] == 0 && $atencionClientes[$i]["statusAlmacen"] == 0 && $atencionClientes[$i]["estadoFacturacion"] == 1 && $atencionClientes[$i]["statusFacturacion"] == 1 && $atencionClientes[$i]["estadoCompras"] == 1 && $atencionClientes[$i]["statusCompras"] >= 4 ){
 
                            $estatusPedido =  "<td style='height:120px;'><div class='checkout-wrap'><ul class='checkout-bar'><li class='visited first'>Atención<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoProceso']."</span></li><li class='paused'>Almacén<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoAlmacen']."</span></li><li class='active'>Compras<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoCompras']."</span></li><li class='previous visited'>Facturación<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoFacturacion']."</span></li><li class=''>Logística<br><span style='font-weight: lighter;color: black;font-size: 10px'>".$atencionClientes[$i]['tiempoLogistica']."</span></li></ul></div></td>";

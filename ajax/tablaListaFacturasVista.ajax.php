@@ -60,7 +60,7 @@ class TablaListaFacturasVista{
                   "'.$facturasGenerales[$i]["folio"].'",
                   "'.$facturasGenerales[$i]["numeroPartidas"].'",
                   "'.$facturasGenerales[$i]["numeroUnidades"].'",
-                  "'.$facturasGenerales[$i]["importeFactura"].'",
+                  "$ '.number_format($facturasGenerales[$i]["importeFactura"],2).'",
                   "'.$estatus.'",
                   "'.$facturasGenerales[$i]["fechaFactura"].'",
                   "'.$estatusEntrega.'"],';

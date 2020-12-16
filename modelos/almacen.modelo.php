@@ -111,12 +111,21 @@ SET $tabla2.tipoCompra = $tabla.tipoCompra WHERE $tabla2.idPedido = $tabla.idPed
 	/*=============================================
 	ACTUALIZAR COMPRA EDICION
 	=============================================*/
-	static public function mdlActualizarCompraEdicion($tabla, $tabla2, $datos){
+	static public function mdlActualizarCompraEdicion($tabla, $tabla2, $datos,$tipoCompra){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.idPedido = $tabla.idPedido and $tabla2.serie = $tabla.serie SET $tabla2.tipoCompra = $tabla.tipoCompra WHERE $tabla2.idPedido = :idPedido and $tabla2.serie = :serie");
+			if ($tipoCompra == 0) {
+				
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.idPedido = $tabla.idPedido and $tabla2.serie = $tabla.serie SET $tabla2.tipoCompra = $tabla.tipoCompra,$tabla2.status = 4,$tabla2.pendiente = 0,$tabla2.estado = 0  WHERE $tabla2.idPedido = :idPedido and $tabla2.serie = :serie");
+
+			}else{
+
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.idPedido = $tabla.idPedido and $tabla2.serie = $tabla.serie SET $tabla2.tipoCompra = $tabla.tipoCompra,$tabla2.status = 6,$tabla2.pendiente = 1,$tabla2.estado = 1  WHERE $tabla2.idPedido = :idPedido and $tabla2.serie = :serie");
+			}
+			
 
 			$stmt->bindParam(":idPedido", $datos["idPedido"], PDO::PARAM_INT);
 			$stmt->bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
+		
 
 			if ($stmt -> execute()) {
 				return "ok";

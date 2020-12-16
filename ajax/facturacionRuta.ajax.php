@@ -5,18 +5,7 @@ require_once "../modelos/facturacionRuta.modelo.php";
 
 class AjaxFacturacionRuta{
 
-	/*=============================================
-	VER FATURAS
-	=============================================*/	
-	public $idFacturasSec;
-
-	public function ajaxVerFacturas(){
-		$item = "folio";
-		$valor = $this->idFacturasSec;
-
-		$respuesta = ControladorFacturacionRuta::ctrMostrarDatosFacturasOT($item, $valor);
-		echo json_encode($respuesta);
-	}
+	
 	/*=============================================
 	ELIMINAR FACTURA ORDEN
 	=============================================*/	
@@ -24,9 +13,9 @@ class AjaxFacturacionRuta{
 	public $editFolio;
 
 	public function ajaxEliminarFactura(){
-		$tabla1 = "facturasordenes";
-		$tabla = "facturacionot";
-		$tabla2 = "almacenot";
+		$tabla1 = "facturasgenerales";
+		$tabla = "facturacion";
+		$tabla2 = "almacen";
 
 		$item1 = "serieFactura";
 		$valor1 = $this->editSerie;
@@ -193,7 +182,7 @@ class AjaxFacturacionRuta{
 
 	public function ajaxActivarOrden(){
 
-		$tabla = "facturacionot";
+		$tabla = "facturacion";
 
 		$item1 = "habilitado";
 		$valor1 = $this->activarOrden;
@@ -282,13 +271,6 @@ if(isset($_POST["folioOrden7"])){
 	$editar = new AjaxFacturacionRuta();
 	$editar -> folioOrden7 = $_POST["folioOrden7"];
 	$editar -> ajaxObtenerDatosFactura7();
-}
-
-if(isset($_POST["idFacturasSec"])){
-
-	$editar = new AjaxFacturacionRuta();
-	$editar -> idFacturasSec = $_POST["idFacturasSec"];
-	$editar -> ajaxVerFacturas();
 }
 
 /*=============================================

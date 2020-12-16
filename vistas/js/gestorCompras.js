@@ -2,7 +2,7 @@
 CARGAR LA TABLA DINÁMICA DE ALMACEN
 =============================================*/
 
-var table7 = $(".tablaCompras").DataTable({
+tablaCompras = $(".tablaCompras").DataTable({
    "ajax":"ajax/tablaCompras.ajax.php",
    "deferRender": true,
    "retrieve": true,
@@ -40,9 +40,7 @@ var table7 = $(".tablaCompras").DataTable({
    }
 
 });
-setInterval( function () {
-    table7.ajax.reload(); // user paging is not reset on reload
-}, 5000);
+
 
 /*=============================================
 EDITAR COMPRAS
@@ -342,7 +340,7 @@ $(".tablaCompras").on("click", ".btnVerCompras", function(){
       $("#compUtilidad5").val(respuesta["utilidad5"]);
 
        var valor = document.getElementById("compSecciones").value;
-       console.log(valor);
+       
          if (valor == 1) {
          div1 = document.getElementById("comp1");
               div1.style.display = "";
@@ -429,7 +427,7 @@ $(".tablaCompras").on("click", ".btnVerCompras", function(){
         }
 
         var valor2 = document.getElementById("compImporteCompra").value;
-       console.log(valor2);
+ 
          if (valor2 == "") {
           div1 = document.getElementById("individual");
               div1.style.display = "";
@@ -486,83 +484,6 @@ $(".tablaCompras").on("click", ".btnEliminarCompra", function(){
 })
 
 /*=============================================
-REVISAR SI EL FOLIO DEL PEDIDO EXISTE
-=============================================*/
-
-$(".validarPedido4").click(function(){
-
-  $(".alert").remove();
-
-  var Pedido = $(this).val();
-
-  var datos = new FormData();
-  datos.append("validarPedido4", Pedido);
-
-   $.ajax({
-      url:"ajax/compras.ajax.php",
-      method:"POST",
-      data: datos,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
-      success:function(respuesta){
-
-        if(respuesta.length != 0){
-
-          $(".validarPedido4").parent().after('<div class="alert alert-warning">Este folio de pedido ya fue editado</div>');
-
-          $(".validarPedido4").val("");
-          $("#cliente").val('');
-          $("#cliente").val('');
-
-        }
-
-      }
-
-    })
-
-})
-
-/*=============================================
-REVISAR SI EL FOLIO DEL PEDIDO EXISTE
-=============================================*/
-
-$(".validarPedidos4").click(function(){
-
-  $(".alert").remove();
-
-  var Pedido = $(this).val();
-
-  var datos = new FormData();
-  datos.append("validarPedidos4", Pedido);
-
-   $.ajax({
-      url:"ajax/compras.ajax.php",
-      method:"POST",
-      data: datos,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
-      success:function(respuesta){
-
-        if(respuesta.length != 0){
-
-          $(".validarPedidos4").parent().after('<div class="alert alert-warning">Este folio de pedido ya fue editado</div>');
-
-          $(".validarPedidos4").val("");
-          $("#cliente").val('');
-          $("#cliente").val('');
-
-        }
-
-      }
-
-    })
-
-})
-/*=============================================
 HABILITAR COMPRA
 =============================================*/
 $(".tablaCompras").on("click", ".btnHabilitarFolio", function(){
@@ -604,4 +525,7 @@ $(".tablaCompras").on("click", ".btnHabilitarFolio", function(){
 
     }
 
+});
+$("#updateCompras").on("click",function(){
+  tablaCompras.ajax.reload();
 })
