@@ -475,6 +475,7 @@ MENU
               
               <li><a href="ajusteSaldos"><i class="fa fa-fax"></i><span>Ajustes De Saldos</a></li>
               <li><a href="abonos"><i class="fa fa-money"></i><span>Abonos Facturas</a></li>
+              <li><a href="facturasTiendas"><i class="fa fa-file-text"></i><span>Facturas Credito</a></li>
               
               
              

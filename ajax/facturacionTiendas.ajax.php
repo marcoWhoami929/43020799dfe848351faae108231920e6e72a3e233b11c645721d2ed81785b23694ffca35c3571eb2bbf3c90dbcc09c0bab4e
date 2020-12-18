@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ALL);
+error_reporting(0);
 require_once "../controladores/facturacionTiendas.controlador.php";
 require_once "../modelos/facturacionTiendas.modelo.php";
 
@@ -1843,7 +1843,109 @@ class AjaxFacturacionTiendas{
 		echo json_encode($respuesta);
 
 	}
+	public $identificadorFactura;
 
+	public function ajaxActualizarEnviadoCredito(){
+
+		$tabla = "facturastiendas";
+
+		date_default_timezone_set('America/Mexico_City');
+		$fechaEnviado = date('Y-m-d H:i:s');
+
+		$arreglo = array("id" => $this->identificadorFactura,
+			             "horaEnviado" => $fechaEnviado);
+
+		$respuesta = ControladorFacturasTiendas::ctrActualizarEnviadoCredito($tabla,$arreglo);
+
+		echo json_encode($respuesta);
+
+	}
+	public $identificadorFacturaConfirm;
+	public function ajaxActualizarRecibidoCredito(){
+
+		$tabla = "facturastiendas";
+
+		date_default_timezone_set('America/Mexico_City');
+		$fechaRecibido = date('Y-m-d H:i:s');
+
+		$arreglo = array("id" => $this->identificadorFacturaConfirm,
+			             "horaRecibido" => $fechaRecibido);
+
+		$respuesta = ControladorFacturasTiendas::ctrActualizarRecibidoCredito($tabla,$arreglo);
+
+		echo json_encode($respuesta);
+
+	}
+	public $rutaArchivos;
+	public function ajaxObtenerArchivosCargadosCreditos(){
+
+		$archivo  = $this->rutaArchivos;
+
+		if (file_exists($archivo)) {
+
+			$archivos = scandir("../archivosCredito/".$this->rutaArchivos."/");
+			
+		}else{
+
+			mkdir("../archivosCredito/".$archivo."", 0777, true);
+
+			$archivos = scandir("../archivosCredito/".$this->rutaArchivos."/");
+
+		}
+		
+		echo json_encode($archivos);
+
+	}
+	public $nombreArchivo;
+	public function ajaxEliminarArchivoCredito(){
+
+		
+		$eliminar  = unlink("../archivosCredito/".$this->nombreArchivo."");
+
+		if ($eliminar ===  true) {
+			
+			$exito = "true";
+		}else{
+			$exito = "false";
+		}
+		
+		echo json_encode($exito);
+
+	}
+	public $identificadorFacturaUpload;
+
+	public function ajaxActualizarDocumentosCredito(){
+
+		$tabla = "facturastiendas";
+
+		date_default_timezone_set('America/Mexico_City');
+		$fechaRecibido = date('Y-m-d H:i:s');
+
+		$usuario = $_SESSION["id"];
+
+		$arreglo = array("id" => $this->identificadorFacturaUpload,
+			             "horaSubida" => $fechaRecibido,
+			         	 "idUsuarioCarga" => $usuario);
+
+		$respuesta = ControladorFacturasTiendas::ctrActualizarSubidaDocumentosCredito($tabla,$arreglo);
+
+		echo json_encode($respuesta);
+
+	}
+	public $identificadorFacturaLoad;
+
+	public function ajaxCargarDatosDocumentosCredito(){
+
+		$tabla = "facturastiendas";
+
+		$item = "id";
+		$valor = $this->identificadorFacturaLoad;
+
+		$respuesta = ControladorFacturasTiendas::ctrMostrarDetallesDocumentosCredito($tabla,$item,$valor);
+
+		echo json_encode($respuesta);
+
+	}
 	
 
 }
@@ -2061,3 +2163,39 @@ if (isset($_POST["bancoElegido"])) {
 	$buscarDatosDeposito -> ajaxBuscarDetallesDeposito();
 }
 /*=====  End of FUNCIONES PARA DEPOSITOS FACTURAS CORTE CAJA  ======*/
+if (isset($_POST["identificadorFactura"])) {
+	
+	$enviarCredito = new AjaxFacturacionTiendas();
+	$enviarCredito -> identificadorFactura = $_POST["identificadorFactura"];
+	$enviarCredito -> ajaxActualizarEnviadoCredito();
+}
+if (isset($_POST["identificadorFacturaConfirm"])) {
+	
+	$enviarCredito = new AjaxFacturacionTiendas();
+	$enviarCredito -> identificadorFacturaConfirm = $_POST["identificadorFacturaConfirm"];
+	$enviarCredito -> ajaxActualizarRecibidoCredito();
+}
+if (isset($_POST["rutaArchivos"])) {
+	
+	$obtenerArchivos = new AjaxFacturacionTiendas();
+	$obtenerArchivos -> rutaArchivos = $_POST["rutaArchivos"];
+	$obtenerArchivos -> ajaxObtenerArchivosCargadosCreditos();
+}
+if (isset($_POST["nombreArchivo"])) {
+	
+	$eliminarArchivo = new AjaxFacturacionTiendas();
+	$eliminarArchivo -> nombreArchivo = $_POST["nombreArchivo"];
+	$eliminarArchivo -> ajaxEliminarArchivoCredito();
+}
+if (isset($_POST["identificadorFacturaUpload"])) {
+	
+	$documentosCredito = new AjaxFacturacionTiendas();
+	$documentosCredito -> identificadorFacturaUpload = $_POST["identificadorFacturaUpload"];
+	$documentosCredito -> ajaxActualizarDocumentosCredito();
+}
+if (isset($_POST["identificadorFacturaLoad"])) {
+	
+	$detalleDocumentos = new AjaxFacturacionTiendas();
+	$detalleDocumentos -> identificadorFacturaLoad = $_POST["identificadorFacturaLoad"];
+	$detalleDocumentos -> ajaxCargarDatosDocumentosCredito();
+}

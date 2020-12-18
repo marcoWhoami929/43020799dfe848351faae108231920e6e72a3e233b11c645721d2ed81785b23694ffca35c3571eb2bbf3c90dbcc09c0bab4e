@@ -105,7 +105,7 @@ class TablaFacturacionTiendasSaldosPendientes{
              $acciones = "<button type='button' class='btn btn-info btnGenerarSolicitudCancelacion' data-toggle='modal' data-target='#modalGenerarTicket' serieFac ='".$facturacionTiendasSaldosPendientes[$i]["serie"]."' folioFac ='".$facturacionTiendasSaldosPendientes[$i]["folio"]."' clienteFac ='".$facturacionTiendasSaldosPendientes[$i]["nombreCliente"]."' idFacturaSolic = '".$facturacionTiendasSaldosPendientes[$i]["id"]."'><i class='fa fa-ticket'></i> Solicitar Cancelación</button>";
 
       }
-
+    
 	 		/*=============================================
 			DEVOLVER DATOS JSON
 			=============================================*/
@@ -128,7 +128,6 @@ class TablaFacturacionTiendasSaldosPendientes{
                   "$ '.number_format($facturacionTiendasSaldosPendientes[$i]["pagado"],2).'",
                   "'.$facturacionTiendasSaldosPendientes[$i]["fechaCobro"].'",
                   "'.$facturacionTiendasSaldosPendientes[$i]["formaPago"].'",
-                  "'.$facturacionTiendasSaldosPendientes[$i]["observaciones"].'",
                   "'.$facturacionTiendasSaldosPendientes[$i]["agente"].'",
                   "'.$estatus." ".$acciones.'"],';
 

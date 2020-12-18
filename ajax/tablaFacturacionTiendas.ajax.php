@@ -106,6 +106,77 @@ class TablaFacturacionTiendas{
 
       }
 
+      $fechaEnviado = $facturacionTiendas[$i]["horaEnviado"];
+      $fechaEnviado = explode(' ', $fechaEnviado);
+      $diaEnviado = $fechaEnviado[0];
+      $horaEnviado = $fechaEnviado[1];
+
+      $fechaRecibido = $facturacionTiendas[$i]["horaRecibido"];
+      $fechaRecibido = explode(' ', $fechaRecibido);
+      $diaRecibido = $fechaRecibido[0];
+      $horaRecibido = $fechaRecibido[1];
+      
+      if ($facturacionTiendas[$i]["formaPago"] == "CREDITO") {
+
+          if ($facturacionTiendas[$i]["creditoPendiente"] == 1 and $facturacionTiendas[$i]["enviadoCredito"] == 0 and $facturacionTiendas[$i]["recibidoCredito"] == 0 and $facturacionTiendas[$i]["documentosCredito"] == 0) {
+
+            if ($_SESSION["perfil"] != "Credito y Cobranza") {
+
+              $accionCredito = "<button type='button' class='btn btn-danger btnSendCredito' idFactura = '".$facturacionTiendas[$i]["id"]."'>Enviar</button>";
+              
+            }else{
+
+              $accionCredito = "<button type='button' class='btn btn-danger'>Por Recibir</button>";
+
+            }
+
+          }else if($facturacionTiendas[$i]["creditoPendiente"] == 0 and $facturacionTiendas[$i]["enviadoCredito"] == 1 and $facturacionTiendas[$i]["recibidoCredito"] == 0 and $facturacionTiendas[$i]["documentosCredito"] == 0){
+
+             if ($_SESSION["perfil"] != "Credito y Cobranza") {
+
+                $accionCredito = "<button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='left' title='Enviado el ".$diaEnviado." a las ".$horaEnviado."'>Enviado</button>";
+             }else{
+
+                $accionCredito = "<button type='button' class='btn btn-warning  btnConfirmCredito' idFactura = '".$facturacionTiendas[$i]["id"]."'>Confirmar Recibido</button>";
+
+             }
+
+      
+
+          }else if($facturacionTiendas[$i]["creditoPendiente"] == 0 and $facturacionTiendas[$i]["enviadoCredito"] == 1 and $facturacionTiendas[$i]["recibidoCredito"] == 1 and $facturacionTiendas[$i]["documentosCredito"] == 0){
+
+              if ($_SESSION["perfil"] != "Credito y Cobranza") {
+
+                  $accionCredito = "<button type='button' class='btn btn-info' data-toggle='tooltip' data-placement='left' title='Enviado el ".$diaRecibido." a las ".$horaRecibido."'>Recibido</button>";
+
+              }else{
+
+                  $accionCredito = "<button type='button' class='btn btn-info btnLoadDocumentsCredito' data-toggle='modal' data-target='#modalDocumentosCredito' idFactura = '".$facturacionTiendas[$i]["id"]."' serieFactura = '".$facturacionTiendas[$i]["serie"]."' folioFactura = '".$facturacionTiendas[$i]["folio"]."'>Cargar Documentos</button>";
+
+              }
+            
+
+          }else if($facturacionTiendas[$i]["creditoPendiente"] == 0 and $facturacionTiendas[$i]["enviadoCredito"] == 1 and $facturacionTiendas[$i]["recibidoCredito"] == 1 and $facturacionTiendas[$i]["documentosCredito"] == 1){
+
+             if ($_SESSION["perfil"] != "Credito y Cobranza") {
+
+                $accionCredito = "<button type='button' class='btn btn-success' data-toggle='tooltip' data-placement='left' title='Documentos cargados a las 05:20:10 el dia 16/12/2020'>Documentos Cargados</button>";
+
+             }else{
+
+                $accionCredito = "<button type='button' class='btn btn-success btnLoadDocumentsCreditoLoads' data-placement='left' title='Documentos cargados a las 05:20:10 el dia 16/12/2020' data-toggle='modal' data-target='#modalDocumentosCredito' idFactura = '".$facturacionTiendas[$i]["id"]."' serieFactura = '".$facturacionTiendas[$i]["serie"]."' folioFactura = '".$facturacionTiendas[$i]["folio"]."'>Documentos Cargados</button>";
+
+             }
+
+          }
+
+          
+        
+      }else{
+
+          $accionCredito = "";
+      }
+
 	 		/*=============================================
 			DEVOLVER DATOS JSON
 			=============================================*/
@@ -113,6 +184,7 @@ class TablaFacturacionTiendas{
 			$datosJson	 .= '[
 				          "'.$facturacionTiendas[$i]["id"].'",
                   "'.$facturacionTiendas[$i]["fechaFactura"].'",
+                  "'.$accionCredito.'",
                   "'.$facturacionTiendas[$i]["serie"].'",
                   "'.$facturacionTiendas[$i]["folio"].'",
                   "'.$facturacionTiendas[$i]["codigoCliente"].'",
@@ -128,8 +200,8 @@ class TablaFacturacionTiendas{
                   "$ '.number_format($facturacionTiendas[$i]["pagado"],2).'",
                   "'.$facturacionTiendas[$i]["fechaCobro"].'",
                   "'.$facturacionTiendas[$i]["formaPago"].'",
-                  "'.$facturacionTiendas[$i]["observaciones"].'",
                   "'.$facturacionTiendas[$i]["agente"].'",
+                  
                   "'.$estatus." ".$acciones.'"],';
 
 	     	}

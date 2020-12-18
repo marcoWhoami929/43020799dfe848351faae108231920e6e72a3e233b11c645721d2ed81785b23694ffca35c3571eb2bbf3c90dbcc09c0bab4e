@@ -2488,7 +2488,90 @@ class ModeloFacturasTiendas{
 
 	}
 	/*=====  End of MODELOS NUEVAS FUNCIONES FACTURAS PENDIENTES  ======*/
-	
+	static public function mdlActualizarEnviadoCredito($tabla,$arreglo){
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set creditoPendiente = 0 ,enviadoCredito = 1, horaEnviado = :horaEnviado  where id = :id");
+
+			$stmt -> bindParam(":id",$arreglo["id"],PDO::PARAM_INT);
+			$stmt -> bindParam(":horaEnviado",$arreglo["horaEnviado"],PDO::PARAM_STR);
+
+			if($stmt -> execute()){
+
+			return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
+			$stmt -> close();
+
+			$stmt = null;
+
+	}
+	static public function mdlActualizarRecibidoCredito($tabla,$arreglo){
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set recibidoCredito = 1, horaRecibido = :horaRecibido  where id = :id");
+
+			$stmt -> bindParam(":id",$arreglo["id"],PDO::PARAM_INT);
+			$stmt -> bindParam(":horaRecibido",$arreglo["horaRecibido"],PDO::PARAM_STR);
+
+			if($stmt -> execute()){
+
+			return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
+			$stmt -> close();
+
+			$stmt = null;
+
+	}
+	static public function mdlActualizarSubidaDocumentosCredito($tabla,$arreglo){
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set documentosCredito = 1, horaSubidaDocumentos = :horaSubidaDocumentos, idUsuarioCarga = :idUsuarioCarga  where id = :id");
+
+			$stmt -> bindParam(":id",$arreglo["id"],PDO::PARAM_INT);
+			$stmt -> bindParam(":horaSubidaDocumentos",$arreglo["horaSubida"],PDO::PARAM_STR);
+			$stmt -> bindParam(":idUsuarioCarga",$arreglo["idUsuarioCarga"],PDO::PARAM_STR);
+
+			if($stmt -> execute()){
+
+			return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
+			$stmt -> close();
+
+			$stmt = null;
+
+	}
+	static public function mdlMostrarDetallesDocumentosCredito($tabla,$item,$valor){
+
+			$stmt = Conexion::conectar()->prepare("SELECT ad.nombre,ft.horaSubidaDocumentos from $tabla as ft  INNER JOIN administradores as ad ON ft.idUsuarioCarga = ad.id WHERE ft.$item = :$item");
+			
+
+			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
+
+			$stmt -> execute();
+
+			return $stmt->fetch();
+
+			$stmt-> close();
+
+			$stmt = null;
+
+
+	}
 
 
 }

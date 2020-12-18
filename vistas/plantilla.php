@@ -76,7 +76,7 @@ error_reporting(E_ALL);
   
 
   <!-- Dropzone -->
-  <link rel="stylesheet" href="vistas/plugins/dropzone/dropzone.css">
+  <!--<link rel="stylesheet" href="vistas/plugins/dropzone/dropzone.css">-->
 
   <!--Date time picker-->
   <link rel="stylesheet" href="vistas/css/bootstrap-datetimepicker.min.css">
@@ -124,6 +124,8 @@ error_reporting(E_ALL);
    
    <!--Jquery UI-->
    <!--<link rel="stylesheet" href="vistas/css/jquery-ui.css">-->
+
+   
   <!--=====================================
   CSS PERSONALIZADO DE AUTENTICACION
   ======================================-->
@@ -203,7 +205,7 @@ error_reporting(E_ALL);
   <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
    <!-- Dropzone http://www.dropzonejs.com/-->
-  <script src="vistas/plugins/dropzone/dropzone.js"></script>
+  <!--<script src="vistas/plugins/dropzone/dropzone.js"></script>-->
 
   <script src="vistas/js/reloj.js"></script>
 
