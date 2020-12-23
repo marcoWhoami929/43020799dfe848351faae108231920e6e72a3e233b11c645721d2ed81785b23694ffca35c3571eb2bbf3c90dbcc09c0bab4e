@@ -1,0 +1,366 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-12-21 14:47:05
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-01-01
+
+Fecha Final de la eliminación:2020-11-30
+
+Monto pendiente a eliminar:1.00 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJCP            30                -0.99             FACP             18534            0.01       0            2020-12-21 14:47:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18541            0.01       0            2020-12-21 14:47:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18542            0.01       0            2020-12-21 14:47:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18543            -1       0            2020-12-21 14:47:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18549            0.41       0            2020-12-21 14:47:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18555            0.01       0            2020-12-21 14:47:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18559            0.02       0            2020-12-21 14:47:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18560            0.01       0            2020-12-21 14:47:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18563            -1.01       0            2020-12-21 14:47:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18566            0.01       0            2020-12-21 14:47:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18567            0.02       0            2020-12-21 14:47:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18568            0.01       0            2020-12-21 14:47:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18570            -0.01       0            2020-12-21 14:47:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18574            -0.02       0            2020-12-21 14:47:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18575            0.32       0            2020-12-21 14:47:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18580            -0.01       0            2020-12-21 14:47:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18597            -0.3       0            2020-12-21 14:47:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18598            -0.01       0            2020-12-21 14:47:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18599            -0.01       0            2020-12-21 14:47:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18602            -0.41       0            2020-12-21 14:47:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18603            -0.1       0            2020-12-21 14:47:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18604            0.09       0            2020-12-21 14:47:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18607            0.01       0            2020-12-21 14:47:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18610            0.01       0            2020-12-21 14:47:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18613            0.5       0            2020-12-21 14:47:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18618            -0.01       0            2020-12-21 14:47:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18621            -0.01       0            2020-12-21 14:47:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18632            0.5       0            2020-12-21 14:47:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18640            0.01       0            2020-12-21 14:47:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18659            0.01       0            2020-12-21 14:47:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18663            0.01       0            2020-12-21 14:47:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18666            0.5       0            2020-12-21 14:47:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18667            0.5       0            2020-12-21 14:47:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18669            0.32       0            2020-12-21 14:47:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18682            0.01       0            2020-12-21 14:47:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18685            -0.49       0            2020-12-21 14:47:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18692            0.01       0            2020-12-21 14:47:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18694            0.01       0            2020-12-21 14:47:22  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18696            0.02       0            2020-12-21 14:47:22  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18699            -0.01       0            2020-12-21 14:47:23  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18712            0.02       0            2020-12-21 14:47:23  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18714            -0.5       0            2020-12-21 14:47:24  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18715            0.01       0            2020-12-21 14:47:24  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18732            0.5       0            2020-12-21 14:47:25  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18748            0.01       0            2020-12-21 14:47:25  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18769            0.01       0            2020-12-21 14:47:25  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18773            0.01       0            2020-12-21 14:47:26  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18778            0.01       0            2020-12-21 14:47:26  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18781            0.4       0            2020-12-21 14:47:27  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18783            0.01       0            2020-12-21 14:47:27  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18788            -0.5       0            2020-12-21 14:47:28  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18808            0.48       0            2020-12-21 14:47:28  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18811            0.01       0            2020-12-21 14:47:29  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18834            0.01       0            2020-12-21 14:47:29  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18835            0.01       0            2020-12-21 14:47:29  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18836            0.03       0            2020-12-21 14:47:30  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18841            0.2       0            2020-12-21 14:47:30  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18846            -0.01       0            2020-12-21 14:47:31  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18869            -0.49       0            2020-12-21 14:47:31  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18871            -0.09       0            2020-12-21 14:47:32  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18880            0.31       0            2020-12-21 14:47:32  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18885            0.01       0            2020-12-21 14:47:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18890            0.01       0            2020-12-21 14:47:33  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18893            -0.01       0            2020-12-21 14:47:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18904            0.01       0            2020-12-21 14:47:34  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18906            -0.01       0            2020-12-21 14:47:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18907            -0.01       0            2020-12-21 14:47:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18911            -0.02       0            2020-12-21 14:47:35  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18915            -0.49       0            2020-12-21 14:47:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18918            0.5       0            2020-12-21 14:47:36  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18921            0.01       0            2020-12-21 14:47:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18922            0.41       0            2020-12-21 14:47:37  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18941            0.01       0            2020-12-21 14:47:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18948            0.01       0            2020-12-21 14:47:38  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18955            0.01       0            2020-12-21 14:47:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18958            0.03       0            2020-12-21 14:47:39  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             18999            -0.47       0            2020-12-21 14:47:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19007            -0.01       0            2020-12-21 14:47:40  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19018            0.01       0            2020-12-21 14:47:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19038            0.44       -9.44            2020-12-21 14:47:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19043            -0.5       0            2020-12-21 14:47:41  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19050            0.01       0            2020-12-21 14:47:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19063            0.06       0            2020-12-21 14:47:42  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19099            0.01       0            2020-12-21 14:47:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19100            0.01       0            2020-12-21 14:47:43  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19104            0.01       0            2020-12-21 14:47:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19106            -0.01       0            2020-12-21 14:47:44  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19109            -0.01       0            2020-12-21 14:47:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19110            0.01       0            2020-12-21 14:47:45  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19111            -0.5       0            2020-12-21 14:47:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19136            0.02       0            2020-12-21 14:47:46  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19142            0.01       0            2020-12-21 14:47:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19152            0.01       0            2020-12-21 14:47:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19155            0.01       0            2020-12-21 14:47:47  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19168            -0.24       0            2020-12-21 14:47:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19178            -0.24       0            2020-12-21 14:47:48  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19184            0.12       0            2020-12-21 14:47:49  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19186            0.01       0            2020-12-21 14:47:49  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19194            -0.49       0            2020-12-21 14:47:50  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19210            0.02       0            2020-12-21 14:47:50  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19215            -0.5       0            2020-12-21 14:47:51  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19217            0.01       0            2020-12-21 14:47:51  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19224            0.01       0            2020-12-21 14:47:52  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19234            -0.25       0            2020-12-21 14:47:52  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19238            0.01       0            2020-12-21 14:47:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19260            0.01       0            2020-12-21 14:47:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19262            -0.5       0            2020-12-21 14:47:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19265            -0.5       0            2020-12-21 14:47:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19268            -0.01       0            2020-12-21 14:47:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19269            0.01       0            2020-12-21 14:47:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19283            0.2       0            2020-12-21 14:47:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19286            0.2       0            2020-12-21 14:47:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19289            -0.24       0            2020-12-21 14:47:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19297            0.6       0            2020-12-21 14:47:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19298            0.01       0            2020-12-21 14:47:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19314            0.01       0            2020-12-21 14:47:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19326            0.01       0            2020-12-21 14:47:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19371            0.01       0            2020-12-21 14:47:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19380            -0.5       0            2020-12-21 14:47:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19389            -0.01       0            2020-12-21 14:47:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19392            0.01       0            2020-12-21 14:48:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19419            -0.5       0            2020-12-21 14:48:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19423            0.01       0            2020-12-21 14:48:01  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19427            0.01       0            2020-12-21 14:48:01  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19432            0.01       0            2020-12-21 14:48:02  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19434            -0.5       0            2020-12-21 14:48:02  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19438            0.5       0            2020-12-21 14:48:03  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19440            -0.18       0            2020-12-21 14:48:03  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19490            -0.59       0            2020-12-21 14:48:03  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19493            -0.16       0            2020-12-21 14:48:04  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19500            0.21       0            2020-12-21 14:48:04  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19501            0.5       0            2020-12-21 14:48:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19511            -0.5       0            2020-12-21 14:48:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19521            -0.01       0            2020-12-21 14:48:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19546            -0.3       0            2020-12-21 14:48:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19555            0.01       0            2020-12-21 14:48:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19562            0.01       0            2020-12-21 14:48:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19566            0.01       0            2020-12-21 14:48:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19567            0.01       0            2020-12-21 14:48:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19571            -0.5       0            2020-12-21 14:48:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19575            -0.25       0            2020-12-21 14:48:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19596            0.2       0            2020-12-21 14:48:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19601            -0.46       0            2020-12-21 14:48:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19608            0.3       0            2020-12-21 14:48:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19609            0.27       0            2020-12-21 14:48:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19611            0.01       0            2020-12-21 14:48:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19612            0.01       0            2020-12-21 14:48:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19644            0.68       0            2020-12-21 14:48:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19646            0.01       0            2020-12-21 14:48:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19653            -0.25       0            2020-12-21 14:48:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19657            0.01       0            2020-12-21 14:48:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19664            0.01       0            2020-12-21 14:48:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19665            -1       0            2020-12-21 14:48:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19670            0.01       0            2020-12-21 14:48:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19671            0.01       0            2020-12-21 14:48:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19677            0.6       0            2020-12-21 14:48:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19684            0.01       0            2020-12-21 14:48:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19700            0.01       0            2020-12-21 14:48:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19701            0.24       0            2020-12-21 14:48:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19702            0.5       0            2020-12-21 14:48:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19705            0.01       0            2020-12-21 14:48:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19711            0.25       0            2020-12-21 14:48:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19716            0.99       0            2020-12-21 14:48:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19747            0.25       0            2020-12-21 14:48:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19810            0.01       0            2020-12-21 14:48:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19817            0.8       0            2020-12-21 14:48:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19827            0.5       0            2020-12-21 14:48:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19841            -0.49       0            2020-12-21 14:48:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJCP            30                -0.99             FACP             19843            -0.01       0            2020-12-21 14:48:22  ABONO CLIENTE / AJUSTE SALDO
+

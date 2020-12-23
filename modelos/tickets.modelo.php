@@ -19,7 +19,7 @@ class ModeloTickets{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT  t.*,a.nombre as autor,d.nombreDepartamento as departamentoAutor,de.nombreDepartamento as departamento FROM $tabla as t INNER JOIN administradores as a ON a.id = t.idAutor INNER JOIN departamento as d ON d.id = t.idDepartamento  INNER JOIN departamento as de ON t.departamentoAsignado = de.id");
+			$stmt = Conexion::conectar()->prepare("SELECT  t.*,a.nombre as autor,d.nombreDepartamento as departamentoAutor,de.nombreDepartamento as departamento FROM $tabla as t LEFT OUTER JOIN administradores as a ON a.id = t.idAutor LEFT OUTER JOIN departamento as d ON d.id = t.idDepartamento  LEFT OUTER JOIN departamento as de ON t.departamentoAsignado = de.id");
 
 			$stmt -> execute();
 

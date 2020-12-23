@@ -459,7 +459,7 @@
 
                             }else {
 
-                                echo "<button class='btn btn-success btnRespuestaTicket' type='submit' urlTicket = '".str_replace('/matrizServidor/','',$url)."'>Responder Ticket</button>";
+                                echo "<button class='btn btn-success btnRespuestaTicket' type='submit' urlTicket = '".str_replace('dkmatrizz.ddns.net/','',$url)."'>Responder Ticket</button>";
 
                             }
 

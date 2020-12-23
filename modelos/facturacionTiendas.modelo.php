@@ -2353,7 +2353,7 @@ class ModeloFacturasTiendas{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.total,ft.abono,ft.depositada,IF(ab.idMovimientoBanco IS NULL AND ft.estatus = 'Cancelada','Cancelada',ab.idMovimientoBanco) as idMovimientoBanco,ft.estatus from $tabla ft LEFT OUTER JOIN abonos ab ON ab.serieFactura = ft.serie and ab.folioFactura = ft.folio where ft.formaPago = 'CREDITO' and ft.cancelado = 0 GROUP by ft.folio");
+			$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.total,ft.abono,ft.depositada,IF(ab.idMovimientoBanco IS NULL AND ft.estatus = 'Cancelada','Cancelada',ab.idMovimientoBanco) as idMovimientoBanco,ft.estatus from $tabla ft LEFT OUTER JOIN abonos ab ON ab.serieFactura = ft.serie and ab.folioFactura = ft.folio where ft.formaPago = 'CREDITO' and ft.cancelado = 0 and ft.total != ft.abono GROUP by ft.folio, ft.serie");
 
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
