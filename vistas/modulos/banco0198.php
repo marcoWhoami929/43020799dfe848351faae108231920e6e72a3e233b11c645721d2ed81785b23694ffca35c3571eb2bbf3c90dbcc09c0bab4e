@@ -378,6 +378,97 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
   </section>
 
 </div>
+ <!--=============================================
+=  MODAL IDENTIFICACION DE FACTURAS PENDIENTES =
+=============================================-->
+
+<div class="modal fade" id="modalIdentificarDocumentosPendientes" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document" style="width: 80%;">
+            <div class="modal-content">
+              <div class="modal-header" style="background:#001f3f;color: white">
+                <h3 class="modal-title" id="exampleModalLabel">Vincular Facturas</h3>
+
+                <button type="button" class="close btnCerrarFacturasPendientes" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" style="color:white">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="row">
+                       <div class="alert alert-danger" role="alert" id="fracaso" style="display: none;opacity: 0.7">
+                          Elegir Una Factura A Vincular!!!!
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="alert alert" role="alert" id="exito" style="display: none;opacity:1;background: white">
+                          <center><span id='statusProceso'></span></center>
+                          <center><i class="fa fa-spin fa-spinner fa-5x" aria-hidden="true" style="color: blue"></i></center>
+                           
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                          <h3>Total Abono: &nbsp;&nbsp;&nbsp;<span id="abonoBanco" style="color: blue;font-weight: bold;font-size: 18px;"></span></h3>
+                          <input type="hidden" name="abonoBancoTotal" id="abonoBancoTotal">
+                          <input type="hidden" name="idMovimientoBanco" id="idMovimientoBanco">
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h3>Total Depósito: &nbsp;&nbsp;&nbsp;<span id="abonoFacturas" style="color: blue;font-weight: bold;font-size: 18px;"></span></h3> 
+                        </div>
+                       
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <button type="button" class="btn btn-success" id="btnLigarFacturasPendientesCredito">Guardar</button>
+                        </div>
+                  </div>
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <small>Nota: Elegir que factura se vincula con el depósito.</small>
+                      <div id="listaFacturas"></div>
+                       <table class="table-bordered table-striped dt-responsive tablaPendientesCredito" width="100%" id="pendientesCredito" style="border: 2px solid #001f3f">
+                 
+                        <thead style="background:#001f3f;color: white">
+                         
+                         <tr style="">
+                           <th style="border:none">Serie</th>
+                           <th style="border:none">Folio</th>
+                           <th style="border:none">Fecha Factura</th>
+                           <th style="border:none">Cliente</th>
+                           <th style="border:none">Total</th>
+                           <th style="border:none;color:red">Modificar <i class="fa fa-arrow-down" style="color:red"></i></th>
+                           <th style="border:none"></th>
+                         </tr> 
+
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                  
+                      
+                </div>
+     
+              </div>
+              <br>
+              <div class="modal-footer">
+          
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button type="button" class="btn btn-primary btnCerrarFacturasPendientes" data-dismiss="modal">Cerrar</button>
+                      </div>
+                  </div>   
+                   
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--=====  MODAL IDENTIFICACION DE FACTURAS PENDIENTES  ======-->
 
 <!--=====================================
 MODAL EDITAR DATOS
@@ -1361,14 +1452,21 @@ MODAL EDITAR DATOS
 
                     <!-- ENTRADA PARA NUMERO DE DOCUMENTO-->
                      <span style="font-weight: bold">Número de Documento</span>
-                      <div class="input-group">
-              
-                        <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+                     <div class="col-lg-10 col-md-10 col-sm-10">
+                        <div class="input-group">
+                
+                          <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                        <input type="text" class="form-control input-lg" name="editarNumeroDocumento" placeholder="Número de Documento" id="editarNumeroDocumento">
-                        <input type="hidden" name="idBanco" id="idBanco">
+                          <input type="text" class="form-control input-lg" name="editarNumeroDocumento" placeholder="Número de Documento" id="editarNumeroDocumento">
+                          <input type="hidden" name="idBanco" id="idBanco">
+                          
+                        </div>
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-sm-2">
+                        <a href="#modalIdentificarDocumentosPendientes" role="button" class="btn btn-success" data-toggle="modal" id="vincularPendientesCredito"><i class='fa fa-chain-broken' aria-hidden='true'></i></a>
                         
                       </div>
+
 
                   </div>
                   <div class="col-lg-3">
@@ -2211,6 +2309,82 @@ $(document).ready(function(){
           }
 
     </script>
+      <script type="text/javascript">
+    (function($, window) {
+    'use strict';
+
+    var MultiModal = function(element) {
+        this.$element = $(element);
+        this.modalCount = 0;
+    };
+
+    MultiModal.BASE_ZINDEX = 1040;
+
+    MultiModal.prototype.show = function(target) {
+        var that = this;
+        var $target = $(target);
+        var modalIndex = that.modalCount++;
+
+        $target.css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20) + 10);
+
+        // Bootstrap triggers the show event at the beginning of the show function and before
+        // the modal backdrop element has been created. The timeout here allows the modal
+        // show function to complete, after which the modal backdrop will have been created
+        // and appended to the DOM.
+        window.setTimeout(function() {
+            // we only want one backdrop; hide any extras
+            if(modalIndex > 0)
+                $('.modal-backdrop').not(':first').addClass('hidden');
+
+            that.adjustBackdrop();
+        });
+    };
+
+    MultiModal.prototype.hidden = function(target) {
+        this.modalCount--;
+
+        if(this.modalCount) {
+           this.adjustBackdrop();
+
+            // bootstrap removes the modal-open class when a modal is closed; add it back
+            $('body').addClass('modal-open');
+        }
+    };
+
+    MultiModal.prototype.adjustBackdrop = function() {
+        var modalIndex = this.modalCount - 1;
+        $('.modal-backdrop:first').css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20));
+    };
+
+    function Plugin(method, target) {
+        return this.each(function() {
+            var $this = $(this);
+            var data = $this.data('multi-modal-plugin');
+
+            if(!data)
+                $this.data('multi-modal-plugin', (data = new MultiModal(this)));
+
+            if(method)
+                data[method](target);
+        });
+    }
+
+    $.fn.multiModal = Plugin;
+    $.fn.multiModal.Constructor = MultiModal;
+
+    $(document).on('show.bs.modal', function(e) {
+        $(document).multiModal('show', e.target);
+    });
+
+    $(document).on('hidden.bs.modal', function(e) {
+        $(document).multiModal('hidden', e.target);
+    });
+}(jQuery, window));
+
+  </script>
+  
+    
+
   
   
     

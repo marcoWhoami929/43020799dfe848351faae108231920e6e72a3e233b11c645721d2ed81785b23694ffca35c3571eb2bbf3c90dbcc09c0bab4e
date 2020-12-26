@@ -567,11 +567,22 @@ class AjaxFacturacionTiendas{
 
 		$span = $this->listaSpan;
 
+		if ($_SESSION["nombre"] != "Sucursal Santiago") {
+
+				$bancoElegidoMov = "banco0198";
+
+			}else{
+
+				$bancoElegidoMov = "banco6278";
+
+			}
+		
+
 		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($item,$valor);
 
 		if ($consultarDepositoBanco[0] == 0) {
 				
-			$respuesta = ControladorFacturasTiendas::ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span);
+			$respuesta = ControladorFacturasTiendas::ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span,$bancoElegidoMov);
 
 		}else{
 
@@ -1804,12 +1815,13 @@ class AjaxFacturacionTiendas{
 		$totalValorDocumentos = $this->totalDocumentoMovimiento;
 
 		$span = $this->listaSpanMovimiento;
+		$bancoElegidoMov = $this->bancoMovimiento;
 
 		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($item,$valor);
 
 		if ($consultarDepositoBanco[0] == 0) {
 				
-			$respuesta = ControladorFacturasTiendas::ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span);
+			$respuesta = ControladorFacturasTiendas::ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span,$bancoElegidoMov);
 
 		}else{
 

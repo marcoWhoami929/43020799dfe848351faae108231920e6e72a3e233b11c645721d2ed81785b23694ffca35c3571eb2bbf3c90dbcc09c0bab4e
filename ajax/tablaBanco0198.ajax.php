@@ -178,12 +178,12 @@ class TablaBanco0198{
 					  			=============================================*/
 					  			if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                          			$acciones = "<button class='btn btn-warning btnEditarDatos' idBanco='".$banco0198[$i]["id"]."' data-toggle='modal' data-target='#modalEditarDatos' id='editarBanco'><i class='fa fa-pencil'></i>Editar</button>"; 
+                          			$acciones = "<button class='btn btn-warning btnEditarDatos' idBanco='".$banco0198[$i]["id"]."' abono = '".$banco0198[$i]["abono"]."' fechaAbono = '".$banco0198[$i]["fecha"]."' data-toggle='modal' data-target='#modalEditarDatos' id='editarBanco'><i class='fa fa-pencil'></i>Editar</button>"; 
                        
 
 				                      }else{
 
-				                    $acciones = "<button class='btn btn-warning btnEditarDatos' idBanco='".$banco0198[$i]["id"]."' data-toggle='modal' data-target='#modalEditarDatos' disabled><i class='fa fa-pencil'></i>Editar</button>";
+				                    $acciones = "<button class='btn btn-warning btnEditarDatos' idBanco='".$banco0198[$i]["id"]."' abono = '".$banco0198[$i]["abono"]."' fechaAbono = '".$banco0198[$i]["fecha"]."' data-toggle='modal' data-target='#modalEditarDatos' disabled><i class='fa fa-pencil'></i>Editar</button>";
 				                      }    
                       			           
              

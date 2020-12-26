@@ -1,0 +1,170 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-12-26 11:13:53
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-01-01
+
+Fecha Final de la eliminación:2020-12-23
+
+Monto pendiente a eliminar:1 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJSG            32                -11.96             FASG             12156            -0.1       352            2020-12-26 11:13:53  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13478            -0.61       0            2020-12-26 11:13:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13480            -0.01       0            2020-12-26 11:13:54  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13482            -0.18       0            2020-12-26 11:13:55  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13485            -0.31       0            2020-12-26 11:13:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13488            -0.85       0            2020-12-26 11:13:56  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13493            0.01       0            2020-12-26 11:13:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13496            0.15       0            2020-12-26 11:13:57  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13503            0.04       0            2020-12-26 11:13:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13505            0.31       0            2020-12-26 11:13:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13509            -0.71       0            2020-12-26 11:13:58  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13547            -0.2       0            2020-12-26 11:13:59  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13548            -0.1       0            2020-12-26 11:14:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13551            -0.83       0            2020-12-26 11:14:00  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13557            -0.01       0            2020-12-26 11:14:01  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13559            -0.01       0            2020-12-26 11:14:01  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13565            -0.01       0            2020-12-26 11:14:02  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13566            -0.15       0            2020-12-26 11:14:02  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13569            -0.9       0            2020-12-26 11:14:03  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13571            -0.02       0            2020-12-26 11:14:03  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13574            -0.45       0            2020-12-26 11:14:04  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13577            0.1       0            2020-12-26 11:14:04  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13582            0.3       0            2020-12-26 11:14:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13584            -0.35       0            2020-12-26 11:14:05  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13586            -0.01       0            2020-12-26 11:14:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13596            -0.02       0            2020-12-26 11:14:06  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13599            -0.5       0            2020-12-26 11:14:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13612            -0.45       0            2020-12-26 11:14:07  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13619            0.23       0            2020-12-26 11:14:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13621            -0.01       0            2020-12-26 11:14:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13626            0.01       0            2020-12-26 11:14:08  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13630            -0.01       0            2020-12-26 11:14:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13635            0.4       0            2020-12-26 11:14:09  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13654            0.14       0            2020-12-26 11:14:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13658            0.01       0            2020-12-26 11:14:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13661            0.11       0            2020-12-26 11:14:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13671            -0.18       0            2020-12-26 11:14:11  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13678            -0.6       0            2020-12-26 11:14:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13691            -0.05       0            2020-12-26 11:14:12  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13693            -0.35       0            2020-12-26 11:14:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13696            -0.05       0            2020-12-26 11:14:13  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13697            -0.15       0            2020-12-26 11:14:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13701            0.11       0            2020-12-26 11:14:14  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13707            -0.01       0            2020-12-26 11:14:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13717            -0.8       0            2020-12-26 11:14:15  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13718            -0.1       0            2020-12-26 11:14:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13719            -0.6       0            2020-12-26 11:14:16  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13720            -0.26       0            2020-12-26 11:14:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13744            -0.13       0            2020-12-26 11:14:17  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13745            0.13       0            2020-12-26 11:14:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13749            0.05       0            2020-12-26 11:14:18  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13755            -0.91       0            2020-12-26 11:14:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13777            -0.41       0            2020-12-26 11:14:19  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13789            -0.01       0            2020-12-26 11:14:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13795            -0.02       0            2020-12-26 11:14:20  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13800            -0.1       0            2020-12-26 11:14:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13810            -0.59       0            2020-12-26 11:14:21  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13814            0.02       0            2020-12-26 11:14:22  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13818            0.01       0            2020-12-26 11:14:22  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13821            -0.4       0            2020-12-26 11:14:23  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13825            0.44       0            2020-12-26 11:14:23  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13836            0.01       0            2020-12-26 11:14:24  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13838            -0.4       0            2020-12-26 11:14:24  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13840            0.01       0            2020-12-26 11:14:25  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13846            0.11       0            2020-12-26 11:14:25  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13856            -0.4       0            2020-12-26 11:14:26  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13860            -0.01       0            2020-12-26 11:14:26  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13873            -0.06       0            2020-12-26 11:14:27  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13882            -0.21       0            2020-12-26 11:14:27  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13888            -0.35       0            2020-12-26 11:14:28  ABONO CLIENTE / AJUSTE SALDO
+
+AJSG            32                -11.96             FASG             13889            -0.71       0            2020-12-26 11:14:28  ABONO CLIENTE / AJUSTE SALDO
+

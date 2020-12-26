@@ -1,0 +1,34 @@
+*********************************************************************************************
+PROCESO DE SALDADO DE REMANENTES
+*********************************************************************************************
+---------------------------------------------------------------------------------------------
+Área Corregida           FACTURAS TIENDAS
+Fecha y Hora de Inicio:  2020-12-26 11:24:10
+---------------------------------------------------------------------------------------------
+Comienza con Este proceso elimina pequeños saldos pendientes en documentos para que ya no
+aparezcan como documentos con saldos pendientes, el proceso recupera los documentos en el
+rango de fechas con un pendiente menor o igual al monto Termina con pendiente a eliminar
+y los salda con documentos creados para este propósito.
+---------------------------------------------------------------------------------------------
+Para la realización de este proceso el usuario eligió las siguientes opciones:
+
+
+Fecha Inicial de la eliminación:2020-01-01
+
+Fecha Final de la eliminación:2020-12-26
+
+Monto pendiente a eliminar:1 PESO MEXICANO
+
+
+                                   				DOCUMENTOS CREADOS CON EL AJUSTE
+
+
+SERIE AJUSTE    FOLIO AJUSTE    SALDO AJUSTADO    SERIE FACTURA    FOLIO FACTURA    ABONADO    PENDIENTE    FECHA ABONO         CONCEPTO ABONO
+
+
+AJTR            34                0.05             FATR             12561            0.05       0            2020-12-26 11:24:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            34                0.05             FATR             12789            0.01       0            2020-12-26 11:24:10  ABONO CLIENTE / AJUSTE SALDO
+
+AJTR            34                0.05             FATR             12834            -0.01       0            2020-12-26 11:24:11  ABONO CLIENTE / AJUSTE SALDO
+

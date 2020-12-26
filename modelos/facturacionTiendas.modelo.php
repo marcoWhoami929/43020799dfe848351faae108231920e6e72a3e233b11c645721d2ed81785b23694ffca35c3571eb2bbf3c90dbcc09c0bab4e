@@ -699,11 +699,11 @@ class ModeloFacturasTiendas{
 
 
 	}
-	static public function mdlGenerarNuevoDepositoBanco($tabla,$item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span){
+	static public function mdlGenerarNuevoDepositoBanco($tabla,$item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span,$bancoElegidoMov){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla ($item,$saldo,estatus,$sucursal,montoFacturas,conceptoFacturas,clientesFacturas,totalDocumentos,$item5,$item8,span) VALUES(:$item,:$saldo,:estatus,:$sucursal,:montoFacturas,:conceptoFacturas,:clientesFacturas,:totalDocumentos,:$item5,:$item8,:span)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla ($item,$saldo,estatus,$sucursal,montoFacturas,conceptoFacturas,clientesFacturas,totalDocumentos,$item5,$item8,span,banco) VALUES(:$item,:$saldo,:estatus,:$sucursal,:montoFacturas,:conceptoFacturas,:clientesFacturas,:totalDocumentos,:$item5,:$item8,:span,:bancoElegidoMov)");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
 			$stmt -> bindParam(":".$saldo,$valorSaldo,PDO::PARAM_STR);
@@ -716,6 +716,7 @@ class ModeloFacturasTiendas{
 			$stmt -> bindParam(":".$item5,$valor5,PDO::PARAM_STR);
 			$stmt -> bindParam(":".$item8,$valor8,PDO::PARAM_STR);
 			$stmt -> bindParam(":span",$span,PDO::PARAM_STR);
+			$stmt -> bindParam(":bancoElegidoMov",$bancoElegidoMov,PDO::PARAM_STR);
 
 
 			if($stmt -> execute()){
@@ -2463,7 +2464,7 @@ class ModeloFacturasTiendas{
 	}
 	static public function mdlMostrarDepositosTiendasGenerales($tabla,$item,$valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from $tabla banc INNER JOIN depositosgenerales dep ON banc.id = dep.idMovimientoBanco WHERE dep.$item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from $tabla banc INNER JOIN depositosgenerales dep ON banc.id = dep.idMovimientoBanco WHERE dep.$item = :$item and dep.banco = '".$tabla."'");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 

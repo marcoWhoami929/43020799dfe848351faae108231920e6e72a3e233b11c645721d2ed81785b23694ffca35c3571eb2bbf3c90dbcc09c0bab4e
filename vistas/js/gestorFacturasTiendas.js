@@ -4572,7 +4572,7 @@ $("#btnLigarFacturasPendientesCredito").click(function(){
                    
                    $.ajax({
 
-                      url:"ajax/banco6278.ajax.php",
+                      url:"ajax/"+bancoMovimiento+".ajax.php",
                       method: "POST",
                       data: datos,
                       cache: false,

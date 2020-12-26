@@ -240,9 +240,9 @@ class ControladorFacturasTiendas{
 
 
 	}
-	static public function ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span){
+	static public function ctrGenerarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span,$bancoElegidoMov){
 
-			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Guadalupe Hernández" || $_SESSION["nombre"] == "Alejandro Pérez") {
+			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Administrador General") {
 
 				$tabla = "depositosgenerales";
 
@@ -252,7 +252,7 @@ class ControladorFacturasTiendas{
 
 			}
 
-			$respuesta = ModeloFacturasTiendas::mdlGenerarNuevoDepositoBanco($tabla,$item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span);
+			$respuesta = ModeloFacturasTiendas::mdlGenerarNuevoDepositoBanco($tabla,$item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span,$bancoElegidoMov);
 
 			return $respuesta;
 
@@ -260,7 +260,7 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrActualizarNuevoDepositoBanco($item,$valor,$saldo,$valorSaldo,$sucursal,$valorIdSucursal,$estatus,$montosFacturas,$conceptosFacturas,$clientesFacturas,$totalValorDocumentos,$item5,$valor5,$item8,$valor8,$span){
 
-			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Guadalupe Hernández" || $_SESSION["nombre"] == "Alejandro Pérez") {
+			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Administrador General") {
 
 				$tabla = "depositosgenerales";
 
@@ -278,7 +278,7 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrBuscarDepositoBancario($item,$valor){
 
-			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Guadalupe Hernández" || $_SESSION["nombre"] == "Alejandro Pérez") {
+			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Administrador General") {
 
 				$tabla = "depositosgenerales";
 
