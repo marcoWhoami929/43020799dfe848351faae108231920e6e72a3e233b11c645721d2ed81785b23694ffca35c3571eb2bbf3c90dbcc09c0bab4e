@@ -447,6 +447,8 @@ if(isset($_SESSION["validarSesionBackend"]) && $_SESSION["validarSesionBackend"]
                $_GET["ruta"] == "depositoEfectivoBanco" ||
 
                $_GET["ruta"] == "banco6278Credito" ||
+
+               $_GET["ruta"] == "actualizarFacturasTiendas" ||
              
                $_GET["ruta"] == "salir"){
 
