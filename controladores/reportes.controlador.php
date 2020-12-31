@@ -5,7 +5,7 @@ require __DIR__ . '/../extensiones/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 */
-error_reporting(0);
+error_reporting(E_ALL);
 class ControladorReportes{
 
 	/*=============================================
