@@ -4,9 +4,9 @@ MENU
 
 <ul class="sidebar-menu">
   <?php
-  if ($_SESSION["cotizador"] == 0 || $_SESSION["perfil"] != "Tiendas") {
+  if (isset($_SESSION["cotizador"]) == 0 || $_SESSION["perfil"] != "Tiendas") {
     
-    if ($_SESSION["cotizador"] == 1) {
+    if (isset($_SESSION["cotizador"]) == 1) {
 
             
     }else if ($_SESSION["perfil"] == "Tiendas" || $_SESSION["nombre"] == "Alejandro Cabrera" ) {
@@ -25,15 +25,15 @@ MENU
   ?>
   
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
-       if ($_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Administrador General" && $_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
+       if ($_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Administrador General" && isset($_SESSION["cotizador"]) == 0) {
         echo '<li><a href="atencionClientes"><i class="fa fa-opencart"></i><span>Atención a clientes</span></a></li>';
         }
-        else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez" && $_SESSION["cotizador"] == 0){
+        else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez" && isset($_SESSION["cotizador"]) == 0){
            echo '<li><a href="atencionClientes"><i class="fa fa-opencart"></i><span>Atención a clientes</span></a></li>';
         }
     }else {
-     if($_SESSION["grupo"] == "Editor" || $_SESSION["nombre"] == "Jesús Serrano" || $_SESSION["grupo"] == "Administrador" && $_SESSION["cotizador"] == 1 || $_SESSION["nombre"] == "Aurora Fernandez" ){
+     if($_SESSION["grupo"] == "Editor" || $_SESSION["nombre"] == "Jesús Serrano" || $_SESSION["grupo"] == "Administrador" && isset($_SESSION["cotizador"]) == 1 || $_SESSION["nombre"] == "Aurora Fernandez" ){
       if ($_SESSION["nombre"] != "JESUS GARCIA MANJARREZ")  {
 
         echo '<li><a href="atencionClientes"><i class="fa fa-opencart"></i><span>Atención a clientes</span></a></li>';
@@ -67,7 +67,7 @@ MENU
 
   ?>
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
       if ($_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Facturacion") {
         echo '<li><a href="almacen"><i class="fa fa-bank"></i><span>Almacén</span></a></li>';
     }
@@ -79,7 +79,7 @@ MENU
 
   ?>
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
        if ($_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Administrador General") {
         echo '<li><a href="laboratorioColor"><i class="fa fa-paint-brush"></i><span>Laboratorio de Color</span></a></li>';
@@ -94,7 +94,7 @@ MENU
   ?>
 
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
          if ($_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Aurora Fernandez" ) {
         echo '<li><a href="facturacion"><i class="fa fa-file-text-o"></i><span>Facturación</span></a></li>';
     }
@@ -107,7 +107,7 @@ MENU
   ?>
   
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
         if ($_SESSION["perfil"] == "Compras") {
         echo '<li><a href="compras"><i class="fa fa-shopping-cart"></i><span>Compras</span></a></li>';
@@ -123,7 +123,7 @@ MENU
   
   
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
        if ($_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez") {
         echo '<li><a href="logistica"><i class="fa fa-truck"></i><span>Logística</span></a></li>';
@@ -144,7 +144,7 @@ MENU
   ?>
   
   <?php 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
        if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Administrador General") {
         
@@ -178,7 +178,7 @@ MENU
   ?>
   
   <?php
-   if ($_SESSION["cotizador"] == 0) {
+   if (isset($_SESSION["cotizador"]) == 0) {
 
       if($_SESSION["perfil"] == "Administrador General"){
 
@@ -212,7 +212,7 @@ MENU
   ?>
    <?php
 
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
          if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Compras" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] ==  "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["perfil"] ==  "Visualizador" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
 
@@ -242,7 +242,7 @@ MENU
 
   ?>
   <?php
-   if ($_SESSION["cotizador"] == 0) {
+   if (isset($_SESSION["cotizador"]) == 0) {
       if($_SESSION["perfil"] == "Administrador General"){
 
     echo '<li class="treeview">
@@ -298,7 +298,7 @@ MENU
 
   ?>
   <?php
-    if ($_SESSION["cotizador"] == 0) {
+    if (isset($_SESSION["cotizador"]) == 0) {
 
       if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad"){
 
@@ -336,7 +336,7 @@ MENU
  
 <?php
   
-  if ($_SESSION["cotizador"] == 0) {
+  if (isset($_SESSION["cotizador"]) == 0) {
 
      if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Compras" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] ==  "Generador de Reportes" || $_SESSION["perfil"] ==  "Visualizador" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad" ) {
 
@@ -521,9 +521,9 @@ MENU
  
 ?>
   <?php
-  if ($_SESSION["cotizador"] == 0 || $_SESSION["perfil"] != "Tiendas") {
+  if (isset($_SESSION["cotizador"]) == 0 || $_SESSION["perfil"] != "Tiendas") {
     
-    if ($_SESSION["cotizador"] == 1) {
+    if (isset($_SESSION["cotizador"]) == 1) {
 
        echo '<li><a href="salaChat"><i class="fa fa-comment"></i><span>Sala de Chat</span></a></li>';
 

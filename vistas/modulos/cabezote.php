@@ -29,7 +29,7 @@
     		<ul class="nav navbar-nav">
 			
 				<?php
-					session_start();
+				
 					if ($_SESSION["perfil"] == "Administrador General") {
 
             include "cabezote/notificaciones.php";
