@@ -107,21 +107,21 @@ if($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Admini
           </div>
         </div>
         <br>
-        <table class="table table-bordered table-striped dt-responsive tablaProveedores" width="100%" id="proveedores">
+        <table class="table-bordered table-striped dt-responsive tablaProveedores estilosBordesTablas" width="100%" id="proveedores">
          
-          <thead>
+          <thead class="estilosTablas">
            
            <tr>
              
-             <th>#</th>
-             <th>Código</th>
-             <th>Rfc</th>
-             <th>Razón Social</th>
-             <th>Fecha Alta</th>
-             <th>Límite de Crédito</th>
-             <th>Días de Crédito</th>
-             <th>Rfc</th>
-             <th>C.U.R.P</th>
+             <th style="border:none">#</th>
+             <th style="border:none">Código</th>
+             <th style="border:none">Rfc</th>
+             <th style="border:none">Razón Social</th>
+             <th style="border:none">Fecha Alta</th>
+             <th style="border:none">Límite de Crédito</th>
+             <th style="border:none">Días de Crédito</th>
+             <th style="border:none">Rfc</th>
+             <th style="border:none">C.U.R.P</th>
 
            </tr> 
 
@@ -155,7 +155,7 @@ MODAL AGREGAR PERFIL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header estilosTablas">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

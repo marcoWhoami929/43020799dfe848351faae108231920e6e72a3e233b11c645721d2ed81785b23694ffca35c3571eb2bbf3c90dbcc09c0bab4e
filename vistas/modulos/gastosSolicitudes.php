@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+
 if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "José Martinez"){
 
 

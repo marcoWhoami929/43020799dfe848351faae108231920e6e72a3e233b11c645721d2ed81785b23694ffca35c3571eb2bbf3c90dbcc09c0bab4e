@@ -254,8 +254,18 @@ error_reporting(0);
 							$sucursal = str_replace('Sucursal ','',$_SESSION["nombre"]);
 
 							$estatus = 'Vigente';
+
+							if (strtoupper($formaPago) == "CREDITO") {
+
+								$creditoPendiente = "1";
+								
+							}else{
+
+								$creditoPendiente = "0";
+
+							}
 							
-							$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus) VALUES('".$concepto."','".$fechaFacturaFinal."','".$serie."','".$folio."','".$codigoCliente."','".$rfc."','".$nombreCliente."','".$fechaVencimiento."','".$diasCredito."','0','".str_replace(',','',$neto)."','".str_replace(',','',$descuento)."','".str_replace(',','',$impuesto)."','".str_replace(',','',$total)."','".str_replace(',','',$pendiente)."','".str_replace(',','',$pagado)."','".$fechaCobro."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."')";
+							$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus,creditoPendiente) VALUES('".$concepto."','".$fechaFacturaFinal."','".$serie."','".$folio."','".$codigoCliente."','".$rfc."','".$nombreCliente."','".$fechaVencimiento."','".$diasCredito."','0','".str_replace(',','',$neto)."','".str_replace(',','',$descuento)."','".str_replace(',','',$impuesto)."','".str_replace(',','',$total)."','".str_replace(',','',$pendiente)."','".str_replace(',','',$pagado)."','".$fechaCobro."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."','".$creditoPendiente."')";
 							mysqli_query($conn, $insertarFacturas) or die("database error:". mysqli_error($conn));
 							
 
@@ -489,8 +499,18 @@ error_reporting(0);
 						$sucursal = str_replace('Sucursal ','',$_SESSION["nombre"]);
 
 						$estatus = 'Vigente';
+
+						if (strtoupper($formaPago) == "CREDITO") {
+
+							$creditoPendiente = "1";
+								
+						}else{
+
+							$creditoPendiente = "0";
+
+						}
 						
-						$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus) VALUES('".$concepto."','".$fechaFacturaFinal."','".$serie."','".$folio."','".$codigoCliente."','".$rfc."','".$nombreCliente."','".$fechaVencimiento."','".$diasCredito."','0','".str_replace(',','',$neto)."','".str_replace(',','',$descuento)."','".str_replace(',','',$impuesto)."','".str_replace(',','',$total)."','".str_replace(',','',$pendiente)."','".str_replace(',','',$pagado)."','".$fechaCobro."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."')";
+						$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus,creditoPendiente) VALUES('".$concepto."','".$fechaFacturaFinal."','".$serie."','".$folio."','".$codigoCliente."','".$rfc."','".$nombreCliente."','".$fechaVencimiento."','".$diasCredito."','0','".str_replace(',','',$neto)."','".str_replace(',','',$descuento)."','".str_replace(',','',$impuesto)."','".str_replace(',','',$total)."','".str_replace(',','',$pendiente)."','".str_replace(',','',$pagado)."','".$fechaCobro."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."','".$creditoPendiente."')";
 						mysqli_query($conn, $insertarFacturas) or die("database error:". mysqli_error($conn));
 						
 

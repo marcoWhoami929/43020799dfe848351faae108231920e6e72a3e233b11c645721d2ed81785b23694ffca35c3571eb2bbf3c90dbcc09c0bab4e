@@ -130,9 +130,9 @@ class TablaLaboratorio{
 			
 			$datosJson	 .= '[
 				      "'.($i+1).'",
+              "'.$laboratorio[$i]["serie"].'",
 				      "'.$laboratorio[$i]["idPedido"].'",
 				      "'.$laboratorio[$i]["usuario"].'",
-				      "'.$laboratorio[$i]["serie"].'",
 				      "'.rtrim($laboratorio[$i]["nombreCliente"]).'",
 				      "'.$laboratorio[$i]["numeroOrden"].'",
 				      "'.$laboratorio[$i]["codigo"].'",

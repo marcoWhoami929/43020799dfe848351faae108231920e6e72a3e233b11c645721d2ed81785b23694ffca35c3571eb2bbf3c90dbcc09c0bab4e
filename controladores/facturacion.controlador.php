@@ -1,63 +1,7 @@
 <?php
 class ControladorFacturacion{
 
-	/*=============================================
-	INGRESO DE ADMINISTRADOR
-	=============================================*/
-
-	public function ctrIngresoAdministrador(){
-
-		if(isset($_POST["ingEmail"])){
-
-			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingEmail"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
-			   
-			   $encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-						
-				$tabla = "administradores";
-				$item = "email";
-				$valor = $_POST["ingEmail"];
-
-				$respuesta = ModeloAdministradores::mdlMostrarAdministradores($tabla, $item, $valor);
-
-				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
-
-					if($respuesta["estado"] == 1){
-
-						$_SESSION["validarSesionBackend"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["email"] = $respuesta["email"];
-						$_SESSION["password"] = $respuesta["password"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
-
-						echo '<script>
-
-							window.location = "inicio";
-
-						</script>';
-
-					}else{
-
-						echo '<br>
-						<div class="alert alert-warning">Este usuario aún no está activado</div>';	
-
-					}
-
-				}else{
-
-					echo '<br>
-					<div class="alert alert-danger">Error al ingresar vuelva a intentarlo</div>';
-
-				}
-
-
-			}
-
-		}
-
-	}
+	
 	/*=============================================
 	ACTUALIZAR ORDEN DE COMPRAS
 	=============================================*/
@@ -598,28 +542,6 @@ class ControladorFacturacion{
 
 		$arreglo = json_decode($arregloGeneral, true);
 
-		$itemNombre = 'nombreCliente';
-        $valorNombre = $editarNombreCliente;
-
-		$datosCliente = ModeloFacturacion::mdlBuscarCliente($tabla3, $itemNombre, $valorNombre);
-
-		if ($datosCliente[0]["nombreCliente"] == "") {
-
-			$nombreCliente = "";
-			$codigoCliente = "";
-			$rfc = "";
-			$statusClienteFg = "activado";
-			$diasCredito = "0";
-			
-		}else{
-
-			$nombreCliente = $datosCliente[0]["nombreCliente"];
-			$codigoCliente = $datosCliente[0]["codigoCliente"];
-			$rfc = $datosCliente[0]["rfc"];
-			$statusClienteFg = $datosCliente[0]["statusCliente"];
-			$diasCredito = $datosCliente[0]["diasCredito"];
-
-		}
 		
 		$estatus = 'Vigente';
 
@@ -684,7 +606,7 @@ class ControladorFacturacion{
 									  		 "facturaPendiente" => 0,
 									  		 "ordenCompra" => $editarOrdenCompra,
 									  		 "tipo" => $editarTipo,
-									  		 "statusCliente" => $statusClienteFg,
+									  		 
 									  		 "tipoRuta" => $editarTipoRuta,
 									  		 "cantidad" => $cantidad,
 									  		 "fechaRecepcion" => $editarFechaRecepcion,
@@ -694,11 +616,7 @@ class ControladorFacturacion{
 									  		 "neto" => number_format($neto,4, '.', ''),
 									  	   	 "impuesto" => number_format($impuesto,4, '.', ''),
 									  	   	 "total" => $total,
-									  	   	 "codigoCliente" => $codigoCliente,
-									  	   	 "rfc" => $rfc,
-									  	   	 "nombreCliente" => $nombreCliente,
-									  	   	 "statusClienteFg" => $statusClienteFg,
-									  	   	 "diasCredito" => $diasCredito,
+									  	   	 
 									  	   	 "pendiente" => $total,
 									  	   	 "estatus" => $estatus);
 
@@ -752,6 +670,8 @@ class ControladorFacturacion{
 						$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 						/*-----------ACTUALIZAR TIPO RUTA---------------*/
 						$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+						/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+						$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 						/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 						$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 						/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/
@@ -817,7 +737,7 @@ class ControladorFacturacion{
 								  		 "facturaPendiente" => 0,
 								  		 "ordenCompra" => $editarOrdenCompra,
 								  		 "tipo" => $editarTipo,
-								  		 "statusCliente" => $statusClienteFg,
+								  	
 								  		 "tipoRuta" => $editarTipoRuta,
 								  		 "cantidad" => $cantidad,
 								  		 "fechaRecepcion" => $editarFechaRecepcion,
@@ -860,11 +780,7 @@ class ControladorFacturacion{
 									  	   "neto" => number_format($neto,4, '.', ''),
 									  	   "impuesto" => number_format($impuesto,4, '.', ''),
 									  	   "total" => $total,
-									  	   "codigoCliente" => $codigoCliente,
-									  	   "rfc" => $rfc,
-									  	   "nombreCliente" => $nombreCliente,
-									  	   "statusClienteFg" => $statusClienteFg,
-									  	   "diasCredito" => $diasCredito,
+									  	   
 									  	   "pendiente" => $total,
 									  	   "estatus" => $estatus,
 									  	   "formaPago" => $formaPago,
@@ -914,6 +830,8 @@ class ControladorFacturacion{
 						$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 						/*-----------ACTUALIZAR TIPO RUTA---------------*/
 						$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+						/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+						$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 						/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 						$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 						/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/
@@ -983,7 +901,7 @@ class ControladorFacturacion{
 								  		 "facturaPendiente" => 0,
 								  		 "ordenCompra" => $editarOrdenCompra,
 								  		 "tipo" => $editarTipo,
-								  		 "statusCliente" => $statusClienteFg,
+								  		 
 								  		 "tipoRuta" => $editarTipoRuta,
 								  		 "cantidad" => $cantidad,
 								  		 "fechaRecepcion" => $editarFechaRecepcion,
@@ -1026,6 +944,8 @@ class ControladorFacturacion{
 				$actualizarFormatoPedido = ModeloFacturacion::mdlActualizarFormatoPedido($tabla, $datos);
 				/*-----------ACTUALIZAR TIPO RUTA---------------*/
 				$respuestaTipoRuta = ModeloFacturacion::mdlActualizarTipoRuta($tabla, $tablelogistica, $datos);
+				/*-----------ACTUALIZAR TIEMPO PROCESO---------------*/
+				$respuestaTiempoProceso = ModeloFacturacion::mdlActualizarTiempoProceso($tabla,$datos);
 				/*-----------ACTUALIZAR NIVELES DE SURTIMIENTO---------------*/
 				$respuestaNiveles = ModeloFacturacion::mdlActualizarNiveles($tabla, $tableAlmacen, $datos);
 				/*-----------ACTUALIZAR ESTATUS FACTURA ALMACEN---------------*/
@@ -1637,5 +1557,19 @@ class ControladorFacturacion{
 
 		return $respuesta;
 	}*/
+
+	/*=====================================
+	MOSTRAR LISTA DE ALMACENES
+	 ====================================*/
+	 static public function ctrMostrarListaAlmacenes(){
+
+	 	$tabla = "almacenes";
+
+	 	$respuesta = ModeloFacturacion::mdlMostrarListaAlmacenes($tabla);
+
+	 	return $respuesta;
+
+	 }
+
 
 }

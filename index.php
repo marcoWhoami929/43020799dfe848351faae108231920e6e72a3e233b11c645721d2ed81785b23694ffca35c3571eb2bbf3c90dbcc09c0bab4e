@@ -41,13 +41,13 @@ require_once "controladores/cotizaciones.controlador.php";
 require_once "controladores/notificaciones.controlador.php";
 require_once "controladores/prospectos.controlador.php";
 require_once "controladores/productos.controlador.php";
-require_once "controladores/controlMuestras.controlador.php";
 require_once "controladores/tickets.controlador.php";
 require_once "controladores/ultimoSaldoBancos.controlador.php";
 require_once "controladores/ordenTrabajo.controlador.php";
 require_once "controladores/almacenRuta.controlador.php";
 require_once "controladores/facturacionRuta.controlador.php";
 require_once "controladores/facturacionTiendas.controlador.php";
+require_once "controladores/entregas.controlador.php";
 /*CONTROLADORES DE CONTROL MATRIZ*/
 
 
@@ -93,16 +93,20 @@ require_once "modelos/cotizaciones.modelo.php";
 require_once "modelos/notificaciones.modelo.php";
 require_once "modelos/prospectos.modelo.php";
 require_once "modelos/productos.modelo.php";
-require_once "modelos/controlMuestras.modelo.php";
 require_once "modelos/tickets.modelo.php";
 require_once "modelos/ultimoSaldoBancos.modelo.php";
 require_once "modelos/ordenTrabajo.modelo.php";
 require_once "modelos/almacenRuta.modelo.php";
 require_once "modelos/facturacionRuta.modelo.php";
 require_once "modelos/facturacionTiendas.modelo.php";
+require_once "modelos/entregas.modelo.php";
 /*MODELOS DE CONTROL MATRIZ*/
 require_once "extensiones/PHPMailer/PHPMailerAutoload.php";
 require_once "extensiones/vendor/autoload.php";
 
+/**
+ * CONEXION SERVER 
+ */
+require_once "modelos/conexion-api-server.modelo.php";
 $plantilla = new ControladorPlantilla();
 $plantilla -> plantilla();

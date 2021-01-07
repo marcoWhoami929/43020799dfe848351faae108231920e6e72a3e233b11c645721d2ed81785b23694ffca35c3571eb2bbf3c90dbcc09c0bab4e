@@ -661,7 +661,7 @@ $(".tablaFacturacion").on("click", ".btnHabilitarFolio", function(){
 
 });
 /*=============================================
-MOSTRAR COMPRAS PEDIDOS
+VER FACTURAS
 =============================================*/
 $(".tablaFacturacion").on("click", ".btnVerFacturas", function(){
 
@@ -682,107 +682,52 @@ $(".tablaFacturacion").on("click", ".btnVerFacturas", function(){
     processData: false,
     dataType: "json",
     success: function(respuesta){ 
-      for (var i = 0; i < respuesta.length; i++) {
 
-        var divTo = document.getElementById("totales");
-        var saltoTo = document.createElement("P");
-        while(divTo.firstChild)divTo.removeChild(divTo.firstChild);
+   tablaListaFacturasVista = $(".tablaListaFacturasVista").DataTable({
+   "ajax":"ajax/tablaListaFacturasVista.ajax.php?serie="+serieFacturacion+"&folio="+idFacturacion2,
+   "deferRender": true,
+   "retrieve": true,
+   "processing": true,
+    "iDisplayLength": 10,
+    "fixedHeader": true,
+    "order": [[ 0, "desc" ]],
+    /*"scrollX": true,*/
+     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
+   "language": {
 
-        var palabraTotal = document.createElement("input");
-        var totalPartidas = document.createElement("input");
-        var totalUnidades = document.createElement("input");
-        var totalImporte = document.createElement("input");
-            
-        var totalPart = respuesta[0]["totalImport"] * 1;
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
 
-        palabraTotal.setAttribute("value", "Totales:");
-        totalPartidas.setAttribute("value", respuesta[0]["totalPart"]);
-        totalUnidades.setAttribute("value", respuesta[0]["totalUnid"]);
-        totalImporte.setAttribute("value", totalPart.toFixed(2));
+   }
 
-        palabraTotal.setAttribute("size", "25");
-        palabraTotal.setAttribute("style", "background:transparent;text-align:right; font-weight: bold;font-family:Monaco,Georgia,Times,serif;border:none;");
-        palabraTotal.className = "palabraTotal";
-        palabraTotal.readOnly = true;
-
-        totalPartidas.setAttribute("size", "8");
-        totalPartidas.setAttribute("style","background: transparent;margin-left:2%;text-align: center;font-weight: bold;font-family:Monaco,Georgia,Times,serif;border:none;");
-        totalPartidas.className = "totalPartidas";
-        totalPartidas.readOnly = true;
-
-        totalUnidades.setAttribute("size", "10");
-        totalUnidades.setAttribute("style","background: transparent;margin-left:6%;text-align: center;font-weight: bold;font-family:Monaco,Georgia,Times,serif;border:none;");
-        totalUnidades.className = "totalUnidades";
-            totalUnidades.readOnly = true;
-
-        totalImporte.setAttribute("size", "10");
-        totalImporte.setAttribute("style","background: transparent;margin-left:1%;text-align: right;font-weight: bold;font-family:Monaco,Georgia,Times,serif;border:none;");
-        totalImporte.className = "totalImporte";
-        totalImporte.readOnly = true;
-
-        saltoTo.appendChild(palabraTotal);
-        saltoTo.appendChild(totalPartidas);
-        saltoTo.appendChild(totalUnidades);
-        saltoTo.appendChild(totalImporte);
-        divTo.appendChild(saltoTo);
-       
-        var div = document.getElementById("datosConsulta");
-        var cantidad = respuesta.length;
-
-        while(div.firstChild)div.removeChild(div.firstChild); // remover elementos;
-        for(var i = 0, cantidad = Number(cantidad); i <= cantidad; i++){
-
-          var salto = document.createElement("P");
-          var serieFactura = document.createElement("input");
-          var folioFactura = document.createElement("input");
-          var unidadesSurtidas = document.createElement("input");
-          var partidasSurtidas = document.createElement("input");
-          var importeFactura = document.createElement("input");
-
-          var text = document.createTextNode( i);
-
-          var importeFac = respuesta[i]["importeFactura"] * 1;
-
-          serieFactura.setAttribute("value", respuesta[i]["serie"]);
-          folioFactura.setAttribute("value", respuesta[i]["folio"]);
-          unidadesSurtidas.setAttribute("value", respuesta[i]["numeroPartidas"]);
-          partidasSurtidas.setAttribute("value", respuesta[i]["numeroUnidades"]);
-          importeFactura.setAttribute("value", importeFac.toFixed(2));
-
-          serieFactura.setAttribute("size", "12");
-          serieFactura.setAttribute("style","background: transparent;clear:both;margin-left:-4%;text-align: center;border:none;");
-          serieFactura.className = "serieFactura";
-          serieFactura.readOnly = true;
-
-          folioFactura.setAttribute("size", "10");
-          folioFactura.setAttribute("style","background: transparent;clear:both;margin-left:4%;text-align: center;border:none;");
-          folioFactura.className = "folioFactura";
-          folioFactura.readOnly = true;
-
-          unidadesSurtidas.setAttribute("size", "8");
-          unidadesSurtidas.setAttribute("style","background: transparent;clear:both;margin-left:7%;text-align: center;border:none;");
-          unidadesSurtidas.className = "unidadesSurtidas";
-          unidadesSurtidas.readOnly = true;
-
-          partidasSurtidas.setAttribute("size", "8");
-          partidasSurtidas.setAttribute("style","background: transparent;clear:both;margin-left:8%;text-align: center;border:none;");
-          partidasSurtidas.className = "partidasSurtidas";
-          partidasSurtidas.readOnly = true;
-
-          importeFactura.setAttribute("size", "10");
-          importeFactura.setAttribute("style","background: transparent;clear:both;margin-left:2%;text-align: right;border:none;");
-          importeFactura.className = "importeFactura";
-          importeFactura.readOnly = true;
-
-          salto.appendChild(serieFactura);
-          salto.appendChild(folioFactura);
-          salto.appendChild(unidadesSurtidas);
-          salto.appendChild(partidasSurtidas);
-          salto.appendChild(importeFactura);
-          div.appendChild(salto);
-
-        }
-      }  
+});
+      
     }
   })
+})
+$("#updateFacturas").on("click",function(){
+  tablaFacturacion.ajax.reload();
+})
+$(".btnDismissFactura").on("click",function(){
+    tablaListaFacturasVista.destroy();
 })

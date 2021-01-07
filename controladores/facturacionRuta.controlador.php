@@ -5,16 +5,11 @@
  	/*==================================================
 	CONTROLADOR PARA MOSTRAR LOS DATOS DE LAS FACTURAS
 	==================================================*/
- 	static public function ctrMostrarDatosFacturasOT($item, $valor){
- 		$tabla = "facturasordenes";
- 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFacturasOT($tabla, $item, $valor);
- 		return $respuesta;
-
- 	}
+ 	
 
     static public function ctrMostrarOrdenesDeTrabajo($item, $valor,$item2, $valor2){
 
-		$tabla = "facturacionot";
+		$tabla = "facturacion";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarOrdenesDeTrabajo($tabla, $item, $valor,$item2, $valor2);
 
@@ -24,9 +19,9 @@
 
 		if(isset($_POST["otIdOrdenFacturacionEdit"])){
 
-            $tabla = "facturacionot";
+            $tabla = "facturacion";
 			$tabla2 = "bitacora";
-			$tabla3 = "facturasordenes";
+			$tabla3 = "facturasgenerales";
 
 			$datos = array("id" => $_POST["otIdOrdenFacturacionEdit"],
 							"usuario" => $_POST["otUsuarioEdit"],
@@ -91,7 +86,7 @@
 								confirmButtonText: "Cerrar"
 								}).then(function(result) {
 									if (result.value) {
-										window.location = "facturacionRuta";
+										
 
 									}
 								})
@@ -105,7 +100,7 @@
 					$itemN2 = 'seriePedido';
 					$valorN2 = $_POST["otSerieEdit"]; 
 
-            		$respuestaUltimoN = ModeloFacturacionRuta::mdlMostrarUltimoNumeroFactura($itemN, $valorN);
+            		$respuestaUltimoN = ModeloFacturacionRuta::mdlMostrarUltimoNumeroFactura($itemN, $valorN,$itemN2, $valorN2);
             		$ultimaSeccion = ModeloFacturacionRuta::mdlUltimaSeccion($tabla, $itemN2, $valorN2, $itemN, $valorN);
             		
             		if ($ultimaSeccion["ultimaSeccion"] == 0 || $ultimaSeccion["ultimaSeccion"] <= 0) {
@@ -137,7 +132,7 @@
 								confirmButtonText: "Cerrar"
 								}).then(function(result) {
 									if (result.value) {
-										window.location = "facturacionRuta";
+										
 
 									}
 								})
@@ -154,7 +149,7 @@
 
 		if(isset($_POST["otFolioEdit"])){
 
-				$tabla = "facturasordenes";
+				$tabla = "facturasgenerales";
 				$folio = $_POST["otFolioEdit"];
 
 				$recalcularNiveles = ModeloFacturacionRuta::mdlCalcularNivelesFactura($tabla, $folio);
@@ -164,7 +159,7 @@
 				$partidasSurtidas = $recalcularNiveles["partidasSurtidas"];
 
 
-				$datos = array("folio" => $_POST["otFolioEdit"],
+				$datos = array("id" => $_POST["otIdOrdenFacturacionEdit"],
 							   "importeSurtido" => $importeSurtido,
 							   "unidadesSurtidas" => $unidadesSurtidas,
 							   "partidasSurtidas" => $partidasSurtidas);
@@ -179,8 +174,8 @@
 
 	
 		if(isset($_POST["otFolioEdit"])){
-			$tabla = "facturacionot";
-			$tabla2 = "almacenot";
+			$tabla = "facturacion";
+			$tabla2 = "almacen";
 			$datos = array("folio" => $_POST["otFolioEdit"]);
 
 			$respuesta = ModeloFacturacionRuta::mdlActualizarNivelesAlmacen($tabla,$tabla2, $datos);
@@ -193,7 +188,7 @@
 
 	static public function ctrMostrarDatosFactura($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura($tabla, $item, $valor);
 
@@ -201,7 +196,7 @@
 	}
 	static public function ctrMostrarDatosFactura3($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura3($tabla, $item, $valor);
 
@@ -209,7 +204,7 @@
 	}
 	static public function ctrMostrarDatosFactura4($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura4($tabla, $item, $valor);
 
@@ -217,7 +212,7 @@
 	}
 	static public function ctrMostrarDatosFactura5($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura5($tabla, $item, $valor);
 
@@ -225,7 +220,7 @@
 	}
 	static public function ctrMostrarDatosFactura6($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura6($tabla, $item, $valor);
 
@@ -233,7 +228,7 @@
 	}
 	static public function ctrMostrarDatosFactura7($item, $valor){
 
-		$tabla = "facturasordenes";
+		$tabla = "facturasgenerales";
 
 		$respuesta = ModeloFacturacionRuta::mdlMostrarDatosFactura7($tabla, $item, $valor);
 
@@ -304,7 +299,7 @@
 
 		if(isset($_POST["otFolioEdit"])){
 
-			$tabla = "ordenesdetrabajo";
+			$tabla = "atencionaclientes";
 
 			$datos = array("folio" => $_POST["otFolioEdit"]);
 

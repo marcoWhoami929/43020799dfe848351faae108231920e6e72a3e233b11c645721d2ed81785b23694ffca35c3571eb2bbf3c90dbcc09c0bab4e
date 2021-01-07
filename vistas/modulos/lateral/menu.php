@@ -112,6 +112,7 @@ MENU
         if ($_SESSION["perfil"] == "Compras") {
         echo '<li><a href="compras"><i class="fa fa-shopping-cart"></i><span>Compras</span></a></li>';
         echo '<li><a href="saldos"><i class="fa fa-bank"></i> <span>Bancos</span></a></li>';
+        echo '<li><a href="gastosTiendas"><i class="fa fa-money"></i> <span>Gastos Tiendas</span></a></li>';
     }
     else if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
         echo '<li><a href="compras"><i class="fa fa-shopping-cart"></i><span>Compras</span></a></li>';
@@ -127,6 +128,7 @@ MENU
 
        if ($_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez") {
         echo '<li><a href="logistica"><i class="fa fa-truck"></i><span>Logística</span></a></li>';
+        echo '<li><a href="entregas"><i class="fa fa-archive"></i><span>Entregas</span></a></li>';
         }
         else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
             echo '<li><a href="logistica"><i class="fa fa-truck"></i><span>Logística</span></a></li>';
@@ -472,6 +474,7 @@ MENU
               
               <li><a href="ajusteSaldos"><i class="fa fa-fax"></i><span>Ajustes De Saldos</a></li>
               <li><a href="abonos"><i class="fa fa-money"></i><span>Abonos Facturas</a></li>
+              <li><a href="facturasTiendas"><i class="fa fa-file-text"></i><span>Facturas Credito</a></li>
               
               
              

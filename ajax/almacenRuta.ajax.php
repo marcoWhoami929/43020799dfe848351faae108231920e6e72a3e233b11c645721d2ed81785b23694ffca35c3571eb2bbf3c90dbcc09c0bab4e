@@ -26,14 +26,18 @@ class AjaxAlmacenRuta{
 	VER TRASPASOS
 	=============================================*/	
 
-	public $idOrden2;
+	public $serieOrden;
+	public $folioOrden;
 
 	public function ajaxVerTraspasos(){
 
-		$item = "id";
-		$valor = $this->idOrden2;
+		$item = "serieOrden";
+		$valor = $this->serieOrden;
 
-		$respuesta = ControladorAlmacenRuta::ctrMostrarOrdenesDeTrabajo($item, $valor);
+		$item2 = "folioOrden";
+		$valor2 = $this->folioOrden;
+
+		$respuesta = ControladorAlmacenRuta::ctrMostrarListaTraspasos($item, $valor,$item2,$valor2);
 
 		echo json_encode($respuesta);
 
@@ -47,7 +51,7 @@ class AjaxAlmacenRuta{
 
 	public function ajaxActivarOrden(){
 
-		$tabla = "almacenot";
+		$tabla = "almacen";
 
 		$item1 = "habilitado";
 		$valor1 = $this->activarOrden;
@@ -89,10 +93,11 @@ if(isset($_POST["idOrden"])){
 /*=============================================
 VER LISTA DE TRASPASOS
 =============================================*/
-if(isset($_POST["idOrden2"])){
+if(isset($_POST["serieOrden"])){
 
 	$verTraspaso = new AjaxAlmacenRuta();
-	$verTraspaso -> idOrden2 = $_POST["idOrden2"];
+	$verTraspaso -> serieOrden = $_POST["serieOrden"];
+	$verTraspaso -> folioOrden = $_POST["folioOrden"];
 	$verTraspaso -> ajaxVerTraspasos();
 
 }	

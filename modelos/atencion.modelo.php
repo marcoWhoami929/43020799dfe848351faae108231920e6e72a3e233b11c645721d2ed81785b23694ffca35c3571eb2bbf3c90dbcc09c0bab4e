@@ -54,7 +54,7 @@ class ModeloAtencion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY folio DESC ");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE serie != 'OTRT' ORDER BY folio DESC ");
 
 			$stmt -> execute();
 
@@ -397,7 +397,7 @@ class ModeloAtencion{
 	static public function mdlEditarPedido($tabla, $datos){
 	
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET creado = :creado, codigoCliente = :codigoCliente, nombreCliente = :nombreCliente, canal = :canal, rfc = :rfc, agenteVentas = :agenteVentas, diasCredito = :diasCredito, statusCliente = :statusCliente, serie = :serie, folio = :folio, tipoPago = :tipoPago, metodoPago = :metodoPago, formaPago = :formaPago,
-		ordenCompra = :ordenCompra, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importe = :importe, fechaRecepcion = :fechaRecepcion, fechaElaboracion = :fechaElaboracion, tipoRuta = :tipoRuta, tieneIgualado = :tieneIgualado, /*tipoCompra = :tipoCompra,*/ observaciones = :observaciones, observaciones2 = :observaciones2, estado = :estado WHERE id = :id");
+		ordenCompra = :ordenCompra, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importe = :importe, fechaRecepcion = :fechaRecepcion, fechaElaboracion = :fechaElaboracion, tipoRuta = :tipoRuta, tieneIgualado = :tieneIgualado, /*tipoCompra = :tipoCompra,*/ observaciones = :observaciones, observaciones2 = :observaciones2,asignacion1 = :asignacion1, asignacion2 = :asignacion2, estado = :estado WHERE id = :id");
 
 		
 		$stmt->bindParam(":creado", $datos["creado"], PDO::PARAM_STR);
@@ -424,6 +424,8 @@ class ModeloAtencion{
 		//$stmt->bindParam(":tipoCompra", $datos["tipoCompra"], PDO::PARAM_INT);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":observaciones2", $datos["observaciones2"], PDO::PARAM_STR);
+		$stmt->bindParam(":asignacion1", $datos["asignacion1"], PDO::PARAM_STR);
+		$stmt->bindParam(":asignacion2", $datos["asignacion2"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
@@ -759,6 +761,26 @@ class ModeloAtencion{
 			$stmt -> close();
 
 			$stmt = null;
+
+	}
+	/*=============================================
+	MOSTRAR ESTADO CLIENTE
+	=============================================*/
+
+	static public function mdlMostrarEstadoCliente($tabla, $item, $valor,$catalogo){
+
+			$stmt = Conexion::conectar()->prepare("SELECT limiteCredito,diasCredito,excederCredito,limDoctosVenc,saldoVencido,doctosVenc,statusCliente,idClienteComercial FROM $tabla WHERE $item = :$item and catalogo = '".$catalogo."'");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		$stmt-> close();
+
+		$stmt = null;
+
 
 	}
 

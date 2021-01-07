@@ -2,7 +2,7 @@
 CARGAR LA TABLA DINÁMICA DE LOGISTICA
 =============================================*/
 
-var table5 = $(".tablaLogistica").DataTable({
+tablaLogistica = $(".tablaLogistica").DataTable({
    "ajax":"ajax/tablaLogistica.ajax.php",
    "deferRender": true,
    "retrieve": true,
@@ -229,4 +229,7 @@ $(".tablaLogistica tbody").on("click", ".btnStatus", function(){
     }
     
 
+})
+$("#updateLogistica").on("click",function(){
+  tablaLogistica.ajax.reload();
 })

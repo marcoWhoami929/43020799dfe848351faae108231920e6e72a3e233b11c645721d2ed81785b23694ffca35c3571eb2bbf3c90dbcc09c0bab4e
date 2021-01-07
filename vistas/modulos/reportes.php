@@ -39,8 +39,6 @@ require_once "../../controladores/bitacora.controlador.php";
 require_once "../../modelos/bitacora.modelo.php";
 require_once "../../controladores/cotizaciones.controlador.php";
 require_once "../../modelos/cotizaciones.modelo.php";
-require_once "../../controladores/controlMuestras.controlador.php";
-require_once "../../modelos/controlMuestras.modelo.php";
 /**************CONTROLADORES Y MODELOS RUTAS*********************/
 require_once "../../controladores/ordenTrabajo.controlador.php";
 require_once "../../modelos/ordenTrabajo.modelo.php";

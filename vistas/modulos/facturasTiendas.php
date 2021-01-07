@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["perfil"] == "Credito y Cobranza"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez"  || $_SESSION["perfil"] == "Credito y Cobranza") {
               
               if (isset($_POST["fecha"])) {
                 echo '<a href="vistas/modulos/reportes.php?reporteFacturasTiendas=facturastiendas&fechaInicioF='.date('Y-m-d', strtotime($_POST["fecha"])).'&fechaFinalF='.date('Y-m-d', strtotime($_POST["fechaFin"])).'&tienda='.$_POST["tienda"].'">
@@ -143,7 +143,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     
                    </div>';
               }
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "José Martinez") {?>
+              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "José Martinez"  || $_SESSION["perfil"] == "Credito y Cobranza") {?>
                   <?php
                   echo '<div class="container">
                     <h5 style="font-weight: bold;font-size: 25px">Búsqueda por Sucursal y Rango de Fechas</h5>
@@ -197,6 +197,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     </div>
                     
                    </div>';
+                   echo '<button class="report btn btn-success" id="updateFacturasTiendas"><i class="fa fa-spinner"></i>Actualizar</button>';
+
               }
 
              ?>
@@ -221,7 +223,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                        echo '</form>
                       </div>
                     </div>';
-
+                     echo '<button class="report btn btn-success" id="updateFacturasTiendas"><i class="fa fa-spinner"></i>Actualizar</button>';
 
 
           }
@@ -247,6 +249,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                      
                      <th style="width:20px;height: 40px;border:none">#</th>
                      <th style="border:none">Fecha Factura</th>
+                     <th style="border:none">Crédito</th>
                      <th style="border:none">Serie</th>
                      <th style="border:none">Folio</th>
                      <th style="border:none">Codigo Cliente</th>
@@ -262,7 +265,6 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                      <th style="border:none">Pagado</th>
                      <th style="border:none">Fecha Cobro</th>
                      <th style="border:none">Forma Pago</th>
-                     <th style="border:none">Observaciones</th>
                      <th style="border:none">Sucursal</th>
                      <th style="border:none">Estatus</th>
 
@@ -296,7 +298,6 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                    <th style="border:none">Pagado</th>
                    <th style="border:none">Fecha Cobro</th>
                    <th style="border:none">Forma Pago</th>
-                   <th style="border:none">Observaciones</th>
                    <th style="border:none">Sucursal</th>
                    <th style="border:none">Estatus</th>
 
@@ -568,6 +569,97 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
   </section>
 
 </div>
+<!--=====================================
+MODAL CARGAR DOCUMENTOS
+======================================-->
+<div class="modal fade" id="modalDocumentosCredito"  data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <div class="modal-header estilosTablas" >
+    <center><h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i>DOCUMENTOS CREDITO</h3></center>
+        <button type="button" class="close btnCloseDocuments" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div id="contenedorDatosCarga" style="display: none">
+             <div class="col-lg-6 col-md-6 col-sm-6">
+            <p>Usuario:</p> <span id="usuarioLoad"></span>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <p>Fecha De Carga:</p> <span id="dateLoad"></span>
+          </div>
+          </div>
+
+          <div class="container col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+         
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Cargar Archivo</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                   
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="form-group">
+                        <label class="btn btn-primary" for="my-file-selector">
+                          <input  type="file" class="form-control" name="fileCharge" id="fileCharge">
+                        </label>
+                        
+                      </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button class="btn btn-primary" id="enviar">Cargar Archivo</button>
+                      </div>
+                   
+               
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6"> </div>
+                </div>
+              </div>
+            
+       
+              <div class="panel panel-primary">
+                <div class="alert alert-warning alert-dismissible animated bounceInLeft" role="alert" style="display: none" id="fileDeleted">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Archivo Eliminado!</strong> Exitosamente
+                </div>
+                <div class="alert alert-info alert-dismissible animated bounceInLeft" role="alert" style="display: none" id="fileCanceled">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Estuvo a punto de eliminar el archivo!</strong>
+                </div>
+                <div class="alert alert-danger alert-dismissible animated bounceInLeft" role="alert" style="display: none" id="fileLoadDanger">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>No se pudo cargar el archivo!</strong>
+                </div>
+                <div class="alert alert-success alert-dismissible animated bounceInLeft" role="alert" style="display: none" id="fileLoadSuccess">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Cargado Exitosamente</strong>
+                </div>
+                <div class="panel-heading">
+                  <h3 class="panel-title">Archivos Cargados</h3>
+                </div>
+                  <div class="panel-body" id="panelLoadsFiles">
+                      
+                      <table class="table" id="tablePanelLoadsFiles">
+                     
+                    </table>
+                   
+                  </div>
+              </div>
+                 
+            </div>
+          </div>  
+        
+      </div>
+      <div class="modal-footer" style="margin-top:100px">
+        <button type="button" class="btn btn-default btnCloseDocuments" data-dismiss="modal">Cerrar</button>
+        <!--<button type="button" class="btn btn-primary btnSaveDocumentsCredito">Guardar</button>-->
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 
@@ -681,6 +773,10 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
             
         }
     }
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+     
     </script>
     <style type="text/css">
       /* Style the tab content */

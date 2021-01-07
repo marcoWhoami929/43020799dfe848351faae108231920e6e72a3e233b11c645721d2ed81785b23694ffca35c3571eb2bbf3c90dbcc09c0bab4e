@@ -83,6 +83,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
                <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateFacturas"><i class="fa fa-spinner"></i>Actualizar</button>';
           }else{
 
               echo ' <a href="vistas/modulos/reportes.php?reporte=logistica">
@@ -90,6 +91,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
               <button class="btn btn-info" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateFacturas"><i class="fa fa-spinner"></i>Actualizar</button>';
 
           }
               
@@ -101,6 +103,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
               <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
             </a>';
+             echo '<button class="report btn btn-success" id="updateLogistica"><i class="fa fa-spinner"></i>Actualizar</button>';
             }
 
           ?>
@@ -109,9 +112,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
         <br>
          
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaLogistica" width="100%" id="logistica" style="border: 2px solid #f39c12">
+        <table class="table-bordered table-striped dt-responsive tablaLogistica estilosBordesTablas" width="100%" id="logistica" >
          
-          <thead style="background:#f39c12;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -154,7 +157,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
 <div class="modal fade" id="verObservaciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background:tomato; color:white">
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel">OBSERVACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -190,7 +193,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:tomato; color:white">
+        <div class="modal-header estilosTablas" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -221,9 +224,7 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="editarUsuario">Seleccionar usuario</option>
 
-                          <option value="Mauricio Anaya">Mauricio Anaya</option>
-
-                          <option value="Nataly Fuentes">Nataly Fuentes</option>
+                          <option value="Miguel Gutierrez Ángeles">Miguel Gutierrez Ángeles</option>
 
                           <option value="Aurora Fernandez">Aurora Fernandez</option>
 
@@ -369,18 +370,15 @@ MODAL EDITAR PEDIDO
 
                           <option value="Sin Operador">Sin Operador</option>
 
+                          <option value="1">Angel De La Cruz</option>
 
-                          <option value="Roció Martínez Morales">Roció Martínez Morales</option>
+                          <option value="2">Ernesto Cuanalo</option>
 
-                          <option value="Jonathan Gonzalez Sanchez">Jonathan Gonzalez Sanchez</option>
+                          <option value="3">Ventas</option>
 
-                          <option value="Orlando Raúl Briones Aguirre">Orlando Raúl Briones Aguirre</option>
+                          <option value="4">Jesus</option>
 
-                          <option value="Ernesto Cuanalo">Ernesto Cuanalo</option>
-
-                          <option value="Jesus Totolhua">Jesus Totolhua</option>
-
-                          <option value="Angel De La Cruz">Angel De La Cruz</option>
+                          <option value="5">Motociclistas</option>
 
 
                         </select>
@@ -507,37 +505,6 @@ $(document).ready(function(){
 });
 </script>
 
-
-<script>
-   $(document).ready(function(){
-        
-        $("#serie").click(function(e){
-          ;
-          var url = "atencionLogistica.php";
-          $.getJSON(url, { _num1 : $("#serie").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#idPedido").append('<option value="' + cliente.folio + '">' + cliente.folio + '</option>');
-
-              if(cliente.resultado == "1"){
-                $("#resultado1").hide();
-                $("#resultado0").show();
-                $("#resultado").css("color","white");
-                $("#resultado").text("Hay folios en esta serie");
-              }else{
-                $("#resultado1").show();
-                $("#resultado0").hide();
-                $("#resultados").css("color","white");
-                $("#resultados").text("Folios no disponibles");
-              }
-            });
-          });
-        });
-        $("#serie").click(function(){
-          $('#idPedido').html('');
-    });
-          
-    });
-</script>
 <script type="text/javascript">
  function myFunction(){
         $.ajax({

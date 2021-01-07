@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
 
 
@@ -75,6 +76,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
             <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
           </a>';
+          echo '<button class="report btn btn-success" id="updatePedidos"><i class="fa fa-spinner"></i>Actualizar</button>';
           }else{
 
               echo '<a href="vistas/modulos/reportes.php?reporte=atencionaclientes">
@@ -91,6 +93,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
             <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
           </a>';
+
+          echo '<button class="report btn btn-success" id="updatePedidos"><i class="fa fa-spinner"></i>Actualizar</button>';
             }
 
           ?>
@@ -101,7 +105,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
             <?php
 
                     if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Generador de Reportes") {
-                      
+                      /*
                       
                         echo '<div class="">
                       <div class="row">
@@ -122,11 +126,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
                        echo '</form>
                       </div>
                     </div>';
+                    */
 
                     }
                      if ($_SESSION["perfil"] == "Administrador General") {
              
-
+                      /*
                         echo '<div class="">
                       <div class="row">
                         <form action="importAtencionPartidas.php" method="post" enctype="multipart/form-data" id="import_form">
@@ -146,6 +151,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
                        echo '</form>
                       </div>
                     </div>';
+                    */
 
                     }
               
@@ -153,9 +159,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
         
 
          <br>
-        <table class="table-bordered table-striped dt-responsive tablaAtencion" width="100%" id="atencion" style="border: 2px solid #F3826A ">
+        <table class="table-bordered table-striped dt-responsive tablaAtencion estilosBordesTablas" width="100%" id="atencion" >
          
-          <thead style="background:#F3826A;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -168,15 +174,16 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
              <th style="border:none">Agente de Ventas</th>
              <th style="border:none">Días de Crédito</th>
              <th style="border:none">Estatus del Cliente</th>
+             <th style="border:none">ESTADO</th>
              <th style="border:none">Estatus del Pedido</th>
-             <th style="border:none">Número de Serie</th>
-             <th style="border:none">Folio de Pedido</th>
+             <th style="border:none">Serie</th>
+             <th style="border:none">Folio</th>
              <th style="border:none">Tipo de Pago</th>
              <th style="border:none">Metodo de Pago</th>
              <th style="border:none">Forma de Pago</th>
              <th style="border:none">Orden de Compra</th>
-             <th style="border:none">Número de Partidas</th>
-             <th style="border:none">Número de Unidades</th>
+             <th style="border:none">Partidas</th>
+             <th style="border:none">Unidades</th>
              <th style="border:none">Importe</th>
              <th style="border:none">Fecha de Recepción</th>
              <th style="border:none">Fecha de Elaboración</th>
@@ -208,7 +215,7 @@ MODAL MOTIVO DE CANCELACION
 <div class="modal fade" id="modalMotivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background: tomato;">
+      <div class="modal-header estilosTablas" >
         <h5 class="modal-title" id="exampleModalLabel" style="color: white; font-weight: bolder;font-size: 15px;">MOTIVO DE CANCELACIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -250,7 +257,7 @@ MODAL EDITAR PEDIDO
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:tomato; color:white">
+        <div class="modal-header  estilosTablas" >
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -639,9 +646,11 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="tieneIgualado">Seleccionar</option>
 
+                          <option value="0">No</option>
+
                           <option value="1">Si</option>
 
-                          <option value="0">No</option>
+                         
 
 
                         </select>
@@ -801,9 +810,6 @@ MODAL EDITAR PEDIDO
           $actualizarFechaPedido = new ControladorAtencion();
           $actualizarFechaPedido -> ctrActualizarFechaPedido();
 
-          //$actualizarTipoRuta = new ControladorLogistica();
-          //$actualizarTipoRuta -> ctrActualizarTipoRuta();
-
           $crearCompraLogistica = new ControladorCompras();
           $crearCompraLogistica -> ctrSinAdquisicionLogistica();
 
@@ -861,37 +867,355 @@ MODAL EDITAR PEDIDO
 
 </div>
 
+<!--=====================================
+MODAL EDITAR ORDEN DE TRABAJO
+======================================-->
+
+<div id="modalEditarOrden" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header estilosTablas">
+
+        <center><h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i> EDITAR ORDEN</h3></center>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+        <div class="modal-body">
+
+            <div class="box-body">
+        
+                <div class="form-group">
+
+                    <div class="container col-lg-12">
+
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                            <span style="font-weight: bold">Creado Por</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                                    <select class="form-control" required="true" name="otCreadoEdit" id="otCreadoEdit">
+
+                                    <option value="Ulises Tuxpan">Ulises Tuxpan</option>
+
+                                    <option value="Enrique Flores">Enrique Flores</option>
+
+                                    </select>
+
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                            <span style="font-weight: bold">Código Cliente</span>
+                       
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" value="" id="otCodigoClienteEdit" name="otCodigoClienteEdit" readonly>
+                                    <input type="hidden" class="form-control input-lg" value="" id="otIdOrdenEdit" name="otIdOrdenEdit" readonly>
+
+
+                                   
+                                </div>
+
+                            </div>
+                          
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                
+                                <span style="font-weight: bold">Nombre Cliente</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otNombreClienteEdit" id="otNombreClienteEdit" readonly>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                <span style="font-weight: bold">Rfc</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otRfcClienteEdit" id="otRfcClienteEdit" readonly>
+                                   
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                <span style="font-weight: bold">Vendedor</span>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otVendedorEdit" id="otVendedorEdit" readonly>
+                                
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                
+                                <span style="font-weight: bold">Días de Crédito</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                                    <input type="number" class="form-control input-lg" name="otDiasCreditoEdit" id="otDiasCreditoEdit" readonly>
+                                    <input type="hidden" class="form-control input-lg" name="otEstatusClienteEdit" id="otEstatusClienteEdit">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                
+                                <span style="font-weight: bold">Serie Orden</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otSerieEdit" id="otSerieEdit" readonly>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                <span style="font-weight: bold">Folio Orden</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otFolioEdit" id="otFolioEdit" readonly>
+                                   
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                <span style="font-weight: bold">Partidas</span>
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otPartidasEdit" id="otPartidasEdit" required>
+                                
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                
+                                <span style="font-weight: bold">Unidades</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-hashtag"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otUnidadesEdit" id="otUnidadesEdit" required>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                
+                                <span style="font-weight: bold">Importe</span>
+                                <div class="input-group">
+                        
+                                    <span class="input-group-addon"><i class="fa fa-dollar"></i></span> 
+
+                                    <input type="text" class="form-control input-lg" name="otImporteEdit" id="otImporteEdit" required>
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <span style="font-weight: bold">Fecha Recepción</span>
+                                <div class="input-group dtp1E" id="dtp1E">
+                                    <input type="text" class="form-control input-lg dtp1E" name="otFechaRecepcionEdit" id="otFechaRecepcionEdit" required data-toggle="tooltip" data-placement="left" title="Ingresar fecha en que se recibio el pedido por parte del cliente y/o proveedor" placeholder="Fecha Recepción" readonly>
+                                    <div class="input-group-addon add-on dtp1E">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                    </div>
+                                    
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <span style="font-weight: bold">Fecha Elaboración</span>
+                                    <div class="input-group dtp2E" id="dtp2E">
+                                    <input type="text" class="form-control input-lg dtp2E" name="otFechaElaboracionEdit" id="otFechaElaboracionEdit" required data-toggle="tooltip" data-placement="left" title="Ingresar fecha en que se concluyó la captura del pedido en sistema AdminPaq" placeholder="Fecha Elaboración"  readonly>
+                                    <div class="input-group-addon add-on dtp2E">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                    </div>
+                                    
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <span style="font-weight: bold">Tipo de Ruta</span>
+                                <div class="input-group">
+                                    
+                                    <span class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></span> 
+
+                                    <select class="form-control" name="otTipoRutaEdit" id="otTipoRutaEdit" required>
+
+                                    <option value="Mostrador">Mostrador</option>
+
+                                    <option value="Foraneo">Foraneo</option>
+
+                                    <option value="Local">Local</option>
+
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <span style="font-weight: bold">Observaciones</span>
+                                <div class="input-group">
+                                    
+                                    <span class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></span> 
+
+                                    <select class="form-control" name="otMovimientoEdit"  id="otMovimientoEdit">
+
+                                    <option value="1">Facturar Y Resurtir</option>
+
+                                    <option value="2">Facturar</option>
+
+
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <span style="font-weight: bold">Comentarios</span>
+                                <div class="input-group">
+                                    
+                                    <span class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></span> 
+
+                                    <textarea class="form-control input-lg" name="otComentariosEdit" id="otComentariosEdit" cols="10" rows="3"></textarea>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+       
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+        <div class="modal-footer" >
+            
+            <button type="button" class="btn btn-warning" style="background: #2667ce;" data-dismiss="modal" id="minimizarOrden">Salir</button>
+
+            <button type="submit" class="btn btn-success" style="background: #2667ce;" id="modificarOrden">Actualizar</button>
+        
+        </div>
+
+        <?php
+
+          $editarOrdenTrabajo = new ControladorOrdenes();
+          $editarOrdenTrabajo -> ctrEditarOrdenTrabajo();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
 <?php
 
-  $eliminarPedido = new ControladorAtencion();
-  $eliminarPedido -> ctrEliminarPedido();
+  $cancelarOrden = new ControladorOrdenes();
+  $cancelarOrden -> ctrCancelarOrden();
 
 ?> 
+<!--=====================================
+MODAL DETALLE CLIENTE
+======================================-->
+<div class="modal fade" id="modalDetailClient"  data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <div class="modal-header estilosTablas" >
+    <center><h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i> DETALLE CLIENTE</h3></center>
+        <button type="button" class="close btnCerrarDetailClient" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id="detailClient" name="detailClient">
 
+                    <div class="table-responsive">
+                      <table class="table" id="tablaDetailClient">
+                     
+                      </table>
+                    </div>
+                          
+                </div>
+            </div>
+       
+      
+      </div>
+      <div class="modal-footer" style="margin-top:100px">
+        <button type="button" class="btn btn-default btnCerrarDetailClient" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
 </script>
 
-
-<script type="text/javascript">
-  $(document).ready(function() {
-  $('.datepick').datetimepicker({
-    format: 'YYYY-MM-DD HH:mm:ss',
-    ignoreReadonly: true
-  });
-});
-</script>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $('.datepick2').datetimepicker({
-     format: 'YYYY-MM-DD HH:mm:ss',
-    ignoreReadonly: true
-  });
-
-});
-</script>
   <script type="text/javascript">
   $(document).ready(function() {
   $('.datepick3').datetimepicker({
@@ -911,38 +1235,7 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
-      $(document).ready(function(){
-       
-        $("#codigoCliente").focus();
-
-        $("#codigoCliente").keyup(function(e){
-          ;
-          var url = "enter.php";
-          $.getJSON(url, { _num1 : $("#codigoCliente").val() }, function(clientes){
-            $.each(clientes, function(i, cliente){
-              $("#nombreCliente").val(cliente.nombreCliente);
-              $("#rfc").val(cliente.rfc);
-              $("#agenteVentas").val(cliente.agenteVentas);
-              $("#diasCredito").val(cliente.diasCredito);
-              $("#statusCliente").val(cliente.statusCliente);
-
-              
-              if(cliente.resultado == "1"){
-                $("#resultado1").hide();
-                $("#resultado0").show();
-                $("#resultado").css("color","white");
-                $("#resultado").text("Codigo disponible");
-              }else{
-                $("#resultado1").show();
-                $("#resultado0").hide();
-                $("#resultados").css("color","white");
-                $("#resultados").text("Codigo no disponible");
-              }
-
-            });
-          });
-        });
-    });
+    
       
      
       $("#fechaElaboracion").click(function(){
@@ -982,102 +1275,7 @@ $(document).ready(function(){
       }
 
     </script>
-    <script>
-    /**
-     * Funcion que captura las variables pasados por GET
-     * Devuelve un array de clave=>valor
-     */
-    function getGET()
-    {
-        // capturamos la url
-        var loc = document.location.href;
-        // si existe el interrogante
-        if(loc.indexOf('?')>0)
-        {
-            // cogemos la parte de la url que hay despues del interrogante
-            var getString = loc.split('?')[1];
-            // obtenemos un array con cada clave=valor
-            var GET = getString.split('&');
-            var get = {};
- 
-            // recorremos todo el array de valores
-            for(var i = 0, l = GET.length; i < l; i++){
-                var tmp = GET[i].split('=');
-                get[tmp[0]] = unescape(decodeURI(tmp[1]));
-            }
-            return get;
-        }
-    }
- 
-    window.onload = function()
-    {
-        // Cogemos los valores pasados por get
-        var valores=getGET();
-        if(valores)
-        {
-            // hacemos un bucle para pasar por cada indice del array de valores
-            for(var index in valores)
-            {
-                
-                if (valores[index] == "success") {
-              
-                  swal({
 
-                      type: "success",
-                      title: "¡Los datos han sido ingresados correctamente!",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar"
-
-                    }).then(function(result){
-
-                      if(result.value){
-                        
-                        window.location = "atencionClientes";
-
-                      }
-
-                    });
-                }else if (valores[index] == "error") {
-                  swal({
-
-                        type: "error",
-                        title: "¡UPPS! Hubo un error durante la ejecución",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-
-                      }).then(function(result){
-
-                        if(result.value){
-                        
-                          window.location = "atencionClientes";
-
-                        }
-
-                      });
-                }else if (valores[index] == "invalid_file") {
-                      swal({
-
-                        type: "error",
-                        title: "¡UPPS!El formato del archivo es inválido",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-
-                      }).then(function(result){
-
-                        if(result.value){
-                        
-                          window.location = "atencionClientes";
-
-                        }
-
-                      });
-                }
-            }
-        }else{
-            
-        }
-    }
-    </script>
   
     <script type="text/javascript">
               $("#modalEditarPedido").draggable({
@@ -1114,5 +1312,37 @@ $(document).ready(function(){
         });
      
     </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+
+          
+          $.timer(15000, function(temporizador){
+
+            if (localStorage.getItem("pausado") === null) {
+
+                localStorage.setItem("pausado",0);
+            }else{
+
+                 if (localStorage.getItem("pausado") == 1) {
+               
+                  }else{
+                     obtenerPedidosNuevos();
+
+                  }
+             
+
+            }
+             
+             
+          })
+
+      });
+       if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+  
+    </script>
+
     
 

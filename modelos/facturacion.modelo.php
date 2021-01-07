@@ -1371,7 +1371,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT f.partSurt AS totalPart,f.unidSurt AS totalUnid,f.importSurt AS totalImport,m.serie,m.folio, m.numeroPartidas,  m.numeroUnidades, m.importeFactura FROM facturacion f INNER JOIN facturasgenerales  m ON f.idPedido = m.folioPedido and f.serie = m.seriePedido  WHERE f.idPedido = :$item and f.serie = :$item2");
+			$stmt = Conexion::conectar()->prepare("SELECT m.id,f.partSurt AS totalPart,f.unidSurt AS totalUnid,f.importSurt AS totalImport,m.serie,m.folio, m.numeroPartidas,  m.numeroUnidades, m.importeFactura,m.cancelado,m.fechaFactura,if(fe.estatusEntrega is null,'Sin Ruta Asignada',fe.estatusEntrega) as estatusEntrega FROM facturacion f INNER JOIN facturasgenerales  m ON f.idPedido = m.folioPedido and f.serie = m.seriePedido LEFT OUTER JOIN facturasEntregas  fe ON  m.id = fe.idFactura  WHERE f.idPedido = :$item and f.serie = :$item2");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 			$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
@@ -1406,7 +1406,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	==========================================================================*/
 	static public function mdlEditarDatosFacturas($tabla2, $datosActualizar){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 as fg INNER JOIN facturacion as f ON fg.seriePedido = f.serie and fg.folioPedido = f.idPedido SET f.usuario = :usuario, f.secciones = :secciones, f.status = :statusPedido, f.estado = :estado, f.facturaPendiente = :facturaPendiente, f.ordenCompra = :ordenCompra, f.tipo = :tipo, f.statusCliente = :statusCliente, f.tipoRuta = :tipoRuta, f.cantidad = :cantidad, f.fechaRecepcion = :fechaRecepcion, f.fechaEntrega = :fechaEntrega, f.observaciones = :observaciones, f.formatoPedido = :formatoPedido, fg.numeroPartidas = :numeroPartidas, fg.numeroUnidades = :numeroUnidades, fg.importeFactura = :importeFactura, fg.neto = :neto, fg.impuesto = :impuesto, fg.total = :total, fg.codigoCliente = :codigoCliente, fg.rfc = :rfc, fg.nombreCliente = :nombreCliente, fg.statusCliente = :statusClienteFg, fg.diasCredito = :diasCredito, fg.pendiente = :pendiente, fg.estatus = :estatus WHERE f.serie = :seriePedido and f.idPedido = :folioPedido and fg.serie = :serie and fg.folio = :folio");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 as fg INNER JOIN facturacion as f ON fg.seriePedido = f.serie and fg.folioPedido = f.idPedido SET f.usuario = :usuario, f.secciones = :secciones, f.status = :statusPedido, f.estado = :estado, f.facturaPendiente = :facturaPendiente, f.ordenCompra = :ordenCompra, f.tipo = :tipo,  f.tipoRuta = :tipoRuta, f.cantidad = :cantidad, f.fechaRecepcion = :fechaRecepcion, f.fechaEntrega = :fechaEntrega, f.observaciones = :observaciones, f.formatoPedido = :formatoPedido, fg.numeroPartidas = :numeroPartidas, fg.numeroUnidades = :numeroUnidades, fg.importeFactura = :importeFactura, fg.neto = :neto, fg.impuesto = :impuesto, fg.total = :total, fg.pendiente = :pendiente, fg.estatus = :estatus WHERE f.serie = :seriePedido and f.idPedido = :folioPedido and fg.serie = :serie and fg.folio = :folio");
 
 		$stmt->bindParam(":seriePedido", $datosActualizar["seriePedido"], PDO::PARAM_STR);
 		$stmt->bindParam(":folioPedido", $datosActualizar["folioPedido"], PDO::PARAM_INT);
@@ -1417,7 +1417,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 		$stmt->bindParam(":facturaPendiente", $datosActualizar["facturaPendiente"], PDO::PARAM_INT);
 		$stmt->bindParam(":ordenCompra", $datosActualizar["ordenCompra"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo", $datosActualizar["tipo"], PDO::PARAM_INT);
-		$stmt->bindParam(":statusCliente", $datosActualizar["statusCliente"], PDO::PARAM_STR);
+
 		$stmt->bindParam(":tipoRuta", $datosActualizar["tipoRuta"], PDO::PARAM_INT);
 		$stmt->bindParam(":cantidad", $datosActualizar["cantidad"], PDO::PARAM_INT);
 		$stmt->bindParam(":fechaRecepcion", $datosActualizar["fechaRecepcion"], PDO::PARAM_STR);
@@ -1434,11 +1434,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 		$stmt->bindParam(":impuesto", $datosActualizar["impuesto"], PDO::PARAM_STR);
 		$stmt->bindParam(":total", $datosActualizar["total"], PDO::PARAM_STR);
 
-		$stmt->bindParam(":codigoCliente", $datosActualizar["codigoCliente"], PDO::PARAM_STR);
-		$stmt->bindParam(":rfc", $datosActualizar["rfc"], PDO::PARAM_STR);
-		$stmt->bindParam(":nombreCliente", $datosActualizar["nombreCliente"], PDO::PARAM_STR);
-		$stmt->bindParam(":statusClienteFg", $datosActualizar["statusClienteFg"], PDO::PARAM_STR);
-		$stmt->bindParam(":diasCredito", $datosActualizar["diasCredito"], PDO::PARAM_INT);
+		
 		$stmt->bindParam(":pendiente", $datosActualizar["pendiente"], PDO::PARAM_STR);
 		$stmt->bindParam(":estatus", $datosActualizar["estatus"], PDO::PARAM_STR);
 
@@ -1462,7 +1458,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	==================================================*/
 	static public function mdlEditarDatosFacturasNoExisteFolio($datosActualizar){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE facturacion as f SET f.usuario = :usuario, f.secciones = :secciones, f.status = :statusPedido, f.estado = :estado, f.facturaPendiente = :facturaPendiente, f.ordenCompra = :ordenCompra, f.tipo = :tipo, f.statusCliente = :statusCliente, f.tipoRuta = :tipoRuta, f.cantidad = :cantidad, f.fechaRecepcion = :fechaRecepcion, f.fechaEntrega = :fechaEntrega, f.observaciones = :observaciones, f.formatoPedido = :formatoPedido WHERE f.serie = :seriePedido and f.idPedido = :folioPedido");
+		$stmt = Conexion::conectar()->prepare("UPDATE facturacion as f SET f.usuario = :usuario, f.secciones = :secciones, f.status = :statusPedido, f.estado = :estado, f.facturaPendiente = :facturaPendiente, f.ordenCompra = :ordenCompra, f.tipo = :tipo,  f.tipoRuta = :tipoRuta, f.cantidad = :cantidad, f.fechaRecepcion = :fechaRecepcion, f.fechaEntrega = :fechaEntrega, f.observaciones = :observaciones, f.formatoPedido = :formatoPedido WHERE f.serie = :seriePedido and f.idPedido = :folioPedido");
 
 		$stmt->bindParam(":seriePedido", $datosActualizar["seriePedido"], PDO::PARAM_STR);
 		$stmt->bindParam(":folioPedido", $datosActualizar["folioPedido"], PDO::PARAM_INT);
@@ -1473,7 +1469,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 		$stmt->bindParam(":facturaPendiente", $datosActualizar["facturaPendiente"], PDO::PARAM_INT);
 		$stmt->bindParam(":ordenCompra", $datosActualizar["ordenCompra"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo", $datosActualizar["tipo"], PDO::PARAM_INT);
-		$stmt->bindParam(":statusCliente", $datosActualizar["statusCliente"], PDO::PARAM_STR);
+		
 		$stmt->bindParam(":tipoRuta", $datosActualizar["tipoRuta"], PDO::PARAM_INT);
 		$stmt->bindParam(":cantidad", $datosActualizar["cantidad"], PDO::PARAM_INT);
 		$stmt->bindParam(":fechaRecepcion", $datosActualizar["fechaRecepcion"], PDO::PARAM_STR);
@@ -1549,7 +1545,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 	static public function mdlInsertarFacturasFacturacion($tabla2, $datosInsertar){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla2(seriePedido,folioPedido,concepto,serie,folio,estatusFactura,numeroPartidas,numeroUnidades,importeFactura, numFactura, neto, impuesto, total, codigoCliente, rfc, nombreCliente, statusCliente, diasCredito, pendiente, estatus, formaPago, agente) VALUES (:seriePedido,:folioPedido,:concepto,:serie,:folio,:estatusFactura,:numeroPartidas,:numeroUnidades,:importeFactura,:numFactura,:neto,:impuesto,:total,:codigoCliente,:rfc,:nombreCliente,:statusClienteFg,:diasCredito, :pendiente,:estatus,:formaPago,:agente)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla2(seriePedido,folioPedido,concepto,serie,folio,estatusFactura,numeroPartidas,numeroUnidades,importeFactura, numFactura, neto, impuesto, total, codigoCliente, rfc, nombreCliente, statusCliente, diasCredito, pendiente, estatus, formaPago, agente) VALUES (:seriePedido,:folioPedido,:concepto,:serie,:folio,:estatusFactura,:numeroPartidas,:numeroUnidades,:importeFactura,:numFactura,:neto,:impuesto,:total, :pendiente,:estatus,:formaPago,:agente)");
 
 	    $stmt->bindParam(":seriePedido", $datosInsertar["seriePedido"], PDO::PARAM_STR);
 	    $stmt->bindParam(":folioPedido", $datosInsertar["folioPedido"], PDO::PARAM_STR); 
@@ -1565,11 +1561,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 		$stmt->bindParam(":impuesto", $datosInsertar["impuesto"], PDO::PARAM_STR);
 		$stmt->bindParam(":total", $datosInsertar["total"], PDO::PARAM_STR);
 
-		$stmt->bindParam(":codigoCliente", $datosInsertar["codigoCliente"], PDO::PARAM_STR);
-		$stmt->bindParam(":rfc", $datosInsertar["rfc"], PDO::PARAM_STR);
-		$stmt->bindParam(":nombreCliente", $datosInsertar["nombreCliente"], PDO::PARAM_STR);
-		$stmt->bindParam(":statusClienteFg", $datosInsertar["statusClienteFg"], PDO::PARAM_STR);
-		$stmt->bindParam(":diasCredito", $datosInsertar["diasCredito"], PDO::PARAM_INT);
+		
 		$stmt->bindParam(":pendiente", $datosInsertar["pendiente"], PDO::PARAM_STR);
 		$stmt->bindParam(":estatus", $datosInsertar["estatus"], PDO::PARAM_STR);
 		$stmt->bindParam(":formaPago", $datosInsertar["formaPago"], PDO::PARAM_STR);
@@ -1634,7 +1626,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	==================================================*/
 	public static function mdlSeleccionarDatosFacturacion($item, $valor, $item2, $valor2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item AND Fg.cancelado = 0");
 
 		$stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
 		$stmt->bindParam(":".$item2, $valor2, PDO::PARAM_STR);
@@ -1793,10 +1785,11 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	/**
 	 * ACTUALIZAR IMPORTES O DATOS DE SURTIMIENTO EN FACTURACION Y ALMACEN
 	 */
-	static public function mdlActualizarNivelesAlmacenFacturacion($tabla,$tabla2, $datos){
+	static public function mdlActualizarNivelesAlmacenFacturacion($tabla, $tabla2, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.idPedido = $tabla.idPedido SET $tabla2.sumPartidas = $tabla.partSurt,$tabla2.nivelPartidas = $tabla.nivelPartidas,$tabla2.sumUnidades = $tabla.unidSurt,$tabla2.nivelDeSum = $tabla.nivelDeSum,$tabla2.importeSurtido = $tabla.importSurt,$tabla2.nivelSumCosto = $tabla.nivelSumCosto where $tabla2.idPedido = :idPedido");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.serie = $tabla.serie AND $tabla2.idPedido = $tabla.idPedido SET $tabla2.sumPartidas = $tabla.partSurt,$tabla2.nivelPartidas = $tabla.nivelPartidas,$tabla2.sumUnidades = $tabla.unidSurt,$tabla2.nivelDeSum = $tabla.nivelDeSum,$tabla2.importeSurtido = $tabla.importSurt,$tabla2.nivelSumCosto = $tabla.nivelSumCosto where $tabla2.serie = :serie and $tabla2.idPedido = :idPedido");
 
+		$stmt->bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":idPedido", $datos["idPedido"], PDO::PARAM_STR);
 
 		if($stmt -> execute()){
@@ -1836,6 +1829,131 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 	$stmt = null;
 
-}
+	}
+	/*
+	MOSTRAR ALMACENES
+	 */
+	static public function mdlMostrarListaAlmacenes($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+
+	}
+	/*ACTUALIZAR VALORES DE NIVELES*/
+	static public function mdlRecalcularNivelesFacturas($tabla, $seriePedido,$folioPedido){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(id) as secciones,SUM(numeroPartidas) as partidasSurtidas, SUM(importeFactura) as importeSurtido, SUM(numeroUnidades) as unidadesSurtidas from $tabla where seriePedido = '".$seriePedido."' and folioPedido = '".$folioPedido."' and cancelado != 1");
+
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	}
+
+	static public function mdlActualizarDatosFacturacion($datosActualizar){
+
+		if ($datosActualizar["secciones"] == "0") {
+
+			$stmt = Conexion::conectar()->prepare("UPDATE facturacion set secciones = :secciones,partSurt = :partidasSurtidas,importSurt = :importeSurtido, unidSurt = :unidadesSurtidas, nivelSumCosto = ((:importeSurtido/importeInicial)*100), nivelDeSum = ((:unidadesSurtidas/unidSurt)*100), nivelPartidas = ((:partidasSurtidas/partSurt)*100),estado = 0,status = 0,facturaPendiente = 1,tiempoProceso = '00:00:00',serieFactura = :nuevaSerie,folioFactura = :nuevoFolio ,estatusFactura = 0  where serie = :serie and idPedido = :folio");
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("UPDATE facturacion set secciones = :secciones,partSurt = :partidasSurtidas,importSurt = :importeSurtido, unidSurt = :unidadesSurtidas, nivelSumCosto = ((:importeSurtido/importeInicial)*100), nivelDeSum = ((:unidadesSurtidas/unidSurt)*100), nivelPartidas = ((:partidasSurtidas/partSurt)*100),serieFactura = :nuevaSerie,folioFactura = :nuevoFolio  where serie = :serie and idPedido = :folio");
+		}
+		
+
+		$stmt -> bindParam(":serie", $datosActualizar["serie"], PDO::PARAM_STR);
+		$stmt -> bindParam(":folio", $datosActualizar["folio"], PDO::PARAM_STR);
+		$stmt -> bindParam(":importeSurtido", $datosActualizar["importeSurtido"], PDO::PARAM_STR);
+		$stmt -> bindParam(":unidadesSurtidas", $datosActualizar["unidadesSurtidas"], PDO::PARAM_STR);
+		$stmt -> bindParam(":secciones", $datosActualizar["secciones"], PDO::PARAM_STR);
+		$stmt -> bindParam(":partidasSurtidas", $datosActualizar["partidasSurtidas"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nuevaSerie", $datosActualizar["nuevaSerie"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nuevoFolio", $datosActualizar["nuevoFolio"], PDO::PARAM_STR);
+		
+		if($stmt->execute()){
+
+		return "ok";	
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		
+		$stmt = null;
+
+	}
+	static public function mdlRecalcularAtencion($datosPedido,$secciones){
+
+		if ($secciones == "0") {
+
+			$stmt = Conexion::conectar()->prepare("UPDATE atencionaclientes INNER JOIN facturacion ON atencionaclientes.serie = facturacion.serie AND atencionaclientes.folio = facturacion.idPedido SET atencionaclientes.saldoFacturado = facturacion.importSurt,atencionaclientes.estadoFacturacion = facturacion.estado,atencionaclientes.statusFacturacion = facturacion.status,atencionaclientes.tiempoFacturacion = facturacion.tiempoProceso,atencionaclientes.serieFactura = facturacion.serieFactura,atencionaclientes.folioFactura = facturacion.folioFactura where atencionaclientes.serie = :serie and atencionaclientes.folio = :idPedido");
+
+	
+			
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("UPDATE atencionaclientes INNER JOIN facturacion ON atencionaclientes.serie = facturacion.serie AND atencionaclientes.folio = facturacion.idPedido SET atencionaclientes.saldoFacturado = facturacion.importSurt,atencionaclientes.estadoFacturacion = facturacion.estado,atencionaclientes.statusFacturacion = facturacion.status,atencionaclientes.serieFactura = facturacion.serieFactura,atencionaclientes.folioFactura = facturacion.folioFactura where atencionaclientes.serie = :serie and atencionaclientes.folio = :idPedido");
+			
+
+		}
+	
+
+		$stmt->bindParam(":serie", $datosPedido["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":idPedido", $datosPedido["idPedido"], PDO::PARAM_STR);
+	
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlRecalcularLogistica($datosPedido){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE logistica INNER JOIN facturacion ON logistica.serie = facturacion.serie AND logistica.idPedido = facturacion.idPedido SET logistica.estadoFacturacion = facturacion.estado, logistica.statusFacturacion = facturacion.status, logistica.serieFactura = facturacion.serieFactura,logistica.folioFactura = facturacion.folioFactura  where logistica.serie = :serie and logistica.idPedido = :idPedido");
+
+		$stmt->bindParam(":serie", $datosPedido["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(":idPedido", $datosPedido["idPedido"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+	static public function mdlObtenerFacturasPedido($datosPedidoFacturas){
+		$stmt = Conexion::conectar()->prepare("SELECT serie,folio from facturasgenerales where seriePedido = :serie AND folioPedido = :folio  AND cancelado = 0  order by folio DESC limit 1");
+
+			$stmt->bindParam(":serie", $datosPedidoFacturas["serie"], PDO::PARAM_STR);
+			$stmt->bindParam(":folio", $datosPedidoFacturas["folio"], PDO::PARAM_STR);
+			$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	}
 
 }

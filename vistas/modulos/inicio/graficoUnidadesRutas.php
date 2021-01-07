@@ -101,7 +101,7 @@ Highcharts.chart('container2', {
                              $fechaFinal =  date('d/m/y', strtotime($_POST["fechaFinal"]));
                              
                             
-                            $sql_query = "SELECT (SUM(unidadesSurtidas)/SUM(unidadesTotales)*100) AS nivelUnidades FROM facturacionot WHERE DATE_FORMAT(fechaOrden,'%d/%m/%Y') >= DATE_FORMAT(STR_TO_DATE('".$fechaInicio."', '%d/%m/%y'),'%d/%m/%Y') and DATE_FORMAT(fechaOrden,'%d/%m/%Y') <= DATE_FORMAT(STR_TO_DATE('".$fechaFinal."', '%d/%m/%y'),'%d/%m/%Y') and estatusFactura != 2";
+                            $sql_query = "SELECT (SUM(unidSurt)/SUM(unidades)*100) AS nivelUnidades FROM facturacion WHERE DATE_FORMAT(fechaOrden,'%d/%m/%Y') >= DATE_FORMAT(STR_TO_DATE('".$fechaInicio."', '%d/%m/%y'),'%d/%m/%Y') and DATE_FORMAT(fechaOrden,'%d/%m/%Y') <= DATE_FORMAT(STR_TO_DATE('".$fechaFinal."', '%d/%m/%y'),'%d/%m/%Y') and estatusFactura != 2";
                             $resultado = mysqli_query($conn, $sql_query) or die("database_error:".mysqli_error($conn));
                             
                             $total = mysqli_fetch_array($resultado,MYSQLI_ASSOC);
@@ -110,7 +110,7 @@ Highcharts.chart('container2', {
                         
                     }else {
 
-                            $sql_query = "SELECT (SUM(unidadesSurtidas)/SUM(unidadesTotales)*100) AS nivelUnidades FROM facturacionot WHERE estatusFactura != 2";
+                            $sql_query = "SELECT (SUM(unidSurt)/SUM(unidades)*100) AS nivelUnidades FROM facturacion WHERE estatusFactura != 2";
                             $resultado = mysqli_query($conn, $sql_query) or die("database_error:".mysqli_error($conn));
                             
                             $total = mysqli_fetch_array($resultado,MYSQLI_ASSOC);

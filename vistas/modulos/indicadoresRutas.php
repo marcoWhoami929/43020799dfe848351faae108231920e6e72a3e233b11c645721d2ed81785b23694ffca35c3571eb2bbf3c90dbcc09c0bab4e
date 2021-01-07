@@ -123,25 +123,7 @@ PÁGINA DE INICIO
 
 </div>
 <!-- content-wrapper -->
-<script type="text/javascript">
-  /*
-    function actualiza(){
-    $("#container").load("vistas/modulos/inicio/graficoNivelPartidas.php");
-  }
-  setInterval( "actualiza()", 1000 );
 
-  function actualiza2(){
-    $("#container2").load("vistas/modulos/inicio/graficoNivelSurtimiento.php");
-  }
-  setInterval( "actualiza2()", 1000 );
-
-  function actualiza3(){
-    $("#container3").load("vistas/modulos/inicio/graficoNivelSurtimientoCosto.php");
-  }
-  setInterval( "actualiza3()", 1000 );
-
-  */
-</script>
 <script type="text/javascript">
     
   
@@ -152,4 +134,7 @@ PÁGINA DE INICIO
 
 
      }
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
   </script>

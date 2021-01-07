@@ -1345,6 +1345,34 @@ class ControladorFacturasTiendas{
 	}
 	
 	/*=====  End of CONTROLADORES NUEVAS FUNCIONES FACTURAS PENDIENTES  ======*/
+	static public function ctrActualizarEnviadoCredito($tabla,$arreglo){
+
+			$respuesta = ModeloFacturasTiendas::mdlActualizarEnviadoCredito($tabla,$arreglo);
+
+			return $respuesta;
+
+	}	
+	static public function ctrActualizarRecibidoCredito($tabla,$arreglo){
+
+			$respuesta = ModeloFacturasTiendas::mdlActualizarRecibidoCredito($tabla,$arreglo);
+
+			return $respuesta;
+
+	}	
+	static public function ctrActualizarSubidaDocumentosCredito($tabla,$arreglo){
+
+			$respuesta = ModeloFacturasTiendas::mdlActualizarSubidaDocumentosCredito($tabla,$arreglo);
+
+			return $respuesta;
+
+	}
+	static public function ctrMostrarDetallesDocumentosCredito($tabla,$item,$valor){
+
+			$respuesta = ModeloFacturasTiendas::mdlMostrarDetallesDocumentosCredito($tabla,$item,$valor);
+
+			return $respuesta;
+
+	}
 
 
 }

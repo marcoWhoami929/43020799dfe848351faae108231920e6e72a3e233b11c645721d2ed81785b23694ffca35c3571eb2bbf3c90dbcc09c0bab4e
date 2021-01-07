@@ -765,11 +765,10 @@ class ControladorTickets{
 		$url = $_SERVER['REQUEST_URI'];
         $longitud = strlen($url);
         
-          
-
+         
 		  if ($longitud == 56) {
             
-             $idNumeroTicket = substr($url, -1, 4);
+             $idNumeroTicket = substr($url, -3, 4);
             
             
           }else if ($longitud == 59) {
@@ -823,8 +822,8 @@ class ControladorTickets{
 			$respuesta = ModeloTickets::mdlRespuestaTicket($tabla, $datos);
 			$respuesta2 = ModeloTickets::mdlRegistroLogs($tabla2, $datos2);
 			$respuesta3 = ModeloTickets::mdlCerrarTicket($tabla3, $datos3);
-			$respuesta6 = ModeloTickets::mdlAprobarTicket($tabla4, $datos6);
-			$respuesta7 = ModeloTickets::mdlActualizarTiempoProceso($tabla4, $datos6);
+			$respuesta8 = ModeloTickets::mdlAprobarTicket($tabla4, $datos6);
+			$respuesta9 = ModeloTickets::mdlActualizarTiempoProceso($tabla4, $datos6);
 
 			$item = 'numeroTicket';
 			$valor = $datos["idTicket"];
@@ -843,11 +842,24 @@ class ControladorTickets{
 			$respuesta4 = ModeloTickets::mdlCerrarEstatus($tabla4, $datos4);
 			$respuesta5 = ModeloTickets::mdlActualizarVistoAprobado($item,$valor);
 
+			$itemTicket = "numeroTicket";
+			$valorTicket = $datos2["numeroTicket"];
+			$datosTicket = ModeloTickets::mdlObtenerDatosTicket($itemTicket,$valorTicket);
+
+			/*VALIDAR QUE TIPO DE FACTURA ES */
+			if ($datosTicket["serieFactura"] == "FACD" || $datosTicket["serieFactura"] == "FAND" || $datosTicket["serieFactura"] == "FAPB") {
+				
+				$tablaFacturas = "facturasgenerales";
+
+			}else{
+
+				$tablaFacturas = "facturastiendas";
+
+			}
+
 			$item = "idSolicitud";
 			$valor = $datos2["numeroTicket"];
-			$respuesta6 = ModeloFacturasTiendas::mdlVerificarCancelacionSolicitud($item,$valor);
-
-			if($respuesta6["idFacturaCancelacion"] != ""){
+			$respuesta6 = ModeloFacturasTiendas::mdlVerificarCancelacionSolicitud($tablaFacturas,$item,$valor);
 
 			$idFacturaCancelacion = $respuesta6["idFacturaCancelacion"];
 			$item = "id";
@@ -856,9 +868,103 @@ class ControladorTickets{
 			$fechaActual = date("Y-m-d"); 
 
 			$datosCancelacion = array("fechaCancelacion" => $fechaActual,
-									  "estatus" => "Cancelada",
+									  "estatus" => 'Cancelada',
 									  "cancelado" => "1");
-			$respuesta7 = ModeloFacturasTiendas::mdlGenerarCancelacionFactura($item,$valor,$datosCancelacion);
+			$respuesta7 = ModeloFacturasTiendas::mdlGenerarCancelacionFactura($tablaFacturas,$item,$valor,$datosCancelacion);
+
+			if($respuesta6["idFacturaCancelacion"] != ""){
+
+			if ($tablaFacturas == "facturasgenerales") {
+
+				$seriePedido = $respuesta6["seriePedido"];
+				$folioPedido = $respuesta6["folioPedido"];
+
+				$recalcularNiveles = ModeloFacturacion::mdlRecalcularNivelesFacturas($tablaFacturas,$seriePedido,$folioPedido);
+				$secciones = $recalcularNiveles["secciones"];
+
+				if ($secciones == "0") {
+
+					$importeSurtido = 0;
+                	$unidadesSurtidas = 0;
+                	$secciones = $recalcularNiveles["secciones"];
+                	$partidasSurtidas = 0;
+					
+				}else{
+
+					$importeSurtido = $recalcularNiveles["importeSurtido"];
+                	$unidadesSurtidas = $recalcularNiveles["unidadesSurtidas"];
+                	$secciones = $recalcularNiveles["secciones"];
+                	$partidasSurtidas = $recalcularNiveles["partidasSurtidas"];
+
+				}
+				
+				$datosPedidoFacturas = array('serie' => $seriePedido,
+                						 	 'folio' => $folioPedido);
+
+				$obtenerFacturasPedido = ModeloFacturacion::mdlObtenerFacturasPedido($datosPedidoFacturas);
+
+				if ($obtenerFacturasPedido["serie"] == "" and $obtenerFacturasPedido["folio"] == "") {
+					
+					$nuevaSerieFactura = '';
+					$nuevoFolioFactura = '';
+
+				}else{
+
+					$nuevaSerieFactura = $obtenerFacturasPedido["serie"];
+					$nuevoFolioFactura = $obtenerFacturasPedido["folio"];
+
+				}
+
+                $datosActualizar = array('serie' => $seriePedido,
+                						 'folio' => $folioPedido,
+                						 'importeSurtido' => $importeSurtido,
+                						 'unidadesSurtidas' => $unidadesSurtidas,
+                						 'secciones' => $secciones,
+                						 'partidasSurtidas' => $partidasSurtidas,
+                						 'nuevaSerie' => $nuevaSerieFactura,
+                						 'nuevoFolio' => $nuevoFolioFactura);
+
+                $actualizarDatosFacturacion = ModeloFacturacion::mdlActualizarDatosFacturacion($datosActualizar);
+
+                if ($secciones == "0") {
+                
+					$datosPedido = array('serie' => $seriePedido,
+            				   			 'idPedido' =>$folioPedido);
+
+					
+					$actualizarAtencion = ModeloFacturacion::mdlRecalcularAtencion($datosPedido,$secciones);
+
+					$actualizarLogistica = ModeloFacturacion::mdlRecalcularLogistica($datosPedido);
+
+
+                }else{
+
+                	$datosPedido = array('serie' => $seriePedido,
+            				   			 'idPedido' =>$folioPedido);
+
+					
+					$actualizarAtencion = ModeloFacturacion::mdlRecalcularAtencion($datosPedido,$secciones);
+					$actualizarLogistica = ModeloFacturacion::mdlRecalcularLogistica($datosPedido);
+
+
+                }
+
+                $tabla = "facturacion";
+                $tabla2 = "almacen";
+
+                $datos = array('serie' => $seriePedido,
+            				   'idPedido' =>$folioPedido);
+
+                $actualizarNivelesAlmacenFacturacion = ModeloFacturacion::mdlActualizarNivelesAlmacenFacturacion($tabla,$tabla2,$datos);
+
+
+				
+			}else{
+
+			}
+		
+
+			
 
 			}else{
 
@@ -867,7 +973,7 @@ class ControladorTickets{
 			}
 			
 
-			if($respuesta3 == "ok"){
+			if($respuesta7 == "ok"){
 
 				echo'<script>
 

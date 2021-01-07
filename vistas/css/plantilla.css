@@ -51,3 +51,20 @@
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+/*
+NUEVOS ESTILOS
+ */
+.estilosTablas{
+	background:#2667CE;
+	color: white
+}
+.estilosBordesTablas{
+	border: 2px solid #2667CE;
+}
+.coloresTema{
+	color:#2667CE;
+}
+.headerModal{
+	background:#2667CE;
+	color: white
+}

@@ -51,31 +51,90 @@ class TablaFacturacion{
         $datosPendientes = "<button class='btn btn-info btn-xs'>Entrega Con Pedido</button>";
 
       }else if ($facturacion[$i]["status"] == 0 && $facturacion[$i]["estado"] == 0 && $facturacion[$i]["facturaPendiente"] == 0 and $facturacion[$i]["formatoPedido"] == 0) {
+
+        if ($facturacion[$i]["orden"] == 1) {
+          
+          $datosPendientes = "<button class='btn btn-danger btn-xs'>Orden Cancelada</button>";
+
+        }else{
+
+          $datosPendientes = "<button class='btn btn-danger btn-xs'>Pedido Cancelado</button>";
+
+        }
                           
-        $datosPendientes = "<button class='btn btn-danger btn-xs'>Pedido Cancelado</button>";
+        
 
       }
 
       /*=====================ESTATUS DE PEDIDO==========*/
       if ($facturacion[$i]["estatusFactura"] == 1 && $facturacion[$i]["status"] == 1 and $facturacion[$i]["formatoPedido"] == 0) {
 
-        $estatusFactura = "<button class='btn btn-success btn-xs'>Pedido Facturado</button>";                          
+        if ($facturacion[$i]["orden"] == 1) {
+            
+          $estatusFactura = "<button class='btn btn-success btn-xs'>Orden Facturada</button>";
+
+        }else{
+
+          $estatusFactura = "<button class='btn btn-success btn-xs'>Pedido Facturado</button>";
+
+        }
+
+                                  
                           
       }else if ($facturacion[$i]["estatusFactura"] == 1 && $facturacion[$i]["status"] == 0 and $facturacion[$i]["formatoPedido"] == 0) {
 
-        $estatusFactura = "<button class='btn btn-success btn-xs'>Pedido Facturado</button>";                          
+        if ($facturacion[$i]["orden"] == 1) {
+            
+          $estatusFactura = "<button class='btn btn-success btn-xs'>Orden Facturada</button>";
+
+        }else{
+
+          $estatusFactura = "<button class='btn btn-success btn-xs'>Pedido Facturado</button>";
+
+        }
+                          
                           
       }else if($facturacion[$i]["estatusFactura"] == 0 && $facturacion[$i]["status"] == 0 and $facturacion[$i]["formatoPedido"] == 0) {
 
-        $estatusFactura = "<button class='btn btn-warning btn-xs'>Pedido Sin Facturar</button>";
+        if ($facturacion[$i]["orden"] == 1) {
+            
+           $estatusFactura = "<button class='btn btn-warning btn-xs'>Orden Sin Facturar</button>";
+
+        }else{
+
+          $estatusFactura = "<button class='btn btn-warning btn-xs'>Pedido Sin Facturar</button>";
+
+        }
+
+       
 
       }else if($facturacion[$i]["estatusFactura"] == 1 && $facturacion[$i]["status"] == 1 and $facturacion[$i]["formatoPedido"] == 1) {
 
-        $estatusFactura = "<button class='btn btn-info btn-xs'>Entrega Con Pedido</button>";
+         if ($facturacion[$i]["orden"] == 1) {
+            
+           $estatusFactura = "<button class='btn btn-info btn-xs'>Entrega Con Pedido</button>";
+
+        }else{
+
+           $estatusFactura = "<button class='btn btn-info btn-xs'>Entrega Con Pedido</button>";
+
+        }
+
+        
 
       }else if($facturacion[$i]["estatusFactura"] == 2 && $facturacion[$i]["status"] == 0 and $facturacion[$i]["formatoPedido"] == 0){
 
-        $estatusFactura = "<button class='btn btn-danger btn-xs'>Factura Cancelada</button>";
+        if ($facturacion[$i]["orden"] == 1) {
+            
+           $estatusFactura = "<button class='btn btn-danger btn-xs'>Orden Cancelada</button>";
+
+        }else{
+
+           $estatusFactura = "<button class='btn btn-danger btn-xs'>Pedido Cancelado</button>";
+
+        }
+
+
 
       }
       /*=====================ESTATUS DE PEDIDO==========*/
@@ -125,8 +184,50 @@ class TablaFacturacion{
       /*=====================OTROS DATOS================*/
 
                            /*DOS NUEVAS LINEAS*/
-                            
-      if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila") {
+      if ($facturacion[$i]["orden"] == 1) {
+
+
+                if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado") {
+                    
+                    if ($facturacion[$i]["status"] != 1 || $facturacion[$i]["habilitado"] != 2 and $facturacion[$i]["estatusFactura"] != 2) {
+
+                        if ($facturacion[$i]["estado"] == 0 && $facturacion[$i]["status"] == 0 && $facturacion[$i]["facturaPendiente"] == 1 ) {
+
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion'><i class='fa fa-pencil'></i>Editar Orden</button></div>";  
+
+                    }else if ($facturacion[$i]["estado"] == 0 && $facturacion[$i]["status"] == 0 && $facturacion[$i]["facturaPendiente"] == 0) {
+
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion' disabled><i class='fa fa-pencil'></i>Editar Orden</button></div>";  
+
+                    }else if ($facturacion[$i]["estado"] == 1 && $facturacion[$i]["status"] == 1 && $facturacion[$i]["facturaPendiente"] == 0 && $facturacion[$i]["habilitado"] == 0) {
+
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion' disabled><i class='fa fa-pencil'></i>Editar Orden</button></div>";  
+
+                    }else if ($facturacion[$i]["estado"] == 1 && $facturacion[$i]["status"] == 1 && $facturacion[$i]["facturaPendiente"] == 0 && $facturacion[$i]["habilitado"] == 1) {
+
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion'><i class='fa fa-pencil'></i>Editar Orden</button></div>";  
+
+                    }else{
+
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion'><i class='fa fa-pencil'></i>Editar Orden</button></div>"; 
+
+                    }
+                  
+                }else{
+
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion' disabled><i class='fa fa-pencil'></i>Editar Orden</button></div>"; 
+
+                }
+                 
+                }else{
+
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarOrdenFacturacion' idOrdenFacturacion='".$facturacion[$i]["id"]."' folioOrdenFacturacion = '".$facturacion[$i]["idPedido"]."' data-toggle='modal' data-target='#modalEditarOrdenFacturacion' disabled><i class='fa fa-pencil'></i>Editar Orden</button></div>";
+
+                } 
+                              
+      }else{
+
+         if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles"  || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila") {
                           
         if ($facturacion[$i]["status"] != 1 || $facturacion[$i]["habilitado"] != 2) {
 
@@ -152,8 +253,11 @@ class TablaFacturacion{
                          
       }else{
 
-        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarFactura' idFacturacion='".$facturacion[$i]["id"]."' idPedido='".$facturacion[$i]["idPedido"]."' seriePedido='".$facturacion[$i]["serie"]."' data-toggle='modal' data-target='#modalEditarPedido'><i class='fa fa-pencil'></i>Editar</button></div>";
+        $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarFactura' idFacturacion='".$facturacion[$i]["id"]."' idPedido='".$facturacion[$i]["idPedido"]."' seriePedido='".$facturacion[$i]["serie"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar</button></div>";
       }
+
+      }                     
+     
       
       $tiempoProceso = seg_a_dhms($hora_en_segundos);
                       /*=================VER FACTURAS ============*/
@@ -175,11 +279,30 @@ class TablaFacturacion{
 
         if ($facturacion[$i]["habilitado"] != 0) {
 
-          $habilitado = "<div class='btn-group'><button class='btn btn-success btnHabilitarFolio' idFacturacion3='".$facturacion[$i]["id"]."' estadoFactura='0'><i class='fa fa-power-off'></i>Habilitada</button></div>";
+          if ($facturacion[$i]["orden"] == 1) {
+
+             $habilitado = "<div class='btn-group'><button class='btn btn-success btnHabilitarFolio' idOrdenFacturacion3='".$facturacion[$i]["id"]."' estadoOrden='0'><i class='fa fa-power-off'></i>Habilitada</button></div>";
+            
+          }else{
+
+            $habilitado = "<div class='btn-group'><button class='btn btn-success btnHabilitarFolio' idFacturacion3='".$facturacion[$i]["id"]."' estadoFactura='0'><i class='fa fa-power-off'></i>Habilitada</button></div>";
+
+          }
+
+          
                                 
         }else {
 
-          $habilitado = "<div class='btn-group'><button class='btn btn-danger btnHabilitarFolio' idFacturacion3='".$facturacion[$i]["id"]."' estadoFactura='1'><i class='fa fa-power-off'></i>Deshabilitada</button></div>";
+          if ($facturacion[$i]["orden"] == 1) {
+
+            $habilitado = "<div class='btn-group'><button class='btn btn-danger btnHabilitarFolio' idOrdenFacturacion3='".$facturacion[$i]["id"]."' estadoOrden='1'><i class='fa fa-power-off'></i>Deshabilitada</button></div>";
+
+            
+          }else{
+
+              $habilitado = "<div class='btn-group'><button class='btn btn-danger btnHabilitarFolio' idFacturacion3='".$facturacion[$i]["id"]."' estadoFactura='1'><i class='fa fa-power-off'></i>Deshabilitada</button></div>";
+
+          }
 
         }
                          
@@ -246,7 +369,7 @@ class TablaFacturacion{
               "'.$facturacion[$i]["ordenCompra"].'",
               "'.$tipo.'",
               "'.$facturacion[$i]["cantidad"].'",
-              "'.number_format($facturacion[$i]["importSurt"],2).'",
+              "$ '.number_format($facturacion[$i]["importSurt"],2).'",
               "'.$estatusCliente.'",
               "'.$nivelSumCosto.'",
               "'.$importante.'",

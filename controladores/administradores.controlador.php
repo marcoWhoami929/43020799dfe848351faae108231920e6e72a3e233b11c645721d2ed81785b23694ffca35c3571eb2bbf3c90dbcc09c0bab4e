@@ -82,7 +82,7 @@ class ControladorAdministradores{
 
 						echo '<script>
 
-							window.location = "controlMuestras";
+							window.location = "tableroCortes";
 
 						</script>';
 

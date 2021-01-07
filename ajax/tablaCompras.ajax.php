@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+
 session_start();
 require_once "../controladores/compras.controlador.php";
 require_once "../modelos/compras.modelo.php";
@@ -32,10 +32,17 @@ class TablaCompras{
 
 
                         $hora = $compras[$i]["tiempoProceso"];
+                        if ($hora == null) {
+                          
+                          $tiempoProceso = "0 dias 0 minutos 0 segundos";
+                        }else{
+
                         list($horas, $minutos, $segundos) = explode(':', $hora);
                         $hora_en_segundos = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
 
                          $tiempoProceso = seg_a_dhms2($hora_en_segundos);
+                        }
+                      
                         
                           if ($compras[$i]["status"] == 5 && $compras[$i]["estado"] == 0 ) {
 
@@ -142,7 +149,7 @@ class TablaCompras{
                       } 
                      
 
-
+                   
                       $verCompras = "<div class='btn-group'><button class='btn btn-info btnVerCompras' idCom='".$compras[$i]["id"]."' data-toggle='modal' data-target='#modalVerCompras'>Ver</button></div>";
 
                       /*========HABILITAR FOLIO============*/
@@ -183,10 +190,10 @@ class TablaCompras{
       
       $datosJson   .= '[
               "'.($i+1).'",
+               "'.$compras[$i]["serie"].'",
               "'.$compras[$i]["idPedido"].'",
               "'.$compras[$i]["vendedor"].'",
               "'.$compras[$i]["usuario"].'",
-              "'.$compras[$i]["serie"].'",
               "'.$compras[$i]["folioCompra"].'",
               "'.$compras[$i]["fechaCotizacion"].'",
               "'.$compras[$i]["cliente"].'",

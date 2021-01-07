@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Guadalupe Hernandez"){
 
 
 
@@ -87,7 +87,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteGastos=gastos">
 
@@ -226,6 +226,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                   <option value="VENTAS">VENTAS</option>
                                   <option value="VERGEL">VERGEL</option>
                                   <option value="XONACA">XONACA</option>
+                                  <option value="COMPRAS">COMPRAS</option>
                                 </select>
 
                               </div>
@@ -676,6 +677,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                   <option value="VENTAS">VENTAS</option>
                                   <option value="VERGEL">VERGEL</option>
                                   <option value="XONACA">XONACA</option>
+                                  <option value="COMPRAS">COMPRAS</option>
                                 </select>
                                 <input type="hidden" name="idGasto" id="idGasto">
                                 <input type="hidden" name="editarFolioGasto" id="editarFolioGasto">

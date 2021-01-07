@@ -61,6 +61,9 @@ facturasTiendas = $(".tablaFacturacionTiendas").DataTable({
    }
 
 });
+/*******/
+
+/*******/
 facturasTiendasSaldosPendientes = $(".tablaFacturacionTiendasSaldosPendientes").DataTable({
    "ajax":"ajax/tablaFacturacionTiendasSaldosPendientes.ajax.php?fecha="+fecha+"&fechaFin="+fechaFin+"&sucursal="+sucursal,
    //"ajax":"ajax/tablaFacturacionTiendas.ajax.php",
@@ -5160,3 +5163,448 @@ $("#btnLigarFacturasPendientesCredito").click(function(){
     
 })
 /*=====  End of SCRIPTS FUNCIONES CORTE CAJA VINCULACION FACTURAS BANCO  ======*/
+$("#updateFacturasTiendas").on("click",function(){
+  facturasTiendas.ajax.reload();
+  facturasTiendasSaldosPendientes.ajax.reload();
+});
+/******ENVIAR A CREDITO*/
+$(".tablaFacturacionTiendas").on("click", ".btnSendCredito", function(){
+
+      var identificadorFactura = $(this).attr("idFactura");
+
+      var datos =  new  FormData();
+      datos.append('identificadorFactura',identificadorFactura);
+
+       $.ajax({
+
+        url:"ajax/facturacionTiendas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta){ 
+              if (respuesta == "ok") {
+
+                facturasTiendas.ajax.reload();
+
+              }else{
+
+              }
+
+        }
+
+      });
+
+});
+/******CONFIRMAR CREDITO**********/
+$(".tablaFacturacionTiendas").on("click", ".btnConfirmCredito", function(){
+
+      var identificadorFactura = $(this).attr("idFactura");
+
+      var datos =  new  FormData();
+      datos.append('identificadorFacturaConfirm',identificadorFactura);
+
+       $.ajax({
+
+        url:"ajax/facturacionTiendas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta){ 
+              if (respuesta == "ok") {
+
+                facturasTiendas.ajax.reload();
+
+              }else{
+
+              }
+
+        }
+
+      });
+
+});
+
+/******FUNCION PARA LISTAR LOS ARCHIVOS DE ESA FACTURA***/
+function loadDataDocumentsCredito(identificadorFactura){
+
+      var identificadorFacturaLoad = identificadorFactura;
+
+      var datos = new FormData();
+      datos.append('identificadorFacturaLoad',identificadorFacturaLoad);
+
+      $.ajax({
+
+        url:"ajax/facturacionTiendas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta){ 
+
+           if (respuesta != false) {
+
+              var contenedor = document.getElementById("contenedorDatosCarga");
+              contenedor.style.display = '';
+                
+              var usuario = document.getElementById("usuarioLoad");
+              usuario.innerHTML = respuesta["nombre"];
+              usuario.style.fontSize = '18px';
+              usuario.style.fontWeight = 'bold';
+
+              var fecha = document.getElementById("dateLoad");
+              fecha.innerHTML = respuesta["horaSubidaDocumentos"];
+              fecha.style.fontSize = '18px';
+              fecha.style.fontWeight = 'bold';
+              fecha.style.color = 'blue';
+
+           }else{
+
+             var contenedor = document.getElementById("contenedorDatosCarga");
+              contenedor.style.display = 'none';
+
+           }
+
+            
+        }
+
+      })
+
+
+}
+function loadFilesDocumentsCredito(ruta){
+
+      var rutaArchivos = ruta;
+
+      var datos = new FormData();
+      datos.append('rutaArchivos',rutaArchivos);
+
+      $.ajax({
+
+        url:"ajax/facturacionTiendas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta){ 
+
+          
+           var detalle = document.getElementById("panelLoadsFiles")
+          
+                var listaCabeceras = ['#','Nombre del Archivo','Descargar','Eliminar'];
+
+                body = document.getElementById("tablePanelLoadsFiles");
+
+                thead = document.createElement("thead");
+                thead.setAttribute('style','background:#2667ce;color: white');
+
+                theadTr = document.createElement("tr");
+
+                for (var h = 0; h < listaCabeceras.length; h++) {
+                    
+                    var celdaThead = document.createElement("th");
+                    var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                    celdaThead.appendChild(textoCeldaThead);
+                    theadTr.appendChild(celdaThead);
+
+                }
+              
+                thead.appendChild(theadTr);
+     
+                tblBody = document.createElement("tbody");
+                var arregloNombres = ['numero','nombre','descargar','eliminar'];
+                // Crea las celdas
+                for (var i = 2; i < respuesta.length; i++) {
+                  // Crea las hileras de la tabla
+                  var hilera = document.createElement("tr");
+                    
+                    
+                  for (var j = 0; j < arregloNombres.length; j++) {
+
+                    var celda = document.createElement("td");
+
+                   
+                   if (arregloNombres[j] == "numero") {
+
+                    var textoCelda = document.createTextNode(i-1);
+
+                   }else if (arregloNombres[j] == "nombre") {
+
+                    var textoCelda = document.createTextNode(respuesta[i]);
+
+                   }else if(arregloNombres[j] == "descargar"){
+
+                    const descargar = document.createElement('a'); 
+                    descargar.title = "Descargar Archivo";
+                    descargar.href = "archivosCredito/"+rutaArchivos+"/"+respuesta[i]+"";
+              
+                    descargar.setAttribute("download", ""+respuesta[i]+"");
+                    descargar.style.color = "blue";
+                    descargar.style.fontSize = "18px";
+
+                    const span = document.createElement("span");
+                    span.setAttribute("class", "glyphicon glyphicon-download-alt");
+                    span.setAttribute("aria-hidden", "true");
+
+                    descargar.appendChild(span);
+
+                    var textoCelda = descargar;
+
+                   }else if (arregloNombres[j] == "eliminar") {
+
+                 
+                    const eliminar = document.createElement('a'); 
+                    eliminar.title = "Eliminar Archivo";
+                
+                 
+                    eliminar.setAttribute("class", "btDeleteFileCredito");
+                    eliminar.style.color = "red";
+                    eliminar.style.fontSize = "18px";
+                    eliminar.setAttribute("name", ""+respuesta[i]+"");
+                    eliminar.setAttribute("ruta", ""+rutaArchivos+"/"+respuesta[i]+"");
+                    //eliminar.setAttribute("onlick", "return confirm('Esta seguro de eliminar el archivo?');");
+
+                    const span = document.createElement("span");
+                    span.setAttribute("class", "glyphicon glyphicon-trash");
+                    span.setAttribute("aria-hidden", "true");
+
+                    eliminar.appendChild(span);
+
+                    var textoCelda = eliminar;
+
+                   }
+
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                   
+                  }
+                  
+                  tblBody.appendChild(hilera);
+                }
+               
+                body.appendChild(tblBody);
+                body.appendChild(thead);
+
+            
+        }
+
+      })
+
+
+}
+/******CARGAR CREDITO**********/
+$(".tablaFacturacionTiendas").on("click", ".btnLoadDocumentsCredito", function(){
+
+      var identificadorFactura = $(this).attr("idFactura");
+      var serieFactura = $(this).attr("serieFactura");
+      var folioFactura = $(this).attr("folioFactura");
+
+      var rutaArchivos = serieFactura+""+folioFactura;
+
+      localStorage.setItem("identificadorFactura",identificadorFactura);
+      localStorage.setItem("serieFacturaLoad",serieFactura);
+      localStorage.setItem("folioFacturaLoad",folioFactura);
+
+      loadFilesDocumentsCredito(rutaArchivos);
+      loadDataDocumentsCredito(identificadorFactura);
+
+      
+
+});
+
+
+$("#tablePanelLoadsFiles").on("click", ".btDeleteFileCredito", function(){
+
+  var confirmar = confirm("Desea eliminar el archivo");
+  if (confirmar == true) {
+
+    var nombreArchivo = $(this).attr("name");
+    var ruta = $(this).attr("ruta");
+    var alerta = document.getElementById("fileDeleted");
+
+
+      var datos = new FormData();
+      datos.append('nombreArchivo',ruta);
+
+
+      $.ajax({
+
+        url:"ajax/facturacionTiendas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+       
+        success: function(respuesta){ 
+
+          
+          if (respuesta == "true") {
+                alerta.style.display = "";
+
+               var nodos = document.getElementById('tablePanelLoadsFiles');
+                while (nodos.firstChild) {
+                  nodos.removeChild(nodos.firstChild);
+                }
+
+                var rutaArchivos = localStorage.getItem("serieFacturaLoad")+""+localStorage.getItem("folioFacturaLoad");
+
+                loadFilesDocumentsCredito(rutaArchivos);
+                
+                setTimeout(() => {
+                     facturasTiendas.ajax.reload();
+                     alerta.style.display = 'none';
+                   }, 1900)
+  
+
+          }
+
+            
+        }
+      })
+
+  }else{
+
+     var alertaCancel = document.getElementById("fileCanceled");
+     alertaCancel.style.display = '';
+
+     setTimeout(() => {
+       alertaCancel.style.display = 'none';
+     }, 1900)
+
+
+
+  }
+
+
+});
+$(".btnCloseDocuments").on('click', function(){
+
+   var nodos = document.getElementById('tablePanelLoadsFiles');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+    }
+     var contenedor = document.getElementById("contenedorDatosCarga");
+     contenedor.style.display = 'none';
+    facturasTiendas.ajax.reload();
+   
+
+});
+$(function(){
+        $("#enviar").on("click", function(e){
+            e.preventDefault();
+
+
+            var datos = new FormData();
+            var archivoCargado = $('#fileCharge')[0].files[0];
+        
+            datos.append('archivoCargado',archivoCargado);
+            var fichero = localStorage.getItem("serieFacturaLoad")+""+localStorage.getItem("folioFacturaLoad");
+             datos.append('ficheroRuta',fichero);
+
+              var alertaSuccess = document.getElementById("fileLoadSuccess");
+              $.ajax({
+
+                  url:"ajax/uploadFilesCredito.php",
+                  type: "POST",
+                  data: datos,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                      
+                  success: function(respuesta){ 
+              
+
+                    var response = respuesta;
+                    var responseFinal = response.replace(/['"]+/g, '');
+                    if (responseFinal == "true") {
+
+                      alertaSuccess.style.display = '';
+
+                      var identificadorFactura = localStorage.getItem("identificadorFactura");
+
+
+                      var datos =  new  FormData();
+                      datos.append('identificadorFacturaUpload',identificadorFactura);
+
+                       $.ajax({
+
+                        url:"ajax/facturacionTiendas.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(respuesta){ 
+                              if (respuesta == "ok") {
+
+                                  var nodos = document.getElementById('tablePanelLoadsFiles');
+                                  while (nodos.firstChild) {
+                                    nodos.removeChild(nodos.firstChild);
+                                  }
+
+                                  var rutaArchivos = localStorage.getItem("serieFacturaLoad")+""+localStorage.getItem("folioFacturaLoad");
+
+                                  loadFilesDocumentsCredito(rutaArchivos);
+                              }
+
+                        }
+
+                      });
+    
+                      setTimeout(() => {
+                          document.getElementById("fileCharge").value = "";
+                             facturasTiendas.ajax.reload();
+                            alertaSuccess.style.display = 'none';
+                          }, 1900)
+
+                    }else{
+
+                        var alertaDanger = document.getElementById("fileLoadDanger");
+                         alertaDanger.style.display = '';
+
+                         setTimeout(() => {
+                           alertaDanger.style.display = 'none';
+                         }, 1900)
+
+
+                    }
+
+
+                  }
+                });
+
+        });
+    });
+
+$(".tablaFacturacionTiendas").on("click", ".btnLoadDocumentsCreditoLoads", function(){
+
+      var identificadorFactura = $(this).attr("idFactura");
+      var serieFactura = $(this).attr("serieFactura");
+      var folioFactura = $(this).attr("folioFactura");
+
+      var rutaArchivos = serieFactura+""+folioFactura;
+
+      localStorage.setItem("identificadorFactura",identificadorFactura);
+      localStorage.setItem("serieFacturaLoad",serieFactura);
+      localStorage.setItem("folioFacturaLoad",folioFactura);
+
+      loadFilesDocumentsCredito(rutaArchivos);
+
+      loadDataDocumentsCredito(identificadorFactura);
+
+      
+
+});
+

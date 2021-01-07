@@ -1,54 +1,9 @@
-/*=============================================
-CARGAR LA TABLA DINÁMICA DE ORDENES DE TRABAJO DE ALMACEN
-=============================================*/
-
-var tablaAlmacenRuta = $(".tablaAlmacenRuta").DataTable({
-    "ajax":"ajax/tablaAlmacenRuta.ajax.php",
-    "deferRender": true,
-    "retrieve": true,
-    "processing": true,
-    "fixedHeader": true,
-     "iDisplayLength": 10,
-     "order": [[ 0, "desc" ]],
-     /*"scrollX": true,*/
-      "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
-    "language": {
- 
-     "sProcessing":     "Procesando...",
-     "sLengthMenu":     "Mostrar _MENU_ registros",
-     "sZeroRecords":    "No se encontraron resultados",
-     "sEmptyTable":     "Ningún dato disponible en esta tabla",
-     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-     "sInfoPostFix":    "",
-     "sSearch":         "Buscar:",
-     "sUrl":            "",
-     "sInfoThousands":  ",",
-     "sLoadingRecords": "Cargando...",
-     "oPaginate": {
-       "sFirst":    "Primero",
-       "sLast":     "Último",
-       "sNext":     "Siguiente",
-       "sPrevious": "Anterior"
-     },
-     "oAria": {
-         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-     }
- 
-    }
- 
- });
- setInterval( function () {
-    tablaAlmacenRuta.ajax.reload( null, false ); // user paging is not reset on reload
-}, 10000);
 
 
 /*=============================================
 EDITAR ORDEN ALMACEN
 =============================================*/
-$(".tablaAlmacenRuta").on("click", ".btnEditarOrdenAlmacen", function(){
+$(".tablaAlmacen").on("click", ".btnEditarOrdenAlmacen", function(){
 
     var idOrden= $(this).attr("idOrdenAlmacen");
     
@@ -66,17 +21,10 @@ $(".tablaAlmacenRuta").on("click", ".btnEditarOrdenAlmacen", function(){
       dataType: "json",
       success: function(respuesta){ 
         $("#otIdOrdenAlmacenEdit").val(respuesta["id"]);
-        $("#otClienteEdit").val(respuesta["cliente"]);
+        $("#otClienteEdit").val(respuesta["nombreCliente"]);
         $("#otSerieEdit").val(respuesta["serie"]);
-        $("#otFolioEdit").val(respuesta["folio"]);
-        $("#otSerieTraspasoEdit").val(respuesta["serieTraspaso"]);
-        $("#otFolioTraspasoEdit").val(respuesta["folioTraspaso"]);
-        $("#otNumeroPartidasTraspasoEdit").val(respuesta["partidasTraspaso"]);
-        $("#otNumeroUnidadesTraspasoEdit").val(respuesta["unidadesTraspaso"]);
-        $("#otSerieTraspaso2Edit").val(respuesta["serieTraspaso2"]);
-        $("#otFolioTraspaso2Edit").val(respuesta["folioTraspaso2"]);
-        $("#otNumeroPartidasTraspaso2Edit").val(respuesta["partidasTraspaso2"]);
-        $("#otNumeroUnidadesTraspaso2Edit").val(respuesta["unidadesTraspaso2"]);
+        $("#otFolioEdit").val(respuesta["idPedido"]);
+       
         $("#otNumeroPartidasEdit").val(respuesta["numeroPartidas"]);
         $("#otNumeroUnidadesEdit").val(respuesta["numeroUnidades"]);
         $("#otImporteTotalEdit").val(respuesta["importeTotal"]);
@@ -99,7 +47,7 @@ $(".tablaAlmacenRuta").on("click", ".btnEditarOrdenAlmacen", function(){
   /*=============================================
   HABILITAR FOLIO  DE ORDEN DE TRABAJO
   =============================================*/
-  $(".tablaAlmacenRuta").on("click", ".btnHabilitarFolio", function(){
+  $(".tablaAlmacen").on("click", ".btnHabilitarFolio", function(){
 
     var idOrden4 = $(this).attr("idOrden3");
     var estadoOrden= $(this).attr("estadoOrden");
@@ -142,12 +90,14 @@ $(".tablaAlmacenRuta").on("click", ".btnEditarOrdenAlmacen", function(){
   /*=============================================
   VER LA LISTA DE TRASPASOS
   =============================================*/
-  $(".tablaAlmacenRuta").on("click", ".btnVerOrdenes", function(){
+  $(".tablaAlmacen").on("click", ".btnVerOrdenes", function(){
 
-    var idOrden4 = $(this).attr("idOrden4");
+    var serieOrden = $(this).attr("serieOrden");
+    var folioOrden = $(this).attr("folioOrden");
 
     var datos = new FormData();
-    datos.append("idOrden2", idOrden4);
+    datos.append("serieOrden", serieOrden);
+    datos.append("folioOrden", folioOrden);
 
       $.ajax({
 
@@ -160,70 +110,85 @@ $(".tablaAlmacenRuta").on("click", ".btnEditarOrdenAlmacen", function(){
         dataType: "json",
         success: function(respuesta){
 
-          if(respuesta["folioTraspaso"] == "0"){
 
-            $("#serieTraspaso").val("");
-            $("#folioTraspaso").val("");
+                var detalle = document.getElementById("detalleTraspasos")
+            
 
-          }else{
+                var listaCabeceras = ['Serie','Folio','Estatus','Unidades','Partidas','Total','Alm Origen','Alm Destino','Fecha'];
 
-            $("#serieTraspaso").val(respuesta["serieTraspaso"]);
-            $("#folioTraspaso").val(respuesta["folioTraspaso"]);
+                body = document.getElementById("tablaDetalleTraspasos");
 
-          }
-          if(respuesta["partidasTraspaso"] == "0"){
+                thead = document.createElement("thead");
+                thead.setAttribute('style','background:#2667ce;color: white');
 
-            $("#partidasTraspaso").val("");
+                theadTr = document.createElement("tr");
 
-          }else{
+                for (var h = 0; h < listaCabeceras.length; h++) {
+                    
+                    var celdaThead = document.createElement("th");
+                    var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                    celdaThead.appendChild(textoCeldaThead);
+                    theadTr.appendChild(celdaThead);
 
-            $("#partidasTraspaso").val(respuesta["partidasTraspaso"]);
+                }
+              
+                thead.appendChild(theadTr);
+     
+                tblBody = document.createElement("tbody");
 
-          }
-          if(respuesta["unidadesTraspaso"] == "0"){
+                var arregloNombres = ['serieTraspaso','folioTraspaso','cancelado','unidadesTraspaso','partidasTraspaso','totalTraspaso','almacenOrigen','almacenDestino','fechaTraspaso'];
 
-            $("#unidadesTraspaso").val("");
+                // Crea las celdas
+                for (var i = 0; i < respuesta.length; i++) {
+                  // Crea las hileras de la tabla
+                  var hilera = document.createElement("tr");
+               
+                  for (var j = 0; j < arregloNombres.length; j++) {
+                   
 
-          }else{
+                    var celda = document.createElement("td");
 
-            $("#unidadesTraspaso").val(respuesta["unidadesTraspaso"]);
+                    const button = document.createElement('button'); 
+                    button.type = 'button'; 
 
-          }
-          if(respuesta["folioTraspaso2"] == "0"){
+                    if (arregloNombres[j] == 'cancelado' && respuesta[i][arregloNombres[j]] == 0) {
 
-            $("#serieTraspaso2").val("");
-            $("#folioTraspaso2").val("");
+                      button.className = 'btn btn-success';
+                      button.innerText = 'Activo'; 
+                      var textoCelda = button;
 
-          }else{
+                    }else if (arregloNombres[j] == 'cancelado' && respuesta[i][arregloNombres[j]] == 1) {
+                      button.className = 'btn btn-success';
+                      button.innerText = 'Cancelado'; 
+                      var textoCelda = button;
+                    }
+                    else{
 
-            $("#serieTraspaso2").val(respuesta["serieTraspaso2"]);
-            $("#folioTraspaso2").val(respuesta["folioTraspaso2"]);
-
-          }
-         
-          if(respuesta["partidasTraspaso2"] == "0"){
-
-            $("#partidasTraspaso2").val("");
-
-          }else{
-
-            $("#partidasTraspaso2").val(respuesta["partidasTraspaso2"]);
-
-          }
-          if(respuesta["unidadesTraspaso2"] == "0"){
-
-            $("#unidadesTraspaso2").val("");
-
-          }else{
-
-            $("#unidadesTraspaso2").val(respuesta["unidadesTraspaso2"]);
-
-          }
-
-
+                      var textoCelda = document.createTextNode(respuesta[i][arregloNombres[j]]);
+                    }
+                    
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                   
+                  }
+               
+                  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                  tblBody.appendChild(hilera);
+                }
+               
+                // appends <table> into <body>
+                body.appendChild(tblBody);
+                body.appendChild(thead);
    
         }
 
       })
 
   });
+   $(".btnCerrarDesgloseTraspasos").on("click", function() {
+
+        var nodos = document.getElementById('tablaDetalleTraspasos');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+        }
+});

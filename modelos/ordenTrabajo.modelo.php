@@ -277,7 +277,7 @@ class ModeloOrdenes{
 	}
 	static public function mdlEditarOrdenTrabajo($tabla, $datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET creado = :creado, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importe = :importe, fechaRecepcion = :fechaRecepcion, fechaElaboracion = :fechaElaboracion, tipoRuta = :tipoRuta, observaciones = :observaciones, comentarios = :comentarios WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET creado = :creado, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importe = :importe, fechaRecepcion = :fechaRecepcion, fechaElaboracion = :fechaElaboracion, tipoRuta = :tipoRuta, observacionesOrden = :observacionesOrden, comentarios = :comentarios WHERE id = :id");
 
 		
 		$stmt->bindParam(":creado", $datos["creado"], PDO::PARAM_STR);
@@ -287,7 +287,7 @@ class ModeloOrdenes{
 		$stmt->bindParam(":fechaRecepcion", $datos["fechaRecepcion"], PDO::PARAM_STR);
 		$stmt->bindParam(":fechaElaboracion", $datos["fechaElaboracion"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipoRuta", $datos["tipoRuta"], PDO::PARAM_STR);
-		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_INT);
+		$stmt->bindParam(":observacionesOrden", $datos["observacionesOrden"], PDO::PARAM_INT);
 		$stmt->bindParam(":comentarios", $datos["comentarios"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
@@ -341,7 +341,7 @@ class ModeloOrdenes{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT ordenesdetrabajo.fechaOrden,facturasordenes.serieFactura, facturasordenes.folioFactura,ordenesdetrabajo.nombreCliente,estatusordenes.* FROM ordenesdetrabajo  LEFT OUTER JOIN  estatusordenes ON ordenesdetrabajo.folio = estatusordenes.folio  LEFT OUTER JOIN  facturasordenes ON ordenesdetrabajo.folio = facturasordenes.folio WHERE ordenesdetrabajo.folio = estatusordenes.folio GROUP BY folio");
+			$stmt = Conexion::conectar()->prepare("SELECT atencionaclientes.fechaOrden,facturacion.serieFactura as serieFactura, facturacion.folioFactura as folioFactura,atencionaclientes.nombreCliente,estatusordenes.* FROM atencionaclientes  LEFT OUTER JOIN  estatusordenes ON atencionaclientes.serie = estatusordenes.serie and atencionaclientes.folio = estatusordenes.folio  LEFT OUTER JOIN  facturacion ON atencionaclientes.serie = facturacion.serie and atencionaclientes.folio = facturacion.idPedido WHERE atencionaclientes.serie = estatusordenes.serie and atencionaclientes.folio = estatusordenes.folio GROUP BY estatusordenes.folio");
 
 			$stmt -> execute();
 
@@ -404,10 +404,11 @@ class ModeloOrdenes{
 	static public function mdlActualizarObservacionesAlmacenOt($tabla,$tabla2,$datos5){
 
 
-			if($datos5["observaciones"] == 1){
+			if($datos5["observacionesOrden"] == 1){
 
-				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.folio = $tabla.folio SET $tabla2.observaciones = $tabla.observaciones, $tabla2.estado = :estado, $tabla2.pendiente = :pendiente, $tabla2.activo = :activo WHERE $tabla2.folio = :folio");
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.serie = $tabla.serie and $tabla2.idPedido = $tabla.folio SET $tabla2.observacionesOrden = $tabla.observacionesOrden, $tabla2.estado = :estado, $tabla2.pendiente = :pendiente, $tabla2.activo = :activo WHERE $tabla2.serie = :serie and $tabla2.idPedido = :folio");
 
+				$stmt->bindParam(":serie", $datos5["serie"], PDO::PARAM_STR);
 				$stmt->bindParam(":folio", $datos5["folio"], PDO::PARAM_INT);
 				$stmt->bindParam(":estado", $datos5["estado"], PDO::PARAM_INT);
 				$stmt->bindParam(":pendiente", $datos5["pendiente"], PDO::PARAM_INT);
@@ -415,8 +416,9 @@ class ModeloOrdenes{
 
 			}else {
 
-				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.folio = $tabla.folio SET $tabla2.observaciones = $tabla.observaciones, $tabla2.estado = :estado, $tabla2.pendiente = :pendiente, $tabla2.status = :status, $tabla2.tiempoProceso = :tiempoProceso, $tabla2.activo = :activo WHERE $tabla2.folio = :folio");
+				$stmt = Conexion::conectar()->prepare("UPDATE $tabla2 INNER JOIN $tabla ON $tabla2.serie = $tabla.serie and $tabla2.idPedido = $tabla.folio SET $tabla2.observacionesOrden = $tabla.observacionesOrden, $tabla2.estado = :estado, $tabla2.pendiente = :pendiente, $tabla2.status = :status, $tabla2.tiempoProceso = :tiempoProceso, $tabla2.activo = :activo WHERE $tabla2.serie = :serie and $tabla2.idPedido = :folio");
 
+				$stmt->bindParam(":serie", $datos5["serie"], PDO::PARAM_STR);
 				$stmt->bindParam(":folio", $datos5["folio"], PDO::PARAM_INT);
 				$stmt->bindParam(":estado", $datos5["estado"], PDO::PARAM_INT);
 				$stmt->bindParam(":pendiente", $datos5["pendiente"], PDO::PARAM_INT);
@@ -441,8 +443,9 @@ class ModeloOrdenes{
 	}
 	static public function mdlActualizarObservacionesFacturacionOt($tabla,$tabla3,$datos6){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla3 INNER JOIN $tabla ON $tabla3.folio = $tabla.folio SET $tabla3.observaciones = $tabla.observaciones, $tabla3.estado = :estado, $tabla3.facturaPendiente = :facturaPendiente, $tabla3.activo = :activo WHERE $tabla3.folio = :folio");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla3 INNER JOIN $tabla ON $tabla3.serie = $tabla.serie and $tabla3.idPedido = $tabla.folio SET $tabla3.observacionesOrden = $tabla.observacionesOrden, $tabla3.estado = :estado, $tabla3.facturaPendiente = :facturaPendiente, $tabla3.activo = :activo WHERE $tabla3.serie = :serie and $tabla3.idPedido = :folio");
 
+			$stmt->bindParam(":serie", $datos6["serie"], PDO::PARAM_STR);
 			$stmt->bindParam(":folio", $datos6["folio"], PDO::PARAM_INT);
 			$stmt->bindParam(":estado", $datos6["estado"], PDO::PARAM_INT);
 			$stmt->bindParam(":facturaPendiente", $datos6["facturaPendiente"], PDO::PARAM_INT);

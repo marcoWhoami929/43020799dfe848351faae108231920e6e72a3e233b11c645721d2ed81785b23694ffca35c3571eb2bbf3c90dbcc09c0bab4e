@@ -4,7 +4,7 @@
 
     static public function ctrMostrarOrdenesDeTrabajo($item, $valor){
 
-		$tabla = "almacenot";
+		$tabla = "almacen";
 
 		$respuesta = ModeloAlmacenRuta::mdlMostrarOrdenesDeTrabajo($tabla, $item, $valor);
 
@@ -14,20 +14,12 @@
 
 		if(isset($_POST["otIdOrdenAlmacenEdit"])){
 
-                $tabla = "almacenot";
+                $tabla = "almacen";
                 $tabla2 = "bitacora";
 
 				$datos = array("id" => $_POST["otIdOrdenAlmacenEdit"],
 							   "serie" => $_POST["otSerieEdit"],
 							   "folio" => $_POST["otFolioEdit"],
-							   "serieTraspaso" => $_POST["otSerieTraspasoEdit"],
-							   "folioTraspaso" => $_POST["otFolioTraspasoEdit"],
-							   "partidasTraspaso" => $_POST["otNumeroPartidasTraspasoEdit"],
-							   "unidadesTraspaso" => $_POST["otNumeroUnidadesTraspasoEdit"],
-							   "serieTraspaso2" => $_POST["otSerieTraspaso2Edit"],
-                               "folioTraspaso2" => $_POST["otFolioTraspaso2Edit"],
-							   "partidasTraspaso2" => $_POST["otNumeroPartidasTraspaso2Edit"],
-							   "unidadesTraspaso2" => $_POST["otNumeroUnidadesTraspaso2Edit"],
 							   "fechaRecepcion" => $_POST["otFechaRecepcionEdit"],
 							   "fechaSuministro" => $_POST["otFechaSuministroEdit"],
                                "fechaTermino" => $_POST["otFechaTerminoEdit"],
@@ -63,7 +55,7 @@
 						  }).then(function(result) {
 									if (result.value) {
 
-									window.location = "almacenRuta";
+									
 
 									}
 								})
@@ -91,6 +83,15 @@
 		return $respuesta;
 		
 		
+	}
+
+	static public function ctrMostrarListaTraspasos($item,$valor,$item2,$valor2){
+
+		$tabla = "traspasos";
+
+		$respuesta = ModeloAlmacenRuta::mdlMostrarListaTraspasos($tabla,$item,$valor,$item2,$valor2);
+
+		return $respuesta;
 	}
 
 

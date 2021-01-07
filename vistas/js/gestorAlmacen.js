@@ -2,7 +2,7 @@
 CARGAR LA TABLA DINÁMICA DE ALMACEN
 =============================================*/
 
-var table2 = $(".tablaAlmacen").DataTable({
+tablaAlmacen = $(".tablaAlmacen").DataTable({
    "ajax":"ajax/tablaAlmacen.ajax.php",
    "deferRender": true,
    "retrieve": true,
@@ -40,9 +40,7 @@ var table2 = $(".tablaAlmacen").DataTable({
    }
 
 });
-setInterval( function () {
-    table2.ajax.reload(); // user paging is not reset on reload
-}, 5000);
+
 
 /*=============================================
 EDITAR PEDIDO
@@ -88,7 +86,7 @@ $(".tablaAlmacen").on("click", ".btnEditarPedido", function(){
 
 });
 /*=============================================
-EDITAR PEDIDO
+VER OBSERVACIONES
 =============================================*/
 $(".tablaAlmacen").on("click", ".btnVerObservaciones", function(){
 
@@ -232,3 +230,128 @@ $(".tablaAlmacen").on("click", ".btnHabilitarFolio", function(){
     }
 
 })
+$("#updateAlmacen").on("click",function(){
+  tablaAlmacen.ajax.reload();
+})
+/*=============================================
+OBTENER DETALLES DEL ESTATUS DEL CLIENTE
+=============================================*/
+$(".tablaAlmacen").on("click", ".btnDetailClientAlmacen", function(){
+
+  var codigoCliente = $(this).attr("codigoCliente");
+  var catalogo = $(this).attr("catalogo");
+  var idClienteComercial = $(this).attr("idClienteComercial");
+
+  var datos = new FormData();
+  datos.append("codigoCliente", codigoCliente);
+  datos.append("catalogo", catalogo);
+  datos.append("idClienteComercial", idClienteComercial);
+  
+
+  
+  $.ajax({
+
+    url:"ajax/atencion.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(respuesta){ 
+
+
+          var detalle = document.getElementById("detailClientAlmacen")
+            
+
+                var listaCabeceras = ['Días Crédito','Límite de Crédito','Saldo Vencido','Límite de Doctos Vencidos','Documentos Vencidos','Estatus'];
+
+                body = document.getElementById("tablaDetailClientAlmacen");
+
+                thead = document.createElement("thead");
+                thead.setAttribute('style','background:#2667ce;color: white');
+
+                theadTr = document.createElement("tr");
+
+                for (var h = 0; h < listaCabeceras.length; h++) {
+                    
+                    var celdaThead = document.createElement("th");
+                    var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                    celdaThead.appendChild(textoCeldaThead);
+                    theadTr.appendChild(celdaThead);
+
+                }
+              
+                thead.appendChild(theadTr);
+     
+                tblBody = document.createElement("tbody");
+
+                var arregloNombres = ['diasCredito','limiteCredito','saldoVencido','limDoctosVenc','documentosVencidos','statusCliente'];
+
+                // Crea las celdas
+                for (var i = 0; i < 1; i++) {
+                  // Crea las hileras de la tabla
+                  var hilera = document.createElement("tr");
+               
+                  for (var j = 0; j < arregloNombres.length; j++) {
+                   
+
+                    var celda = document.createElement("td");
+
+                    const button = document.createElement('button'); 
+                    button.type = 'button'; 
+
+                    if (arregloNombres[j] == 'statusCliente' && respuesta[arregloNombres[j]] == 0) {
+
+                      button.className = 'btn btn-danger';
+                      button.innerText = 'Inactivo'; 
+                      var textoCelda = button;
+
+                    }else if (arregloNombres[j] == 'statusCliente' && respuesta[arregloNombres[j]] == 1) {
+                      button.className = 'btn btn-success';
+                      button.innerText = 'Activo'; 
+                      var textoCelda = button;
+                    }
+                    else{
+                      if (arregloNombres[j] == 'limiteCredito' || arregloNombres[j] == 'saldoVencido') {
+
+                        var textoCelda = document.createTextNode("$"+respuesta[arregloNombres[j]]);
+                      
+
+                      }else{
+
+                        var textoCelda = document.createTextNode(respuesta[arregloNombres[j]]);
+
+                      }
+
+                      
+                    }
+                    
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                   
+                  }
+               
+                  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                  tblBody.appendChild(hilera);
+                }
+               
+                // appends <table> into <body>
+                body.appendChild(tblBody);
+                body.appendChild(thead);
+ 
+      }
+
+
+    })
+    
+
+})
+  $(".btnCerrarDetailClientAlmacen").on("click", function() {
+
+        var nodos = document.getElementById('tablaDetailClientAlmacen');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+        }
+        tablaAlmacen.ajax.reload();
+});
