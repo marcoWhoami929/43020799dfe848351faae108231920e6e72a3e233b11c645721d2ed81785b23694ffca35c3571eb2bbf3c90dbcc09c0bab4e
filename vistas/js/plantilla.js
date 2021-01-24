@@ -53,6 +53,12 @@ $(document).on("click", ".sidebar-menu li", function(){
 
 	localStorage.setItem("botonera", $(this).children().attr("href"));
 
+	if($(this).children().attr("href") == "tableroCortes"){
+
+		localStorage.setItem("sucursal",$(this).children().attr("sesion"));
+		
+	}
+
 })
 
 if(localStorage.getItem("botonera") == null){

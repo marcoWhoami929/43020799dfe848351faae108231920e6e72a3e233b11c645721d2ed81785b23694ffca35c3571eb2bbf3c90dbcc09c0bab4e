@@ -13,6 +13,22 @@
     $serie = $datosCorteCaja["serie"];
     $folio = $datosCorteCaja["folio"];
     $sucursal = $datosCorteCaja["nombre"];
+    switch ($sucursal) {
+        case 'Rocio Martínez Morales':
+            $sucursal = "Rutas";
+            break;
+        case 'Aurora Fernandez':
+            $sucursal = "Industrial";
+            break;
+        case 'Diego Ávila':
+            $sucursal = "Mayoreo";
+            break;
+        default:
+             $sucursal = $datosCorteCaja["nombre"];
+            break;
+
+    }
+    
     $fechaInicializado = $datosCorteCaja["fechaCorte"];
     $fechaFinalizado = $datosCorteCaja["fechaTerminoCorte"];
     $observaciones = $datosCorteCaja["observaciones"];

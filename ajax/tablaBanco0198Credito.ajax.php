@@ -111,7 +111,7 @@ class TablaBanco0198Credito{
 	                         	/*=============================================
 					  			VALIDAR ACCIONES DE BOTONES EDITAR
 					  			=============================================*/
-					  			if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Compras") {
+					  			if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza") {
 
                           			$acciones = "<button class='btn btn-warning btnEditarDatos' idBanco='".$banco0198Credito[$i]["id"]."'  abono = '".$banco0198Credito[$i]["abono"]."' fechaAbono = '".$banco0198Credito[$i]["fecha"]."' data-toggle='modal' data-target='#modalEditarDatos' id='editarBanco'><i class='fa fa-pencil'></i>Editar</button>"; 
                        

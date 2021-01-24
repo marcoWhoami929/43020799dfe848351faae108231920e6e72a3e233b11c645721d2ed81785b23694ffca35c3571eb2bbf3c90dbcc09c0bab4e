@@ -372,6 +372,7 @@ MODAL EDITAR DATOS
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
+                    
                         </select>
 
                       </div>

@@ -125,6 +125,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Cre
                                 <option value="Sucursal Capu">Sucursal Capu</option>
                                 <option value="Sucursal Reforma">Sucursal Reforma</option>
                                 <option value="Sucursal Las Torres">Sucursal Las Torres</option>
+                                <option value="Rutas">Rutas</option>
+                                <option value="Mayoreo">Mayoreo</option>
+                                <option value="Industrial">Industrial</option>
                           </select>
 
                         </div>

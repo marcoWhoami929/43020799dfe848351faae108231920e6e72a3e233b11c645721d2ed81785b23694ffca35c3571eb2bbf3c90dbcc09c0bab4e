@@ -50,6 +50,20 @@ class TablaCortesDeCaja{
 
       $verDetalleCorte = "<div class='btn-group'><button class='btn btn-info btnVerDetalleCorteCaja' folioCorteCajaVistaDetalle = '".$listaCortesCaja[$i]["folio"]."' data-toggle='modal' data-target='#modalDetalleCorte'><i class='fa fa-info-circle'></i></button></div>";
 
+      switch ($listaCortesCaja[$i]["nombre"]) {
+        case 'Aurora Fernandez':
+          $usuario = 'Industrial';
+          break;
+        case 'Rocio Martínez Morales':
+          $usuario = 'Rutas';
+          break;
+        case 'Diego Ávila':
+          $usuario = 'Mayoreo';
+          break;
+        default:
+          $usuario = $listaCortesCaja[$i]["nombre"];
+          break;
+      }
 
 	 		/*=============================================
 			DEVOLVER DATOS JSON
@@ -64,7 +78,7 @@ class TablaCortesDeCaja{
                   "$ '.number_format($listaCortesCaja[$i]["diferencia"],2).'",
                   "<strong>$ '.number_format($listaCortesCaja[$i]["total"],2).'</strong>",
                   "'.$listaCortesCaja[$i]["observaciones"].'",
-                  "'.$listaCortesCaja[$i]["nombre"].'",
+                  "'.$usuario.'",
                   "'.$verDetalleCorte.'",
                   "'.$pdf.'"],';
 

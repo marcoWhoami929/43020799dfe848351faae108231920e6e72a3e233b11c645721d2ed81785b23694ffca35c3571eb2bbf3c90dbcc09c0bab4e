@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
               
               if (isset($_POST["fechaCorte"])) {
                 echo '<a href="vistas/modulos/reportes.php?reporteCorte=cortecaja&fechaCorte='.$_POST["fechaCorte"].'">
@@ -144,9 +144,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <br>
 
-        <table class="table-bordered table-striped dt-responsive tablaCortesDeCaja" width="100%" id="cortesDeCaja" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaCortesDeCaja estiloBordesTablas" width="100%" id="cortesDeCaja" >
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -170,7 +170,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           <div class="modal fade" id="modalDetalleCorte" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" style="width: 90%">
               <div class="modal-content">
-                <div class="modal-header" style="background:#001f3f;color: white">
+                <div class="modal-header estilosTablas">
                   <h3 class="modal-title" id="exampleModalLabel">Detalle Corte Caja</h3>
 
                   <button type="button" class="close  btnCerrarVistaDetalle" data-dismiss="modal" aria-label="Close">
@@ -184,7 +184,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     <h4>----------------------------------------------------------------------------------------------------------</h4>
                     <br>
 
-                    <h3>Corte de Caja <span class="nombreUsuario" id="usuarioCorte"></span> del <span class="nombreUsuario" id="fechaCorteVistaDetalle"></span></h3>
+                    <h3>Corte de Caja <span class="nombreUsuario" id="usuarioCorte"></span> <span class="nombreUsuario" id="fechaCorteVistaDetalle"></span></h3>
                     
                     <h4>Iniciado <span id="fechaCorteIniciadoDetalle" class="nombreUsuario"></span> a <span id="fechaCorteProcesoDetalle" class="nombreUsuario"></span></h4>
                     <h4><span id="tiempoProcesoCorteDetalle" class="nombreUsuario"></span></h4>

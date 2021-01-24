@@ -661,7 +661,8 @@ class ControladorTickets{
 
 				$datosSolicitud = array("idFacturaSolicitud" => $_POST["idFacturaSolicitud"],
 										"numeroTicket" => $datos["numeroTicket"],
-										"motivoCancelacion" => $_POST["crearContenidoT"]);
+										"motivoCancelacion" => $_POST["crearContenidoT"],
+										"serie" => $_POST['serieFacturaT']);
 
 				$respuesta = ModeloTickets::mdlCrearTicket($tabla, $datos);
 				$respuesta2 = ModeloTickets::mdlRegistroLogs($tabla2, $datos2);

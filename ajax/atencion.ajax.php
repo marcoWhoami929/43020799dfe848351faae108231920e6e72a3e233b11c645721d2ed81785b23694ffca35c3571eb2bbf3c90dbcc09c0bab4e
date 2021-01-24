@@ -60,11 +60,18 @@ class AjaxAtencion{
 
 	}
 	public $fechaActual;
+	public $empresa;
 	public function ajaxObtenerPedidosNuevos(){
 
-			include("../modelos/conexion-api-server.modelo.php");
-			
-			
+			switch ($this->empresa) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
 
 			$item = "CFECHA";
 			$valor = $this->fechaActual;
@@ -74,13 +81,7 @@ class AjaxAtencion{
 
 
 			*/
-
-
-			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','DOPR') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR";
-
-
-
-
+			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR";
 
             $ejecutar = sqlsrv_query($conne,$mostrarPedidos);
             $i = 0;
@@ -122,15 +123,24 @@ class AjaxAtencion{
 
 	}
 	public $fechaActualFacturas;
+	public $empresaFacturas;
 	public function ajaxObtenerFacturasNuevas(){
 
-			include("../modelos/conexion-api-server.modelo.php");
-			
+			switch ($this->empresaFacturas) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
+
 			$item = "CFECHA";
 			$valor = $this->fechaActualFacturas;
 			//$valor = '2020-10-25';
 
-			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc INNER JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB') GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP";
+			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc INNER JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP";
 
 
 
@@ -173,10 +183,19 @@ class AjaxAtencion{
 
 	}
 	public $listaPedidos;
+	public $empresaPedidos;
 	public function ajaxCargarPedidos(){
 
 			include("../db_connect.php");
-			include("../modelos/conexion-api-server.modelo.php");
+			switch ($this->empresaPedidos) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
 
 			
 			$lista = $this->listaPedidos;
@@ -222,6 +241,12 @@ class AjaxAtencion{
 						$usuario = "Aurora Fernandez";
 						break;
 					case 'PECD':
+						$usuario = "Diego Avila";
+						break;
+					case 'PEBB':
+						$usuario = "Rocio Martínez";
+						break;
+					case 'PEPB':
 						$usuario = "Rocio Martínez";
 						break;
 					
@@ -230,7 +255,7 @@ class AjaxAtencion{
 						break;
 				}
 				/***OBTENER SALDO VENCIDO DOCUMENTOS VENCIDOS*/
-				$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido FROM dbo.admDocumentos as admDoc  WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$value["idCliente"]."' AND admDoc.CSERIEDOCUMENTO IN ('FAND','FACD','FAPB') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0";
+				$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido FROM dbo.admDocumentos as admDoc  WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$value["idCliente"]."' AND admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0";
 
 				$ejecutarConsulta = sqlsrv_query($conne,$estatusCliente);
 
@@ -370,9 +395,20 @@ class AjaxAtencion{
 
 	}
 	public $listaFacturas;
+	public $empresaListaFacturas;
 	public function ajaxCargarFacturas(){
 
 			include("../db_connect.php");
+			switch ($this->empresaListaFacturas) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
+			
 
 			$lista = $this->listaFacturas;
 
@@ -441,8 +477,11 @@ class AjaxAtencion{
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
                                 $agente = 'Flex';
                             }else if ($serieFactura == "DOPR") {
-                                $concepto = 'PEDIDO PRUEBA V 3.3';
-                                $agente = 'Documento de Prueba';
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Pinturas';
+                            }else if ($serieFactura == "DFPR") {
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Flex';
                             }
                             
                             $folioFc = str_replace(',','',$value["folio"]);
@@ -524,6 +563,12 @@ class AjaxAtencion{
                             	default:
                             		$formaPago = 'EFECTIVO';
                             		break;
+                            }
+
+                            if ($formaPago == 'POR DEFINIR') {
+                            	$formaPago == 'CREDITO';
+                            }else{
+                            	$formaPago = $formaPago;
                             }
 
 
@@ -716,8 +761,11 @@ class AjaxAtencion{
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
                                 $agente = 'Flex';
                             }else if ($serieFactura == "DOPR") {
-                                $concepto = 'PEDIDO PRUEBA V 3.3';
-                                $agente = 'Documento de Prueba';
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Pinturas';
+                            }else if ($serieFactura == "DFPR") {
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Flex';
                             }
                             
                             $folioFc = str_replace(',','',$value["folio"]);
@@ -799,6 +847,12 @@ class AjaxAtencion{
                             	default:
                             		$formaPago = 'EFECTIVO';
                             		break;
+                            }
+
+                            if ($formaPago == 'POR DEFINIR') {
+                            	$formaPago == 'CREDITO';
+                            }else{
+                            	$formaPago = $formaPago;
                             }
 
 
@@ -949,7 +1003,16 @@ class AjaxAtencion{
                         } else{
 
                         	/***COLOCAR LA ORDEN DE TRABAJO****/
-                        	include("../modelos/conexion-api-server.modelo.php");
+                        	switch ($this->empresaListaFacturas) {
+								case 'Pinturas':
+									include("../modelos/conexion-api-server-pinturas.modelo.php");
+								break;
+								case 'Flex':
+									include("../modelos/conexion-api-server-flex.modelo.php");
+								break;
+								
+							}
+		
 						
 							$serieOrden = $serie;
 							$folioOrden = $folio;
@@ -978,8 +1041,11 @@ class AjaxAtencion{
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
                                 $agente = 'Flex';
                             }else if ($serieFactura == "DOPR") {
-                                $concepto = 'PEDIDO PRUEBA V 3.3';
-                                $agente = 'Documento de Prueba';
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Pinturas';
+                            }else if ($serieFactura == "DFPR") {
+                                $concepto = 'DOCUMENTO PRUEBA V 3.3';
+                                $agente = 'Flex';
                             }
                             
                             $folioFc = str_replace(',','',$value["folio"]);
@@ -1063,6 +1129,12 @@ class AjaxAtencion{
                             		break;
                             }
 
+                             if ($formaPago == 'POR DEFINIR') {
+                            	$formaPago == 'CREDITO';
+                            }else{
+                            	$formaPago = $formaPago;
+                            }
+
                             $fecha = substr($value["fecha"]["date"],0,10);
 							$fechaElab  =substr($value["fechaElaboracion"], 0,19);
 			
@@ -1096,12 +1168,14 @@ class AjaxAtencion{
 									$usuario = "Aurora Fernandez";
 									break;
 								case 'FACD':
-									$usuario = "Rocio Martínez";
+									$usuario = "Diego Avila";
 									break;
 								case 'FAPB':
-									$usuario = "Rocio Martínez";
+									$usuario = "Diego Avila";
 									break;
-								
+								case 'DOPR':
+									$usuario = "Diego Avila";
+									break;
 								default:
 									$usuario = "Aurora Fernandez";
 									break;
@@ -1238,15 +1312,24 @@ class AjaxAtencion{
 
 	}
 	public $fechaActualOrdenes;
+	public $empresaOrdenes;
 	public function ajaxObtenerTraspasosNuevos(){
 
-			include("../modelos/conexion-api-server.modelo.php");
+			switch ($this->empresaOrdenes) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
 			
 			$item = "CFECHA";
 			$valor = $this->fechaActualOrdenes;
 			//$valor = '2020-10-25';
 
-			$mostrarTraspasos = "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CFECHA,admDoc.CREFERENCIA,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('TRGE') GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CFECHA,admDoc.CREFERENCIA,admDoc.CTIMESTAMP";
+			$mostrarTraspasos = "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CFECHA,admDoc.CREFERENCIA,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('TRGE','TRPU') GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CFECHA,admDoc.CREFERENCIA,admDoc.CTIMESTAMP";
 
             $ejecutarConsulta = sqlsrv_query($conne,$mostrarTraspasos);
             $i = 0;
@@ -1277,11 +1360,20 @@ class AjaxAtencion{
 
 	}
 	public $listaTraspasos;
+	public $empresaTraspasos;
 	public function ajaxCargarTraspasos(){
 
 			include("../db_connect.php");
-			include("../modelos/conexion-api-server.modelo.php");
-
+			switch ($this->empresaTraspasos) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
+		
 			
 			$lista = $this->listaTraspasos;
 
@@ -1392,9 +1484,19 @@ class AjaxAtencion{
 	}
 
 	public $fechaActualCompras;
+	public $empresaCompras;
 	public function ajaxObtenerComprasNuevas(){
 
-			include("../modelos/conexion-api-server.modelo.php");
+			switch ($this->empresaCompras) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
+			
 			
 			$item = "CFECHA";
 			$valor = $this->fechaActualCompras;
@@ -1431,11 +1533,20 @@ class AjaxAtencion{
 
 	}
 	public $listaCompras;
+	public $empresaListaCompras;
 	public function ajaxCargarCompras(){
 
 			include("../db_connect.php");
-			include("../modelos/conexion-api-server.modelo.php");
-
+			switch ($this->empresaListaCompras) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Flex':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+				break;
+				
+			}
+			
 			
 			$lista = $this->listaCompras;
 
@@ -1535,9 +1646,18 @@ class AjaxAtencion{
 	public $idClienteComercial;
 
 	public function ajaxVerDetalleEstatusCliente(){
-
+	
 		include("../db_connect.php");
-		include("../modelos/conexion-api-server.modelo.php");
+		switch ($this->catalogo) {
+			case 'PINTURAS':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+			break;
+			case 'FLEX':
+					include("../modelos/conexion-api-server-flex.modelo.php");
+			break;
+				
+		}
+		
 
 		
 		$codigoCliente = $this->codigoCliente;
@@ -1545,7 +1665,7 @@ class AjaxAtencion{
 		$idCliente = $this->idClienteComercial;
 
 
-		$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido,admCli.CDIASCREDITOCLIENTE,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admCli.CESTATUS FROM dbo.admDocumentos as admDoc LEFT OUTER JOIN dbo.admClientes as admCli ON  admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR   WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$idCliente."' AND admDoc.CSERIEDOCUMENTO IN ('FAND','FACD','FAPB') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0 GROUP BY admCli.CDIASCREDITOCLIENTE,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admCli.CESTATUS";
+		$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido,admCli.CDIASCREDITOCLIENTE,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admCli.CESTATUS FROM dbo.admDocumentos as admDoc LEFT OUTER JOIN dbo.admClientes as admCli ON  admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR   WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$idCliente."' AND admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0 GROUP BY admCli.CDIASCREDITOCLIENTE,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admCli.CESTATUS";
 
 				$ejecutarConsulta = sqlsrv_query($conne,$estatusCliente);
 
@@ -1640,6 +1760,7 @@ if (isset($_POST["fechaActual"])) {
 	
 	$obtenerDatos = new AjaxAtencion();
 	$obtenerDatos -> fechaActual = $_POST["fechaActual"];
+	$obtenerDatos -> empresa = $_POST["empresa"];
 	$obtenerDatos -> ajaxObtenerPedidosNuevos();
 }
 /*==============================================
@@ -1648,6 +1769,7 @@ OBETENR FACTURAS NUEVAS
 if (isset($_POST["fechaActualFacturas"])) {
 	$obtenerDatosFacturas = new AjaxAtencion();
 	$obtenerDatosFacturas -> fechaActualFacturas = $_POST["fechaActualFacturas"];
+	$obtenerDatosFacturas -> empresaFacturas = $_POST["empresaFacturas"];
 	$obtenerDatosFacturas -> ajaxObtenerFacturasNuevas();
 }
 /*=============================================
@@ -1657,6 +1779,7 @@ if (isset($_POST["listaPedidos"])) {
 	
 	$cargarPedidos = new AjaxAtencion();
 	$cargarPedidos -> listaPedidos = $_POST["listaPedidos"];
+	$cargarPedidos -> empresaPedidos = $_POST["empresaPedidos"];
 	$cargarPedidos -> ajaxCargarPedidos();
 }
 /*=============================================
@@ -1665,6 +1788,7 @@ CARGAR FACTURAS
 if (isset($_POST["listaFacturas"])) {
 	$cargarFacturas = new AjaxAtencion();
 	$cargarFacturas -> listaFacturas = $_POST["listaFacturas"];
+	$cargarFacturas -> empresaListaFacturas = $_POST["empresaListaFacturas"];
 	$cargarFacturas -> ajaxCargarFacturas();
 }
 /*=============================================
@@ -1674,6 +1798,7 @@ if (isset($_POST["fechaActualOrdenes"])) {
 	
 	$obtenerDatosTraspasos = new AjaxAtencion();
 	$obtenerDatosTraspasos -> fechaActualOrdenes = $_POST["fechaActualOrdenes"];
+	$obtenerDatosTraspasos -> empresaOrdenes = $_POST["empresaOrdenes"];
 	$obtenerDatosTraspasos -> ajaxObtenerTraspasosNuevos();
 }
 /*=============================================
@@ -1682,6 +1807,7 @@ CARGAR TRASPASOS
 if (isset($_POST["listaTraspasos"])) {
 	$cargarTraspasos = new AjaxAtencion();
 	$cargarTraspasos -> listaTraspasos = $_POST["listaTraspasos"];
+	$cargarTraspasos -> empresaTraspasos = $_POST["empresaTraspasos"];
 	$cargarTraspasos -> ajaxCargarTraspasos();
 }
 /*=============================================
@@ -1691,6 +1817,7 @@ if (isset($_POST["fechaActualCompras"])) {
 	
 	$obtenerDatosCompras = new AjaxAtencion();
 	$obtenerDatosCompras -> fechaActualCompras = $_POST["fechaActualCompras"];
+	$obtenerDatosCompras -> empresaCompras = $_POST["empresaCompras"];
 	$obtenerDatosCompras -> ajaxObtenerComprasNuevas();
 }
 /*=============================================
@@ -1699,6 +1826,7 @@ CARGAR COMPRAS
 if (isset($_POST["listaCompras"])) {
 	$cargarCompras = new AjaxAtencion();
 	$cargarCompras -> listaCompras = $_POST["listaCompras"];
+	$cargarCompras -> empresaListaCompras = $_POST["empresaListaCompras"];
 	$cargarCompras -> ajaxCargarCompras();
 }
 /*=============================================

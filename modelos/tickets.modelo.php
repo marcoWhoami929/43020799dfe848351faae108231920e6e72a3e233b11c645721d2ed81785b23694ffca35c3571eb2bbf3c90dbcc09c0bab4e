@@ -957,11 +957,20 @@ class ModeloTickets{
 	=============================================*/
 	static public function mdlActualizarSolicitudTicket($datosSolicitud){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE facturastiendas set idSolicitud = :idSolicitud, motivoCancelacion = :motivoCancelacion where id = :id");
+		if ($datosSolicitud["serie"] == "FACD" || $datosSolicitud["serie"] == "FAND" || $datosSolicitud["serie"] == "FAPB") {
+			
+			$tabla = 'facturasgenerales';
+
+		}else{
+
+			$tabla = 'facturastiendas';
+		}
+		$stmt = Conexion::conectar()->prepare("UPDATE ".$tabla." set idSolicitud = :idSolicitud, motivoCancelacion = :motivoCancelacion where id = :id");
 
 		$stmt->bindParam(":id", $datosSolicitud["idFacturaSolicitud"], PDO::PARAM_INT);
 		$stmt->bindParam(":idSolicitud", $datosSolicitud["numeroTicket"], PDO::PARAM_INT);
 		$stmt->bindParam(":motivoCancelacion", $datosSolicitud["motivoCancelacion"], PDO::PARAM_STR);
+	
 
 		if($stmt->execute()){
 

@@ -121,7 +121,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
         <br>
         <?php
 
-                    if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+                    if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles"  || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+                      /*
                       
                         echo '<div class="">
                       <div class="row">
@@ -142,7 +144,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
                        echo '</form>
                       </div>
                     </div>';
-                    
+                    */
 
                     }
               
@@ -1714,22 +1716,28 @@ $(document).ready(function() {
     </script>
       <script type="text/javascript">
         $(document).ready(function() {
-      $.timer(30000, function(temporizador){
-            if (localStorage.getItem("pausadoFacturas") === null) {
+          $.timer(30000, function(temporizador){
+                if (localStorage.getItem("pausadoFacturas") === null) {
 
-                    localStorage.setItem("pausadoFacturas",0);
-                }else{
+                        localStorage.setItem("pausadoFacturas",0);
+                    }else{
 
-                     if (localStorage.getItem("pausadoFacturas") == 1) {
-                   
-                      }else{
-                         obtenerFacturasNuevas();
+                         if (localStorage.getItem("pausadoFacturas") == 1) {
+                       
+                          }else{
+                           
 
-                      }
-            
-            }
- 
-          })
+                             obtenerFacturasNuevas('Pinturas').then(
+                              function () {
+                                obtenerFacturasNuevas('Flex');
+                              }
+                            );
+
+                          }
+                
+                }
+     
+              })
     });
 
     if ( window.history.replaceState ) {

@@ -7,7 +7,7 @@ if (isset($_POST['view'])) {
         $update_query = "UPDATE notificacionestickets SET estatus = 1 WHERE id = '".$_POST["view"]."' and  estatus=0";
         mysqli_query($conn, $update_query);
     }
-    $usuario = $_SESSION["id"];
+    $usuario = isset($_SESSION["id"]);
     $query  = "SELECT * FROM notificacionestickets where autorTicket = '".$usuario."' ORDER BY id DESC";
     $result = mysqli_query($conn, $query);
    

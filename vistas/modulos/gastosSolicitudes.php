@@ -90,7 +90,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Jos
 
                 <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
-              </a>';
+              </a>&nbsp;';
+              echo '<button type="button" class="btn btn-info btnUpdateGastosSolicitudes">Actualizar</button>';
               
             }else{
               echo '

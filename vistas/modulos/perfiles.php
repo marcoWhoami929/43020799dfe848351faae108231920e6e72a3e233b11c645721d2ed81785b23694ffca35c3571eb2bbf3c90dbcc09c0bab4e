@@ -1,5 +1,5 @@
 <?php
-include("activos.php");
+//include("activos.php");
 if($_SESSION["perfil"] != "Administrador General"){
 
 echo '<script>

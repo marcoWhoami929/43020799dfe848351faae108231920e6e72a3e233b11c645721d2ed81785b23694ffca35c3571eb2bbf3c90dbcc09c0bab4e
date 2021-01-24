@@ -1877,7 +1877,12 @@ $(document).ready(function(){
                  if (localStorage.getItem("pausadoCompras") == 1) {
                
                   }else{
-                     obtenerCompras();
+
+                      obtenerCompras('Pinturas').then(
+                              function () {
+                                obtenerCompras('Flex');
+                              }
+                            );
 
                   }
              

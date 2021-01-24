@@ -906,7 +906,12 @@ $(document).ready(function(){
                  if (localStorage.getItem("pausadoAlmacen") == 1) {
                
                   }else{
-                     obtenerTraspasos();
+           
+                           obtenerTraspasos('Pinturas').then(
+                              function () {
+                                obtenerTraspasos('Flex');
+                              }
+                            );
 
                   }
              

@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Guadalupe Hernandez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -87,7 +87,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteGastos=gastos">
 
@@ -97,7 +97,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
               echo '<button class="report btn btn-warning" id="generarGasto" name="generarGasto" data-toggle="modal" data-target="#modalGenerarGasto"><i class="fa fa-money" aria-hidden="true"></i>Nuevo Gasto</button>&nbsp;';
 
               
-               echo '<a  class="btn btn-success" id="solicitarReembolso" name="solicitarReembolso"><i class="fa fa-money" aria-hidden="true"></i>Solicitar Reembolso</a>';
+               echo '<a  class="btn btn-success" id="solicitarReembolso" name="solicitarReembolso"><i class="fa fa-money" aria-hidden="true"></i>Solicitar Reembolso</a>&nbsp;';
+               echo '<button type="button" class="btn btn-info btnUpdateGastos">Actualizar</button>';
 
               
               
@@ -124,7 +125,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-
+        <div>
+         <strong>Nota:</strong><br>
+         <small>1.- Cuando se requiera generar un gasto, el cual no tenga factura, en el campo  subgrupo elegir el concepto: <strong>99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales</strong> y solo subir el pdf que contenga el recibo o nota del gasto.</small>
+         <br>
+         <small>2.- Cuando el gasto contenga factura subir los archivos <strong>(PDF Y XML)</strong> y el sistema automaticamente tomará los datos correspondientes del archivo xml.</small>
+        </div>  
         <table class="table-bordered table-striped dt-responsive tablaGastosTiendas" width="100%" id="gastosTiendas" style="border: 2px solid #001f3f">
          
           <thead style="background:#001f3f;color: white">
@@ -209,24 +215,26 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                   
                                   <option value="">Elegir Departamento</option>
 
-                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
-                                  <option value="DESGLOSE">DESGLOSE</option>
-                                  <option value="CAPU">CAPU</option>
-                                  <option value="CEDIS">CEDIS</option> 
-                                  <option value="DIAGONAL">DIAGONAL</option>
-                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
-                                  <option value="LAS TORRES">LAS TORRES</option>
-                                  <option value="MAYORAZGO">MAYORAZGO</option>
-                                  <option value="MGA">MGA</option>
-                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                                  <option value="OPERACIONES">OPERACIONES</option>
-                                  <option value="REFORMA">REFORMA</option>
-                                  <option value="SAN MANUEL">SAN MANUEL</option>
-                                  <option value="SANTIAGO">SANTIAGO</option>
-                                  <option value="VENTAS">VENTAS</option>
-                                  <option value="VERGEL">VERGEL</option>
-                                  <option value="XONACA">XONACA</option>
-                                  <option value="COMPRAS">COMPRAS</option>
+                                      <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                      <option value="DESGLOSE">DESGLOSE</option>
+                                      <option value="RUTAS">RUTAS</option>
+                                      <option value="CAPU">CAPU</option>
+                                      <option value="CEDIS">CEDIS</option> 
+                                      <option value="DIAGONAL">DIAGONAL</option>
+                                      <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                      <option value="LAS TORRES">LAS TORRES</option>
+                                      <option value="MAYORAZGO">MAYORAZGO</option>
+                                      <option value="MGA">MGA</option>
+                                      <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                      <option value="OPERACIONES">OPERACIONES</option>
+                                      <option value="REFORMA">REFORMA</option>
+                                      <option value="SAN MANUEL">SAN MANUEL</option>
+                                      <option value="SANTIAGO">SANTIAGO</option>
+                                      <option value="VENTAS">VENTAS</option>
+                                      <option value="VERGEL">VERGEL</option>
+                                      <option value="XONACA">XONACA</option>
+                                      <option value="MAYOREO">MAYOREO</option>
+                                      <option value="COMPRAS">COMPRAS</option>
                                 </select>
 
                               </div>
@@ -660,24 +668,26 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                   
                                   <option value="">Elegir Departamento</option>
 
-                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
-                                  <option value="DESGLOSE">DESGLOSE</option>
-                                  <option value="CAPU">CAPU</option>
-                                  <option value="CEDIS">CEDIS</option> 
-                                  <option value="DIAGONAL">DIAGONAL</option>
-                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
-                                  <option value="LAS TORRES">LAS TORRES</option>
-                                  <option value="MAYORAZGO">MAYORAZGO</option>
-                                  <option value="MGA">MGA</option>
-                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                                  <option value="OPERACIONES">OPERACIONES</option>
-                                  <option value="REFORMA">REFORMA</option>
-                                  <option value="SAN MANUEL">SAN MANUEL</option>
-                                  <option value="SANTIAGO">SANTIAGO</option>
-                                  <option value="VENTAS">VENTAS</option>
-                                  <option value="VERGEL">VERGEL</option>
-                                  <option value="XONACA">XONACA</option>
-                                  <option value="COMPRAS">COMPRAS</option>
+                                    <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                    <option value="DESGLOSE">DESGLOSE</option>
+                                    <option value="RUTAS">RUTAS</option>
+                                    <option value="CAPU">CAPU</option>
+                                    <option value="CEDIS">CEDIS</option> 
+                                    <option value="DIAGONAL">DIAGONAL</option>
+                                    <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                    <option value="LAS TORRES">LAS TORRES</option>
+                                    <option value="MAYORAZGO">MAYORAZGO</option>
+                                    <option value="MGA">MGA</option>
+                                    <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                    <option value="OPERACIONES">OPERACIONES</option>
+                                    <option value="REFORMA">REFORMA</option>
+                                    <option value="SAN MANUEL">SAN MANUEL</option>
+                                    <option value="SANTIAGO">SANTIAGO</option>
+                                    <option value="VENTAS">VENTAS</option>
+                                    <option value="VERGEL">VERGEL</option>
+                                    <option value="XONACA">XONACA</option>
+                                    <option value="MAYOREO">MAYOREO</option>
+                                    <option value="COMPRAS">COMPRAS</option>
                                 </select>
                                 <input type="hidden" name="idGasto" id="idGasto">
                                 <input type="hidden" name="editarFolioGasto" id="editarFolioGasto">
@@ -886,12 +896,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                           <div class="col-lg-3" id="divNumeroDocumento">
 
                             <!-- ENTRADA PARA NUMERO DE FACTURA-->
-                             <span style="font-weight: bold">N° Factura</span>
+                             <span style="font-weight: bold" id="spanNumeroFactura"></span>
                               <div class="input-group">
                       
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                                <input type="text" class="form-control input-lg" name="editarNumeroDocumento" placeholder="Factura" id="editarNumeroDocumento" required onblur ="validarFactura()" style="text-transform: uppercase;">
+                                <input type="text" class="form-control input-lg" name="editarNumeroDocumento"  id="editarNumeroDocumento" style="text-transform: uppercase;">
                                 
                               </div>
 
@@ -999,7 +1009,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                       
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                                <input type="text" class="form-control input-lg" name="editarFolioFiscal" placeholder="Ingresar Folio Fiscal" id="editarFolioFiscal" onblur="validarFolioFiscal()">
+                                <input type="text" class="form-control input-lg" name="editarFolioFiscal" placeholder="Ingresar Folio Fiscal" id="editarFolioFiscal" >
                                 
                               </div>
                             
@@ -1007,7 +1017,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                              <div id="divArchivosGasto">
                               <div class="col-lg-3 col-md-3 col-sm-3">
                                 <div class="form-group">
-                                  <span style="font-weight: bold">Factura</span>
+                                  <span style="font-weight: bold" id="spanFactura"></span>
                                   <div class="input-group">
                                     <input id="facturaGasto" type="file" name="facturaGasto" onchange="return fileValidationFactura()">
                                   </div>
@@ -1015,7 +1025,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                 
                               </div>
                               
-                              <div class="col-lg-3 col-md-3 col-sm-3">
+                              <div class="col-lg-3 col-md-3 col-sm-3" id="divXml">
                                 <div class="form-group">
                                   <span style="font-weight: bold">Xml</span>
                                   <div class="input-group">
@@ -1048,8 +1058,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                 <div class="modal-footer">
 
                   <button type="button" class="btn btn-default pull-left minimizarGastos" data-dismiss="modal">Salir</button>
-                  <button type="submit" class="btn btn-primary" id="btnGuardarGastos" style="display: none">Guardar</button>
-                  <button type="button" class="btn btn-primary" id="btnGuardarGasto">Guardar</button>
+                  <button type="submit" class="btn btn-primary" id="btnGuardarGastos" >Guardar</button>
+                  <button type="button" class="btn btn-primary" id="btnGuardarGasto" style="display: none">Guardar</button>
 
                 </div>
                 
@@ -1081,6 +1091,10 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
        $(document).ready(function() {
           $('.js-example-basic-single').select2();
+
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
       });
 
     $(document).ready(function() {

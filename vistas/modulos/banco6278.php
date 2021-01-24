@@ -290,8 +290,14 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
         }
         
         ?>
-         
-        
+          <!--
+           <form action="reconstruccionNumeroMovimiento.php" method="POST" >
+            <div class="col-lg-3">
+              <input type="hidden" name="banco" id="banco" value="banco6278">
+              <button type="submit" name="reconstruccion" id="reconstruccion" class="btn btn-info"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only"></span></button>
+            </div>
+          </form>
+          -->
         <br>
         <table class="table-bordered table-striped dt-responsive tablaBanco6278" width="100%" id="banco6278" style="border: 2px solid #187092">
          

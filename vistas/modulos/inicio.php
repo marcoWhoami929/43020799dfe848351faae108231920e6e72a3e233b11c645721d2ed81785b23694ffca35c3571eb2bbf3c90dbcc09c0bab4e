@@ -158,7 +158,7 @@ PÁGINA DE INICIO
                   <div class="col-lg-3 col-md-3 col-sm-3">
                     <select id="fechaInicio" name="fechaInicio" style="border: solid;">
                       <?php
-                      $mesElegido = $_POST["fechaInicio"];
+                      $mesElegido = isset($_POST["fechaInicio"]);
 
                       switch ($mesElegido) {
                         case '01':

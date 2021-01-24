@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -73,11 +73,37 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez") {
-              
-              if ($_POST["sucursalElegida"] != "") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
 
-                 echo '<a href="vistas/modulos/reportes.php?reporteFacturasTiendasCanceladas=facturastiendas&sucursalElegida='.$_POST["sucursalElegida"].'">
+              if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+                                        
+                  $tabla = "facturasgenerales";
+
+                }else{
+
+                  if (isset($_POST["sucursalElegida"])) {
+
+                    if ($_POST["sucursalElegida"] == "Industrial" || $_POST["sucursalElegida"] == "Mayoreo" || $_POST["sucursalElegida"] == "Rutas") {
+
+                       $tabla = "facturasgenerales";
+                    }else{
+
+                       $tabla = "facturastiendas";
+                    }
+
+                  }else{
+                   
+                     $tabla = "facturastiendas";
+                  }
+
+                  
+
+                }
+
+              
+              if (isset($_POST["sucursalElegida"]) != "") {
+
+                 echo '<a href="vistas/modulos/reportes.php?reporteFacturasTiendasCanceladas='.$tabla.'&sucursalElegida='.$_POST["sucursalElegida"].'">
 
                 <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
@@ -85,7 +111,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
 
               }else{
-                 echo '<a href="vistas/modulos/reportes.php?reporteFacturasTiendasCanceladas=facturastiendas">
+                 echo '<a href="vistas/modulos/reportes.php?reporteFacturasTiendasCanceladas='.$tabla.'">
 
                 <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
@@ -96,7 +122,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
             }else{
               echo '
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="vistas/modulos/reportes.php?reporte=facturastiendas">
+              <a href="vistas/modulos/reportes.php?reporte='.$tabla.'">
 
                 <button class="report btn btn-info" id="report" name="report" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
@@ -118,12 +144,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                   <div class="col-lg-3">';
                     
                     if (isset($_POST["sucursalElegida"])) {
-                       echo '<select class="form-control" name="sucursalElegida" id="sucursalElegida"><option value="'.$_POST["sucursalElegida"].'">'.$_POST["sucursalElegida"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option></select>';
+                       echo '<select class="form-control" name="sucursalElegida" id="sucursalElegida"><option value="'.$_POST["sucursalElegida"].'">'.$_POST["sucursalElegida"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
                       
 
                     }else {
 
-                         echo '<select class="form-control" name="sucursalElegida" id="sucursalElegida"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option></select>';
+                         echo '<select class="form-control" name="sucursalElegida" id="sucursalElegida"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
 
                      }
                   
@@ -152,9 +178,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <br>
        
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaCancelacionesTiendas" width="100%" id="cancelacionesTiendas" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaCancelacionesTiendas estiloBordesTablas" width="100%" id="cancelacionesTiendas">
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -204,6 +230,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     </button>
                 </div>
                 <input type="hidden" name="idFacturaTienda" id="idFacturaTienda">
+                <input type="hidden" name="serieFacturaTienda" id="serieFacturaTienda">
                 
               </div>
               <div class="row">
@@ -247,7 +274,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
     <div class="modal fade" id="modalVistaFacturaVinculada" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background:#001f3f;color: white">
+          <div class="modal-header estilosTablas">
             <h3 class="modal-title" id="exampleModalLabel">Nueva Factura</h3>
 
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -259,29 +286,13 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                   <div class="table-responsive">
-                      <table class="table">
-                        <caption>Datos Factura</caption>
-                          <thead style="background: #2667ce;color: white">
-                            <tr>
-                              <th scope="col">Serie</th>
-                              <th scope="col">Folio</th>
-                              <th scope="col">Fecha Factura</th>
-                              <th scope="col">Cliente</th>
-                              <th scope="col">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row"><input type="text" name="serieVinculado" id="serieVinculado"></th>
-                              <td><input type="text" name="folioVinculado" id="folioVinculado" readonly></td>
-                              <td><input type="text" name="fechaFacturaVinculado" id="fechaFacturaVinculado" readonly></td>
-                              <td width="auto"><input type="text" name="nombreClienteVinculado" id="nombreClienteVinculado"></td>
-                              <td><input type="text" name="totalVinculado" id="totalVinculado" readonly></td>
-                            </tr>
-                          </tbody>
-                      </table>
-                    </div>
+                   <div id="detailRefacturacion" name="detailRefacturacion">
+                     <div class="table-responsive">
+                        <table class="table" id="tablaDetailRefacturacion">
+                       
+                        </table>
+                      </div>
+                  </div>
                 </div>
               </div>
 
@@ -293,7 +304,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
       
               <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary btnDismissRefacturacion" data-dismiss="modal">Cerrar</button>
                   </div>
               </div>   
                

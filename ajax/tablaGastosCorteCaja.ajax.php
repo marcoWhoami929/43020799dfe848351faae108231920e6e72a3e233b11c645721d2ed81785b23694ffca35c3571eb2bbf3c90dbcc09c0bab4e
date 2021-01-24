@@ -14,6 +14,9 @@ class TablaGastosCorteCaja{
 
         $valor = $_GET["folioGasto"];
 
+    }else{
+
+        $valor = null;
     }
 
  		$gastosCorte = ControladorFacturasTiendas::ctrMostrarListaGastosCorte($item, $valor);

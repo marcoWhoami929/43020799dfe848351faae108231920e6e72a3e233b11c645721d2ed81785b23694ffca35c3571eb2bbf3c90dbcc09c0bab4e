@@ -32,7 +32,24 @@ class TablaFacturacionTiendas{
 
     }else{
 
-      $usuario = $_SESSION["nombre"];
+       if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+        $usuario = "Mayoreo";
+
+      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+        $usuario = "Rutas";
+
+      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+        $usuario = "Industrial";
+
+      }else{
+
+        $usuario = $_SESSION["nombre"];
+
+      }
+
 
 
     }
@@ -62,6 +79,21 @@ class TablaFacturacionTiendas{
 
         $valor2 = "FACTURA SANTIAGO V 3.3";
 
+        break;
+      case 'Mayoreo':
+
+        $valor2 = "FACTURA MAYOREO V 3.3";
+
+        break;
+      case 'Industrial':
+
+        $valor2 = "FACTURA INDUSTRIAL V 3.3";
+
+        break;
+      case 'Rutas':
+
+        $valor2 = "ALL";
+        
         break;
     }
     $item3 = "fechaFactura";
@@ -122,7 +154,7 @@ class TablaFacturacionTiendas{
 
             if ($_SESSION["perfil"] != "Credito y Cobranza") {
 
-              $accionCredito = "<button type='button' class='btn btn-danger btnSendCredito' idFactura = '".$facturacionTiendas[$i]["id"]."'>Enviar</button>";
+              $accionCredito = "<button type='button' class='btn btn-danger btnSendCredito' idFactura = '".$facturacionTiendas[$i]["id"]."' serieFactura = '".$facturacionTiendas[$i]["serie"]."'>Enviar</button>";
               
             }else{
 
@@ -137,7 +169,7 @@ class TablaFacturacionTiendas{
                 $accionCredito = "<button type='button' class='btn btn-warning' data-toggle='tooltip' data-placement='left' title='Enviado el ".$diaEnviado." a las ".$horaEnviado."'>Enviado</button>";
              }else{
 
-                $accionCredito = "<button type='button' class='btn btn-warning  btnConfirmCredito' idFactura = '".$facturacionTiendas[$i]["id"]."'>Confirmar Recibido</button>";
+                $accionCredito = "<button type='button' class='btn btn-warning  btnConfirmCredito' idFactura = '".$facturacionTiendas[$i]["id"]."' serieFactura = '".$facturacionTiendas[$i]["serie"]."'>Confirmar Recibido</button>";
 
              }
 

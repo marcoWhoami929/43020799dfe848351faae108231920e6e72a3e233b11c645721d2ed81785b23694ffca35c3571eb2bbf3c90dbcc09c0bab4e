@@ -16,10 +16,8 @@ class TablaDepositosBanco{
 
     }
 
+    $usuario = $_GET["sucursal"];
     $item2 = "concepto";
-
-    $usuario = $_SESSION["nombre"];
- 
     switch ($usuario) {
       case 'Sucursal San Manuel':
 
@@ -45,6 +43,21 @@ class TablaDepositosBanco{
 
         $valor2 = "FACTURA SANTIAGO V 3.3";
 
+        break;
+      case 'Mayoreo':
+
+        $valor2 = "FACTURA MAYOREO V 3.3";
+
+        break;
+      case 'Industrial':
+
+        $valor2 = "FACTURA INDUSTRIAL V 3.3";
+
+        break;
+      case 'Rutas':
+
+        $valor2 = "ALL";
+        
         break;
     }
 

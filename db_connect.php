@@ -1,4 +1,10 @@
 <?php
+/*
+$servername = "127.0.0.1";
+$username = "mat";
+$password = "matriz";
+$dbname = "matriz";
+*/
 /* Database connection start */
 $servername = "127.0.0.1";
 $username = "root";

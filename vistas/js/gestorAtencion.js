@@ -232,81 +232,95 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
 /**
  * NUEVAS FUNCIONES
  */
- function obtenerPedidosNuevos(){
+ function obtenerPedidosNuevos(empresa){
 
-  n =  new Date();
-  //Año
-  y = n.getFullYear();
-//Mes
-  m = n.getMonth() + 1;
-//Día
-  d = n.getDate();
+  return new Promise((resolve, reject) => {
 
-  var fechaActual = y+"-"+m+"-"+d;
-  //var fechaActual = "2020-11-05";
+      n =  new Date();
+      y = n.getFullYear();
+      m = n.getMonth() + 1;
+      d = n.getDate();
 
-  var datos = new  FormData();
+      var fechaActual = y+"-"+m+"-"+d;
 
-  datos.append('fechaActual',fechaActual);
+      var datos = new  FormData();
 
-  $.ajax({
-      url:"ajax/atencion.ajax.php",
-      method:"POST",
-      data: datos,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
-      success:function(respuesta){
-        var json = JSON.stringify(respuesta);
-         
-          if (json === null) {
+      datos.append('fechaActual',fechaActual);
+      datos.append('empresa', empresa);
 
+      $.ajax({
+          url:"ajax/atencion.ajax.php",
+          method:"POST",
+          data: datos,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "json",
+          error: function(XMLHttpRequest, textStatus, errorThrown) { 
             
+            if (textStatus == 'parsererror') {
+            
+              localStorage.setItem("pausado",0);
+              resolve(100);
+            }
 
-          }else{
+          },   
+          success:function(respuesta){
+             
+            var json = JSON.stringify(respuesta);
 
-             var datosPedidos = new FormData();
-              datosPedidos.append('listaPedidos',json);
+             
+              if (json === null) {
 
-              localStorage.setItem("pausado",1);
-               $.ajax({
-                url:"ajax/atencion.ajax.php",
-                method:"POST",
-                data: datosPedidos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "json",
-                success:function(respuesta){
-               
-                     if (respuesta === "finalizado") {
+              }else{
 
-                         localStorage.setItem("pausado",0);
-                     }
-                    
+                 var datosPedidos = new FormData();
+                  datosPedidos.append('listaPedidos',json);
+                  datosPedidos.append('empresaPedidos',empresa);
+
+
+                  localStorage.setItem("pausado",1);
+                   $.ajax({
+                    url:"ajax/atencion.ajax.php",
+                    method:"POST",
+                    data: datosPedidos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success:function(respuesta){
                    
+                         if (respuesta === "finalizado") {
 
-                    
-                }
+                            if (empresa == "Flex") {
+                               localStorage.setItem("pausado",0);
+                            }
 
-          })
-      
-         
+                            
+                         }
 
+                    }
 
-          }
-          
+                  })
 
-          
-      }
-
-
-    })
+              }
+              
 
               
+          }
+
+
+        }).then(() => {
+          
+          resolve(100);
+        })
+         
+      });
+           
 }
- function obtenerFacturasNuevas(){
+ function obtenerFacturasNuevas(empresa){
+
+  return new Promise((resolve, reject) => {
 
   n =  new Date();
   //Año
@@ -322,6 +336,7 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
   var datos = new  FormData();
 
   datos.append('fechaActualFacturas',fechaActual);
+  datos.append('empresaFacturas', empresa);
 
   $.ajax({
       url:"ajax/atencion.ajax.php",
@@ -331,6 +346,15 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
       contentType: false,
       processData: false,
       dataType: "json",
+      error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            
+            if (textStatus == 'parsererror') {
+            
+              localStorage.setItem("pausadoFacturas",0);
+              resolve(100);
+            }
+
+      }, 
       success:function(respuesta){
         var json = JSON.stringify(respuesta);
          
@@ -342,6 +366,7 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
 
               var datosFacturas = new FormData();
               datosFacturas.append('listaFacturas',json);
+              datosFacturas.append('empresaListaFacturas',empresa);
               localStorage.setItem("pausadoFacturas",1);
                $.ajax({
                 url:"ajax/atencion.ajax.php",
@@ -355,7 +380,9 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
                
                      if (respuesta === "finalizado") {
 
-                         localStorage.setItem("pausadoFacturas",0);
+                          if (empresa == "Flex") {
+                               localStorage.setItem("pausadoFacturas",0);
+                            }
                      }else{
 
                         
@@ -375,13 +402,18 @@ $(".tablaAtencion").on("click", ".btnHabilitarFolio", function(){
       }
 
 
-    })
+    }).then(() => {
+          
+          resolve(100);
+        })
 
+  });
               
 }
 /***OBTENER TRASPASOS*/
-function obtenerTraspasos(){
+function obtenerTraspasos(empresa){
 
+return new Promise((resolve, reject) => {
   n =  new Date();
   //Año
   y = n.getFullYear();
@@ -396,6 +428,7 @@ function obtenerTraspasos(){
   var datos = new  FormData();
 
   datos.append('fechaActualOrdenes',fechaActual);
+  datos.append('empresaOrdenes', empresa);
 
   $.ajax({
       url:"ajax/atencion.ajax.php",
@@ -405,20 +438,26 @@ function obtenerTraspasos(){
       contentType: false,
       processData: false,
       dataType: "json",
+      error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            
+            if (textStatus == 'parsererror') {
+            
+              localStorage.setItem("pausadoAlmacen",0);
+              resolve(100);
+            }
+
+      }, 
       success:function(respuesta){
         var json = JSON.stringify(respuesta);
          
           if (json === null) {
 
-              console.log(respuesta);
-             
 
           }else{
 
-              
-              
               var datosTraspasos = new FormData();
               datosTraspasos.append('listaTraspasos',json);
+              datosTraspasos.append('empresaTraspasos',empresa);
 
               localStorage.setItem("pausadoAlmacen",1);
                $.ajax({
@@ -433,7 +472,10 @@ function obtenerTraspasos(){
                
                      if (respuesta === "finalizado") {
 
-                         localStorage.setItem("pausadoAlmacen",0);
+                           if (empresa == "Flex") {
+                               localStorage.setItem("pausadoAlmacen",0);
+                            }
+                         
 
                      }else{
 
@@ -454,14 +496,18 @@ function obtenerTraspasos(){
       }
 
 
-    })
-
+    }).then(() => {
+          
+          resolve(100);
+        })
+  });
               
 }
 /***OBTENER TRASPASOS*/
 /***OBTENER COMPRAS*/
-function obtenerCompras(){
+function obtenerCompras(empresa){
 
+return new Promise((resolve, reject) => {
   n =  new Date();
   //Año
   y = n.getFullYear();
@@ -476,6 +522,7 @@ function obtenerCompras(){
   var datos = new  FormData();
 
   datos.append('fechaActualCompras',fechaActual);
+  datos.append('empresaCompras',empresa);
 
   $.ajax({
       url:"ajax/atencion.ajax.php",
@@ -485,6 +532,15 @@ function obtenerCompras(){
       contentType: false,
       processData: false,
       dataType: "json",
+      error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            
+            if (textStatus == 'parsererror') {
+            
+              localStorage.setItem("pausadoCompras",0);
+              resolve(100);
+            }
+
+      }, 
       success:function(respuesta){
         var json = JSON.stringify(respuesta);
          
@@ -493,10 +549,9 @@ function obtenerCompras(){
 
           }else{
 
-              
-              
               var datosCompras = new FormData();
               datosCompras.append('listaCompras',json);
+              datosCompras.append('empresaListaCompras',empresa);
 
               localStorage.setItem("pausadoCompras",1);
                $.ajax({
@@ -511,7 +566,11 @@ function obtenerCompras(){
                
                      if (respuesta === "finalizado") {
 
-                         localStorage.setItem("pausadoCompras",0);
+                        if (empresa == "Flex") {
+                          
+                          localStorage.setItem("pausadoCompras",0);
+                        }
+                         
 
                      }else{
 
@@ -532,8 +591,12 @@ function obtenerCompras(){
       }
 
 
-    })
+    }).then(() => {
+          
+          resolve(100);
+        })
 
+  });
               
 }
 /***OBTENER COMPRAS*/

@@ -1,34 +1,52 @@
 <?php
-    session_start();
-    set_time_limit(0);
-    ignore_user_abort(true);
-    error_reporting(0);
+session_start();
+set_time_limit(0);
+ignore_user_abort(true);
+error_reporting(0);
 
-    $serie = $_POST["serie"];
-    $folio = $_POST["folio"];
-    $fechaCorte = $_POST["fechaCorte"];
-    $total = $_POST["total"];
-    $importeVenta = $_POST["importeVenta"];
-    $diferencia = $_POST["diferencia"];
-    $gastos = $_POST["gastos"];
-    $fondoCaja = $_POST["fondoCaja"];  
+$serie = $_POST["serie"];
+$folio = $_POST["folio"];
+$fechaCorte = $_POST["fechaCorte"];
+$total = $_POST["total"];
+$importeVenta = $_POST["importeVenta"];
+$diferencia = $_POST["diferencia"];
+$gastos = $_POST["gastos"];
+$fondoCaja = $_POST["fondoCaja"];  
 
-    /*RECOGER VALORES ENVIADOS DESDE INDEX.PHP*/
-    $sDestino = "emartinez@sfd.com.mx";
-    $sAsunto = "Notificación de Diferencias En Corte Caja ".$_SESSION["nombre"];
-  
-    $sMensaje = "Hola soy ".$_SESSION["nombre"]." "."quiero notificar que cuento con diferencias en mi corte de caja realizado el dia ".$fechaCorte." con Serie ".$serie." Y Folio ".$folio.". <br> <strong>Tengo una diferencia de:</strong> ".number_format($diferencia,2)." <br> <strong>Total:</strong> ".number_format($total,2)." <br> <strong>Importe de Venta:</strong> ".number_format($importeVenta,2)." <br> <strong>Gastos:</strong> ".number_format($gastos,2)." <br> <strong>Fondo de Caja:</strong> ".number_format($fondoCaja,2)."";
+/*RECOGER VALORES ENVIADOS DESDE INDEX.PHP*/
+$sDestino = "emartinez@sfd.com.mx";
+//$sDestino = "mm_marco_mar@hotmail.com";
+$sAsunto = "Notificación de Diferencias En Corte Caja ".$_SESSION["nombre"];
 
-    date_default_timezone_set('America/Mexico_City');
-    require 'extensiones/PHPMailer/PHPMailerAutoload.php';
-    /*CONFIGURACIÓN DE CLASE*/
-        $mail = new PHPMailer;
+if ($_SESSION["nombre"] == "Diego Ávila") {
+
+    $usuario = "Mayoreo";
+
+}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+    $usuario = "Rutas";
+
+}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+    $usuario = "Industrial";
+
+}else{
+
+    $usuario = $_SESSION["nombre"];
+
+}
+$sMensaje = "Hola soy ".$usuario." "."quiero notificar que cuento con diferencias en mi corte de caja realizado el dia ".$fechaCorte." con Serie ".$serie." Y Folio ".$folio.". <br> <strong>Tengo una diferencia de:</strong> ".number_format($diferencia,2)." <br> <strong>Total:</strong> ".number_format($total,2)." <br> <strong>Importe de Venta:</strong> ".number_format($importeVenta,2)." <br> <strong>Gastos:</strong> ".number_format($gastos,2)." <br> <strong>Fondo de Caja:</strong> ".number_format($fondoCaja,2)."";
+
+date_default_timezone_set('America/Mexico_City');
+require 'extensiones/PHPMailer/PHPMailerAutoload.php';
+/*CONFIGURACIÓN DE CLASE*/
+$mail = new PHPMailer;
         $mail->isSMTP(); //Indicar que se usará SMTP
         $mail->CharSet = 'UTF-8';//permitir envío de caracteres especiales (tildes y ñ)
-    /*CONFIGURACIÓN DE DEBUG (DEPURACIÓN)*/
+        /*CONFIGURACIÓN DE DEBUG (DEPURACIÓN)*/
         $mail->SMTPDebug = 0; //Mensajes de debug; 0 = no mostrar (en producción), 1 = de cliente, 2 = de cliente y servidor
         $mail->Debugoutput = 'html'; //Mostrar mensajes (resultados) de depuración(debug) en html
-    /*CONFIGURACIÓN DE PROVEEDOR DE CORREO QUE USARÁ EL EMISOR(GMAIL)*/
+        /*CONFIGURACIÓN DE PROVEEDOR DE CORREO QUE USARÁ EL EMISOR(GMAIL)*/
         $mail->Host = 'smtp.gmail.com'; //Nombre de host
         // $mail->Host = gethostbyname('smtp.gmail.com'); // Si su red no soporta SMTP sobre IPv6
         $mail->Port = 587; //Puerto SMTP, 587 para autenticado TLS
@@ -71,17 +89,17 @@
     $mail->addCC('mm_marco_mar@hotmail.com');
     $mail->addCC('rgutierrez@sfd.com.mx');
     $mail->addCC('iherrera@sfd.com.mx');
-    if (!$mail->send()) {
-        $fracaso = "fracaso";
-        echo json_encode($fracaso);
+        if (!$mail->send()) {
+            $fracaso = "fracaso";
+            echo json_encode($fracaso);
         //$import_status = '?import_status=error';
         //header('Location: nuevoCorteCaja'.$import_status);
-    } else {
-        $exito = "exito";
-        echo json_encode($exito);
-         
+        } else {
+            $exito = "exito";
+            echo json_encode($exito);
+
         //$import_status = '?import_status=success';
         //header('Location: nuevoCorteCaja'.$import_status);
-        
-    }
-?>
+
+        }
+        ?>

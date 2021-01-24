@@ -500,8 +500,8 @@ $(document).ready(function() {
         load_unseen_notification(id);
     });
     setInterval(function() {
-        load_unseen_notification();;
-    }, 5000);
+        //load_unseen_notification();
+    }, 120000);
 });
 //MOSTRAR QUE EL TICKET HA SIDO VISTO POR EL USUARIO
 $(".tablaListaTickets").on("click", ".btnVisto", function() {

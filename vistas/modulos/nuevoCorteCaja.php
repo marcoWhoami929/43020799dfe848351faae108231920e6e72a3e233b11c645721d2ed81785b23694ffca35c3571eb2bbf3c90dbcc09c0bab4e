@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -102,7 +102,28 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                 </div>  
               
                 <button type="button" class="action-button previous_button" id="notificacionCorteCaja">No</button>
-                <button type="button" class="next action-button" id="generarCorteCaja" sucursal="<?php echo $_SESSION["nombre"]?>">Si</button>  
+                <button type="button" class="next action-button" id="generarCorteCaja" sucursal="<?php 
+
+                              if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                                echo "Mayoreo";
+
+                              }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                                echo "Rutas";
+
+                              }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                                echo "Industrial";
+
+                              }else{
+
+                                echo $_SESSION["nombre"];
+
+                              }
+
+
+                ?>">Si</button>  
               </fieldset>
               <fieldset>
               
@@ -222,8 +243,27 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                 <h6>A continuación se detalla el corte de caja con los datos procesados anteriormente.</h6>
                 <h4>----------------------------------------------------------------------------------------------------------</h4>
                 <br>
+                <?php 
 
-                <h3>Corte de Caja <span class="nombreUsuario"><?php  echo $_SESSION["nombre"]?></span> del <span class="nombreUsuario"><?php echo date("d") . " del " . date("m") . " de " . date("Y") ?></span></h3>
+                 if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                    $usuario = "Mayoreo";
+
+                  }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                    $usuario = "Rutas";
+
+                  }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                    $usuario = "Industrial";
+
+                  }else{
+
+                    $usuario = $_SESSION["nombre"];
+
+                  }
+                ?>
+                <h3>Corte de Caja <span class="nombreUsuario"><?php  echo $usuario?></span> del <span class="nombreUsuario"><?php echo date("d") . " del " . date("m") . " de " . date("Y") ?></span></h3>
                 <!--
                 <h4>Iniciado <span id="fechaCorteIniciado" class="nombreUsuario"></span> a <span id="fechaCorteProceso" class="nombreUsuario"></span></h4>
                 <h4><span id="tiempoProcesoCorte" class="nombreUsuario"></span></h4>

@@ -189,9 +189,21 @@
 
                     break;
                     
-                    default:
-                        
-                     break;
+                     case 'AJCD':
+                    
+                    $areaCorregida = "FACTURAS CEDIS";
+
+                    break;
+                    case 'AJRU':
+                    
+                    $areaCorregida = "FACTURAS RUTAS";
+
+                    break;
+                    case 'AJND':
+                    
+                    $areaCorregida = "FACTURAS INDUSTRIAL";
+
+                    break;
                 }
             ?>
             <tr>

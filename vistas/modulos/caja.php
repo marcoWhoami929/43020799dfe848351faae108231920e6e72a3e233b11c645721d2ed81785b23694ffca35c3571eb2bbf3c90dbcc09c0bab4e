@@ -256,6 +256,7 @@ MODAL AGREGAR
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
+                          <option value="COMPRAS">COMPRAS</option>
                         </select>
 
                       </div>
@@ -1413,6 +1414,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                          <option value="MAYOREO">MAYOREO</option>
+                          <option value="COMPRAS">COMPRAS</option>
                         </select>
 
                       </div>

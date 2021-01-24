@@ -1313,31 +1313,35 @@ $(document).ready(function(){
      
     </script>
     <script type="text/javascript">
-      $(document).ready(function() {
-
-
-          
+      $(document).ready(function() {        
           $.timer(15000, function(temporizador){
 
-            if (localStorage.getItem("pausado") === null) {
+                  if (localStorage.getItem("pausado") === null) {
 
-                localStorage.setItem("pausado",0);
-            }else{
-
-                 if (localStorage.getItem("pausado") == 1) {
-               
+                      localStorage.setItem("pausado",0);
                   }else{
-                     obtenerPedidosNuevos();
+
+                       if (localStorage.getItem("pausado") == 1) {
+                     
+                        }else{
+
+
+                           obtenerPedidosNuevos('Pinturas').then(
+                              function () {
+                                obtenerPedidosNuevos('Flex');
+                              }
+                            );
+
+                        }
+                   
 
                   }
-             
+                   
+                   
+                })
 
-            }
-             
-             
-          })
+            });
 
-      });
        if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
         }

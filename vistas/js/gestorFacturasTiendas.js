@@ -443,6 +443,10 @@ $(".tablaCancelacionesTiendas").on("click", ".btnRefacturar", function(){
 
     $("#idFacturaTienda").val(idFacturaTienda);
 
+    var serieFacturaTienda = $(this).attr("serieFacturaTienda");
+
+    $("#serieFacturaTienda").val(serieFacturaTienda);
+
     listaFacturas.ajax.reload();
 
 
@@ -452,10 +456,13 @@ $(".tablaCancelacionesTiendas").on("click", ".btnRefacturar", function(){
 $(".tablaListaFacturasTiendas").on("click", ".btnVincularFactura", function() {
     var idFactura = $(this).attr("idFactura");
     var idFacturaTienda = $("#idFacturaTienda").val();
+    var serieFacturaTienda = $("#serieFacturaTienda").val();
+
 
     var datos = new FormData();
     datos.append("idFactura", idFactura);
     datos.append("idFacturaTienda", idFacturaTienda);
+    datos.append("serieFacturaTienda", serieFacturaTienda);
   
     $.ajax({
         url: "ajax/facturacionTiendas.ajax.php",
@@ -491,8 +498,11 @@ $(".btnActualizarCanceladas").click(function(){
 
 $(".tablaCancelacionesTiendas").on("click", ".btnVerFacturaVinculada", function() {
     var idFacturaVista = $(this).attr("idFacturaTiendaVista");
+    var serieFacturaVista = $(this).attr("serieFacturaVista");
+
     var datos = new FormData();
       datos.append("idFacturaVista", idFacturaVista);
+      datos.append("serieFacturaVista", serieFacturaVista);
 
       $.ajax({
 
@@ -504,12 +514,68 @@ $(".tablaCancelacionesTiendas").on("click", ".btnVerFacturaVinculada", function(
         processData: false,
         dataType: "json",
         success: function(respuesta){ 
-          $("#serieVinculado").val(respuesta["serie"]);
-          $("#folioVinculado").val(respuesta["folio"]);
-          $("#fechaFacturaVinculado").val(respuesta["fechaFactura"]);
-          $("#nombreClienteVinculado").val(respuesta["nombreCliente"]);
-          let total = respuesta["total"];
-          $("#totalVinculado").val("$"+" "+respuesta["total"]);
+
+           var detalle = document.getElementById("detailRefacturacion")
+            
+
+                var listaCabeceras = ['Serie','Folio','Fecha','Cliente','Total'];
+
+                body = document.getElementById("tablaDetailRefacturacion");
+
+                thead = document.createElement("thead");
+                thead.setAttribute('class','estilosTablas');
+
+                theadTr = document.createElement("tr");
+
+                for (var h = 0; h < listaCabeceras.length; h++) {
+                    
+                    var celdaThead = document.createElement("th");
+                    var textoCeldaThead = document.createTextNode(listaCabeceras[h]);
+                    celdaThead.appendChild(textoCeldaThead);
+                    theadTr.appendChild(celdaThead);
+
+                }
+              
+                thead.appendChild(theadTr);
+     
+                tblBody = document.createElement("tbody");
+
+                var arregloNombres = ['serie','folio','fechaFactura','nombreCliente','total'];
+
+                // Crea las celdas
+                for (var i = 0; i < 1; i++) {
+                  // Crea las hileras de la tabla
+                  var hilera = document.createElement("tr");
+               
+                  for (var j = 0; j < arregloNombres.length; j++) {
+                   
+
+                    var celda = document.createElement("td");
+
+                    if (arregloNombres[j] == 'total') {
+
+                        var textoCelda = document.createTextNode("$"+respuesta[arregloNombres[j]]);
+                      
+
+                      }else{
+
+                        var textoCelda = document.createTextNode(respuesta[arregloNombres[j]]);
+
+                      }
+                    
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                   
+                  }
+               
+                  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                  tblBody.appendChild(hilera);
+                }
+               
+                // appends <table> into <body>
+                body.appendChild(tblBody);
+                body.appendChild(thead);
+         
           
         }
 
@@ -518,7 +584,14 @@ $(".tablaCancelacionesTiendas").on("click", ".btnVerFacturaVinculada", function(
 
 
 });
+$(".btnDismissRefacturacion").click(function() {
+    
+        var nodos = document.getElementById('tablaDetailRefacturacion');
+        while (nodos.firstChild) {
+          nodos.removeChild(nodos.firstChild);
+        }
 
+});
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE DEPOSITOS DE TIENDAS
 =============================================*/
@@ -1396,6 +1469,16 @@ $(".tablaGastosTiendas").on("click", ".btnEditarDatosGastos", function(){
                 $("#editarNumeroDocumento").removeAttr("onblur");
                 $("#editarFolioFiscal").removeAttr("onblur");
                 $("#editarFolioFiscal").removeAttr("required");
+                $("#spanFactura").text("Documento");
+                $("#spanNumeroFactura").text("Folio");
+                $("#editarNumeroDocumento").attr("placeholder","Folio");
+
+                 var factura = document.getElementById("editarNumeroDocumento");
+                 factura.disabled = false;
+                var folioFiscal = document.getElementById("divFolioFiscal");
+                folioFiscal.style.display = 'none';
+                var xml = document.getElementById("divXml");
+                xml.style.display = 'none';
                 var facturaGasto = document.getElementById("facturaGasto");
                 facturaGasto.setAttribute("required", "");
                 $("#btnGuardarGasto").attr("onclick","validacionesNoDeducibles()");
@@ -1409,16 +1492,30 @@ $(".tablaGastosTiendas").on("click", ".btnEditarDatosGastos", function(){
 
             }else{
 
-                 $("#editarNumeroDocumento").attr("onblur","return validarFactura()");
-                 $("#editarFolioFiscal").attr("onblur","return validarFolioFiscal()");
+                 //$("#editarNumeroDocumento").attr("onblur","return validarFactura()");
+                 //$("#editarFolioFiscal").attr("onblur","return validarFolioFiscal()");
                  var folioFiscal = document.getElementById("editarFolioFiscal");
-                 folioFiscal.setAttribute("required", "");
+                 //folioFiscal.setAttribute("required", "");
+                 folioFiscal.disabled = true;
+                 var folioFiscal = document.getElementById("divFolioFiscal");
+                 folioFiscal.style.display = '';
+                 xmlGasto = document.getElementById("divXml");
+                 xmlGasto.style.display = '';
                  
                  var facturaGasto = document.getElementById("facturaGasto");
                  facturaGasto.setAttribute("required", "");
+
+                 var factura = document.getElementById("editarNumeroDocumento");
+                 factura.disabled = true;
                  var xmlGasto = document.getElementById("xmlGasto");
                  xmlGasto.setAttribute("required", "");
                  $("#btnGuardarGasto").attr("onclick","validaciones()");
+
+              
+                $("#spanFactura").text("Factura");
+                $("#spanNumeroFactura").text("N° Factura");
+                $("#editarNumeroDocumento").attr("placeholder","N° Factura");
+               
              
 
             }
@@ -1547,8 +1644,8 @@ $(document).ready(function() {
         load_unseen_notification_gastos(id);
     });
     setInterval(function() {
-        load_unseen_notification_gastos();;
-    }, 5000);
+        //load_unseen_notification_gastos();
+    }, 120000);
 });
 
 /**********FUNCION PARA MOSTRAR LAS NOTIFICACIONES****/
@@ -1593,7 +1690,7 @@ $(".tablaDepositosTiendas").on("click", ".btnVerDesgloseAbonos", function() {
             body = document.getElementById("tablaDetalleAbono");
 
             thead = document.createElement("thead");
-            thead.setAttribute('style','background:#2667ce;color: white');
+            thead.setAttribute('class','estilosTablas');
 
             theadTr = document.createElement("tr");
 
@@ -2110,7 +2207,13 @@ $(".tablaDepositosTiendas").on("click", ".btnEmitirReciboCaja", function(){
   */
 });
 
-/*********FUNCIONES PARA LA VALIDACION DEL FOLIO DISCAL DE LA FACTURA******/
+/*********FUNCIONES PARA LA VALIDACION DEL FOLIO FISCAL DE LA FACTURA******/
+$(".btnUpdateGastos").on('click', function() {
+    gastosTiendas.ajax.reload();
+});
+$(".btnUpdateGastosSolicitudes").on('click', function() {
+    gastosSolicitudes.ajax.reload();
+});
 $("#editarSubgrupo").on("change",function(){
   var subgrupo = document.getElementById("editarSubgrupo").value;
   if (subgrupo == "99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales") {
@@ -2325,9 +2428,16 @@ $(".minimizarGastos").on("click",function(){
         case "Sucursal Santiago":
           var conceptoFactura = "FACTURA SANTIAGO V 3.3";
         break;
-        default:
-         
+        case 'Industrial':
+          var conceptoFactura = "FACTURA INDUSTRIAL V 3.3";
+        break;
+        case 'Mayoreo':
+          var conceptoFactura = "FACTURA MAYOREO V 3.3";
           break;
+        case 'Rutas':
+          var conceptoFactura = "ALL";
+          break;  
+
       }
       listaFacturasSaldosRemanentes = $(".tablaListaFacturasSaldosRemanentes").DataTable({
           "ajax":"ajax/tablaListaFacturasSaldosRemanentes.ajax.php?valorAjuste="+valorAjuste+"&fechaInicioAjuste="+fechaInicioAjuste+"&fechaFinAjuste="+fechaFinAjuste+"&concepto="+conceptoFactura,
@@ -2425,9 +2535,15 @@ $("#btnGenerarAjusteRemanentes").on("click", function(){
               case "Sucursal Santiago":
                 var conceptoFactura = "FACTURA SANTIAGO V 3.3";
               break;
-              default:
-               
+              case 'Industrial':
+                var conceptoFactura = "FACTURA INDUSTRIAL V 3.3";
                 break;
+              case 'Mayoreo':
+                var conceptoFactura = "FACTURA MAYOREO V 3.3";
+                break;
+              case 'Rutas':
+                var conceptoFactura = "ALL";
+                break;  
             }
 
             var datos = new FormData();
@@ -2612,7 +2728,7 @@ $("#vincularPendientesPago").on("click",function(){
             body = document.getElementById("tablaDenominaciones");
 
             thead = document.createElement("thead");
-            thead.setAttribute('style','background:#2667ce;color: white');
+            thead.setAttribute('class','estilosTablas');
 
             theadTr = document.createElement("tr");
 
@@ -2992,7 +3108,7 @@ swal({
                                 body = document.getElementById("tablaFormasPago");
 
                                 thead = document.createElement("thead");
-                                thead.setAttribute('style','background:#2667ce;color: white');
+                                thead.setAttribute('class','estilosTablas');
 
                                 theadTr = document.createElement("tr");
 
@@ -3417,7 +3533,7 @@ $(".tablaCortesDeCaja").on("click", ".btnVerDetalleCorteCaja", function() {
                                 body = document.getElementById("tablaFormasPagoDetalle");
 
                                 thead = document.createElement("thead");
-                                thead.setAttribute('style','background:#2667ce;color: white');
+                                thead.setAttribute('class','estilosTablas');
 
                                 theadTr = document.createElement("tr");
 
@@ -3610,7 +3726,21 @@ $(".tablaCortesDeCaja").on("click", ".btnVerDetalleCorteCaja", function() {
                                 observacionesCorteDetalle.value = respuesta["observaciones"];
 
                                 var usuarioCorte = document.getElementById("usuarioCorte");
-                                usuarioCorte.innerHTML = respuesta["nombre"];
+                                switch (respuesta["nombre"]) {
+                                  case 'Aurora Fernandez':
+                                    var usuario = 'Industrial';
+                                    break;
+                                  case 'Diego Ávila':
+                                    var usuario = 'Mayoreo';
+                                    break;
+                                  case 'Rocio Martínez Morales':
+                                    var usuario = 'Rutas';
+                                    break;
+                                  default:
+                                    var usuario = respuesta["nombre"];
+                                    break;
+                                }
+                                usuarioCorte.innerHTML = usuario;
           
         }
 
@@ -3761,8 +3891,12 @@ $("#obtenerListaFacturasGenerales").on("click",function(){
 $(".btnGenerarPagoBanco").on("click",function(){
   
   var fechaCobro = $("#fechaCobro").val();
+  var sucursal = $("#sucursalCobro").val();
 
-  abrirVentana('http://dkmatrizz.ddns.net/depositoEfectivoBanco?fechaCobro='+fechaCobro);
+  var sucursal = sucursal.replaceAll(" ","-");
+
+
+  abrirVentana('http://dkmatrizz.ddns.net/depositoEfectivoBanco?fechaCobro='+fechaCobro+'&sucursal='+sucursal);
 });
 /**
  * NUEVAS FUNCIONES PARA PENDIENTES DE PAGO
@@ -3796,9 +3930,16 @@ $("#generarCorteCaja").on("click", function() {
       case 'Sucursal Las Torres':
         var concepto = "FACTURA TORRES";
         break;
-      default:
-        
+      case 'Industrial':
+        var concepto = "FACTURA INDUSTRIAL V 3.3";
         break;
+      case 'Mayoreo':
+        var concepto = "FACTURA MAYOREO V 3.3";
+        break;
+      case 'Rutas':
+        var concepto = "ALL";
+        break;  
+    
     }
 
     pendientesPago = $(".tablaPendientesPago").DataTable({
@@ -5171,9 +5312,11 @@ $("#updateFacturasTiendas").on("click",function(){
 $(".tablaFacturacionTiendas").on("click", ".btnSendCredito", function(){
 
       var identificadorFactura = $(this).attr("idFactura");
+      var serieFactura = $(this).attr("serieFactura");
 
       var datos =  new  FormData();
       datos.append('identificadorFactura',identificadorFactura);
+      datos.append('serieFacturaCred',serieFactura);
 
        $.ajax({
 
@@ -5202,9 +5345,11 @@ $(".tablaFacturacionTiendas").on("click", ".btnSendCredito", function(){
 $(".tablaFacturacionTiendas").on("click", ".btnConfirmCredito", function(){
 
       var identificadorFactura = $(this).attr("idFactura");
+      var serieFactura = $(this).attr("serieFactura");
 
       var datos =  new  FormData();
       datos.append('identificadorFacturaConfirm',identificadorFactura);
+      datos.append('serieFacturaConfirm',serieFactura);
 
        $.ajax({
 
@@ -5231,12 +5376,15 @@ $(".tablaFacturacionTiendas").on("click", ".btnConfirmCredito", function(){
 });
 
 /******FUNCION PARA LISTAR LOS ARCHIVOS DE ESA FACTURA***/
-function loadDataDocumentsCredito(identificadorFactura){
+function loadDataDocumentsCredito(identificadorFactura,serieFactura){
 
       var identificadorFacturaLoad = identificadorFactura;
+      var serieFacturaLoad = serieFactura;
 
       var datos = new FormData();
       datos.append('identificadorFacturaLoad',identificadorFacturaLoad);
+      datos.append('serieFacturaLoad',serieFacturaLoad);
+
 
       $.ajax({
 
@@ -5305,7 +5453,7 @@ function loadFilesDocumentsCredito(ruta){
                 body = document.getElementById("tablePanelLoadsFiles");
 
                 thead = document.createElement("thead");
-                thead.setAttribute('style','background:#2667ce;color: white');
+                thead.setAttribute('class','estilosTablas');
 
                 theadTr = document.createElement("tr");
 
@@ -5415,7 +5563,7 @@ $(".tablaFacturacionTiendas").on("click", ".btnLoadDocumentsCredito", function()
       localStorage.setItem("folioFacturaLoad",folioFactura);
 
       loadFilesDocumentsCredito(rutaArchivos);
-      loadDataDocumentsCredito(identificadorFactura);
+      loadDataDocumentsCredito(identificadorFactura,serieFactura);
 
       
 
@@ -5510,7 +5658,7 @@ $(function(){
         
             datos.append('archivoCargado',archivoCargado);
             var fichero = localStorage.getItem("serieFacturaLoad")+""+localStorage.getItem("folioFacturaLoad");
-             datos.append('ficheroRuta',fichero);
+            datos.append('ficheroRuta',fichero);
 
               var alertaSuccess = document.getElementById("fileLoadSuccess");
               $.ajax({
@@ -5532,10 +5680,12 @@ $(function(){
                       alertaSuccess.style.display = '';
 
                       var identificadorFactura = localStorage.getItem("identificadorFactura");
+                      var serieFactura = localStorage.getItem("serieFacturaLoad");
 
 
                       var datos =  new  FormData();
                       datos.append('identificadorFacturaUpload',identificadorFactura);
+                      datos.append('serieFacturaUpload',serieFactura);
 
                        $.ajax({
 
@@ -5602,9 +5752,120 @@ $(".tablaFacturacionTiendas").on("click", ".btnLoadDocumentsCreditoLoads", funct
 
       loadFilesDocumentsCredito(rutaArchivos);
 
-      loadDataDocumentsCredito(identificadorFactura);
+      loadDataDocumentsCredito(identificadorFactura,serieFactura);
 
       
 
 });
 
+/***MODULO DE PREVISUALIZACION*********************/
+/*=============================================
+CARGAR LA TABLA DINÁMICA DE VISUALIZACION DE FACTURAS
+=============================================*/
+facturasTiendasObtenerComercial = $(".tablaPrevisualizacionFacturas").DataTable({
+   "ajax":"ajax/tablaPrevisualizacionFacturas.ajax.php",
+   //"ajax":"ajax/tablaFacturacionTiendas.ajax.php",
+   "deferRender": true,
+   "retrieve": true,
+   "processing": true,
+    "iDisplayLength": 10,
+    "fixedHeader": true,
+    "order": [[ 0, "desc" ]],
+    /*"scrollX": true,*/
+     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
+   "language": {
+
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+
+   }
+
+});
+$("#btnObtenerFacturasComercial").on('click',function() {
+
+    document.getElementById("loaderFacturas").style.display = '';
+    $("#loaderFacturas").addClass("animated fadeInDown");
+    document.getElementById("facturasTextLoader").innerHTML = "Conectando CONTPAQI COMERCIAL.....";
+    setTimeout(function(){  document.getElementById("facturasTextLoader").innerHTML = "Obteniendo facturas del dia, espere un momento porfavor....."; }, 3000);
+            
+            let sucursal = $(this).attr("sucursal");
+         
+            
+            var datos = new FormData();
+            datos.append('sucursalComercial',sucursal);
+          
+            $.ajax({
+
+                url:"ajax/facturacionTiendas.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType:"json",
+                success: function(respuesta){ 
+
+                  var json = JSON.stringify(respuesta);
+                  
+                  var datosFacturas = new FormData();
+                  datosFacturas.append('listadoFacturasComercial',json);
+
+                     $.ajax({
+                      url:"ajax/facturacionTiendas.ajax.php",
+                      method:"POST",
+                      data: datosFacturas,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success:function(respuesta){
+                     
+                           if (respuesta === "finalizado") {
+
+                             $("#modalObtenerFacturasComercial").modal('hide');
+                                  
+                                 facturasTiendasObtenerComercial.ajax.reload();
+                               
+
+                           }else{
+
+
+                            
+                           }
+       
+                      }
+
+                })
+                     
+                                    
+                }
+
+
+            });
+
+    
+   
+});
+
+
+/*******/

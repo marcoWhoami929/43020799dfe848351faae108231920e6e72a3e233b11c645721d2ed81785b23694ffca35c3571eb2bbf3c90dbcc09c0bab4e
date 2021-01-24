@@ -55,7 +55,7 @@ class ControladorAdministradores{
 
 						echo '<script>
 
-							window.location = "inicio";
+							window.location = "menuGeneral";
 
 						</script>';
 
@@ -82,7 +82,7 @@ class ControladorAdministradores{
 
 						echo '<script>
 
-							window.location = "tableroCortes";
+							window.location = "menuGeneral";
 
 						</script>';
 

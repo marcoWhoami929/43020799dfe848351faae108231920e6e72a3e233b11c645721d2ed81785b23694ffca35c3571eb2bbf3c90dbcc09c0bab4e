@@ -15,7 +15,24 @@ class TablaCancelacionesTiendas{
       $usuario = $_GET["sucursalElegida"];
 
     }else{
-      $usuario = $_SESSION["nombre"];
+        if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+        $usuario = "Mayoreo";
+
+      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+        $usuario = "Rutas";
+
+      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+        $usuario = "Industrial";
+
+      }else{
+
+        $usuario = $_SESSION["nombre"];
+
+      }
+
     }
 
     switch ($usuario) {
@@ -44,6 +61,21 @@ class TablaCancelacionesTiendas{
         $valor = "FACTURA SANTIAGO V 3.3";
 
         break;
+      case 'Mayoreo':
+
+        $valor = "FACTURA MAYOREO V 3.3";
+
+        break;
+      case 'Industrial':
+
+        $valor = "FACTURA INDUSTRIAL V 3.3";
+
+        break;
+      case 'Rutas':
+
+        $valor = "ALL";
+        
+        break;
     }
 
  		$cancelacionesTiendas = ControladorFacturasTiendas::ctrMostrarCancelacionesTiendas($item, $valor);
@@ -65,11 +97,11 @@ class TablaCancelacionesTiendas{
 
       if($cancelacionesTiendas[$i]["idNuevaFactura"] != "0"){
 
-         $agregarNuevaFactura = "<div class='btn-group'><button class='btn btn-info btnVerFacturaVinculada' idFacturaTiendaVista='".$cancelacionesTiendas[$i]["idNuevaFactura"]."' data-toggle='modal' data-target='#modalVistaFacturaVinculada'><i class='fa fa-eye' aria-hidden='true'></i></button></div>";  
+         $agregarNuevaFactura = "<div class='btn-group'><button class='btn btn-info btnVerFacturaVinculada' idFacturaTiendaVista='".$cancelacionesTiendas[$i]["idNuevaFactura"]."' serieFacturaVista='".$cancelacionesTiendas[$i]["serie"]."' data-toggle='modal' data-target='#modalVistaFacturaVinculada'><i class='fa fa-eye' aria-hidden='true'></i></button></div>";  
 
       }else{
 
-         $agregarNuevaFactura = "<div class='btn-group'><button class='btn btn-warning btnRefacturar' idFacturaTienda='".$cancelacionesTiendas[$i]["id"]."' data-toggle='modal' data-target='#modalRefacturacion'><i class='fa fa-files-o' aria-hidden='true'></i></button></div>";  
+         $agregarNuevaFactura = "<div class='btn-group'><button class='btn btn-warning btnRefacturar' idFacturaTienda='".$cancelacionesTiendas[$i]["id"]."' serieFacturaTienda='".$cancelacionesTiendas[$i]["serie"]."' data-toggle='modal' data-target='#modalRefacturacion'><i class='fa fa-files-o' aria-hidden='true'></i></button></div>";  
 
       }
       $acciones = "<button type='button' class='btn btn-warning btnVerDetallesTicketCancelado' data-toggle='modal' data-target='#modalVistaDetalleTicket' idFacturaSolicitud = '".$cancelacionesTiendas[$i]["id"]."' idSolicitudTicket = '".$cancelacionesTiendas[$i]["idSolicitud"]."'><i class='fa fa-ticket'></i>Ver Ticket</button>";

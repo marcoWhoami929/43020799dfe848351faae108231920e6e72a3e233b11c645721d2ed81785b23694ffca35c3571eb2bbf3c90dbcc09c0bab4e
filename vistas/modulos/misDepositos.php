@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -72,7 +72,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteDepositosBancarios=depositostiendas">
 
@@ -103,9 +103,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         </div>
       
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaDepositosTiendas" width="100%" id="DepositosTiendas" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaDepositosTiendas estiloBordesTablas" width="100%" id="DepositosTiendas">
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -126,7 +126,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <div class="modal fade" id="modalIdentificarDeposito" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-              <div class="modal-header" style="background:#001f3f;color: white">
+              <div class="modal-header estilosTablas">
                 <h3 class="modal-title" id="exampleModalLabel">Vincular Factura</h3>
 
                 <button type="button" class="close btnActualizarDepositos" data-dismiss="modal" aria-label="Close">
@@ -172,13 +172,14 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <small>Nota: Elegir que factura se vincula con el depósito.</small>
                       <div id="listaFacturas"></div>
-                       <table class="table-bordered table-striped dt-responsive tablaListaFacturasDepositos" width="100%" id="listaFacturasDepositos" style="border: 2px solid #001f3f">
+                       <table class="table-bordered table-striped dt-responsive tablaListaFacturasDepositos estiloBordesTablas" width="100%" id="listaFacturasDepositos" >
                  
-                        <thead style="background:#001f3f;color: white">
+                        <thead class="estilosTablas">
                          
                          <tr style="">
                            <th style="border:none">Serie</th>
                            <th style="border:none">Folio</th>
+                           <th style="border:none">Forma Pago</th>
                            <th style="border:none">Fecha Factura</th>
                            <th style="border:none">Cliente</th>
                            <th style="border:none">Total</th>
@@ -212,7 +213,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           <div class="modal fade" id="modalProcesoCargaDatos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">
               <div class="modal-content">
-                <div class="modal-header" style="background:#001f3f;color: white">
+                <div class="modal-header estilosTablas">
                   <center><h4>Procesando Datos</h4></center>
                 </div>
                 <div class="modal-body">
@@ -226,7 +227,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           <div class="modal" id="modalProcesoCargaDatosRecibo" data-backdrop="static" data-keyboard="false" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 80px">
             <div class="modal-dialog modal-sm" role="document">
               <div class="modal-content">
-                <div class="modal-header" style="background:#001f3f;color: white">
+                <div class="modal-header estilosTablas">
                   <center><h4>Generando Recibo</h4></center>
                 </div>
                 <div class="modal-body">
@@ -242,7 +243,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <div class="modal fade" id="modalVerDesglosAbonos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-              <div class="modal-header" style="background:#001f3f;color: white">
+              <div class="modal-header estilosTablas">
                 <h3 class="modal-title" id="exampleModalLabel">Desglose De Abonos</h3>
 
                 <button type="button" class="close btnCerrarDesgloseAbonos" data-dismiss="modal" aria-label="Close">

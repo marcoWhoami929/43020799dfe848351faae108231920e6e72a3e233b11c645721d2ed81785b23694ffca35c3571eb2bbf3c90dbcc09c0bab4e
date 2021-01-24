@@ -27,7 +27,23 @@ class TablaCobrosTiendas{
     if ($_GET["sucursalCobro"] != "") {
         $usuario = $_GET["sucursalCobro"];
     }else{
-        $usuario = $_SESSION["nombre"];
+         if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+            $usuario = "Mayoreo";
+
+          }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+            $usuario = "Rutas";
+
+          }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+            $usuario = "Industrial";
+
+          }else{
+
+            $usuario = $_SESSION["nombre"];
+
+          }
     }
     
     
@@ -56,6 +72,21 @@ class TablaCobrosTiendas{
 
         $valor2 = "FACTURA SANTIAGO V 3.3";
 
+        break;
+      case 'Mayoreo':
+
+        $valor2 = "FACTURA MAYOREO V 3.3";
+
+        break;
+      case 'Industrial':
+
+        $valor2 = "FACTURA INDUSTRIAL V 3.3";
+
+        break;
+      case 'Rutas':
+
+        $valor2 = "ALL";
+        
         break;
     }
 

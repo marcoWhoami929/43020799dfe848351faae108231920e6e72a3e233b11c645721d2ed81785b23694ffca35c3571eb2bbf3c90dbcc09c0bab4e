@@ -4,7 +4,15 @@ class ControladorFacturasTiendas{
 
 	static public function ctrMostrarFacturas($item,$valor,$item2,$valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturas($tabla,$item,$valor,$item2,$valor2);
 
@@ -14,7 +22,23 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarFacturasCorte($item,$valor,$item2,$valor2,$item3,$valor3){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasCorte($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -24,7 +48,23 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarFacturasSaldosPendientes($item,$valor,$item2,$valor2,$item3,$valor3){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasSaldosPendientes($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -35,7 +75,25 @@ class ControladorFacturasTiendas{
 
 	static public function ctrMostrarVentasDiarioTiendas($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarVentasDiarioTiendas($tabla,$item,$valor,$item2,$valor2);
 
@@ -43,7 +101,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarVentasDiarioTiendasTotal($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarVentasDiarioTiendasTotal($tabla,$item,$valor,$item2,$valor2);
 
@@ -51,7 +127,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarCobrosDiarioTiendas($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarCobrosDiarioTiendas($tabla,$item,$valor,$item2,$valor2);
 
@@ -59,7 +152,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarCobrosDiarioTiendasTotal($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarCobrosDiarioTiendasTotal($tabla,$item,$valor,$item2,$valor2);
 
@@ -67,7 +177,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarTotalCobrosDiarios($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarTotalCobrosDiarios($tabla,$item,$valor,$item2,$valor2);
 
@@ -75,7 +202,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarCancelacionesTiendas($item,$valor){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+		}
+
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarCancelacionesTiendas($tabla,$item,$valor);
 
@@ -84,7 +229,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarListaFacturasTiendas($item,$valor){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarListaFacturasTiendas($tabla,$item,$valor);
 
@@ -92,36 +255,96 @@ class ControladorFacturasTiendas{
 
 
 	}
-	static public function ctrVincularNuevaFactura($item,$valor,$item2,$valor2){
+	static public function ctrVincularNuevaFactura($item,$valor,$item2,$valor2,$serie){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
-			$respuesta = ModeloFacturasTiendas::mdlVincularNuevaFactura($tabla,$item,$valor,$item2,$valor2);
+				$tabla = "facturasgenerales";
+
+			}else{
+			  	if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+
+			}
+
+
+			$respuesta = ModeloFacturasTiendas::mdlVincularNuevaFactura($tabla,$item,$valor,$item2,$valor2,$serie);
 
 			return $respuesta;
 	}
-	static public function ctrMarcarFacturaRefacturada($item,$valor,$item2,$valor2){
+	static public function ctrMarcarFacturaRefacturada($item,$valor,$item2,$valor2,$serie){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
-			$respuesta = ModeloFacturasTiendas::mdlMarcarFacturaRefacturada($tabla,$item,$valor,$item2,$valor2);
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
+
+
+			$respuesta = ModeloFacturasTiendas::mdlMarcarFacturaRefacturada($tabla,$item,$valor,$item2,$valor2,$serie);
 
 			return $respuesta;
 	}
 	static public function ctrMostrarDetalleFacturaVinculada($item,$valor){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarDetalleFacturaVinculada($tabla,$item,$valor);
 
 			return $respuesta;
 
 	}
-	static public function ctrMostrarFacturaVinculada($item,$valor){
+	static public function ctrMostrarFacturaVinculada($item,$valor,$serie){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
-			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturaVinculada($tabla,$item,$valor);
+				$tabla = "facturasgenerales";
+
+			}else{
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+
+			}
+
+
+			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturaVinculada($tabla,$item,$valor,$serie);
 
 			return $respuesta;
 
@@ -146,7 +369,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrDetallesFormaPagoCorteCaja($item,$valor,$item2,$valor2,$item3,$valor3){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlDetallesFormaPagoCorteCaja($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -155,13 +396,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarDepositosTiendas($item,$valor,$item2,$valor2){
 			
-			if ($_SESSION["nombre"] != "Sucursal Santiago") {
+			if ($_SESSION["nombre"] == "Sucursal Santiago") {
 
-				$tabla = "banco0198";
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Diego Ávila"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+				$tabla = "banco3450";
 
 			}else{
 
-				$tabla = "banco6278";
+				$tabla = "banco0198";
 
 			}
 
@@ -172,7 +425,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarListaFacturasDepositos($item,$valor,$item2,$valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarListaFacturasDepositos($tabla,$item,$valor,$item2,$valor2);
 
@@ -182,7 +452,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrAgregarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlAgregarFacturaDepositada($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -192,7 +479,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrQuitarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3,$item4,$valor4){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlQuitarFacturaDepositada($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$item4,$valor4);
 
@@ -232,7 +537,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrActualizarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
+
 
 			$respuesta = ModeloFacturasTiendas::mdlActualizarFacturaDepositada($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -297,13 +619,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrGuardarDatosDepositoBanco($item,$valor,$item2,$valor2,$item3,$valor3,$item5,$valor5,$item6,$valor6,$item7,$valor7,$item9,$valor9){
 
-			if ($_SESSION["nombre"] != "Sucursal Santiago") {
+			if ($_SESSION["nombre"] == "Sucursal Santiago") {
 
-				$tabla = "banco0198";
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Diego Ávila"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+				$tabla = "banco3450";
 
 			}else{
 
-				$tabla = "banco6278";
+				$tabla = "banco0198";
 
 			}
 
@@ -365,7 +699,23 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrObtenerAbonadoFactura($item,$valor,$item2,$valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlObtenerAbonadoFactura($tabla,$item,$valor,$item2,$valor2);
 
@@ -375,7 +725,23 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrObtenerAbonadoFacturaPrev($serieFacturaPrev,$folioFacturaPrev){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($serieFacturaPrev === "FACD" || $serieFacturaPrev === "FAND" || $serieFacturaPrev === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlObtenerAbonadoFacturaPrev($tabla,$serieFacturaPrev,$folioFacturaPrev);
 
@@ -437,13 +803,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrInsertarParcialesAbonos($campo,$parcial,$campo2,$departamento2,$movimiento,$movimientoBanco,$itemParciales,$sumaParciales){
 
-			if ($_SESSION["nombre"] != "Sucursal Santiago") {
+			if ($_SESSION["nombre"] == "Sucursal Santiago") {
 
-				$tabla = "banco0198";
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Diego Ávila"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+				$tabla = "banco3450";
 
 			}else{
 
-				$tabla = "banco6278";
+				$tabla = "banco0198";
 
 			}
 
@@ -454,13 +832,25 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrLimpiarParcialesAbonos($movimientoB,$movimientoBanco){
 
-			if ($_SESSION["nombre"] != "Sucursal Santiago") {
+			if ($_SESSION["nombre"] == "Sucursal Santiago") {
 
-				$tabla = "banco0198";
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Diego Ávila"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+				$tabla = "banco6278";
+
+			}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+				$tabla = "banco3450";
 
 			}else{
 
-				$tabla = "banco6278";
+				$tabla = "banco0198";
 
 			}
 
@@ -540,9 +930,8 @@ class ControladorFacturasTiendas{
 					}).then(function(result){
 
 						if(result.value){
-						
-							window.location = "gastosTiendas";
-
+								gastosTiendas.ajax.reload();
+							
 						}
 
 					});
@@ -566,7 +955,7 @@ class ControladorFacturasTiendas{
 
 						if(result.value){
 						
-							window.location = "gastosTiendas";
+							gastosTiendas.ajax.reload();
 
 						}
 
@@ -593,7 +982,7 @@ class ControladorFacturasTiendas{
 
 						if(result.value){
 						
-							window.location = "gastosTiendas";
+							gastosTiendas.ajax.reload();
 
 						}
 
@@ -629,7 +1018,7 @@ class ControladorFacturasTiendas{
 
 		if(isset($_POST["idGasto"])){
 
-					var_dump("idGasto");
+				
 
 					$tabla = "gastos";
 					$tabla2 = "bitacora";
@@ -647,16 +1036,9 @@ class ControladorFacturasTiendas{
 
 					}
 
-					$numeroDocumento = trim($_POST["editarNumeroDocumento"]);
-					$numeroDocumento = strtoupper($numeroDocumento);
-					//$numeroDocumento = str_replace("-"," ",$numeroDocumento);
+					if ($_FILES['facturaGasto']['name'] != null && $_POST["editarRutaFactura"] == "") {
 
-					$folioFiscal = trim($_POST["editarFolioFiscal"]);
-
-
-						if ($_FILES['facturaGasto']['name'] != null && $_POST["editarRutaFactura"] == "") {
-
-						$directorioDestinoFactura = 'gastos/facturas/SGM-'.$folioGasto;
+						$directorioDestinoFactura = 'gastos/facturas/SGM-'.$folioGasto.'/';
 						if (!file_exists($directorioDestinoFactura)) {
 						    mkdir($directorioDestinoFactura, 0777, true);
 						
@@ -665,17 +1047,17 @@ class ControladorFacturasTiendas{
 							echo 'No se puedo crear la carpeta';
 						}
 						
-						$archivoFactura = $directorioDestinoFactura . ''.$folioGasto.'.pdf';
+						$archivoFactura = 'SGM-'.$folioGasto.'.pdf';
 
 						if(!is_writable($directorioDestinoFactura)){
 						echo "no tiene permisos";
 						}else{
 							if(is_uploaded_file($_FILES['facturaGasto']['tmp_name'])){
 								
-								if (move_uploaded_file($_FILES['facturaGasto']['tmp_name'], $archivoFactura)) {
+								if (move_uploaded_file($_FILES['facturaGasto']['tmp_name'], $directorioDestinoFactura.$archivoFactura)) {
 									
 									
-									$rutaFactura = $archivoFactura;
+									$rutaFactura = $directorioDestinoFactura.$archivoFactura;
 									
 								} else {
 									echo "Error al subir el archivo";
@@ -688,7 +1070,7 @@ class ControladorFacturasTiendas{
 		
 						}else if ($_FILES['facturaGasto']['name'] == null && $_POST["editarRutaFactura"] != ""){
 
-							$directorioDestinoFactura = 'gastos/facturas/SGM-'.$folioGasto;
+							$directorioDestinoFactura = 'gastos/facturas/SGM-'.$folioGasto.'/';
 							if (!file_exists($directorioDestinoFactura)) {
 							    mkdir($directorioDestinoFactura, 0777, true);
 							
@@ -703,26 +1085,26 @@ class ControladorFacturasTiendas{
 
 						if ($_FILES['xmlGasto']['name'] != null && $_POST["editarRutaXml"] == "") {
 
-						$directorioDestinoXml = 'gastos/xml/SGM-'.$folioGasto;
+						$directorioDestinoXml = 'gastos/xml/SGM-'.$folioGasto.'/';
 						if (!file_exists($directorioDestinoXml)) {
 						    mkdir($directorioDestinoXml, 0777, true);
 						
 						}else {
 
-							echo 'No se puedo crear la carpeta';
+							echo 'No se pudo crear la carpeta';
 						}
 						
-						$archivoXml = $directorioDestinoXml . ''.$folioGasto.'.xml';
+						$archivoXml = 'SGM-'.$folioGasto.'.xml';
 
 						if(!is_writable($directorioDestinoXml)){
 						echo "no tiene permisos";
 						}else{
 							if(is_uploaded_file($_FILES['xmlGasto']['tmp_name'])){
 								
-								if (move_uploaded_file($_FILES['xmlGasto']['tmp_name'], $archivoXml)) {
+								if (move_uploaded_file($_FILES['xmlGasto']['tmp_name'], $directorioDestinoXml.$archivoXml)) {
 									
 									
-									$rutaXml = $archivoXml;
+									$rutaXml = $directorioDestinoXml.$archivoXml;
 									
 								} else {
 									echo "Error al subir el archivo";
@@ -735,18 +1117,64 @@ class ControladorFacturasTiendas{
 		
 						}else if ($_FILES['xmlGasto']['name'] == null && $_POST["editarRutaXml"] != ""){
 
-							$directorioDestinoXml = 'gastos/xml/SGM-'.$folioGasto;
+							$directorioDestinoXml = 'gastos/xml/SGM-'.$folioGasto.'/';
 							if (!file_exists($directorioDestinoXml)) {
 							    mkdir($directorioDestinoXml, 0777, true);
 							
 							}else {
 
-								echo 'No se puedo crear la carpeta';
+								echo 'No se pudo crear la carpeta';
 							}
 
 							$rutaXml = $_POST["editarRutaXml"];
 
 						}
+
+					if ($_POST["editarSubgrupo"] == "99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales") {
+
+						 $numeroDocumento = trim($_POST["editarNumeroDocumento"]);
+						 $numeroDocumento = strtoupper($numeroDocumento);
+
+						 $folioFiscal = $_POST["editarFolioFiscal"];
+						 $acreedor = $_POST["editarAcreedor"];
+						 $total = $_POST["editarImporteGasto"];
+						 $response = 0;
+						
+					}else{
+
+							$xml = simplexml_load_file($rutaXml);
+							$ns = $xml->getNamespaces(true);
+							$xml->registerXPathNamespace('c', $ns['cfdi']);
+							$xml->registerXPathNamespace('t', $ns['tfd']);
+
+							foreach ($xml->xpath('//cfdi:Comprobante') as $cfdiComprobante){ 
+							   
+							      $total = $cfdiComprobante['Total']; 
+							      $serie = $cfdiComprobante['Serie'];
+							      $folio = $cfdiComprobante['Folio'];  
+							      $numeroDocumento = $serie." ".$folio;
+							     
+							} 
+							foreach ($xml->xpath('//cfdi:Comprobante//cfdi:Emisor') as $Emisor){ 
+							   
+							   $acreedor = $Emisor['Nombre']; 
+
+							} 
+							foreach ($xml->xpath('//t:TimbreFiscalDigital') as $tfd) {
+							  
+							   $folioFiscal = $tfd['UUID']; 
+							   
+							} 
+
+							$item = 'folioFiscal';
+							$valor = $folioFiscal;
+							$respuesta = ControladorFacturasTiendas::ctrValidarFolioFiscal($item,$valor);
+
+							$response = $respuesta["folio"];
+
+
+					}
+							
 
 					$datos = array("departamento" => $_POST["editarDepartamento"],
 						           "grupo" => $_POST["editarGrupo"],
@@ -754,10 +1182,10 @@ class ControladorFacturasTiendas{
 						           "mes" => $_POST["editarMes"],
 						           "fecha" => $_POST["editarFecha"],
 						           "descripcion" => trim($_POST["editarDescripcion"]),
-						           "importeGasto" => trim($_POST["editarImporteGasto"]),
-						           "acreedor" => trim($_POST["editarAcreedor"]),
+						           "importeGasto" => trim($total),
+						           "acreedor" => trim($acreedor),
 						           "numeroDocumento" => $numeroDocumento,
-						           "folioFiscal" => $_POST["editarFolioFiscal"],
+						           "folioFiscal" => $folioFiscal,
 						           "tieneIva" => $_POST["editarTieneIva"],
 						           "tieneRetenciones" => $_POST["editarTieneRetenciones"],
 						           "tipoRetencion" => $tipoRetencion,
@@ -765,7 +1193,57 @@ class ControladorFacturasTiendas{
 						           "rutaFactura" => $rutaFactura,
 						           "rutaXml" => $rutaXml,
 						       	   "id" => $_POST["idGasto"]); 
+					
+					if ($response == 1) {
 
+						echo '<script>
+
+							swal({
+
+								type: "error",
+								title: "¡El folio fiscal existe en el gasto '.$respuesta["folioGasto"].'",
+								showConfirmButton: true,
+								confirmButtonText: "Cerrar"
+
+							}).then(function(result){
+
+								if(result.value){
+								
+									
+
+								}
+
+							});
+						
+
+						</script>';
+
+
+						if (file_exists($rutaXml)) {
+						    $success = unlink($rutaXml);
+						    
+						    if (!$success) {
+						         throw new Exception("Cannot delete $filename");
+						    }
+						}
+						if (file_exists($rutaFactura)) {
+						    $success = unlink($rutaFactura);
+						    
+						    if (!$success) {
+						         throw new Exception("Cannot delete $filename");
+						    }
+						}
+						$path = $directorioDestinoFactura;
+						if(!rmdir($path)) {
+						  echo ("Could not remove $path");
+						}
+						$path2 = $directorioDestinoXml;
+						if(!rmdir($path2)) {
+						  echo ("Could not remove $path");
+						}
+
+						
+					}else{
 
 
 					$datos2 = array("usuario" => $_SESSION['nombre'],
@@ -773,11 +1251,9 @@ class ControladorFacturasTiendas{
 									   "accion" => 'Edición de Gasto',
 									   "folio" => $folioGasto);
 
-
-				
 					$respuesta = ModeloFacturasTiendas::mdlEditarGasto($tabla, $datos);
-					$respuesta = ModeloFacturasTiendas::mdlRegistroBitacoraAgregar($tabla2, $datos2);
-					$respuesta = ModeloFacturasTiendas::mdlCalcularImpuestos($tabla,$folioGasto);
+					$respuesta2 = ModeloFacturasTiendas::mdlRegistroBitacoraAgregar($tabla2, $datos2);
+					$respuesta3 = ModeloFacturasTiendas::mdlCalcularImpuestos($tabla,$folioGasto);
 				
 					if($respuesta == "ok"){
 
@@ -794,7 +1270,7 @@ class ControladorFacturasTiendas{
 
 							if(result.value){
 							
-								window.location = "gastosTiendas";
+								gastosTiendas.ajax.reload();
 
 							}
 
@@ -819,7 +1295,7 @@ class ControladorFacturasTiendas{
 
 								if(result.value){
 								
-									window.location = "gastosTiendas";
+									gastosTiendas.ajax.reload();
 
 								}
 
@@ -829,6 +1305,9 @@ class ControladorFacturasTiendas{
 						</script>';
 
 					}	
+
+					}
+					
 
 
 			}
@@ -1001,7 +1480,24 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarFacturasConRemanentes($datos){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($datos["concepto"] === "FACTURA MAYOREO V 3.3" || $datos["concepto"] === "FACTURA INDUSTRIAL V 3.3" || $datos["concepto"] === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasConRemanentes($tabla,$datos);
 
@@ -1031,7 +1527,15 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrSaldarDocumentoConSaldoPendiente($datosSaldado){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlSaldarDocumentoConSaldoPendiente($tabla,$datosSaldado);
 			
@@ -1041,7 +1545,15 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrObtenerDatosFactura($item,$valor,$item2,$valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlObtenerDatosFactura($tabla,$item,$valor,$item2,$valor2);
 			
@@ -1152,7 +1664,15 @@ class ControladorFacturasTiendas{
 	}
 	static public function ctrMostrarFacturasImporteVenta($item,$valor,$item2, $valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasImporteVenta($tabla,$item,$valor,$item2, $valor2);
 
@@ -1233,7 +1753,15 @@ class ControladorFacturasTiendas{
 	=======================================================*/
 	static public function ctrObtenerVentasTienda($item,$valor,$item2,$valor2){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlObtenerVentasTienda($tabla,$item,$valor,$item2,$valor2);
 
@@ -1246,7 +1774,23 @@ class ControladorFacturasTiendas{
 	=======================================================*/
 	static public function ctrMostrarDesgloseCobros($item,$valor,$item2,$valor2,$item3,$valor3){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarDesgloseCobros($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -1257,7 +1801,24 @@ class ControladorFacturasTiendas{
 	=======================================================*/
 	static public function ctrMostrarEfectivoADepositarBanco($item,$valor,$item2,$valor2){
 
-		$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+
+			}
 
 		$respuesta = ModeloFacturasTiendas::mdlMostrarEfectivoADepositarBanco($tabla,$item,$valor,$item2,$valor2);
 
@@ -1268,8 +1829,15 @@ class ControladorFacturasTiendas{
 	=======================================================*/
 	static public function ctrMostrarFacturasPendientesPago($item,$valor){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			$tabla = "facturastiendas";
+
+		}
 		$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasPendientesPago($tabla,$item,$valor);
 
 		return $respuesta;
@@ -1279,7 +1847,15 @@ class ControladorFacturasTiendas{
 	=======================================================*/
 	static public function ctrActualizarFacturasPagoPendiente($item,$valor,$item2,$valor2,$item3,$valor3,$item4,$valor4,$item5,$valor5){
 
-		$tabla = "facturastiendas";
+		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+			$tabla = "facturasgenerales";
+
+		}else{
+
+			$tabla = "facturastiendas";
+
+		}
 
 		$respuesta = ModeloFacturasTiendas::mdlActualizarFacturasPagoPendiente($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$item4,$valor4,$item5,$valor5);
 
@@ -1304,7 +1880,15 @@ class ControladorFacturasTiendas{
 	==========================================================================*/
 	static public function ctrMostrarFacturasPendientesCredito($item,$valor){
 
-			$tabla = "facturastiendas";
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				$tabla = "facturastiendas";
+
+			}
 
 			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasPendientesCredito($tabla,$item,$valor);
 

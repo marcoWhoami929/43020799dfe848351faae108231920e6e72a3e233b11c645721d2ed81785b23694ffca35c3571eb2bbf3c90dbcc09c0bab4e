@@ -15,7 +15,23 @@ class TablaListaFacturasTiendas{
       $usuario = $_GET["sucursalElegida"];
 
     }else{
-      $usuario = $_SESSION["nombre"];
+      if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+        $usuario = "Mayoreo";
+
+      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+        $usuario = "Rutas";
+
+      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+        $usuario = "Industrial";
+
+      }else{
+
+        $usuario = $_SESSION["nombre"];
+
+      }
     }
     
     switch ($usuario) {
@@ -43,6 +59,21 @@ class TablaListaFacturasTiendas{
 
         $valor = "FACTURA SANTIAGO V 3.3";
 
+        break;
+       case 'Mayoreo':
+
+        $valor = "FACTURA MAYOREO V 3.3";
+
+        break;
+      case 'Industrial':
+
+        $valor = "FACTURA INDUSTRIAL V 3.3";
+
+        break;
+      case 'Rutas':
+
+        $valor = "ALL";
+        
         break;
     }
 

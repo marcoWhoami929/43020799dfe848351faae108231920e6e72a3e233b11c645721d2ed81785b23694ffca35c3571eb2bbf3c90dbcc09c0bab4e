@@ -1,6 +1,6 @@
 <?php
-
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma"){
+error_reporting(0);
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -68,22 +68,51 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
          <?php
             $url = $_SERVER['REQUEST_URI'];
             $rest = explode('=',$url);
-            $fecha = $rest[1];
+            $fecha = substr($rest[1],0,10);
+            $sucursal = $rest[2];
+            $sucursal = str_replace("-"," ",$sucursal);
 
             $fechaCobro = $fecha;
 
-            if ($_SESSION["nombre"] != "Sucursal Santiago") {
-              $banco = "0162310198";
-            }else{
+            if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
               $banco = "0449546278";
+              $sesion = "Mayoreo";
+
+            }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+              $banco = "0188153450";
+              $sesion = "Rutas";
+
+            }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+              $banco = "0449546278";
+              $sesion = "Industrial";
+
+            }else{
+
+              
+              $sesion = $sucursal;
+
+              if ($sesion == 'Industrial' || $sesion == 'Mayoreo') {
+                $banco = "0449546278";
+              }else if($sesion == 'Rutas'){
+                $banco = "0188153450";
+              }else{
+                $banco = "0162310198";
+              }
+
             }
+
+          
             echo '<input type="hidden" id="fechaCobro" class="form-control input-sm" value="'.$fechaCobro.'">';
+            echo '<input type="hidden" id="sucursal" class="form-control input-sm" value="'.$sucursal.'">';
           ?>
         <br>
         <br>
         <h3>SAN FRANCISCO DEKKERLAB</h3>
         <h4>EFECTIVO A DEPOSITAR</h4>
-        <span style="color: black;font-weight: bold;text-transform: uppercase;"><?php echo $_SESSION["nombre"] ?> <?php echo $fechaCobro ?></span>
+        <span style="color: black;font-weight: bold;text-transform: uppercase;"><?php echo $sesion ?> <?php echo $fechaCobro ?></span>
         <br>
         <span style="color: black;font-weight: bold;"></span>
         <div class="box-tools">
@@ -127,7 +156,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                 }
                 $item2 = "concepto";
                 
-                $usuario = $_SESSION["nombre"];
+                $usuario = $sucursal;
                 
               
                 
@@ -155,6 +184,21 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                   case 'Sucursal Santiago':
 
                     $valor2 = "FACTURA SANTIAGO V 3.3";
+
+                    break;
+                  case 'Mayoreo':
+
+                    $valor2 = "FACTURA MAYOREO V 3.3";
+
+                    break;
+                  case 'Industrial':
+
+                    $valor2 = "FACTURA INDUSTRIAL V 3.3";
+
+                    break;
+                  case 'Rutas':
+
+                    $valor2 = "ALL";
 
                     break;
                 }
@@ -187,8 +231,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 TABLA DE EFECTIVO A DEPOSITAR EN BANCO
 =============================================*/
 var fechaCobro = $("#fechaCobro").val();
+var sucursal = $("#sucursal").val();
 var importesVenta = $(".tablaEfectivoDeposito").DataTable({
-   "ajax":"ajax/tablaDepositoEfectivoBanco.ajax.php?fechaCobro="+fechaCobro,
+   "ajax":"ajax/tablaDepositoEfectivoBanco.ajax.php?fechaCobro="+fechaCobro+"&sucursal="+sucursal,
    //"ajax":"ajax/tablaFacturacionTiendas.ajax.php",
    "deferRender": true,
    "retrieve": true,

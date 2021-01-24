@@ -24,10 +24,18 @@ class TablaDocumentosAjustados{
       case 'Sucursal Las Torres':
         $serie = 'AJTR';
         break;
-      
-      default:
-        # code...
+      case 'Rocio Martínez Morales':
+        $serie = 'AJRU';
         break;
+      case 'Aurora Fernandez':
+        $serie = 'AJND';
+        break;
+      case 'Diego Ávila':
+        $serie = 'AJCD';
+        break;
+
+      
+ 
     }
    
     $item = "serieAjuste";

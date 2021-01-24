@@ -1,6 +1,6 @@
 <?php
-
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez"){
+error_reporting(0);
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 
 
 
@@ -73,15 +73,40 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "José Martinez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
+
+              if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+                                        
+                  $tabla = "facturasgenerales";
+
+                }else{
+
+                  if (isset($_POST["sucursalVenta"])) {
+
+                    if ($_POST["sucursalVenta"] == "Industrial" || $_POST["sucursalVenta"] == "Mayoreo" || $_POST["sucursalVenta"] == "Rutas") {
+
+                       $tabla = "facturasgenerales";
+                    }else{
+
+                       $tabla = "facturastiendas";
+                    }
+
+                  }else{
+                   
+                     $tabla = "facturastiendas";
+                  }
+
+                  
+
+                }
               if (isset($_POST["fechaVenta"])) {
-                echo '<a href="vistas/modulos/reportes.php?reporteVentasTiendas=facturastiendas&fechaVenta='.$_POST["fechaVenta"].'&sucursalVenta='.$_POST["sucursalVenta"].'">
+                echo '<a href="vistas/modulos/reportes.php?reporteVentasTiendas='.$tabla.'&fechaVenta='.$_POST["fechaVenta"].'&sucursalVenta='.$_POST["sucursalVenta"].'">
 
                 <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
               </a>';
               }else{
-                echo '<a href="vistas/modulos/reportes.php?reporteVentasTiendas=facturastiendas">
+                echo '<a href="vistas/modulos/reportes.php?reporteVentasTiendas='.$tabla.'">
 
                 <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
@@ -92,7 +117,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
             }else{
               echo '
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="vistas/modulos/reportes.php?reporteVentasTiendas=facturastiendas">
+              <a href="vistas/modulos/reportes.php?reporteVentasTiendas='.$tabla.'">
 
                 <button class="report btn btn-info" id="report" name="report"" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
@@ -102,7 +127,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
           ?>
            <?php
-              if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma") {?>
+              if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {?>
                   <?php
                   echo '<div class="container col-lg-12 col-md-12 col-sm-12"><br>
                     <h5 style="font-weight: bold;font-size: 25px">Búsqueda por Día de Venta</h5><br>
@@ -113,8 +138,27 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                         <div class="col-lg-3">';?>
                             <?php
                             if (isset($_POST["fechaVenta"])) {
+
+                               if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                                
+                                 $usuario = "Mayoreo";
+
+                               }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                                  $usuario = "Rutas";
+
+                               }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                                 $usuario = "Industrial";
+
+                               }else{
+
+                                 $usuario = $_SESSION["nombre"];
+
+                               }
                                echo '<input type="date" id="fechaVenta" name="fechaVenta" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaVenta"])).'" required>';
-                               echo '<input type="hidden" name="sucursalVenta" id="sucursalVenta" value="'.$_SESSION["nombre"].'">';
+                               echo '<input type="hidden" name="sucursalVenta" id="sucursalVenta" value="'.$usuario.'">';
 
                             }else {
 
@@ -149,12 +193,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                         <div class="col-lg-3">';?>
                           <?php
                           if (isset($_POST["sucursalVenta"])) {
-                             echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="'.$_POST["sucursalVenta"].'">'.$_POST["sucursalVenta"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option></select>';
+                             echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="'.$_POST["sucursalVenta"].'">'.$_POST["sucursalVenta"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
                             
 
                           }else {
 
-                               echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option></select>';
+                               echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
 
                            }
                           ?>
@@ -196,9 +240,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <br>
      
         <br>
-        <table class="table-bordered table-striped dt-responsive tablaVentasTiendas" width="100%" id="ventasTiendas" style="border: 2px solid #001f3f">
+        <table class="table-bordered table-striped dt-responsive tablaVentasTiendas estiloBordesTablas" width="100%" id="ventasTiendas" >
          
-          <thead style="background:#001f3f;color: white">
+          <thead class="estilosTablas">
            
            <tr style="">
              
@@ -232,41 +276,75 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
 
                 $item2 = "concepto";
-                if ($_POST["sucursalVenta"] != "") {
-                   $usuario = $_POST["sucursalVenta"];
+                if (isset($_POST["sucursalVenta"]) != "") {
+                  
+                       if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                          $usuario = "Mayoreo";
+
+                        }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                          $usuario = "Rutas";
+
+                        }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                          $usuario = "Industrial";
+
+                        }else{
+
+                          $usuario = $_POST["sucursalVenta"];
+
+                        }
+
                 }else{
-                   $usuario = $_SESSION["nombre"];
+                  if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                    $usuario = "Mayoreo";
+
+                  }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                    $usuario = "Rutas";
+
+                  }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                    $usuario = "Industrial";
+
+                  }else{
+
+                    $usuario = $_SESSION["nombre"];
+
+                  }
                 }
 
 
                 switch ($usuario) {
                   case 'Sucursal San Manuel':
-
                     $valor2 = "FACTURA SAN MANUEL V 3.3";
-
                     break;
                   case 'Sucursal Capu':
-
                     $valor2 = "FACTURA CAPU V 3.3";
-
                     break;
                   case 'Sucursal Reforma':
-
                     $valor2 = "FACTURA REFORMA V 3.3";
-
                     break;
                   case 'Sucursal Las Torres':
-
                     $valor2 = "FACTURA TORRES";
-
                     break;
                   case 'Sucursal Santiago':
-
                     $valor2 = "FACTURA SANTIAGO V 3.3";
-
+                    break;
+                  case 'Mayoreo':
+                    $valor2 = "FACTURA MAYOREO V 3.3";
+                    break;
+                  case 'Industrial':
+                    $valor2 = "FACTURA INDUSTRIAL V 3.3";
+                    break;
+                  case 'Rutas':
+                    $valor2 = "ALL";
                     break;
                 }
 
+                
                 $ventasTiendas = ControladorFacturasTiendas::ctrMostrarVentasDiarioTiendasTotal($item, $valor,$item2, $valor2);
               
                 $totalImporte = $ventasTiendas[0]["totalImporte"];

@@ -678,6 +678,591 @@ $(".tablaBanco0198").on("click", ".btnEditarDatos", function(){
 
 
 })
+$(".tablaBanco0198Credito").on("click", ".btnEditarDatos", function(){
+
+  var idBanco = $(this).attr("idBanco");
+  
+  var datos = new FormData();
+  datos.append("idBanco", idBanco);
+
+  $.ajax({
+
+    url:"ajax/banco0198.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(respuesta){ 
+
+      $("#editarDepartamento").val(respuesta["departamento"]);
+      $("#idBanco").val(respuesta["id"]);
+      $("#editarIdBanco").val(respuesta["id"]);
+      $("#editarGrupo").val(respuesta["grupo"]);
+      $("#editarSubgrupo").val(respuesta["subgrupo"]);
+      $("#editarMes").val(respuesta["mes"]);
+      $("#editarFecha").val(respuesta["fecha"]);
+      $("#editarDescripcion").val(respuesta["descripcion"]);
+      $("#editarCargo").val(respuesta["cargo"]);
+      $("#editarAbono").val(respuesta["abono"]);
+      $("#editarSaldo").val(respuesta["saldo"]);
+      $("#editarParciales").val(respuesta["parciales"]);
+      $("#editarParcial").val(respuesta["parcial"]);
+      $("#editarDepartamentoParcial1").val(respuesta["departamentoParcial1"]);
+      $("#editarParcial2").val(respuesta["parcial2"]);
+      $("#editarDepartamentoParcial2").val(respuesta["departamentoParcial2"]);
+      $("#editarParcial3").val(respuesta["parcial3"]);
+      $("#editarDepartamentoParcial3").val(respuesta["departamentoParcial3"]);
+      $("#editarParcial4").val(respuesta["parcial4"]);
+      $("#editarDepartamentoParcial4").val(respuesta["departamentoParcial4"]);
+      $("#editarParcial5").val(respuesta["parcial5"]);
+      $("#editarDepartamentoParcial5").val(respuesta["departamentoParcial5"]);
+      $("#editarParcial6").val(respuesta["parcial6"]);
+      $("#editarDepartamentoParcial6").val(respuesta["departamentoParcial6"]);
+      $("#editarParcial7").val(respuesta["parcial7"]);
+      $("#editarDepartamentoParcial7").val(respuesta["departamentoParcial7"]);
+      $("#editarParcial8").val(respuesta["parcial8"]);
+      $("#editarDepartamentoParcial8").val(respuesta["departamentoParcial8"]);
+      $("#editarParcial9").val(respuesta["parcial9"]);
+      $("#editarDepartamentoParcial9").val(respuesta["departamentoParcial9"]);
+      $("#editarParcial10").val(respuesta["parcial10"]);
+      $("#editarDepartamentoParcial10").val(respuesta["departamentoParcial10"]);
+      $("#editarParcial11").val(respuesta["parcial11"]);
+      $("#editarDepartamentoParcial11").val(respuesta["departamentoParcial11"]);
+      $("#editarParcial12").val(respuesta["parcial12"]);
+      $("#editarDepartamentoParcial12").val(respuesta["departamentoParcial12"]);
+      $("#editarFolio").val(respuesta["folio"]);
+      $("#editarSerie").val(respuesta["serie"]);
+      $("#select2-editarAcreedor-container").val(respuesta["acreedor"]);
+      $("#editarAcreedor").val(respuesta["acreedor"]);
+      $("#editarConcepto").val(respuesta["concepto"]);
+      $("#editarNumeroDocumento").val(respuesta["numeroDocumento"]);
+      $("#editarTieneIva").val(respuesta["tieneIva"]);
+      $("#editarTieneRetenciones").val(respuesta["tieneRetenciones"]);
+      $("#editarTipoRetencion").val(respuesta["tipoRetencion"]);
+      $("#editarImporteRetenciones").val(respuesta["importeRetenciones"]);
+
+
+      var valor1 = document.getElementById("editarParciales").value;
+      var valor = document.getElementById("editarTieneRetenciones").value;
+
+      if (valor == "01") {
+        div0 = document.getElementById("div_01");
+        div0.style.display = "";
+
+      }else if (valor == "0") {
+        div0 = document.getElementById("div_01");
+        div0.style.display = "none";
+      }
+         
+         if (valor1 == 0) {
+           
+          div1 = document.getElementById("1P");
+          div1.style.display = "none";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "none";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "none";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "none";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "none";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+         }
+
+         else if (valor1 == 1) {
+
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "none";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "none";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "none";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "none";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 2) {
+
+         div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "none";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "none";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "none";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 3) {
+
+         div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "none";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "none";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 4) {
+
+         div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "none";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 5) {
+
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "none";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }
+        else if (valor1 == 6) {
+
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "none";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }
+        else if (valor1 == 7) {
+        
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "none";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 8) {
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "none";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 9) {
+          
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "none";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+
+        }else if (valor1 == 10) {
+          
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "none";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 11) {
+          
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "none";
+
+        }else if (valor1 == 12) {
+          
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "";
+
+        }
+     
+    }
+
+
+  })
+
+
+})
 /*=============================================
 MOSTRAR PARCIALES
 =============================================*/

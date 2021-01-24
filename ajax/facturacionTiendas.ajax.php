@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
 require_once "../controladores/facturacionTiendas.controlador.php";
 require_once "../modelos/facturacionTiendas.modelo.php";
 
@@ -9,6 +9,7 @@ class AjaxFacturacionTiendas{
 
 	public $idFactura;
 	public $idFacturaTienda;
+	public $serieFacturaTienda;
 
 	public function ajaxVincularFactura(){
 
@@ -18,9 +19,11 @@ class AjaxFacturacionTiendas{
 		$item2 = "idNuevaFactura";
 		$valor2 = $this->idFactura;
 
-		$respuesta = ControladorFacturasTiendas::ctrVincularNuevaFactura($item, $valor,$item2,$valor2);
+		$serie = $this->serieFacturaTienda;
 
-		$respuesta2 = ControladorFacturasTiendas::ctrMarcarFacturaRefacturada($item,$valor,$item2,$valor2);
+		$respuesta = ControladorFacturasTiendas::ctrVincularNuevaFactura($item, $valor,$item2,$valor2,$serie);
+
+		$respuesta2 = ControladorFacturasTiendas::ctrMarcarFacturaRefacturada($item,$valor,$item2,$valor2,$serie);
 
 		echo json_encode($respuesta);
 		
@@ -28,13 +31,16 @@ class AjaxFacturacionTiendas{
 	}
 
 	public $idFacturaVista;
+	public $serieFacturaVista;
 
 	public function ajaxVerFacturaVinculada(){
 
 		$item = "id";
 		$valor = $this->idFacturaVista;
 
-		$respuesta = ControladorFacturasTiendas::ctrMostrarFacturaVinculada($item,$valor);
+		$serie = $this->serieFacturaVista;
+
+		$respuesta = ControladorFacturasTiendas::ctrMostrarFacturaVinculada($item,$valor,$serie);
 
 		echo json_encode($respuesta);
 	}
@@ -406,6 +412,21 @@ class AjaxFacturacionTiendas{
 		        $departamento2 = "SANTIAGO";
 
 		        break;
+		      case 'Mayoreo':
+
+		        $departamento2 = "CEDIS";
+
+		        break;
+		      case 'Rutas':
+
+		        $departamento2 = "RUTAS";
+
+		        break;
+		      case 'Industrial':
+
+		        $departamento2 = "INDUSTRIAL";
+
+		        break;
 			}
 			$movimiento = 'id';
 			$movimientoBanco  = $this->idMovimientoBancario;
@@ -456,6 +477,21 @@ class AjaxFacturacionTiendas{
 	        $departamento = "SANTIAGO";
 
 	        break;
+	       case 'Mayoreo':
+	      	$valorIdSucursal = "13";
+		    $departamento = "CEDIS";
+
+		    break;
+		  case 'Rutas':
+		  	$valorIdSucursal = "15";
+		    $departamento = "RUTAS";
+
+		    break;
+		  case 'Industrial':
+		  	$valorIdSucursal = "59";
+		    $departamento = "INDUSTRIAL";
+
+		    break;
 		}
 
 
@@ -516,9 +552,7 @@ class AjaxFacturacionTiendas{
 			case '12':
 				$mes = 'DICIEMBRE';
 				break;
-			default:
-				
-				break;
+			
 		}
 
 		$item7 = "mes";
@@ -567,15 +601,28 @@ class AjaxFacturacionTiendas{
 
 		$span = $this->listaSpan;
 
-		if ($_SESSION["nombre"] != "Sucursal Santiago") {
+		
+		if ($_SESSION["nombre"] == "Sucursal Santiago") {
 
-				$bancoElegidoMov = "banco0198";
+			$bancoElegidoMov = "banco6278";
 
-			}else{
+		}else if($_SESSION["nombre"] == "Diego Ávila"){
 
-				$bancoElegidoMov = "banco6278";
+			$bancoElegidoMov = "banco6278";
 
-			}
+		}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+			$bancoElegidoMov = "banco6278";
+
+		}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+			$bancoElegidoMov = "banco3450";
+
+		}else{
+
+			$bancoElegidoMov = "banco0198";
+
+		}
 		
 
 		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($item,$valor);
@@ -819,6 +866,7 @@ class AjaxFacturacionTiendas{
 
  		}
 
+
  		
  		switch ($this->concepto) {
  			case 'FACTURA SAN MANUEL V 3.3':
@@ -836,9 +884,17 @@ class AjaxFacturacionTiendas{
  			case 'FACTURA TORRES':
  				$serie = 'AJTR';
  				break;
- 			default:
- 				
+ 			
+ 			case 'ALL':
+ 				$serie = 'AJRU';
  				break;
+ 			case 'FACTURA MAYOREO V 3.3':
+ 				$serie = 'AJCD';
+ 				break;
+ 			case 'FACTURA INDUSTRIAL V 3.3':
+ 				$serie = 'AJND';
+ 				break;
+ 			
  		}
 
 
@@ -1001,7 +1057,23 @@ class AjaxFacturacionTiendas{
 		$item = "fechaFactura";
 		$valor = $fechaActual;
 
-		$usuario = $_SESSION["nombre"];
+		if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+	        $usuario = "Mayoreo";
+
+	      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+	        $usuario = "Rutas";
+
+	      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+	        $usuario = "Industrial";
+
+	      }else{
+
+	        $usuario = $_SESSION["nombre"];
+
+	      }
 		switch ($usuario) {
 			case 'Sucursal San Manuel':
 				$concepto = "FACTURA SAN MANUEL V 3.3";
@@ -1018,9 +1090,16 @@ class AjaxFacturacionTiendas{
 			case 'Sucursal Las Torres':
 				$concepto = "FACTURA TORRES";
 				break;
-			default:
-				
-				break;
+			case 'Mayoreo':
+                $concepto = "FACTURA MAYOREO V 3.3";
+                break;
+            case 'Industrial':
+                $concepto = "FACTURA INDUSTRIAL V 3.3";
+                break;
+            case 'Rutas':
+                $concepto = "ALL";
+                break;
+		
 		}
 
 		$item2 = "concepto";
@@ -1218,9 +1297,26 @@ class AjaxFacturacionTiendas{
 		if ($this->sucursalCobroCorte != "") {
         $usuario = $this->sucursalCobroCorte;
 	    }else{
-	        $usuario = $_SESSION["nombre"];
+	        
+	         if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+		        $usuario = "Mayoreo";
+
+		      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+		        $usuario = "Rutas";
+
+		      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+		        $usuario = "Industrial";
+
+		      }else{
+
+		        $usuario = $_SESSION["nombre"];
+
+		      }
 	    }
-	
+
 		switch ($usuario) {
 			case 'Sucursal San Manuel':
 				$concepto = "FACTURA SAN MANUEL V 3.3";
@@ -1237,9 +1333,16 @@ class AjaxFacturacionTiendas{
 			case 'Sucursal Las Torres':
 				$concepto = "FACTURA TORRES";
 				break;
-			default:
-				
-				break;
+			case 'Mayoreo':
+                $concepto = "FACTURA MAYOREO V 3.3";
+                break;
+            case 'Industrial':
+                $concepto = "FACTURA INDUSTRIAL V 3.3";
+                break;
+            case 'Rutas':
+                $concepto = "ALL";
+                break;
+		
 		}
 
 		$valor = $concepto;
@@ -1654,6 +1757,21 @@ class AjaxFacturacionTiendas{
 		        $departamento2 = "SANTIAGO";
 
 		        break;
+		      case 'Mayoreo':
+
+		        $departamento2 = "CEDIS";
+
+		        break;
+		      case 'Rutas':
+
+		        $departamento2 = "RUTAS";
+
+		        break;
+		      case 'Industrial':
+
+		        $departamento2 = "INDUSTRIAL";
+
+		        break;
 			}
 			$tabla = $this->bancoMovimiento;
 			$movimiento = 'id';
@@ -1704,6 +1822,21 @@ class AjaxFacturacionTiendas{
 	        $departamento = "SANTIAGO";
 
 	        break;
+	      case 'Mayoreo':
+	      	$valorIdSucursal = "13";
+		    $departamento = "CEDIS";
+
+		    break;
+		  case 'Rutas':
+		  	$valorIdSucursal = "15";
+		    $departamento = "RUTAS";
+
+		    break;
+		  case 'Industrial':
+		  	$valorIdSucursal = "59";
+		    $departamento = "INDUSTRIAL";
+
+		    break;
 		}
 
 
@@ -1856,13 +1989,21 @@ class AjaxFacturacionTiendas{
 
 	}
 	public $identificadorFactura;
-
+	public $serieFacturaCred;
 	public function ajaxActualizarEnviadoCredito(){
 
-		$tabla = "facturastiendas";
+		$serie = $this->serieFacturaCred;
+
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+			$tabla = "facturasgenerales";
+		}else{
+			$tabla = "facturastiendas";
+		}
+		
 
 		date_default_timezone_set('America/Mexico_City');
 		$fechaEnviado = date('Y-m-d H:i:s');
+	
 
 		$arreglo = array("id" => $this->identificadorFactura,
 			             "horaEnviado" => $fechaEnviado);
@@ -1873,9 +2014,16 @@ class AjaxFacturacionTiendas{
 
 	}
 	public $identificadorFacturaConfirm;
+	public $serieFacturaConfirm;
 	public function ajaxActualizarRecibidoCredito(){
 
-		$tabla = "facturastiendas";
+		$serie = $this->serieFacturaConfirm;
+
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+			$tabla = "facturasgenerales";
+		}else{
+			$tabla = "facturastiendas";
+		}
 
 		date_default_timezone_set('America/Mexico_City');
 		$fechaRecibido = date('Y-m-d H:i:s');
@@ -1925,10 +2073,17 @@ class AjaxFacturacionTiendas{
 
 	}
 	public $identificadorFacturaUpload;
+	public $serieFacturaUpload;
 
 	public function ajaxActualizarDocumentosCredito(){
 
-		$tabla = "facturastiendas";
+		$serie = $this->serieFacturaUpload;
+
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+			$tabla = "facturasgenerales";
+		}else{
+			$tabla = "facturastiendas";
+		}
 
 		date_default_timezone_set('America/Mexico_City');
 		$fechaRecibido = date('Y-m-d H:i:s');
@@ -1945,10 +2100,18 @@ class AjaxFacturacionTiendas{
 
 	}
 	public $identificadorFacturaLoad;
+	public $serieFacturaLoad;
 
 	public function ajaxCargarDatosDocumentosCredito(){
 
-		$tabla = "facturastiendas";
+		$serie = $this->serieFacturaLoad;
+
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+			$tabla = "facturasgenerales";
+		}else{
+			$tabla = "facturastiendas";
+		}
+	
 
 		$item = "id";
 		$valor = $this->identificadorFacturaLoad;
@@ -1958,6 +2121,321 @@ class AjaxFacturacionTiendas{
 		echo json_encode($respuesta);
 
 	}
+	public $sucursalComercial;
+	public function ajaxObtenerFacturasTiendasComercial(){
+
+			if ($this->sucursalComercial != "Sucursal Las Torres") {
+				include("../modelos/conexion-api-server-pinturas.modelo.php");
+			}else{
+				include("../modelos/conexion-api-server-torres.modelo.php");
+			}
+			
+			$hoy = date("d/m/Y");
+	        $fecha = str_replace('/', '-', $hoy);
+	        $fechaFinal = date('Y-m-d', strtotime($fecha));
+	    	//$fechaFinal = '2021-01-22';
+	    	$usuario = $_SESSION["nombre"];
+			    switch ($usuario) {
+                    case 'Sucursal San Manuel':
+                        $serie = "FASM";
+                        break;
+                    case 'Sucursal Reforma':
+                        $serie = "FARF";
+                        break;
+                   	case 'Sucursal Capu':
+                        $serie = "FACP";
+                        break;
+                    case 'Sucursal Las Torres':
+                       	$serie = "FATR";
+                        break;
+                    case 'Sucursal Santiago':
+                        $serie = "FASG";
+                        break;
+ 
+                }
+			
+		
+			$mostrarFacturas =  "SELECT admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG FROM dbo.admDocumentos as admDoc INNER JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  where admDoc.CFECHA = '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$serie."' GROUP BY admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG";
+
+
+            $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+            $i = 0;
+           		
+           	if (sqlsrv_has_rows($ejecutar) === false) {
+           		echo null;
+           	}else{
+           		 while ($value = sqlsrv_fetch_array($ejecutar)) {
+            	
+            	$facturas[$i] = array(
+            		 				 "fecha"=>$value["CFECHA"],
+            						 "serie" => $value["CSERIEDOCUMENTO"],
+            						 "folio" => $value["CFOLIO"],
+            						 "codigoCliente" => $value["CCODIGOCLIENTE"],
+            						 "rfc" => $value["CRFC"],
+            						 "razonSocial" => $value["CRAZONSOCIAL"],
+            						 "fechaVencimiento"=>$value["CFECHAVENCIMIENTO"],
+            						 "diasCredito" => $value["CDIASCREDITOCLIENTE"],
+            						 "neto" => $value["CNETO"],
+            						 "descuento" => $value["CDESCUENTODOC1"],
+            						 "impuesto" => $value["CIMPUESTO1"],
+            						 "total" => $value["CTOTAL"],
+            						 "formaPago"=> $value["CMETODOPAG"],
+            						 "pendiente" => $value["CTOTAL"]);
+            	$i++;
+            }
+            echo json_encode($facturas);
+           	}
+         
+           
+           
+           
+
+	}
+
+	public $listadoFacturasComercial;
+	
+	public function ajaxCargarFacturasComercial(){
+
+			include("../db_connect.php");
+			
+			
+			$lista = $this->listadoFacturasComercial;
+
+			$arregloFacturas = json_decode($lista,true);
+
+			foreach ($arregloFacturas as  $value) {
+
+				$consulta1 = "SELECT * FROM facturastiendas WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
+
+				$ejecutar = mysqli_query($conn, $consulta1) or die("database error:". mysqli_error($conn));
+				$fecha = substr($value["fecha"]["date"],0,10);
+				$fechaVencimiento  =substr($value["fechaVencimiento"]["date"],0,10);
+			
+				
+				$row_count = mysqli_num_rows($ejecutar);
+
+			
+				if ($row_count != 0) {
+
+						switch ($value["formaPago"]) {
+                            	case '01':
+                            		 $formaPago = 'EFECTIVO';
+                            		break;
+                            	case '02':
+                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		break;
+                            	case '03':
+                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		break;
+                            	case '04':
+                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		break;
+                            	case '05':
+                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		break;
+                            	case '06':
+                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		break;
+                            	case '08':
+                            		 $formaPago = 'VALES DE DESPENSA';
+                            		break;
+                            	case '12':
+                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		break;
+                            	case '13':
+                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		break;
+                            	case '14':
+                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		break;
+                            	case '15':
+                            		 $formaPago = 'CONDONACIÓN';
+                            		break;
+                            	case '17':
+                            		 $formaPago = 'COMPENSACIÓN';
+                            		break;
+                            	case '23':
+                            		 $formaPago = 'NOVACIÓN';
+                            		break;
+                            	case '24':
+                            		 $formaPago = 'CONFUSIÓN';
+                            		break;
+                            	case '25':
+                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		break;
+                            	case '26':
+                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		break;
+                            	case '27':
+                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		break;
+                            	case '28':
+                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		break;
+                            	case '29':
+                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		break;
+                            	case '30':
+                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		break;
+                            	case '31':
+                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		break;
+                            	case '99':
+                            		 $formaPago = 'POR DEFINIR';
+                            		break;
+                            	default:
+                            		$formaPago = 'EFECTIVO';
+                            		break;
+                            }
+
+                            if ($formaPago == 'POR DEFINIR') {
+                            	$formaPago == 'CREDITO';
+                            }else{
+                            	$formaPago = $formaPago;
+                            }
+
+                        if (strtoupper($formaPago) == "CREDITO") {
+
+							$creditoPendiente = "1";
+								
+						}else{
+
+							$creditoPendiente = "0";
+
+						}
+					
+						$actualizarFacturas = "UPDATE facturastiendas set  codigoCliente = '".$value["codigoCliente"]."', rfc = '".$value["rfc"]."', nombreCliente = '".$value["razonSocial"]."', fechaVencimiento = '".$fechaVencimiento."', diasCredito = '".$value["diasCredito"]."', neto = '".str_replace(',','',$value["neto"])."', descuento = '".str_replace(',','',$value["descuento"])."', impuesto = '".str_replace(',','',$value["impuesto"])."', total = '".str_replace(',','',$value["total"])."', formaPago = '".strtoupper($formaPago)."',creditoPendiente = '".$creditoPendiente."'  WHERE serie = '".$value["serie"]."' and folio = '".str_replace(',','',$value["folio"])."'";
+						mysqli_query($conn, $actualizarFacturas) or die("database error:". mysqli_error($conn));
+
+
+				}else{	
+
+						switch ($value["serie"]) {
+							case 'FASM':
+								$concepto = "FACTURA SAN MANUEL V 3.3";
+								break;
+							case 'FARF':
+								$concepto = "FACTURA REFORMA V 3.3";
+								break;
+							case 'FACP':
+								$concepto = "FACTURA CAPU V 3.3";
+								break;
+							case 'FASG':
+								$concepto = "FACTURA SANTIAGO V 3.3";
+								break;
+							case 'FATR':
+								$concepto = "FACTURA TORRES";
+								break;
+							case 'FACD':
+								$concepto = "FACTURA SAN MANUEL V 3.3";
+								break;
+						}
+
+						switch ($value["formaPago"]) {
+                            	case '01':
+                            		 $formaPago = 'EFECTIVO';
+                            		break;
+                            	case '02':
+                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		break;
+                            	case '03':
+                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		break;
+                            	case '04':
+                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		break;
+                            	case '05':
+                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		break;
+                            	case '06':
+                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		break;
+                            	case '08':
+                            		 $formaPago = 'VALES DE DESPENSA';
+                            		break;
+                            	case '12':
+                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		break;
+                            	case '13':
+                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		break;
+                            	case '14':
+                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		break;
+                            	case '15':
+                            		 $formaPago = 'CONDONACIÓN';
+                            		break;
+                            	case '17':
+                            		 $formaPago = 'COMPENSACIÓN';
+                            		break;
+                            	case '23':
+                            		 $formaPago = 'NOVACIÓN';
+                            		break;
+                            	case '24':
+                            		 $formaPago = 'CONFUSIÓN';
+                            		break;
+                            	case '25':
+                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		break;
+                            	case '26':
+                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		break;
+                            	case '27':
+                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		break;
+                            	case '28':
+                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		break;
+                            	case '29':
+                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		break;
+                            	case '30':
+                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		break;
+                            	case '31':
+                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		break;
+                            	case '99':
+                            		 $formaPago = 'POR DEFINIR';
+                            		break;
+                            	default:
+                            		$formaPago = 'EFECTIVO';
+                            		break;
+                            }
+
+                            if ($formaPago == 'POR DEFINIR') {
+                            	$formaPago == 'CREDITO';
+                            }else{
+                            	$formaPago = $formaPago;
+                            }
+
+                        $sucursal = str_replace('Sucursal ','',$_SESSION["nombre"]);
+
+                        $estatus = 'Vigente';
+
+                        if (strtoupper($formaPago) == "CREDITO") {
+
+							$creditoPendiente = "1";
+								
+						}else{
+
+							$creditoPendiente = "0";
+
+						}
+
+						$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus,creditoPendiente) VALUES('".$concepto."','".$fecha."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["razonSocial"]."','".$fechaVencimiento."','".$value["diasCredito"]."','0','".str_replace(',','',$value["neto"])."','".str_replace(',','',$value["descuento"])."','".str_replace(',','',$value["impuesto"])."','".str_replace(',','',$value["total"])."','".str_replace(',','',$value["pendiente"])."','0','".$fecha."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."','".$creditoPendiente."')";
+							mysqli_query($conn, $insertarFacturas) or die("database error:". mysqli_error($conn));
+
+
+				}
+				
+			}
+
+			echo  json_encode("finalizado");
+
+	}
+
 	
 
 }
@@ -1968,6 +2446,7 @@ if(isset($_POST["idFactura"])){
 	$vincularFactura = new AjaxFacturacionTiendas();
 	$vincularFactura -> idFactura = $_POST["idFactura"];
 	$vincularFactura -> idFacturaTienda = $_POST["idFacturaTienda"];
+	$vincularFactura -> serieFacturaTienda = $_POST["serieFacturaTienda"];
 	$vincularFactura -> ajaxVincularFactura();
 
 }
@@ -1976,6 +2455,7 @@ if(isset($_POST["idFacturaVista"])){
 
 	$facturaVinculada = new AjaxFacturacionTiendas();
 	$facturaVinculada -> idFacturaVista = $_POST["idFacturaVista"];
+	$facturaVinculada -> serieFacturaVista = $_POST["serieFacturaVista"];
 	$facturaVinculada -> ajaxVerFacturaVinculada();
 
 }
@@ -2179,13 +2659,15 @@ if (isset($_POST["identificadorFactura"])) {
 	
 	$enviarCredito = new AjaxFacturacionTiendas();
 	$enviarCredito -> identificadorFactura = $_POST["identificadorFactura"];
+	$enviarCredito -> serieFacturaCred = $_POST["serieFacturaCred"];
 	$enviarCredito -> ajaxActualizarEnviadoCredito();
 }
 if (isset($_POST["identificadorFacturaConfirm"])) {
 	
-	$enviarCredito = new AjaxFacturacionTiendas();
-	$enviarCredito -> identificadorFacturaConfirm = $_POST["identificadorFacturaConfirm"];
-	$enviarCredito -> ajaxActualizarRecibidoCredito();
+	$confirmarCredito = new AjaxFacturacionTiendas();
+	$confirmarCredito -> identificadorFacturaConfirm = $_POST["identificadorFacturaConfirm"];
+	$confirmarCredito -> serieFacturaConfirm = $_POST["serieFacturaConfirm"];
+	$confirmarCredito -> ajaxActualizarRecibidoCredito();
 }
 if (isset($_POST["rutaArchivos"])) {
 	
@@ -2203,11 +2685,28 @@ if (isset($_POST["identificadorFacturaUpload"])) {
 	
 	$documentosCredito = new AjaxFacturacionTiendas();
 	$documentosCredito -> identificadorFacturaUpload = $_POST["identificadorFacturaUpload"];
+	$documentosCredito -> serieFacturaUpload = $_POST["serieFacturaUpload"];
 	$documentosCredito -> ajaxActualizarDocumentosCredito();
 }
 if (isset($_POST["identificadorFacturaLoad"])) {
 	
 	$detalleDocumentos = new AjaxFacturacionTiendas();
 	$detalleDocumentos -> identificadorFacturaLoad = $_POST["identificadorFacturaLoad"];
+	$detalleDocumentos -> serieFacturaLoad = $_POST["serieFacturaLoad"];
 	$detalleDocumentos -> ajaxCargarDatosDocumentosCredito();
+}
+if (isset($_POST["sucursalComercial"])) {
+	
+	$obtenerFacturasTiendas = new AjaxFacturacionTiendas();
+	$obtenerFacturasTiendas -> sucursalComercial = $_POST["sucursalComercial"];
+	$obtenerFacturasTiendas -> ajaxObtenerFacturasTiendasComercial();
+}
+/*=============================================
+CARGAR FACTURAS COMERCIAL
+=============================================*/
+if (isset($_POST["listadoFacturasComercial"])) {
+	
+	$cargarFacturasComercial = new AjaxFacturacionTiendas();
+	$cargarFacturasComercial -> listadoFacturasComercial = $_POST["listadoFacturasComercial"];
+	$cargarFacturasComercial -> ajaxCargarFacturasComercial();
 }

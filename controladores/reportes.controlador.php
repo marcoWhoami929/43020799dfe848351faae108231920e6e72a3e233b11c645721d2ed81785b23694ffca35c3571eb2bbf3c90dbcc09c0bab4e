@@ -5,7 +5,7 @@ require __DIR__ . '/../extensiones/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 */
-error_reporting(E_ALL);
+error_reporting(0);
 class ControladorReportes{
 
 	/*=============================================
@@ -37009,7 +37009,22 @@ class ControladorReportes{
 										<td style='color:black;'>".number_format($value["diferencia"],2)."</td>
 										<td style='color:black;'>".number_format($value["total"],2)."</td>
 										<td style='color:black;'>".$value["observaciones"]."</td>
-										<td style='color:black;'>".$value["nombreSucursal"]."</td></tr>");
+										<td style='color:black;'>");
+											switch ($value["nombreSucursal"]) {
+												case 'Rocio Martínez Morales':
+													$nombre = "Rutas";
+													break;
+												case 'Aurora Fernandez':
+													$nombre = "Industrial";
+													break;
+												case 'Diego Ávila':
+													$nombre = "Mayoreo";
+													break;
+												default:
+													$nombre = $value["nombreSucursal"];
+													break;
+											}
+										echo utf8_decode($nombre."</td></tr>");
 										
 	
 				}
@@ -37032,7 +37047,23 @@ class ControladorReportes{
 
 			if ($_SESSION["perfil"] != "Administrador General" && $_SESSION["nombre"] != "José Martinez") {
 
-				$usuario = $_SESSION["nombre"];
+				if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+			        $usuario = "Mayoreo";
+
+			      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+			        $usuario = "Rutas";
+
+			      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+			        $usuario = "Industrial";
+
+			      }else{
+
+			        $usuario = $_SESSION["nombre"];
+
+			      }
 				switch ($usuario) {
 					case 'Sucursal San Manuel':
 						$concepto = 'FACTURA SAN MANUEL V 3.3';
@@ -37049,10 +37080,16 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
-					
-					default:
-						
-						break;
+					case 'Mayoreo':
+                		$concepto = 'FACTURA MAYOREO V 3.3';
+                		break;
+            		case 'Industrial':
+                		$concepto = 'FACTURA INDUSTRIAL V 3.3';
+                		break;
+           			case 'Rutas':
+               			$concepto = 'ALL';
+                		break;
+				
 				}
 
 			}else{
@@ -37079,13 +37116,19 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
+					case 'Mayoreo':
+                		$concepto = 'FACTURA MAYOREO V 3.3';
+                		break;
+            		case 'Industrial':
+                		$concepto = 'FACTURA INDUSTRIAL V 3.3';
+                		break;
+           			case 'Rutas':
+               			$concepto = 'ALL';
+                		break;
 					case 'Sin Tienda':
 						$concepto = null;
 						break;
-					
-					default:
-						
-						break;
+
 				}
 				
 				
@@ -37118,7 +37161,7 @@ class ControladorReportes{
 
 			$datos = strtoupper($usuario)."&nbsp; DEL &nbsp; DIA &nbsp;<br>".$valor2." AL ".$valor3;
 
-			$reporte = ModeloReportes::mdlDescargarReporteFacturasTiendas($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
+			$reporte = ModeloReportes::mdlDescargarReporteFacturasTiendas($tabla,$item,$valor,$item2,$valor2,$valor3);
 
 			/*=============================================
 			CREAMOS EL ARCHIVO DE EXCEL
@@ -37140,7 +37183,7 @@ class ControladorReportes{
 			REPORTE LISTA DE FACTURAS
 			=============================================*/
 
-			if($_GET["reporteFacturasTiendas"] == "facturastiendas"){	
+			if($_GET["reporteFacturasTiendas"] == "facturastiendas" || $_GET["reporteFacturasTiendas"] == "facturasgenerales"){	
 
 				$arregloCamposFacturas = ['Concepto','Serie','Folio','Fecha Factura','Codigo Cliente','Rfc','Cliente','Fecha Vencimiento','Neto','Descuento','Impuesto','Total','Pendiente','Pagado','Fecha Cobro','Forma Pago','Observaciones','Estatus'];
 
@@ -37351,7 +37394,23 @@ class ControladorReportes{
 
 			if ($_SESSION["perfil"] != "Administrador General" && $_SESSION["nombre"] != "José Martinez") {
 
-				$usuario = $_SESSION["nombre"];
+				if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+			        $usuario = "Mayoreo";
+
+			      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+			        $usuario = "Rutas";
+
+			      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+			        $usuario = "Industrial";
+
+			      }else{
+
+			        $usuario = $_SESSION["nombre"];
+
+			      }
 				switch ($usuario) {
 					case 'Sucursal San Manuel':
 						$concepto = 'FACTURA SAN MANUEL V 3.3';
@@ -37368,10 +37427,15 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
-					
-					default:
-						
-						break;
+					case 'Mayoreo':
+                		$concepto = "FACTURA MAYOREO V 3.3";
+                		break;
+            		case 'Industrial':
+                		$concepto = "FACTURA INDUSTRIAL V 3.3";
+                		break;
+           			case 'Rutas':
+               			$concepto = "ALL";
+                		break;
 				}
 
 			}else{
@@ -37398,13 +37462,19 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
+					case 'Mayoreo':
+                		$concepto = "FACTURA MAYOREO V 3.3";
+                		break;
+            		case 'Industrial':
+                		$concepto = "FACTURA INDUSTRIAL V 3.3";
+                		break;
+           			case 'Rutas':
+               			$concepto = "ALL";
+                		break;
 					case 'Sin Tienda':
 						$concepto = null;
 						break;
-					
-					default:
-						
-						break;
+	
 				}
 				
 				
@@ -37452,7 +37522,7 @@ class ControladorReportes{
 			REPORTE DE VENTAS
 			=============================================*/
 
-			if($_GET["reporteVentasTiendas"] == "facturastiendas"){	
+			if($_GET["reporteVentasTiendas"] == "facturastiendas" || $_GET["reporteVentasTiendas"] == "facturasgenerales"){	
 
 				$arregloCamposFacturas = ['Cliente','Importe','Impuestos','Total Documento','Fecha Factura'];
 
@@ -37524,7 +37594,23 @@ class ControladorReportes{
 
 			if ($_SESSION["perfil"] != "Administrador General" && $_SESSION["nombre"] != "José Martinez") {
 
-				$usuario = $_SESSION["nombre"];
+				if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+			        $usuario = "Mayoreo";
+
+			      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+			        $usuario = "Rutas";
+
+			      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+			        $usuario = "Industrial";
+
+			      }else{
+
+			        $usuario = $_SESSION["nombre"];
+
+			      }
 				switch ($usuario) {
 					case 'Sucursal San Manuel':
 						$concepto = 'FACTURA SAN MANUEL V 3.3';
@@ -37541,10 +37627,16 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
-					
-					default:
-						
-						break;
+					case 'Mayoreo':
+                		$concepto = "FACTURA MAYOREO V 3.3";
+                		break;
+            		case 'Industrial':
+                		$concepto = "FACTURA INDUSTRIAL V 3.3";
+                		break;
+           			case 'Rutas':
+               			$concepto = "ALL";
+                		break;
+	
 				}
 
 			}else{
@@ -37574,10 +37666,15 @@ class ControladorReportes{
 					case 'Sin Tienda':
 						$concepto = null;
 						break;
-					
-					default:
-						
-						break;
+					case 'Mayoreo':
+                		$concepto = "FACTURA MAYOREO V 3.3";
+                		break;
+            		case 'Industrial':
+                		$concepto = "FACTURA INDUSTRIAL V 3.3";
+                		break;
+           			case 'Rutas':
+               			$concepto = "ALL";
+                		break;
 				}
 				
 				
@@ -37625,7 +37722,7 @@ class ControladorReportes{
 			REPORTE DE COBROS
 			=============================================*/
 
-			if($_GET["reporteCobrosTiendas"] == "facturastiendas"){	
+			if($_GET["reporteCobrosTiendas"] == "facturastiendas" || $_GET["reporteCobrosTiendas"] == "facturasgenerales"){	
 
 				$arregloCamposFacturas = ['Cliente','Serie','Folio','Efectivo','Tarjeta de Débito','Tarjeta de Crédito','Transferencia','Cheque Nominativo','Crédito','Por Definir','Total General'];
 
@@ -37641,17 +37738,24 @@ class ControladorReportes{
 					<tr>
 					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>".$datos."</th>
 					</tr>";
-				if ($_SESSION["nombre"] != "Sucursal Santiago") {
+				if ($usuario == 'Mayoreo' || $usuario == 'Industrial') {
+
+						echo "<tr>
+					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>D E P O S I T A R &nbsp; A L A &nbsp; C U E N T A  &nbsp; 0449546278 &nbsp;&nbsp</th>
+					</tr>
+					";
 					
-					echo "<tr>
-					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>D E P O S I T A R &nbsp; A &nbsp; L A &nbsp; C U E N T A  &nbsp; 0162310198 &nbsp;&nbsp</th>
+				}else if($usuario == 'Rutas'){
+
+						echo "<tr>
+					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>D E P O S I T A R &nbsp; A L A &nbsp; C U E N T A  &nbsp; 0188153450 &nbsp;&nbsp</th>
 					</tr>
 					";
 
 				}else{
 
 					echo "<tr>
-					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>D E P O S I T A R &nbsp; A L A &nbsp; C U E N T A  &nbsp; 0449546278 &nbsp;&nbsp</th>
+					<th colspan='11' style='font-weight:bold; background:#17202A; color:white;'>D E P O S I T A R &nbsp; A &nbsp; L A &nbsp; C U E N T A  &nbsp; 0162310198 &nbsp;&nbsp</th>
 					</tr>
 					";
 
@@ -37675,9 +37779,9 @@ class ControladorReportes{
 				$sumaTarjetaDebito = 0;
 				$sumaTarjetaCredito = 0;
 				$sumaTransferencia = 0;
-				$chequeNominativo = 0;
-				$credito = 0;
-				$porDefinir = 0;
+				$sumaChequeNominativo = 0;
+				$sumaCredito = 0;
+				$sumaPorDefinir = 0;
 				$sumaTotal = 0;
 				foreach ($reporte as $key => $value) {
 					echo utf8_decode("<tr>
@@ -37749,7 +37853,25 @@ class ControladorReportes{
 			if ($usuario == "") {
 				$nombre = "TODOS LAS SUCURSALES";
 			}else{
-				$nombre = $_SESSION["nombre"];
+				
+
+				if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+			        $nombre = "Mayoreo";
+
+			      }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+			       	$nombre = "Rutas";
+
+			      }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+			        $nombre = "Industrial";
+
+			      }else{
+
+			       $nombre = $_SESSION["nombre"];
+
+			      }
 			}
 			$datos = strtoupper($nombre);
 			$reporte = ModeloReportes::mdlDescargarReporteGastos($tabla,$item,$valor);
@@ -37806,8 +37928,26 @@ class ControladorReportes{
 				echo utf8_decode("</tr>");
 
 				foreach ($reporte as $key => $value) {
+
+					if ($value["nombre"] == "Diego Ávila") {
+                                  
+				        $nombreSucursal = "Mayoreo";
+
+				      }else if($value["nombre"] == "Rocio Martínez Morales"){
+
+				       	$nombreSucursal = "Rutas";
+
+				      }else if($value["nombre"] == "Aurora Fernandez"){
+
+				        $nombreSucursal = "Industrial";
+
+				      }else{
+
+				       $nombreSucursal = $_SESSION["nombre"];
+
+				      }
 					echo utf8_decode("<tr>
-										<td style='color:black;'>".$value["nombre"]."</td>
+										<td style='color:black;'>".$nombreSucursal."</td>
 										<td style='color:black;'>".$value["serieGasto"]."</td>
 										<td style='color:black;'>".$value["folioGasto"]."</td>
 										<td style='color:black;'>");
@@ -37840,8 +37980,20 @@ class ControladorReportes{
 										<td style='color:black;'>".number_format($value["importeGasto"],2)."</td>
 										<td style='color:black;'>".$value["acreedor"]."</td>
 										<td style='color:black;'>".str_replace('-',' ',$value["numeroDocumento"])."</td>
-										<td style='color:black;'>".number_format($value["iva"],2)."</td>
-										<td style='color:black;'>".number_format($value["importeGasto"]-$value["iva"],2)."</td>
+										<td style='color:black;'>");
+
+										if ($value["tieneIva"] === "No") {
+												
+											$iva = 0;
+											$importe = $value["importeGasto"];
+										}else{
+
+											$iva = $value["iva"];
+											$importe = $value["importeGasto"]-$value["iva"];
+
+										}
+										echo utf8_decode(number_format($iva,2)."</td>
+										<td style='color:black;'>".number_format($importe,2)."</td>
 										</tr>");
 	
 	
@@ -38322,18 +38474,32 @@ class ControladorReportes{
 
 					$acum = $key+8;
 					$sum = $key+1;
+
+					if ($value["tieneIva"] === "No") {
+						
+						$iva = 0;
+						$importe = $value["importeGasto"];
+						$total = $value["importeGasto"];
+
+					}else{	
+
+						$iva = $value["iva"];
+						$importe = $value["importeGasto"]-$value["iva"];
+						$total = $value["importeGasto"];
+
+					}
 					echo utf8_decode("<tr>
 										<td style='color:black;border:1px dotted black'>".$sum."</td>
 										<td style='color:black;border:1px dotted black'>".$value["fecha"]."</td>
 										<td style='color:black;border:1px dotted black'>".$value["acreedor"]."</td>
 										<td style='color:black;border:1px dotted black'>".$value["numeroDocumento"]."</td>
-										<td style='color:black;border:1px dotted black'>".number_format((float)$value["importeGasto"]-$value["iva"], 2, '.','')."</td>
-										<td style='color:black;border:1px dotted black'>".number_format((float)$value["iva"], 2, '.','')."</td>
-										<td style='color:black;border:1px dotted black'>".number_format((float)$value["importeGasto"], 2, '.','')."</td>
+										<td style='color:black;border:1px dotted black'>".number_format((float)$importe, 2, '.','')."</td>
+										<td style='color:black;border:1px dotted black'>".number_format((float)$iva, 2, '.','')."</td>
+										<td style='color:black;border:1px dotted black'>".number_format((float)$total, 2, '.','')."</td>
 										<td style='color:black;border:1px dotted black'>".$value["descripcion"]."</td>					
 										</tr>");
-									$sumImporte += number_format((float)$value["importeGasto"]-$value["iva"], 2, '.','');
-									$sumIva += number_format((float)$value["iva"], 2, '.','');
+									$sumImporte += number_format((float)$importe, 2, '.','');
+									$sumIva += number_format((float)$iva, 2, '.','');
 									$sumTotal += number_format((float)$value["importeGasto"], 2, '.','');
 
 	
