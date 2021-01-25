@@ -1,13 +1,13 @@
 <?php
 	
-	/*
+	
 	$serverName = "192.168.1.250";
 	$connectionInfo = array("Database"=>"adFLEX2020SADEC", "UID"=>"sa", "PWD"=>"M78o03e09p56*","CharacterSet"=>"UTF-8");
-	*/
-	$serverName = "192.168.1.63";
+	
+	//$serverName = "192.168.1.63";
 	//$serverName = "192.168.1.123";
 
-	$connectionInfo = array("Database"=>"adNERUALCREATIVE2021", "UID"=>"sa", "PWD"=>"M78o03e09p56","CharacterSet"=>"UTF-8");
+	//$connectionInfo = array("Database"=>"adNERUALCREATIVE2021", "UID"=>"sa", "PWD"=>"M78o03e09p56","CharacterSet"=>"UTF-8");
 
 	$conne = sqlsrv_connect($serverName,$connectionInfo);
 

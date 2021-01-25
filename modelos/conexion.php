@@ -1,10 +1,10 @@
 <?php
 
 class Conexion{
-	/*
+	
 	public static function conectar(){
 
-		$link = new PDO("mysql:host=127.0.0.1;dbname=matriz",
+		$link = new PDO("mysql:host=127.0.0.1;dbname=matrizPruebasServidor",
 						"mat",
 						"matriz",
 						array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -14,7 +14,7 @@ class Conexion{
 		return $link;
 
 	}
-	*/
+	/*
 	public static function conectar(){
 
 		$link = new PDO("mysql:host=127.0.0.1;dbname=matriz",
@@ -27,5 +27,6 @@ class Conexion{
 		return $link;
 
 	}
+	*/
 
 }

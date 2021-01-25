@@ -7,9 +7,9 @@ $dbname = "matriz";
 */
 /* Database connection start */
 $servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "matriz";
+$username = "mat";
+$password = "matriz";
+$dbname = "matrizPruebasServidor";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 mysqli_set_charset($conn, 'utf8');
 if (mysqli_connect_errno()) {
