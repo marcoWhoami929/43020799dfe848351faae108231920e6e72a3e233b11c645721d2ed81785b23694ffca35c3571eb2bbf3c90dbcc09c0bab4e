@@ -1,5 +1,7 @@
 # Impedir que se pueda ver el listado de contenidos de un directorio
 
+php_value session.gc_maxlifetime 7200
+php_value session.cookie_lifetime 7200
 Options All -Indexes
 
 # Url Amigables

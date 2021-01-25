@@ -1221,7 +1221,7 @@ class AjaxAtencion{
 
 			                mysqli_query($conn,$facturacionOt) or die("database error:". mysqli_error($conn));
 
-			                $estatusOrdenes = "INSERT INTO estatusOrdenes(serie,folio,estadoOrden,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,observaciones) VALUES('".$serieOrden."','".$folioOrden."',1,0,0,0,0,1)";
+			                $estatusOrdenes = "INSERT INTO estatusordenes(serie,folio,estadoOrden,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,observaciones) VALUES('".$serieOrden."','".$folioOrden."',1,0,0,0,0,1)";
 			                mysqli_query($conn,$estatusOrdenes) or die("database error:". mysqli_error($conn));
 
 			                $tiempoProcesoEstatus = "UPDATE estatusordenes INNER JOIN atencionaclientes ON estatusordenes.serie = atencionaclientes.serie and estatusordenes.folio = atencionaclientes.folio  SET estatusordenes.tiempoProceso = atencionaclientes.tiempoProceso  WHERE estatusordenes.serie = '".$serieOrden."' and  estatusordenes.folio = '".$folioOrden."'";

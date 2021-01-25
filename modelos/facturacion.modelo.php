@@ -1371,7 +1371,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.id,f.partSurt AS totalPart,f.unidSurt AS totalUnid,f.importSurt AS totalImport,m.serie,m.folio, m.numeroPartidas,  m.numeroUnidades, m.importeFactura,m.cancelado,m.fechaFactura,if(fe.estatusEntrega is null,'Sin Ruta Asignada',fe.estatusEntrega) as estatusEntrega FROM facturacion f INNER JOIN facturasgenerales  m ON f.idPedido = m.folioPedido and f.serie = m.seriePedido LEFT OUTER JOIN facturasEntregas  fe ON  m.id = fe.idFactura  WHERE f.idPedido = :$item and f.serie = :$item2");
+			$stmt = Conexion::conectar()->prepare("SELECT m.id,f.partSurt AS totalPart,f.unidSurt AS totalUnid,f.importSurt AS totalImport,m.serie,m.folio, m.numeroPartidas,  m.numeroUnidades, m.importeFactura,m.cancelado,m.fechaFactura,if(fe.estatusEntrega is null,'Sin Ruta Asignada',fe.estatusEntrega) as estatusEntrega FROM facturacion f INNER JOIN facturasgenerales  m ON f.idPedido = m.folioPedido and f.serie = m.seriePedido LEFT OUTER JOIN facturasentregas  fe ON  m.id = fe.idFactura  WHERE f.idPedido = :$item and f.serie = :$item2");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 			$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
