@@ -1626,7 +1626,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 	==================================================*/
 	public static function mdlSeleccionarDatosFacturacion($item, $valor, $item2, $valor2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item AND Fg.cancelado = 0");
+		$stmt = Conexion::conectar()->prepare("SELECT F.id,F.usuario,F.serie as seriePedido,F.idPedido,F.status,F.secciones,F.importeInicial,F.tipoRuta, F.cantidad, F.ordenCompra,F.status,F.tipo,F.fechaRecepcion,F.fechaEntrega,F.observaciones,Fg.serie,Fg.folio,Fg.estatusFactura,Fg.numeroPartidas,Fg.numeroUnidades,Fg.unidadesPendientes,Fg.importeFactura, Fg.statusCliente as estadoCliente,F.nombreCliente from facturacion F LEFT OUTER JOIN facturasgenerales Fg ON F.serie = Fg.seriePedido AND F.idPedido = Fg.folioPedido WHERE F.serie = :$item2 && F.idPedido = :$item ");
 
 		$stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
 		$stmt->bindParam(":".$item2, $valor2, PDO::PARAM_STR);

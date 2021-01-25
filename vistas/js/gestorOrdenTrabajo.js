@@ -18,6 +18,7 @@ $(".tablaAtencion").on("click", ".btnEditarOrden", function(){
       processData: false,
       dataType: "json",
       success: function(respuesta){ 
+        
         $("#otIdOrdenEdit").val(respuesta["id"]);
         $("#otCreadoEdit").val(respuesta["creado"]);
         $("#otCodigoClienteEdit").val(respuesta["codigoCliente"]);

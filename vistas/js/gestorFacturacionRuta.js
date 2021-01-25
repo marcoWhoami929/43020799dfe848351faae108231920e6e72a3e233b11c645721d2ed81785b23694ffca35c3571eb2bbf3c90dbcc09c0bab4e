@@ -89,7 +89,7 @@ $(".tablaFacturacion").on("click", ".btnEditarOrdenFacturacion", function(){
 
         $("#otPartidasTotalesEdit").val(respuesta["partidasTotales"]);
         $("#otUnidadesTotalesEdit").val(respuesta["unidadesTotales"]);
-        $("#otImporteInicialEdit").val(respuesta["importeTotal"]);
+        $("#otImporteInicialEdit").val(respuesta["importeInicial"]);
         var folio = respuesta["idPedido"];
         var serie2 = respuesta["serie"];
         var folioOrden = new FormData();
