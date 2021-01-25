@@ -375,9 +375,8 @@ class ModeloFacturasTiendas{
 			$stmt = null;
 
 	}
-	static public function mdlMostrarDetalleFacturaVinculada($tabla,$item,$valor){
+	static public function mdlMostrarDetalleFacturaVinculada($tabla,$item,$valor,$serie){
 
-		if($item != null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT serie,folio from $tabla where id = :$item");
 
@@ -391,16 +390,6 @@ class ModeloFacturasTiendas{
 			$stmt -> close();
 
 			$stmt = null;
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-
-			$stmt ->execute();
-
-			return $stmt->fetchAll();
-		}
-		
 
 
 	}

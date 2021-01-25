@@ -305,7 +305,7 @@ class ControladorFacturasTiendas{
 
 			return $respuesta;
 	}
-	static public function ctrMostrarDetalleFacturaVinculada($item,$valor){
+	static public function ctrMostrarDetalleFacturaVinculada($item,$valor,$serie){
 
 			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
@@ -313,12 +313,20 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "facturastiendas";
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
 
 			}
 
 
-			$respuesta = ModeloFacturasTiendas::mdlMostrarDetalleFacturaVinculada($tabla,$item,$valor);
+			$respuesta = ModeloFacturasTiendas::mdlMostrarDetalleFacturaVinculada($tabla,$item,$valor,$serie);
 
 			return $respuesta;
 
@@ -1533,7 +1541,15 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "facturastiendas";
+				if ($datosSaldado["serie"] === "FACD" || $datosSaldado["serie"] === "FAND" || $datosSaldado["serie"] === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
 
 			}
 
@@ -1551,7 +1567,15 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "facturastiendas";
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
 
 			}
 
@@ -1670,7 +1694,15 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "facturastiendas";
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
 
 			}
 

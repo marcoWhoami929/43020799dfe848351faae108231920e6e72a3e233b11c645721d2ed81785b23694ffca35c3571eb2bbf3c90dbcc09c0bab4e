@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ALL);
+error_reporting(0);
 session_start();
 require_once "../controladores/facturacionTiendas.controlador.php";
 require_once "../modelos/facturacionTiendas.modelo.php";
@@ -88,7 +88,7 @@ class TablaCancelacionesTiendas{
 
       if ($cancelacionesTiendas[$i]["cancelado"] == 1) {
           
-          $motivoCancelacion = $cancelacionesTiendas[$i]["motivoCancelacion"];
+          $motivoCancelacion = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $cancelacionesTiendas[$i]["motivoCancelacion"]);
 
       }else{
 

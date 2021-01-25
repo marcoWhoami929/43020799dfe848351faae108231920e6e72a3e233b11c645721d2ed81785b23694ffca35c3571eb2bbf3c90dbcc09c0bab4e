@@ -445,7 +445,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                       
                                 <span class="input-group-addon"><i class="fa fa-book"></i></span> 
 
-                                <input type="text" class="form-control input-lg" name="descripcion" placeholder="Descripción" id="descripcion" style="text-transform: uppercase;" required>
+                                <input type="text" class="form-control input-lg" name="descripcion" placeholder="Descripción" id="descripcion" style="text-transform: uppercase;" >
                                 
                               </div>
 
@@ -478,7 +478,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                       
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                                <input type="text" class="form-control input-lg" name="acreedor" placeholder="Proveedor" id="acreedor" style="text-transform: uppercase;" required>
+                                <input type="text" class="form-control input-lg" name="acreedor" placeholder="Proveedor" id="acreedor" style="text-transform: uppercase;">
                                 
                               </div>
 

@@ -2133,7 +2133,7 @@ class AjaxFacturacionTiendas{
 			$hoy = date("d/m/Y");
 	        $fecha = str_replace('/', '-', $hoy);
 	        $fechaFinal = date('Y-m-d', strtotime($fecha));
-	    	//$fechaFinal = '2021-01-22';
+	    	//$fechaFinal = '2021-01-23';
 	    	$usuario = $_SESSION["nombre"];
 			    switch ($usuario) {
                     case 'Sucursal San Manuel':
@@ -2219,80 +2219,80 @@ class AjaxFacturacionTiendas{
 
 						switch ($value["formaPago"]) {
                             	case '01':
-                            		 $formaPago = 'EFECTIVO';
+                            		 $formaPagos = 'EFECTIVO';
                             		break;
                             	case '02':
-                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		 $formaPagos = 'CHEQUE NOMINATIVO';
                             		break;
                             	case '03':
-                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		 $formaPagos = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
                             		break;
                             	case '04':
-                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		 $formaPagos = 'TARJETA DE CRÉDITO';
                             		break;
                             	case '05':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '06':
-                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		 $formaPagos = 'DINERO ELECTRÓNICO';
                             		break;
                             	case '08':
-                            		 $formaPago = 'VALES DE DESPENSA';
+                            		 $formaPagos = 'VALES DE DESPENSA';
                             		break;
                             	case '12':
-                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		 $formaPagos = 'DACIÓN DE PAGO';
                             		break;
                             	case '13':
-                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		 $formaPagos = 'PAGO POR SUBROGACIÓN';
                             		break;
                             	case '14':
-                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		 $formaPagos = 'PAGO POR CONSIGNACIÓN';
                             		break;
                             	case '15':
-                            		 $formaPago = 'CONDONACIÓN';
+                            		 $formaPagos = 'CONDONACIÓN';
                             		break;
                             	case '17':
-                            		 $formaPago = 'COMPENSACIÓN';
+                            		 $formaPagos = 'COMPENSACIÓN';
                             		break;
                             	case '23':
-                            		 $formaPago = 'NOVACIÓN';
+                            		 $formaPagos = 'NOVACIÓN';
                             		break;
                             	case '24':
-                            		 $formaPago = 'CONFUSIÓN';
+                            		 $formaPagos = 'CONFUSIÓN';
                             		break;
                             	case '25':
-                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		 $formaPagos = 'REMISIÓN DE DEDUDA';
                             		break;
                             	case '26':
-                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		 $formaPagos = 'PRESCRIPCIÓN O CADUCIDAD';
                             		break;
                             	case '27':
-                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		 $formaPagos = 'A SATISFACCIÓN DEL ACREEDOR';
                             		break;
                             	case '28':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '29':
-                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		 $formaPagos = 'TARJETA DE SERVICIOS';
                             		break;
                             	case '30':
-                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		 $formaPagos = 'APLICACIÓN DE ANTICIPOS';
                             		break;
                             	case '31':
-                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		 $formaPagos = 'INTERMEDIARIO PAGOS';
                             		break;
                             	case '99':
-                            		 $formaPago = 'POR DEFINIR';
+                            		 $formaPagos = 'POR DEFINIR';
                             		break;
                             	default:
-                            		$formaPago = 'EFECTIVO';
+                            		$formaPagos = 'EFECTIVO';
                             		break;
                             }
 
-                            if ($formaPago == 'POR DEFINIR') {
-                            	$formaPago == 'CREDITO';
+                            if ($formaPagos == 'POR DEFINIR') {
+                            	$formaPago = 'CREDITO';
                             }else{
-                            	$formaPago = $formaPago;
+                            	$formaPago = $formaPagos;
                             }
 
                         if (strtoupper($formaPago) == "CREDITO") {
@@ -2334,80 +2334,80 @@ class AjaxFacturacionTiendas{
 
 						switch ($value["formaPago"]) {
                             	case '01':
-                            		 $formaPago = 'EFECTIVO';
+                            		 $formaPagos = 'EFECTIVO';
                             		break;
                             	case '02':
-                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		 $formaPagos = 'CHEQUE NOMINATIVO';
                             		break;
                             	case '03':
-                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		 $formaPagos = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
                             		break;
                             	case '04':
-                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		 $formaPagos = 'TARJETA DE CRÉDITO';
                             		break;
                             	case '05':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '06':
-                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		 $formaPagos = 'DINERO ELECTRÓNICO';
                             		break;
                             	case '08':
-                            		 $formaPago = 'VALES DE DESPENSA';
+                            		 $formaPagos = 'VALES DE DESPENSA';
                             		break;
                             	case '12':
-                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		 $formaPagos = 'DACIÓN DE PAGO';
                             		break;
                             	case '13':
-                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		 $formaPagos = 'PAGO POR SUBROGACIÓN';
                             		break;
                             	case '14':
-                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		 $formaPagos = 'PAGO POR CONSIGNACIÓN';
                             		break;
                             	case '15':
-                            		 $formaPago = 'CONDONACIÓN';
+                            		 $formaPagos = 'CONDONACIÓN';
                             		break;
                             	case '17':
-                            		 $formaPago = 'COMPENSACIÓN';
+                            		 $formaPagos = 'COMPENSACIÓN';
                             		break;
                             	case '23':
-                            		 $formaPago = 'NOVACIÓN';
+                            		 $formaPagos = 'NOVACIÓN';
                             		break;
                             	case '24':
-                            		 $formaPago = 'CONFUSIÓN';
+                            		 $formaPagos = 'CONFUSIÓN';
                             		break;
                             	case '25':
-                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		 $formaPagos = 'REMISIÓN DE DEDUDA';
                             		break;
                             	case '26':
-                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		 $formaPagos = 'PRESCRIPCIÓN O CADUCIDAD';
                             		break;
                             	case '27':
-                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		 $formaPagos = 'A SATISFACCIÓN DEL ACREEDOR';
                             		break;
                             	case '28':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '29':
-                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		 $formaPagos = 'TARJETA DE SERVICIOS';
                             		break;
                             	case '30':
-                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		 $formaPagos = 'APLICACIÓN DE ANTICIPOS';
                             		break;
                             	case '31':
-                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		 $formaPagos = 'INTERMEDIARIO PAGOS';
                             		break;
                             	case '99':
-                            		 $formaPago = 'POR DEFINIR';
+                            		 $formaPagos = 'POR DEFINIR';
                             		break;
                             	default:
-                            		$formaPago = 'EFECTIVO';
+                            		$formaPagos = 'EFECTIVO';
                             		break;
                             }
 
-                            if ($formaPago == 'POR DEFINIR') {
-                            	$formaPago == 'CREDITO';
+                            if ($formaPagos == 'POR DEFINIR') {
+                            	$formaPago = 'CREDITO';
                             }else{
-                            	$formaPago = $formaPago;
+                            	$formaPago = $formaPagos;
                             }
 
                         $sucursal = str_replace('Sucursal ','',$_SESSION["nombre"]);

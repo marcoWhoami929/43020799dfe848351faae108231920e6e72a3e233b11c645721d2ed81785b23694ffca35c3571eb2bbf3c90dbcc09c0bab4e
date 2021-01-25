@@ -259,7 +259,7 @@ class ModeloEntregas{
 	}
 	static public function mdlMostrarFacturasEntrega($tabla,$item,$valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT fac.*,facg.serie,facg.folio,facg.nombreCliente,facg.total,fac.horaInicio,fac.horaTermino from $tabla as fac INNER JOIN facturasGenerales as facg on fac.idFactura = facg.id where fac.$item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT fac.*,facg.serie,facg.folio,facg.nombreCliente,facg.total,fac.horaInicio,fac.horaTermino from $tabla as fac INNER JOIN facturasgenerales as facg on fac.idFactura = facg.id where fac.$item = :$item");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 

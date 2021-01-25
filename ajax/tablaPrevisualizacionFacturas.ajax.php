@@ -19,7 +19,7 @@ class TablaPrevisualizacionFacturasTiendas{
         $hoy = date("d/m/Y");
         $fecha = str_replace('/', '-', $hoy);
         $fechaFinal = date('Y-m-d', strtotime($fecha));
-        $valor = '2021-01-22';
+        $valor = $fechaFinal;
 
 
 
@@ -73,7 +73,7 @@ class TablaPrevisualizacionFacturasTiendas{
         $hoy = date("d/m/Y");
         $fecha = str_replace('/', '-', $hoy);
         $fechaFinal = date('Y-m-d', strtotime($fecha));
-        $valor3 = '2021-01-22';
+        $valor3 = $fechaFinal;
 
     }
  		$facturacionTiendas = ControladorFacturasTiendas::ctrMostrarFacturasCorte($item, $valor,$item2,$valor2,$item3,$valor3);

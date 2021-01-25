@@ -90,7 +90,9 @@ class TablaListaFacturasTiendas{
 
           $item = "id";
           $valor = $listaFacturas[$i]["idNuevaFactura"];
-          $listarDetalleFactura = ControladorFacturasTiendas::ctrMostrarDetalleFacturaVinculada($item,$valor);
+
+          $serie = $listaFacturas[$i]["serie"];
+          $listarDetalleFactura = ControladorFacturasTiendas::ctrMostrarDetalleFacturaVinculada($item,$valor,$serie);
 
           $acciones = "<div class='btn-group'><button class='btn btn-success btnVincularFactura' idFactura='".$listaFacturas[$i]["id"]."' disabled title='La factura ha sido vinculada con la factura ".$listarDetalleFactura["serie"]." ".$listarDetalleFactura["folio"]."'><i class='fa fa-plus'></i></button></div>";
           

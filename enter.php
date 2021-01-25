@@ -19,13 +19,13 @@
 		}else{
 			while ($row = mysqli_fetch_row($sql)) {
 			    $codigoCliente = $row[1];
-			    $rfc = $row[2];
-			    $nombreCliente = $row[3];
-			    $domicilioFiscal = $row[14];
-			    $agenteVentas = $row[4];
-			    $diasCredito = $row[7];
-			    $descuentoMovimiento = $row[11];
-			    $codigoAgente = $row[17];
+			    $rfc = $row[3];
+			    $nombreCliente = $row[4];
+			    $domicilioFiscal = $row[19];
+			    $agenteVentas = $row[5];
+			    $diasCredito = $row[8];
+			    $descuentoMovimiento = $row[16];
+			    $codigoAgente = $row[22];
 
 			    $clientes[] = array('nombreCliente'=> $nombreCliente,  'rfc'=>$rfc, 'domicilioFiscal' => $domicilioFiscal, 'agenteVentas' => $agenteVentas, 'diasCredito' => $diasCredito, 'descuentoMovimiento' => $descuentoMovimiento, 'codigoAgente' => $codigoAgente, 'resultado'=>1);
 			}

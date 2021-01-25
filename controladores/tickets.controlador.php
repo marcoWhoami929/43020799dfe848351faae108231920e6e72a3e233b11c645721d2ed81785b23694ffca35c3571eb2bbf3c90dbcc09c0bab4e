@@ -848,7 +848,7 @@ class ControladorTickets{
 			$datosTicket = ModeloTickets::mdlObtenerDatosTicket($itemTicket,$valorTicket);
 
 			/*VALIDAR QUE TIPO DE FACTURA ES */
-			if ($datosTicket["serieFactura"] == "FACD" || $datosTicket["serieFactura"] == "FAND" || $datosTicket["serieFactura"] == "FAPB") {
+			if ($datosTicket["serieFactura"] == "FACD" || $datosTicket["serieFactura"] == "FAND" || $datosTicket["serieFactura"] == "FAPB" || $datosTicket["serieFactura"] == "DOPR" || $datosTicket["serieFactura"] == "DFPR") {
 				
 				$tablaFacturas = "facturasgenerales";
 

@@ -80,11 +80,27 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
               <!-- fieldsets -->
               <fieldset>
                 <?php
-                if ($_SESSION["nombre"] != "Sucursal San Manuel") {
-                  $fondoCaja = 1000;
-                }else{
-                  $fondoCaja = 1500;
-                }
+
+                 if ($_SESSION["nombre"] == "Diego Ávila") {
+                                  
+                    $fondoCaja = 0;
+
+                  }else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+                    $fondoCaja = 0;
+
+                  }else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+                    $fondoCaja = 0;
+
+                  }else if ($_SESSION["nombre"] == "Sucursal San Manuel") {
+
+                    $fondoCaja = 1500;
+
+                  }else{
+                    $fondoCaja = 1000;
+                  }
+              
 
                 ?>
                 <h3>¿TU FONDO DE CAJA ES DE <strong class="colorGeneral"><?php echo "$".number_format($fondoCaja,2); ?></strong>?</h3>

@@ -16,4 +16,5 @@ tickets/
 ajustes/
 chats/
 archivosCredito/
-
+db_connect.php
+modelos/conexion.php

@@ -94,7 +94,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
               
               $sesion = $sucursal;
 
-              if ($sesion == 'Industrial' || $sesion == 'Mayoreo') {
+              if ($sesion == 'Industrial' || $sesion == 'Mayoreo' || $_SESSION["nombre"] == 'Sucursal Santiago') {
                 $banco = "0449546278";
               }else if($sesion == 'Rutas'){
                 $banco = "0188153450";

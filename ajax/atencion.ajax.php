@@ -75,13 +75,14 @@ class AjaxAtencion{
 
 			$item = "CFECHA";
 			$valor = $this->fechaActual;
+			//$valor = '2021-01-21';
 
 			/*
 			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO";
 
 
 			*/
-			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR";
+			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR";
 
             $ejecutar = sqlsrv_query($conne,$mostrarPedidos);
             $i = 0;
@@ -109,7 +110,7 @@ class AjaxAtencion{
             						 "total" => $value["CTOTAL"],
             						 "fechaElaboracion" => $value["CTIMESTAMP"],
             						 "formaPago" => $value["CMETODOPAG"],
-            						 "referencia" => $value["CREFERENCIA"],
+            						 "observaciones" => preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $value["COBSERVACIONES"]),
             						 "cancelado" => $value["CCANCELADO"],
             						 "fecha" => $value["CFECHA"]);
             	$i++;
@@ -138,7 +139,7 @@ class AjaxAtencion{
 
 			$item = "CFECHA";
 			$valor = $this->fechaActualFacturas;
-			//$valor = '2020-10-25';
+			//$valor = '2021-01-21';
 
 			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc INNER JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP";
 
@@ -229,7 +230,7 @@ class AjaxAtencion{
 
 				if ($value["formaPago"] == "") {
 
-					$formaPago = '01';
+					$formaPago = '99';
 
 				}else{
 
@@ -304,7 +305,7 @@ class AjaxAtencion{
 					mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 					
 					
-					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["referencia"]."' WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
+					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."' WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
 					mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 					
@@ -328,7 +329,7 @@ class AjaxAtencion{
 
 					if ($value["razonSocial"] == "FLEX FINISHES MEXICO, S.A. DE C.V." || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V." ) {
 
-						$mysql_insert = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial, statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,tipoRuta,tipoCompra,observaciones,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,estadoCompras,statusCompras,sinAdquisicion,estadoLogistica,statusLogistica,concluido,fechaElaboracion,formaPago,creado,metodoPago,tipoPago,fechaRecepcion,ordenCompra,habilitado)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','Mostrador','2','Compra Interna','1','3','1','0','1','6','0','1','2','1','".$fechaElaboracion."','".$formaPago."','".$usuario."','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["referencia"]."',1)";
+						$mysql_insert = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial, statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,tipoRuta,tipoCompra,observaciones,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,estadoCompras,statusCompras,sinAdquisicion,estadoLogistica,statusLogistica,concluido,fechaElaboracion,formaPago,creado,metodoPago,tipoPago,fechaRecepcion,ordenCompra,habilitado)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','Mostrador','2','Compra Interna','1','3','1','0','1','6','0','1','2','1','".$fechaElaboracion."','".$formaPago."','".$usuario."','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1)";
 							mysqli_query($conn, $mysql_insert) or die("database error:". mysqli_error($conn));
 
 							
@@ -363,7 +364,7 @@ class AjaxAtencion{
 						$actualizarCliente = "UPDATE clientes set limiteCredito = '".$value["limiteCredito"]."',diasCredito = '".$value["diasCredito"]."',excederCredito = '".$value["excederCredito"]."',limDoctosVenc = '".$value["limDoctosVenc"]."',saldoVencido = '".$saldoVencido."',doctosVenc = '".$documentosVencidos."',statusCliente = '".$estadoSituacional."',idClienteComercial = '".$value["idCliente"]."' where codigoCliente = '".$value["codigoCliente"]."'  and catalogo = '".$catalogo."'";
 						mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 
-						$mysql_insert7 = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial,statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,fechaElaboracion,formaPago,creado,tipoRuta,metodoPago,tipoPago,fechaRecepcion,ordenCompra)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','".$fechaElaboracion."','".$formaPago."','".$usuario."','Mostrador','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["referencia"]."')";
+						$mysql_insert7 = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial,statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,fechaElaboracion,formaPago,creado,tipoRuta,metodoPago,tipoPago,fechaRecepcion,ordenCompra,estadoCompras)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','".$fechaElaboracion."','".$formaPago."','".$usuario."','Mostrador','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."','1')";
 							mysqli_query($conn, $mysql_insert7) or die("database error:". mysqli_error($conn));
 
 
@@ -495,84 +496,85 @@ class AjaxAtencion{
                             	
                             switch ($value["formaPago"]) {
                             	case '01':
-                            		 $formaPago = 'EFECTIVO';
+                            		 $formaPagos = 'EFECTIVO';
                             		break;
                             	case '02':
-                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		 $formaPagos = 'CHEQUE NOMINATIVO';
                             		break;
                             	case '03':
-                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		 $formaPagos = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
                             		break;
                             	case '04':
-                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		 $formaPagos = 'TARJETA DE CRÉDITO';
                             		break;
                             	case '05':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '06':
-                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		 $formaPagos = 'DINERO ELECTRÓNICO';
                             		break;
                             	case '08':
-                            		 $formaPago = 'VALES DE DESPENSA';
+                            		 $formaPagos = 'VALES DE DESPENSA';
                             		break;
                             	case '12':
-                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		 $formaPagos = 'DACIÓN DE PAGO';
                             		break;
                             	case '13':
-                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		 $formaPagos = 'PAGO POR SUBROGACIÓN';
                             		break;
                             	case '14':
-                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		 $formaPagos = 'PAGO POR CONSIGNACIÓN';
                             		break;
                             	case '15':
-                            		 $formaPago = 'CONDONACIÓN';
+                            		 $formaPagos = 'CONDONACIÓN';
                             		break;
                             	case '17':
-                            		 $formaPago = 'COMPENSACIÓN';
+                            		 $formaPagos = 'COMPENSACIÓN';
                             		break;
                             	case '23':
-                            		 $formaPago = 'NOVACIÓN';
+                            		 $formaPagos = 'NOVACIÓN';
                             		break;
                             	case '24':
-                            		 $formaPago = 'CONFUSIÓN';
+                            		 $formaPagos = 'CONFUSIÓN';
                             		break;
                             	case '25':
-                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		 $formaPagos = 'REMISIÓN DE DEDUDA';
                             		break;
                             	case '26':
-                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		 $formaPagos = 'PRESCRIPCIÓN O CADUCIDAD';
                             		break;
                             	case '27':
-                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		 $formaPagos = 'A SATISFACCIÓN DEL ACREEDOR';
                             		break;
                             	case '28':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '29':
-                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		 $formaPagos = 'TARJETA DE SERVICIOS';
                             		break;
                             	case '30':
-                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		 $formaPagos = 'APLICACIÓN DE ANTICIPOS';
                             		break;
                             	case '31':
-                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		 $formaPagos = 'INTERMEDIARIO PAGOS';
                             		break;
                             	case '99':
-                            		 $formaPago = 'POR DEFINIR';
+                            		 $formaPagos = 'POR DEFINIR';
                             		break;
                             	default:
-                            		$formaPago = 'EFECTIVO';
+                            		$formaPagos = 'EFECTIVO';
                             		break;
                             }
 
-                            if ($formaPago == 'POR DEFINIR') {
-                            	$formaPago == 'CREDITO';
+                            if ($formaPagos === 'POR DEFINIR') {
+                            	$formaPago = 'CREDITO';
                             }else{
-                            	$formaPago = $formaPago;
+                            	$formaPago = $formaPagos;
                             }
 
 
-                            $verificacionFactura = "SELECT serie, folio from facturasgenerales where serie = '".$serieFactura."' && folio = '".$folioFactura."' AND seriePedido = '".$serie."' and folioPedido = '".$folio."'";
+                            $verificacionFactura = "SELECT serie,folio from facturasgenerales where serie = '".$serieFactura."' && folio = '".$folioFactura."' AND seriePedido = '".$serie."' and folioPedido = '".$folio."'";
+
                             $resultado = mysqli_query($conn, $verificacionFactura) or die("database error:". mysqli_error($conn));
 
                             $codigoCliente = $value["codigoCliente"];
@@ -779,80 +781,80 @@ class AjaxAtencion{
                             	
                             switch ($value["formaPago"]) {
                             	case '01':
-                            		 $formaPago = 'EFECTIVO';
+                            		 $formaPagos = 'EFECTIVO';
                             		break;
                             	case '02':
-                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		 $formaPagos = 'CHEQUE NOMINATIVO';
                             		break;
                             	case '03':
-                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		 $formaPagos = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
                             		break;
                             	case '04':
-                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		 $formaPagos = 'TARJETA DE CRÉDITO';
                             		break;
                             	case '05':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '06':
-                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		 $formaPagos = 'DINERO ELECTRÓNICO';
                             		break;
                             	case '08':
-                            		 $formaPago = 'VALES DE DESPENSA';
+                            		 $formaPagos = 'VALES DE DESPENSA';
                             		break;
                             	case '12':
-                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		 $formaPagos = 'DACIÓN DE PAGO';
                             		break;
                             	case '13':
-                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		 $formaPagos = 'PAGO POR SUBROGACIÓN';
                             		break;
                             	case '14':
-                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		 $formaPagos = 'PAGO POR CONSIGNACIÓN';
                             		break;
                             	case '15':
-                            		 $formaPago = 'CONDONACIÓN';
+                            		 $formaPagos = 'CONDONACIÓN';
                             		break;
                             	case '17':
-                            		 $formaPago = 'COMPENSACIÓN';
+                            		 $formaPagos = 'COMPENSACIÓN';
                             		break;
                             	case '23':
-                            		 $formaPago = 'NOVACIÓN';
+                            		 $formaPagos = 'NOVACIÓN';
                             		break;
                             	case '24':
-                            		 $formaPago = 'CONFUSIÓN';
+                            		 $formaPagos = 'CONFUSIÓN';
                             		break;
                             	case '25':
-                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		 $formaPagos = 'REMISIÓN DE DEDUDA';
                             		break;
                             	case '26':
-                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		 $formaPagos = 'PRESCRIPCIÓN O CADUCIDAD';
                             		break;
                             	case '27':
-                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		 $formaPagos = 'A SATISFACCIÓN DEL ACREEDOR';
                             		break;
                             	case '28':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '29':
-                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		 $formaPagos = 'TARJETA DE SERVICIOS';
                             		break;
                             	case '30':
-                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		 $formaPagos = 'APLICACIÓN DE ANTICIPOS';
                             		break;
                             	case '31':
-                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		 $formaPagos = 'INTERMEDIARIO PAGOS';
                             		break;
                             	case '99':
-                            		 $formaPago = 'POR DEFINIR';
+                            		 $formaPagos = 'POR DEFINIR';
                             		break;
                             	default:
-                            		$formaPago = 'EFECTIVO';
+                            		$formaPagos = 'EFECTIVO';
                             		break;
                             }
 
-                            if ($formaPago == 'POR DEFINIR') {
-                            	$formaPago == 'CREDITO';
+                            if ($formaPagos === 'POR DEFINIR') {
+                            	$formaPago = 'CREDITO';
                             }else{
-                            	$formaPago = $formaPago;
+                            	$formaPago = $formaPagos;
                             }
 
 
@@ -1059,80 +1061,80 @@ class AjaxAtencion{
                             	
                             switch ($value["formaPago"]) {
                             	case '01':
-                            		 $formaPago = 'EFECTIVO';
+                            		 $formaPagos = 'EFECTIVO';
                             		break;
                             	case '02':
-                            		 $formaPago = 'CHEQUE NOMINATIVO';
+                            		 $formaPagos = 'CHEQUE NOMINATIVO';
                             		break;
                             	case '03':
-                            		 $formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
+                            		 $formaPagos = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS';
                             		break;
                             	case '04':
-                            		 $formaPago = 'TARJETA DE CRÉDITO';
+                            		 $formaPagos = 'TARJETA DE CRÉDITO';
                             		break;
                             	case '05':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '06':
-                            		 $formaPago = 'DINERO ELECTRÓNICO';
+                            		 $formaPagos = 'DINERO ELECTRÓNICO';
                             		break;
                             	case '08':
-                            		 $formaPago = 'VALES DE DESPENSA';
+                            		 $formaPagos = 'VALES DE DESPENSA';
                             		break;
                             	case '12':
-                            		 $formaPago = 'DACIÓN DE PAGO';
+                            		 $formaPagos = 'DACIÓN DE PAGO';
                             		break;
                             	case '13':
-                            		 $formaPago = 'PAGO POR SUBROGACIÓN';
+                            		 $formaPagos = 'PAGO POR SUBROGACIÓN';
                             		break;
                             	case '14':
-                            		 $formaPago = 'PAGO POR CONSIGNACIÓN';
+                            		 $formaPagos = 'PAGO POR CONSIGNACIÓN';
                             		break;
                             	case '15':
-                            		 $formaPago = 'CONDONACIÓN';
+                            		 $formaPagos = 'CONDONACIÓN';
                             		break;
                             	case '17':
-                            		 $formaPago = 'COMPENSACIÓN';
+                            		 $formaPagos = 'COMPENSACIÓN';
                             		break;
                             	case '23':
-                            		 $formaPago = 'NOVACIÓN';
+                            		 $formaPagos = 'NOVACIÓN';
                             		break;
                             	case '24':
-                            		 $formaPago = 'CONFUSIÓN';
+                            		 $formaPagos = 'CONFUSIÓN';
                             		break;
                             	case '25':
-                            		 $formaPago = 'REMISIÓN DE DEDUDA';
+                            		 $formaPagos = 'REMISIÓN DE DEDUDA';
                             		break;
                             	case '26':
-                            		 $formaPago = 'PRESCRIPCIÓN O CADUCIDAD';
+                            		 $formaPagos = 'PRESCRIPCIÓN O CADUCIDAD';
                             		break;
                             	case '27':
-                            		 $formaPago = 'A SATISFACCIÓN DEL ACREEDOR';
+                            		 $formaPagos = 'A SATISFACCIÓN DEL ACREEDOR';
                             		break;
                             	case '28':
-                            		 $formaPago = 'TARJETA DE DÉBITO';
+                            		 $formaPagos = 'TARJETA DE DÉBITO';
                             		break;
                             	case '29':
-                            		 $formaPago = 'TARJETA DE SERVICIOS';
+                            		 $formaPagos = 'TARJETA DE SERVICIOS';
                             		break;
                             	case '30':
-                            		 $formaPago = 'APLICACIÓN DE ANTICIPOS';
+                            		 $formaPagos = 'APLICACIÓN DE ANTICIPOS';
                             		break;
                             	case '31':
-                            		 $formaPago = 'INTERMEDIARIO PAGOS';
+                            		 $formaPagos = 'INTERMEDIARIO PAGOS';
                             		break;
                             	case '99':
-                            		 $formaPago = 'POR DEFINIR';
+                            		 $formaPagos = 'POR DEFINIR';
                             		break;
                             	default:
-                            		$formaPago = 'EFECTIVO';
+                            		$formaPagos = 'EFECTIVO';
                             		break;
                             }
 
-                             if ($formaPago == 'POR DEFINIR') {
-                            	$formaPago == 'CREDITO';
+                            if ($formaPagos === 'POR DEFINIR') {
+                            	$formaPago = 'CREDITO';
                             }else{
-                            	$formaPago = $formaPago;
+                            	$formaPago = $formaPagos;
                             }
 
                             $fecha = substr($value["fecha"]["date"],0,10);
