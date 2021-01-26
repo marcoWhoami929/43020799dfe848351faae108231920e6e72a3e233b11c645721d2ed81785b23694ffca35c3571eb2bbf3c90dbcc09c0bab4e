@@ -138,7 +138,7 @@ class ModeloAtencion{
 	static public function mdlMostrarPedidosTotales($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTotales from  $tabla where SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTotales from  $tabla where SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -148,7 +148,7 @@ class ModeloAtencion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTotales from  $tabla ");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTotales from  $tabla where serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -166,7 +166,7 @@ class ModeloAtencion{
 	static public function mdlMostrarPedidosTerminados($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTerminados  from  $tabla where concluido = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTerminados  from  $tabla where concluido = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -176,7 +176,7 @@ class ModeloAtencion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTerminados  from  $tabla where concluido = 1 and estado = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosTerminados  from  $tabla where concluido = 1 and estado = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -223,7 +223,7 @@ class ModeloAtencion{
 		
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosEnProceso from  $tabla where estado = 1 && concluido = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosEnProceso from  $tabla where estado = 1 && concluido = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -233,7 +233,7 @@ class ModeloAtencion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosEnProceso from  $tabla where estado = 1 && concluido = 0");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as pedidosEnProceso from  $tabla where estado = 1 && concluido = 0 and serie != 'OTRT'");
 
 			$stmt -> execute();
 

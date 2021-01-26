@@ -1040,5 +1040,7 @@ PÁGINA DE INICIO
   }
   setInterval( "actualiza()", 1000 );
   */
-
+  if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
 </script>

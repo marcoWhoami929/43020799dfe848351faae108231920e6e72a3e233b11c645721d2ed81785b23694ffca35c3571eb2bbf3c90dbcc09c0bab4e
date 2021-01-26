@@ -213,7 +213,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
 if (isset($_SESSION["cotizador"]) == 0) {
 
  if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Compras" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] ==  "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["perfil"] ==  "Visualizador" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
-
+  /*
   echo '<li class="treeview">
 
   <a href="#">
@@ -233,6 +233,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
   </ul>
 
   </li>';
+  */
 
 }
 
@@ -243,6 +244,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
 if (isset($_SESSION["cotizador"]) == 0) {
   if($_SESSION["perfil"] == "Administrador General"){
 
+    /*
     echo '<li class="treeview">
 
     <a href="#">
@@ -262,10 +264,12 @@ if (isset($_SESSION["cotizador"]) == 0) {
     </ul>
 
     </li>';
+    */
 
   }
   if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Jesus Serrano" || $_SESSION["nombre"] == "Ulises Tuxpan" || $_SESSION["nombre"] == "Luis Gerardo Morales" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "José Enrique Flores" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Jesús Serrano"){
 
+    /*
     echo '<li class="treeview">
 
     <a href="#">
@@ -288,6 +292,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
     </ul>
     
     </li>';
+    */
     
   }
 

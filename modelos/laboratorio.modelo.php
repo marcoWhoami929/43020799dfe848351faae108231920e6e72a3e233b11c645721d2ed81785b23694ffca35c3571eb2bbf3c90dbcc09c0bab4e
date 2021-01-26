@@ -217,7 +217,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 	static public function mdlMostrarPedidosDetenidos($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosDetenidos from  $tabla WHERE tieneIgualado = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosDetenidos from  $tabla WHERE tieneIgualado = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -227,7 +227,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosDetenidos from  $tabla WHERE tieneIgualado = 1 and estado = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosDetenidos from  $tabla WHERE tieneIgualado = 1 and estado = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -245,7 +245,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 	static public function mdlMostrarPedidosProduccion($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosProduccion from  $tabla WHERE tieneIgualado = 0 and estado  = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosProduccion from  $tabla WHERE tieneIgualado = 0 and estado  = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -255,7 +255,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosProduccion from  $tabla WHERE tieneIgualado = 0 and estado  = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as pedidosProduccion from  $tabla WHERE tieneIgualado = 0 and estado  = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -274,7 +274,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as igualadosEnProduccion from  $tabla WHERE tieneIgualado = 1 and statusLaboratorio = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as igualadosEnProduccion from  $tabla WHERE tieneIgualado = 1 and statusLaboratorio = 1 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -284,7 +284,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as igualadosEnProduccion from  $tabla WHERE tieneIgualado = 1 and statusLaboratorio = 1 and estado = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(tieneIgualado) as igualadosEnProduccion from  $tabla WHERE tieneIgualado = 1 and statusLaboratorio = 1 and estado = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -304,7 +304,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 		
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as pedidosConcluidos from  $tabla WHERE statusLaboratorio = 2 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as pedidosConcluidos from  $tabla WHERE statusLaboratorio = 2 and estado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -314,7 +314,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as pedidosConcluidos from  $tabla WHERE statusLaboratorio = 2 and estado = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as pedidosConcluidos from  $tabla WHERE statusLaboratorio = 2 and estado = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -332,7 +332,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 	static public function mdlMostrarIgualadosCancelados($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as igualadosCancelados from $tabla WHERE statusLaboratorio = 0 && estadoLaboratorio = 0 and estado = 0 and tieneIgualado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as igualadosCancelados from $tabla WHERE statusLaboratorio = 0 && estadoLaboratorio = 0 and estado = 0 and tieneIgualado = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -342,7 +342,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as igualadosCancelados from $tabla WHERE statusLaboratorio = 0 && estadoLaboratorio = 0 and estado = 0 and tieneIgualado = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLaboratorio) as igualadosCancelados from $tabla WHERE statusLaboratorio = 0 && estadoLaboratorio = 0 and estado = 0 and tieneIgualado = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -360,7 +360,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 	static public function mdlMostrarIgualadosPendientes($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as igualadosPendientes from  $tabla where tieneIgualado = 1 && pendiente = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as igualadosPendientes from  $tabla where tieneIgualado = 1 && pendiente = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -370,7 +370,7 @@ SET $tabla2.tiempoLaboratorio = $tabla.tiempoProceso WHERE $tabla2.folio = $tabl
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT count(id) as igualadosPendientes from  $tabla where tieneIgualado = 1 && pendiente = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT count(id) as igualadosPendientes from  $tabla where tieneIgualado = 1 && pendiente = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 

@@ -168,7 +168,7 @@ class ModeloFacturacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as pedidosFacturados from $tabla where estadoFacturacion = 1 && statusFacturacion = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as pedidosFacturados from $tabla where estadoFacturacion = 1 && statusFacturacion = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -178,7 +178,7 @@ class ModeloFacturacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as pedidosFacturados from $tabla where estadoFacturacion = 1 && statusFacturacion = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as pedidosFacturados from $tabla where estadoFacturacion = 1 && statusFacturacion = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -199,7 +199,7 @@ class ModeloFacturacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as facturasPendientes from $tabla where estadoFacturacion = 1 && statusFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as facturasPendientes from $tabla where estadoFacturacion = 1 && statusFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -209,7 +209,7 @@ class ModeloFacturacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as facturasPendientes from $tabla where estadoFacturacion = 1 && statusFacturacion = 0");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as facturasPendientes from $tabla where estadoFacturacion = 1 && statusFacturacion = 0 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -230,7 +230,7 @@ class ModeloFacturacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -240,7 +240,7 @@ class ModeloFacturacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -1112,7 +1112,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(formatoPedido) as formatoPedido from $tabla where formatoPedido = 1 && statusFacturacion = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(formatoPedido) as formatoPedido from $tabla where formatoPedido = 1 && statusFacturacion = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -1122,7 +1122,7 @@ SET $tabla2.statusFacturacion = $tabla.status WHERE $tabla2.folio = $tabla.idPed
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(formatoPedido) as formatoPedido from $tabla where formatoPedido = 1 && statusFacturacion = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(formatoPedido) as formatoPedido from $tabla where formatoPedido = 1 && statusFacturacion = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 

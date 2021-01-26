@@ -279,7 +279,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 		
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidos from  $tabla WHERE statusLogistica = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidos from  $tabla WHERE statusLogistica = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -289,7 +289,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidos from  $tabla WHERE statusLogistica = 0");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidos from  $tabla WHERE statusLogistica = 0 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -307,7 +307,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 	static public function mdlMostrarPedidosDetenidos2($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidosLogistica from  $tabla WHERE statusLogistica = 0 and estadoLogistica = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidosLogistica from  $tabla WHERE statusLogistica = 0 and estadoLogistica = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -317,7 +317,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidosLogistica from  $tabla WHERE statusLogistica = 0 and estadoLogistica = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosDetenidosLogistica from  $tabla WHERE statusLogistica = 0 and estadoLogistica = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -335,7 +335,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 	static public function mdlMostrarPedidosRuta($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosRuta from  $tabla WHERE statusLogistica = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosRuta from  $tabla WHERE statusLogistica = 1 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -345,7 +345,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosRuta from  $tabla WHERE statusLogistica = 1");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosRuta from  $tabla WHERE statusLogistica = 1 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
@@ -363,7 +363,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 	static public function mdlMostrarPedidosEntregados($tabla, $item, $valor){
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosEntregados from  $tabla WHERE statusLogistica = 2 and SUBSTRING(fechaPedido, 4, 2) = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosEntregados from  $tabla WHERE statusLogistica = 2 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -373,7 +373,7 @@ SET $tabla2.tipoRuta = $tabla.tipoRuta WHERE $tabla2.idPedido = $tabla.folio;
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosEntregados from  $tabla WHERE statusLogistica = 2");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(statusLogistica) as pedidosEntregados from  $tabla WHERE statusLogistica = 2 and serie != 'OTRT'");
 
 			$stmt -> execute();
 
