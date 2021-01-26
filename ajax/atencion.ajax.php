@@ -305,7 +305,7 @@ class AjaxAtencion{
 					mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 					
 					
-					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."' WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
+					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."', estadoCompras = 1  WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
 					mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 					
@@ -1615,7 +1615,7 @@ class AjaxAtencion{
 						}else{
 							
 
-							$updateComprasAct = "UPDATE compras set  cancelado='".$value["cancelado"]."', cantidad='".$value["unidades"]."', importeCompra='".number_format($importe,2, '.', '')."', fechaRecepcion='".$fechaElaboracion."',fechaElaboracion='".$fechaElaboracion."',fechaTermino = '".$fechaElaboracion."',usuario = 'Guadalupe Hernández López',status = '4', sinAdquisicion = '0',estado = '1',pendiente = '0',folioCompra = '".$folioCompra."',idCompra = '".$value["idCompra"]."' WHERE serie = '".$seriePedido."' and idPedido = '".$folioPedido."'";
+							$updateComprasAct = "UPDATE compras set  cancelado='".$value["cancelado"]."', cantidad='".$value["unidades"]."', importeCompra='".number_format($importe,2, '.', '')."', fechaRecepcion='".$fechaElaboracion."',fechaElaboracion='".$fechaElaboracion."',fechaTermino = '".$fechaElaboracion."',usuario = 'Guadalupe Hernández López',status = '4', sinAdquisicion = 0,estado = 1,pendiente = '0',folioCompra = '".$folioCompra."',idCompra = '".$value["idCompra"]."' WHERE serie = '".$seriePedido."' and idPedido = '".$folioPedido."'";
 							mysqli_query($conn, $updateComprasAct) or die("database error:". mysqli_error($conn));
 
 							$tiempoProceso = "UPDATE compras SET tiempoProceso = TIMEDIFF(fechaTermino,fechaRecepcion) WHERE serie = '".$seriePedido."' and idPedido = '".$folioPedido."'";
