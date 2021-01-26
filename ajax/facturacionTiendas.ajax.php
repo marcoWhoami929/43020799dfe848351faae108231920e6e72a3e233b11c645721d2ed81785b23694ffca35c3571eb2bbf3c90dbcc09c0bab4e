@@ -2435,6 +2435,24 @@ class AjaxFacturacionTiendas{
 			echo  json_encode("finalizado");
 
 	}
+	/*=============================================
+	ACTUALIZAR FORMA DE PAGO FACTURA TIENDAS
+	=============================================*/
+	public $idFacturaTiendaPrev;
+	public $formaPagoFactura;
+	public function ajaxActualizarFormaPagoFactura(){
+
+		$item = "id";
+		$valor = $this->idFacturaTiendaPrev;
+
+		$item2 = "formaPago";
+		$valor2 = $this->formaPagoFactura;
+
+		$respuesta = ControladorFacturasTiendas::ctrActualizarFormaPagoFactura($item,$valor,$item2,$valor2);
+
+		echo json_encode($respuesta);
+
+	}
 
 	
 
@@ -2709,4 +2727,15 @@ if (isset($_POST["listadoFacturasComercial"])) {
 	$cargarFacturasComercial = new AjaxFacturacionTiendas();
 	$cargarFacturasComercial -> listadoFacturasComercial = $_POST["listadoFacturasComercial"];
 	$cargarFacturasComercial -> ajaxCargarFacturasComercial();
+}
+/*=============================================
+ACTUALIZAR FORMA DE PAGO FACTURA TIENDAS
+=============================================*/
+if(isset($_POST["idFacturaTiendaPrev"])){
+
+	$actualizarFormaPago = new AjaxFacturacionTiendas();
+	$actualizarFormaPago -> idFacturaTiendaPrev = $_POST["idFacturaTiendaPrev"];
+	$actualizarFormaPago -> formaPagoFactura = $_POST["formaPagoFactura"];
+	$actualizarFormaPago -> ajaxActualizarFormaPagoFactura();
+
 }

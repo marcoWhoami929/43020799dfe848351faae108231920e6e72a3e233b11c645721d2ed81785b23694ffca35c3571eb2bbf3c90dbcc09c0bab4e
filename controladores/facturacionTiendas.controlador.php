@@ -1989,6 +1989,18 @@ class ControladorFacturasTiendas{
 			return $respuesta;
 
 	}
+	/*=============================================
+	ACTUALIZAR FORMA DE PAGO FACTURA TIENDAS
+	=============================================*/
+	static public function ctrActualizarFormaPagoFactura($item,$valor,$item2,$valor2){
+
+			$tabla = "facturastiendas";
+			
+			$respuesta = ModeloFacturasTiendas::mdlActualizarFormaPagoFactura($tabla,$item,$valor,$item2,$valor2);
+
+			return $respuesta;
+
+	}
 
 
 }

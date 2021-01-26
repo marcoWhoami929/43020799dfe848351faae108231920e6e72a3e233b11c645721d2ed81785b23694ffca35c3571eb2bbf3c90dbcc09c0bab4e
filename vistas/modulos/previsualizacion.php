@@ -70,7 +70,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <center><button class="btn btn-info" id="btnObtenerFacturasComercial" style="width: 100px;height: 100px"  data-toggle="modal" data-target="#modalObtenerFacturasComercial" data-dismiss="modal" data-backdrop="false" sucursal="<?php echo $_SESSION['nombre'] ?>"><img src="vistas/img/plantilla/obtenerFacturas.png" width="100%" ></button></center>
         </div>
         <br>
-  
+        <div class="alert alert-dismissible animated fadeInDown" role="alert" id="successFormaPago" style="display: none;z-index: 1001;position: absolute;">
+            <span id="msgSuccessOrError"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="container  col-lg-12 col-md-12 col-sm-12" id="contenedorPrevisualizacion">
             
             <table class="table-bordered table-striped dt-responsive tablaPrevisualizacionFacturas estiloBordesTablas" width="100%" id="previsualizacionFacturas" >

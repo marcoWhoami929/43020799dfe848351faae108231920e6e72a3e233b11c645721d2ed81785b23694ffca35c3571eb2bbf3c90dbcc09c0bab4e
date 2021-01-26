@@ -5869,3 +5869,55 @@ $("#btnObtenerFacturasComercial").on('click',function() {
 
 
 /*******/
+/*
+ACTUALIZAR FORMA DE PAGO
+ */
+$(".tablaPrevisualizacionFacturas").on('click','.btnActualizarFormaPago', function() {
+  let idFactura = $(this).attr("idFactura");
+  let formaPago = $("#pay"+idFactura+"").val();
+    
+            var datos = new FormData();
+            datos.append('idFacturaTiendaPrev',idFactura);
+            datos.append('formaPagoFactura',formaPago);
+          
+            $.ajax({
+
+                url:"ajax/facturacionTiendas.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType:"json",
+                success: function(respuesta){ 
+
+                  if (respuesta = "ok") {
+                      alerta = document.getElementById("successFormaPago");
+                      alerta.style.display = "";
+                      $("#successFormaPago").addClass("alert-success");
+                      document.getElementById("msgSuccessOrError").innerHTML = "<strong>Forma de pago actualizada</strong>.";
+
+                      setTimeout( function () {
+                          alerta.style.display = "none";
+                          
+                      }, 3000);
+                    facturasTiendasObtenerComercial.ajax.reload();
+                  }else{
+                    alerta = document.getElementById("successFormaPago");
+                      alerta.style.display = "";
+                      $("#successFormaPago").addClass("alert-danger");
+                      document.getElementById("msgSuccessOrError").innerHTML = "<strong>Upps !!!,No se pudo actualizar la forma de pago</strong>.";
+
+                      setTimeout( function () {
+                          alerta.style.display = "none";
+                          
+                      }, 3000);
+                    facturasTiendasObtenerComercial.ajax.reload();
+                  }
+                                    
+                }
+
+
+            });
+
+});

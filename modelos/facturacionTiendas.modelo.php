@@ -2796,7 +2796,28 @@ class ModeloFacturasTiendas{
 
 
 	}
+	/*=============================================
+	ACTUALIZAR FORMA DE PAGO FACTURA TIENDAS
+	=============================================*/
+	static public function mdlActualizarFormaPagoFactura($tabla,$item,$valor,$item2,$valor2){
 
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set $item2 = :$item2 where $item = :$item");
+
+			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
+			$stmt -> bindParam(":".$item2,$valor2,PDO::PARAM_STR);
+
+			if($stmt -> execute()){
+
+				return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
+
+	}
 
 }
 

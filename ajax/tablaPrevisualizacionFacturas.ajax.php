@@ -86,7 +86,7 @@ class TablaPrevisualizacionFacturasTiendas{
 	 	for($i = 0; $i < count($facturacionTiendas); $i++){
 
   
-
+      $formaPago = "<select class='form-control formasPagoFacturas' style='width:200px' name='pay' id='pay".$facturacionTiendas[$i]["id"]."'><option value='".$facturacionTiendas[$i]["formaPago"]."'>".$facturacionTiendas[$i]["formaPago"]."</option><option value='CHEQUE NOMINATIVO'>CHEQUE NOMINATIVO</option><option value='CREDITO'>CREDITO</option><option value='EFECTIVO'>EFECTIVO</option><option value='POR DEFINIR'>POR DEFINIR</option><option value='TARJETA DE CRÉDITO'>TARJETA DE CRÉDITO</option><option value='TARJETA DE DÉBITO'>TARJETA DE DÉBITO</option><option value='TRANSFERENCIA ELECTRÓNICA DE FONDOS'>TRANSFERENCIA ELECTRÓNICA DE FONDOS</option></select><button type='button' class='btn btn-success btnActualizarFormaPago' idFactura = '".$facturacionTiendas[$i]["id"]."'><i class='fa fa-send'></i></button>";
 
 	 		/*=============================================
 			DEVOLVER DATOS JSON
@@ -97,7 +97,7 @@ class TablaPrevisualizacionFacturasTiendas{
                   "'.$facturacionTiendas[$i]["fechaFactura"].'",
                   "'.$facturacionTiendas[$i]["serie"].'",
                   "'.$facturacionTiendas[$i]["folio"].'",
-                  "'.$facturacionTiendas[$i]["formaPago"].'",
+                  "'.$formaPago.'",
                   "'.$facturacionTiendas[$i]["codigoCliente"].'",
                   "'.$facturacionTiendas[$i]["rfc"].'",
                   "'.rtrim($facturacionTiendas[$i]["nombreCliente"]).'",

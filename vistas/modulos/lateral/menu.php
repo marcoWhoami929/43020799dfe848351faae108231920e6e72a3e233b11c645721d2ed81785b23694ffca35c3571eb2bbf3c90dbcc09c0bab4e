@@ -4,7 +4,7 @@ MENU
 
 <ul class="sidebar-menu">
   <?php
-  if (isset($_SESSION["cotizador"]) == 0 || $_SESSION["perfil"] != "Tiendas") {
+  if (isset($_SESSION["cotizador"]) == 0 && $_SESSION["perfil"] != "Tiendas") {
 
     if (isset($_SESSION["cotizador"]) == 1) {
 
