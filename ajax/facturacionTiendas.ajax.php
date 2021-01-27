@@ -2155,7 +2155,7 @@ class AjaxFacturacionTiendas{
                 }
 			
 		
-			$mostrarFacturas =  "SELECT admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG FROM dbo.admDocumentos as admDoc INNER JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  where admDoc.CFECHA = '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$serie."' GROUP BY admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG";
+			$mostrarFacturas =  "SELECT admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  where admDoc.CFECHA = '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$serie."' GROUP BY admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG";
 
 
             $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
@@ -2327,9 +2327,7 @@ class AjaxFacturacionTiendas{
 							case 'FATR':
 								$concepto = "FACTURA TORRES";
 								break;
-							case 'FACD':
-								$concepto = "FACTURA SAN MANUEL V 3.3";
-								break;
+						
 						}
 
 						switch ($value["formaPago"]) {
