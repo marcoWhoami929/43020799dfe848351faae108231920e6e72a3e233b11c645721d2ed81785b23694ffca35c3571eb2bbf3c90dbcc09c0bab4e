@@ -262,7 +262,7 @@ class ControladorFacturasTiendas{
 				$tabla = "facturasgenerales";
 
 			}else{
-			  	if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+			  	if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -288,7 +288,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -313,7 +313,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -338,7 +338,7 @@ class ControladorFacturasTiendas{
 				$tabla = "facturasgenerales";
 
 			}else{
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -466,7 +466,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -493,7 +493,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -551,7 +551,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -713,7 +713,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -739,7 +739,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serieFacturaPrev === "FACD" || $serieFacturaPrev === "FAND" || $serieFacturaPrev === "FAPB") {
+				if ($serieFacturaPrev === "FACD" || $serieFacturaPrev === "FAND" || $serieFacturaPrev === "FAPB" || $serieFacturaPrev === "DOPR" || $serieFacturaPrev === "DFPR") {
 
 					$tabla = "facturasgenerales";
 
@@ -1541,7 +1541,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($datosSaldado["serie"] === "FACD" || $datosSaldado["serie"] === "FAND" || $datosSaldado["serie"] === "FAPB") {
+				if ($datosSaldado["serie"] === "FACD" || $datosSaldado["serie"] === "FAND" || $datosSaldado["serie"] === "FAPB" || $datosSaldado["serie"] === "DOPR" || $datosSaldado["serie"] === "DFPR" ) {
 
 					$tabla = "facturasgenerales";
 
@@ -1567,7 +1567,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
 
 					$tabla = "facturasgenerales";
 

@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" ){
 
 
 

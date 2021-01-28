@@ -91,7 +91,7 @@ else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generad
 
 <?php 
 if (isset($_SESSION["cotizador"]) == 0) {
- if ($_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Aurora Fernandez" ) {
+ if ($_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles" || $_SESSION["nombre"] == "Laura Delgado" || $_SESSION["perfil"] == "Logistica" || $_SESSION["nombre"] == "Aurora Fernandez" ) {
   echo '<li><a href="facturacion"><i class="fa fa-file-text-o"></i><span>Facturación</span></a></li>';
 }
 else if($_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Sebastián Rodríguez"){

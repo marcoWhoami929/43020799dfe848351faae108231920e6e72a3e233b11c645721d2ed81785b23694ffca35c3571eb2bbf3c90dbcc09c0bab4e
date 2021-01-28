@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["nombre"] == "Nataly Fuentes" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["nombre"] == "Sebastián Rodríguez"  || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila"){
 
 
 
@@ -129,7 +129,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Log
              <th style="border:none">Fecha Programada</th>
              <th style="border:none">Última Liberación</th>
              <th style="border:none">Estatus de Pedido</th>
-             <th style="border:none">Tipo de Ruta</th>
+             <th style="border:none">Tipo de Ruta</th>admCli.CID
              <th style="border:none">Operador</th>
              <th style="border:none">Fecha de Entrega al Cliente</th>
              <th style="border:none">Importante</th>

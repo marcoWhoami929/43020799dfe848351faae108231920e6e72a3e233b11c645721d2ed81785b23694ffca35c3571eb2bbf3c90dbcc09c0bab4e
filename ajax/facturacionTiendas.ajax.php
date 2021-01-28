@@ -79,13 +79,14 @@ class AjaxFacturacionTiendas{
 
 		$verAbonoFactura = ControladorFacturasTiendas::ctrObtenerAbonadoFactura($item,$valor,$item2,$valor2);
 
-		if(number_format($verAbonoFactura[0]["abono"],2) == 0){
+		if(number_format(str_replace(',','',$verAbonoFactura[0]["abono"]),2, '.', '') == 0){
+
 
 			$respuesta = ControladorFacturasTiendas::ctrAgregarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3);
 
 			echo json_encode($respuesta);
 
-		}else if(number_format($verAbonoFactura[0]["abono"],2) < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["abono"]),2, '.', '') < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$valor3 = $valor3 + $verAbonoFactura[0]["abono"];
 
@@ -93,7 +94,7 @@ class AjaxFacturacionTiendas{
 
 			echo json_encode($respuesta);
 
-		}else if(number_format($valor3,2) == number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		}else if(number_format(str_replace(',','',$valor3),2, '.', '') == number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$respuesta = ControladorFacturasTiendas::ctrAgregarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -124,7 +125,7 @@ class AjaxFacturacionTiendas{
 
 		$verAbonoFactura = ControladorFacturasTiendas::ctrObtenerAbonadoFactura($item,$valor,$item2,$valor2);
 
-		if(number_format($valor3,2) < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		if(number_format(str_replace(',','',$valor3),2, '.', '') < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$valor3 = $verAbonoFactura[0]["abono"] - $valor3;
 
@@ -143,7 +144,7 @@ class AjaxFacturacionTiendas{
 
 			}
 
-		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '') == number_format($valor3,2)){
+		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '') == number_format(str_replace(',','',$valor3),2, '.', '')){
 
 
 			$valor4 = "0";
@@ -756,7 +757,9 @@ class AjaxFacturacionTiendas{
 				$estatusDeposito = $verAbonoDepositoBancario[0]["estatus"];
 
 				$totalFactura = $verAbonoDepositoBancario[0]["total"];
-				$pagadoFactura = number_format($verAbonoDepositoBancario[0]["pagado"],2, '.', '');
+				$pagadoFactura = number_format(str_replace(',','',$verAbonoDepositoBancario[0]["pagado"]),2, '.', '');
+
+
 				$totalDocumento = explode(',',$totalDocumentosDeposito);
 				$sumaTotal = 0;
 	            foreach ($totalDocumento as $key => $value) {
@@ -840,10 +843,10 @@ class AjaxFacturacionTiendas{
 				$valor2 = $folioFactura;
 				$obtenerSaldoFactura = ControladorFacturasTiendas::ctrObtenerDatosFactura($item,$valor,$item2,$valor2);
 
-				$total = number_format($obtenerSaldoFactura["total"],2, '.', '');
-				$pagado = number_format($obtenerSaldoFactura["pagado"],2, '.', '');
-				$pendiente = number_format($obtenerSaldoFactura["pendiente"],2, '.', '');
-				$abono = number_format($obtenerSaldoFactura["abono"],2, '.', '');
+				$total = number_format(str_replace(',','',$obtenerSaldoFactura["total"]),2, '.', '');
+				$pagado = number_format(str_replace(',','',$obtenerSaldoFactura["pagado"]),2, '.', '');
+				$pendiente = number_format(str_replace(',','',$obtenerSaldoFactura["pendiente"]),2, '.', '');
+				$abono = number_format(str_replace(',','',$obtenerSaldoFactura["abono"]),2, '.', '');
 
 				$pagadoFactura = $pagado + $pendiente;
 				$pendienteFactura = $total - $pagadoFactura;
@@ -852,9 +855,9 @@ class AjaxFacturacionTiendas{
 
 				$datosSaldado = array('serie' => $serieFactura,
 									  'folio' => $folioFactura,
-									  'pendiente' => number_format($pendienteFactura,2, '.', ''),
-									  'pagado' => number_format($pagadoFactura,2, '.', ''),
-									  'abono' => number_format($abonoFactura,2, '.', ''),
+									  'pendiente' => number_format(str_replace(',','',$pendienteFactura),2, '.', ''),
+									  'pagado' => number_format(str_replace(',','',$pagadoFactura),2, '.', ''),
+									  'abono' => number_format(str_replace(',','',$abonoFactura),2, '.', ''),
 									  'ajustado' => '1');
 
 
@@ -1421,13 +1424,13 @@ class AjaxFacturacionTiendas{
 
 		$verAbonoFactura = ControladorFacturasTiendas::ctrObtenerAbonadoFactura($item,$valor,$item2,$valor2);
 
-		if(number_format($verAbonoFactura[0]["abono"],2) == 0){
+		if(number_format(str_replace(',','',$verAbonoFactura[0]["abono"]),2, '.', '') == 0){
 
 			$respuesta = ControladorFacturasTiendas::ctrAgregarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3);
 
 			echo json_encode($respuesta);
 
-		}else if(number_format($verAbonoFactura[0]["abono"],2) < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["abono"]),2, '.', '') < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$valor3 = $valor3 + $verAbonoFactura[0]["abono"];
 
@@ -1435,7 +1438,7 @@ class AjaxFacturacionTiendas{
 
 			echo json_encode($respuesta);
 
-		}else if(number_format($valor3,2) == number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		}else if(number_format(str_replace(',','',$valor3),2, '.', '') == number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$respuesta = ControladorFacturasTiendas::ctrAgregarFacturaDepositada($item,$valor,$item2,$valor2,$item3,$valor3);
 
@@ -1466,7 +1469,7 @@ class AjaxFacturacionTiendas{
 
 		$verAbonoFactura = ControladorFacturasTiendas::ctrObtenerAbonadoFactura($item,$valor,$item2,$valor2);
 
-		if(number_format($valor3,2) < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
+		if(number_format(str_replace(',','',$valor3),2, '.', '') < number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '')){
 
 			$valor3 = $verAbonoFactura[0]["abono"] - $valor3;
 
@@ -1485,7 +1488,7 @@ class AjaxFacturacionTiendas{
 
 			}
 
-		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '') == number_format($valor3,2)){
+		}else if(number_format(str_replace(',','',$verAbonoFactura[0]["total"]),2, '.', '') == number_format(str_replace(',','',$valor3),2, '.', '')){
 
 
 			$valor4 = "0";
@@ -1994,7 +1997,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaCred;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2019,7 +2022,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaConfirm;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2079,7 +2082,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaUpload;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2106,7 +2109,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaLoad;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
