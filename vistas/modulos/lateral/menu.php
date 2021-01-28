@@ -213,7 +213,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
 if (isset($_SESSION["cotizador"]) == 0) {
 
  if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Compras" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] ==  "Generador de Reportes" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["perfil"] ==  "Visualizador" || $_SESSION["nombre"] == "Sebastián Rodríguez"){
-  /*
+  
   echo '<li class="treeview">
 
   <a href="#">
@@ -227,13 +227,17 @@ if (isset($_SESSION["cotizador"]) == 0) {
   <ul class="treeview-menu" style="z-index: 101; width:200px;">
 
   <li><a href="indicadores"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Indicadores</span></a></li>
-  <li><a href="reportAcumulado"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Reporte Acumulado</span></a></li>
-  <li><a href="reportAcumuladoMensual"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Reporte Mensual</span></a></li>
-
+  
   </ul>
 
   </li>';
-  */
+  /*
+  
+  
+  <li><a href="reportAcumulado"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Reporte Acumulado</span></a></li>
+  <li><a href="reportAcumuladoMensual"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Reporte Mensual</span></a></li>
+
+   */
 
 }
 

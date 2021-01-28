@@ -2155,7 +2155,7 @@ class AjaxFacturacionTiendas{
                 }
 			
 		
-			$mostrarFacturas =  "SELECT admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL  where admDoc.CFECHA = '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$serie."' GROUP BY admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG";
+			$mostrarFacturas =  "SELECT admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR where admDoc.CFECHA = '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$serie."' GROUP BY admDoc.CFECHA,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admCli.CCODIGOCLIENTE,admCli.CRFC,admDoc.CRAZONSOCIAL,admDoc.CFECHAVENCIMIENTO,admCli.CDIASCREDITOCLIENTE,admDoc.CNETO,admDoc.CDESCUENTODOC1,admDoc.CIMPUESTO1,admDoc.CTOTAL,admDoc.CMETODOPAG";
 
 
             $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
@@ -2305,7 +2305,7 @@ class AjaxFacturacionTiendas{
 
 						}
 					
-						$actualizarFacturas = "UPDATE facturastiendas set  codigoCliente = '".$value["codigoCliente"]."', rfc = '".$value["rfc"]."', nombreCliente = '".$value["razonSocial"]."', fechaVencimiento = '".$fechaVencimiento."', diasCredito = '".$value["diasCredito"]."', neto = '".str_replace(',','',$value["neto"])."', descuento = '".str_replace(',','',$value["descuento"])."', impuesto = '".str_replace(',','',$value["impuesto"])."', total = '".str_replace(',','',$value["total"])."', formaPago = '".strtoupper($formaPago)."',creditoPendiente = '".$creditoPendiente."'  WHERE serie = '".$value["serie"]."' and folio = '".str_replace(',','',$value["folio"])."'";
+						$actualizarFacturas = "UPDATE facturastiendas set  codigoCliente = '".$value["codigoCliente"]."', rfc = '".$value["rfc"]."', nombreCliente = '".$value["razonSocial"]."', fechaVencimiento = '".$fechaVencimiento."', diasCredito = '".$value["diasCredito"]."', neto = '".str_replace(',','',$value["neto"])."', descuento = '".str_replace(',','',$value["descuento"])."', impuesto = '".str_replace(',','',$value["impuesto"])."', total = '".str_replace(',','',$value["total"])."', creditoPendiente = '".$creditoPendiente."'  WHERE serie = '".$value["serie"]."' and folio = '".str_replace(',','',$value["folio"])."'";
 						mysqli_query($conn, $actualizarFacturas) or die("database error:". mysqli_error($conn));
 
 
