@@ -373,9 +373,9 @@ if (isset($_SESSION["cotizador"]) == 0) {
 
    echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
 
- }if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Ivan Herrera Perez") {
+ }if ( $_SESSION["nombre"] == "Ivan Herrera Perez") {
 
-
+  echo '<li><a href="tableroCortes" sesion="'.$sucursal.'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
 
  }if($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 

@@ -37045,7 +37045,7 @@ class ControladorReportes{
 
 			$tabla = $_GET["reporteFacturasTiendas"];
 
-			if ($_SESSION["perfil"] != "Administrador General" && $_SESSION["nombre"] != "José Martinez") {
+			if ($_SESSION["perfil"] != "Administrador General" && $_SESSION["nombre"] != "José Martinez" && $_SESSION["nombre"] != "Ivan Herrera Perez") {
 
 				if ($_SESSION["nombre"] == "Diego Ávila") {
                                   
