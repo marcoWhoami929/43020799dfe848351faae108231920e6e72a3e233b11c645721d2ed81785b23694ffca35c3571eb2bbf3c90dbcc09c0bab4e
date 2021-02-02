@@ -83,7 +83,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Fac
 
           </a>
 
-          <a href="vistas/modulos/reportes.php?reporteFacturacion=facturacion">
+          <a href="vistas/modulos/reportes.php?reporteFacturacion=facturasgenerales">
 
             <button class="report btn btn-warning" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte Detallado</button>
 

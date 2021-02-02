@@ -10,7 +10,14 @@ class ModeloReportes{
 
 	static public function mdlDescargarReporte($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+		if ($tabla == "facturacion") {
+
+			$stmt = Conexion::conectar()->prepare("SELECT fg.nombreCliente, f.serie, f.idPedido, f.usuario, fg.serie AS serieFactura, fg.folio AS folioFactura, f.status, f.estado,f.facturaPendiente, f.estatusFactura, f.formatoPedido, f.orden, f.ordenCompra,f.tipo, f.cantidad, f.importe, f.importeInicial, f.partidasSurtidas, fg.numeroPartidas AS partidas, fg.numeroUnidades AS unidadesSurtidas, f.unidades, f.statusCliente, f.nivelSumCosto, f.fechaRecepcion, f.fechaEntrega, f.observaciones, f.tiempoProceso, f.fechaPedido, f.secciones, f.cliente, fg.total FROM facturasgenerales AS fg LEFT OUTER JOIN facturacion AS f ON fg.seriePedido = f.serie AND fg.folioPedido = f.idPedido");
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+
+		}
 
 		$stmt -> execute();
 
@@ -134,7 +141,15 @@ class ModeloReportes{
 
 	static public function mdlDescargarReporteFacturacion($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+		if ($tabla == "facturasgenerales") {
+
+			$stmt = Conexion::conectar()->prepare("SELECT f.serie, f.idPedido, f.fechaPedido, f.fechaRecepcion, f.importeInicial, f.nombreCliente, f.unidades, fg.serie As serieFactura, fg.folio AS folioFactura, fg.importeFactura AS importe, fg.nombreCliente, fg.numeroUnidades AS unidadesSurtidas, f.estatusFactura FROM facturasgenerales AS fg LEFT OUTER JOIN facturacion AS f ON fg.seriePedido = f.serie AND fg.folioPedido = f.idPedido");
+			
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
+
+		}
 
 		$stmt -> execute();
 
