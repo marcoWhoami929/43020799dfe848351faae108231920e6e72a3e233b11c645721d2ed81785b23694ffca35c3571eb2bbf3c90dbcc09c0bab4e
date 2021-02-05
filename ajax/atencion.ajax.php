@@ -634,9 +634,18 @@ class AjaxAtencion{
                                   
                                 }
 
+                                 if (strtoupper($formaPago) == "CREDITO") {
+
+									$creditoPendiente = "1";
+										
+								}else{
+
+									$creditoPendiente = "0";
+
+								}
                            
                            			
-                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente) VALUES('".$serie."','".$folio."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["estatus"]."','".$value["diasCredito"]."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."')";
+                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente,creditoPendiente) VALUES('".$serie."','".$folio."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["estatus"]."','".$value["diasCredito"]."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."','".$creditoPendiente."')";
                                 mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 
@@ -867,7 +876,7 @@ class AjaxAtencion{
                             $diasCredito = $value["diasCredito"];
 
                             if(mysqli_num_rows($resultado)){
-
+                            	
                             	
                                 $actualizacionFactura = "UPDATE facturasgenerales SET concepto = '".$concepto."', importeFactura = '".str_replace(',','',$value["total"])."',numeroUnidades = '".$value["unidadesPendientes"]."',unidadesPendientes = '".$value["unidadesPendientes"]."',fechaFactura = '".$fechaFactura."', fechaVencimiento = '".$fechaVencimiento."',fechaCobro = '".$fechaCobro."',codigoCliente = '".$codigoCliente."',rfc = '".$rfc."',statusCliente = '".$statusCliente."',diasCredito = '".$diasCredito."',nombreCliente = '".$value["razonSocial"]."', neto = '".number_format($neto,4,'.', '')."', impuesto = '".number_format($impuesto,4,'.', '')."', total ='".number_format($total,4,'.', '')."', estatus = '".$estatus."', formaPago = '".$formaPago."', agente = '".$agente."',numeroPartidas = '".$value["partidas"]."' where serie = '".$serieFactura."' and folio = '".$folioFactura."' and seriePedido = '".$serie."' and folioPedido = '".$folio."'";
                                 mysqli_query($conn,$actualizacionFactura) or die("database error:".mysqli_error($conn));
@@ -943,8 +952,18 @@ class AjaxAtencion{
                                     $numeroFactura = $getLastNumFactura[0];
                                   
                                 }
+                           	
+                           		if (strtoupper($formaPago) == "CREDITO") {
+
+									$creditoPendiente = "1";
+										
+								}else{
+
+									$creditoPendiente = "0";
+
+								}
                            
-                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente) VALUES('".$serie."','".$folio."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$codigoCliente."','".$rfc."','".$statusCliente."','".$diasCredito."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."')";
+                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente,creditoPendiente) VALUES('".$serie."','".$folio."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$codigoCliente."','".$rfc."','".$statusCliente."','".$diasCredito."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."','".$creditoPendiente."')";
                                 mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 
@@ -1242,8 +1261,19 @@ class AjaxAtencion{
                                     $numeroFactura = $getLastNumFactura[0];
                                   
                                 }
+
+
+                           		if (strtoupper($formaPago) == "CREDITO") {
+
+									$creditoPendiente = "1";
+										
+								}else{
+
+									$creditoPendiente = "0";
+
+								}
                            
-                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente) VALUES('".$serieOrden."','".$folioOrden."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["estatus"]."','".$value["diasCredito"]."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."')";
+                                $sql_update = "INSERT INTO facturasgenerales(seriePedido,folioPedido,concepto,serie,folio,importeFactura,estatusFactura,numeroUnidades,unidadesPendientes,pendiente,fechaFactura,fechaVencimiento,codigoCliente,rfc,statusCliente,diasCredito,nombreCliente,numFactura,neto,impuesto,total,estatus,formaPago, agente,numeroPartidas,tipoCliente,creditoPendiente) VALUES('".$serieOrden."','".$folioOrden."','".$concepto."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["total"])."',$estatusFactura,'".$value["unidadesPendientes"]."','".$value["unidadesPendientes"]."','".str_replace(',','',$value["total"])."','".$fechaFactura."','".$fechaVencimiento."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["estatus"]."','".$value["diasCredito"]."','".$value["razonSocial"]."','".$numeroFactura."','".number_format($neto,4,'.', '')."','".number_format($impuesto,4,'.', '')."','".number_format($total,4,'.', '')."','".$estatus."','".$formaPago."','".$agente."','".$value["partidas"]."','".$agente."','".$creditoPendiente."')";
                                 mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 
