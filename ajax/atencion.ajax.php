@@ -78,11 +78,12 @@ class AjaxAtencion{
 			//$valor = '2021-01-21';
 
 			/*
-			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CRAZONSOCIAL = admDoc.CRAZONSOCIAL LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,admDoc.CREFERENCIA,admDoc.CCANCELADO";
-
+			SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA >= '2021-01-25' AND admDoc.CFECHA <= '2021-02-06' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO
+			
+			admDoc.CFECHA = '".$valor."'
 
 			*/
-			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR";
+			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO";
 
             $ejecutar = sqlsrv_query($conne,$mostrarPedidos);
             $i = 0;
@@ -112,6 +113,7 @@ class AjaxAtencion{
             						 "formaPago" => $value["CMETODOPAG"],
             						 "observaciones" => preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $value["COBSERVACIONES"]),
             						 "cancelado" => $value["CCANCELADO"],
+            						 "usuario" => $value["CUSUARIO"],
             						 "fecha" => $value["CFECHA"]);
             	$i++;
             }
@@ -140,8 +142,11 @@ class AjaxAtencion{
 			$item = "CFECHA";
 			$valor = $this->fechaActualFacturas;
 			//$valor = '2021-01-21';
-
-			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP";
+			/*
+			SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,admDoc.CIDDOCUMENTODE FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where  admDoc.CFECHA >= '2021-01-25' AND admDoc.CFECHA <= '2021-02-06' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') and admDoc.CIDDOCUMENTODE = 4 GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,admDoc.CIDDOCUMENTODE
+			*/
+			 
+			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') and admDoc.CIDDOCUMENTODE = 4 GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO";
 
 
 
@@ -172,6 +177,7 @@ class AjaxAtencion{
             						 "diasCredito" => $value["CDIASCREDITOCLIENTE"],
             						 "idCliente" => $value["CIDCLIENTEPROVEEDOR"],
             						 "formaPago"=> $value["CMETODOPAG"],
+            						 "usuario" => $value["CUSUARIO"],
             						 "referencia" => $value["CREFERENCIA"]);
             	$i++;
             }
@@ -237,18 +243,18 @@ class AjaxAtencion{
 					$formaPago = $value["formaPago"];
 				}
 				
-				switch ($value["serie"]) {
-					case 'PEND':
+				switch ($value["usuario"]) {
+					case 'AURORACED':
 						$usuario = "Aurora Fernandez";
 						break;
-					case 'PECD':
+					case 'DIEGOCED':
 						$usuario = "Diego Avila";
 						break;
-					case 'PEBB':
+					case 'ROCICED':
 						$usuario = "Rocio Martínez";
 						break;
-					case 'PEPB':
-						$usuario = "Rocio Martínez";
+					case 'GABRIEL':
+						$usuario = "Gabriel Andrade";
 						break;
 					
 					default:
@@ -305,7 +311,7 @@ class AjaxAtencion{
 					mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 					
 					
-					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."', estadoCompras = 1  WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
+					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."', estadoCompras = 1,creado = '".$usuario."'  WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
 					mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 					
@@ -582,6 +588,25 @@ class AjaxAtencion{
                             $statusCliente =$value["estatus"];
                             $diasCredito = $value["diasCredito"];
 
+                            switch ($value["usuario"]) {
+								case 'AURORACED':
+									$usuario = "Aurora Fernandez";
+									break;
+								case 'DIEGOCED':
+									$usuario = "Diego Avila";
+									break;
+								case 'ROCICED':
+									$usuario = "Rocio Martínez";
+									break;
+								case 'GABRIEL':
+									$usuario = "Gabriel Andrade";
+									break;
+								
+								default:
+									$usuario = "Aurora Fernandez";
+									break;
+							}
+
 
 
                             if(mysqli_num_rows($resultado)){
@@ -605,7 +630,7 @@ class AjaxAtencion{
                                 $secciones = $datos["secciones"];
                                 $partidasSurtidas = $datos["partidasSurtidas"];
 
-                                $actualizarSurtimientoImportes = "UPDATE facturacion set secciones = '".$secciones."',partSurt = '".$partidasSurtidas."',importSurt = '".number_format($importeSurtido,4,'.', '')."', unidSurt = '".$unidadesSurtidas."', nivelSumCosto = (('".$importeSurtido."'/importeInicial)*100), nivelDeSum = (('".$unidadesSurtidas."'/unidSurt)*100), nivelPartidas = (('".$partidasSurtidas."'/partSurt)*100), usuario = 'Aurora Fernandez'  where serie = '".$serie."' and idPedido = '".$folio."'";
+                                $actualizarSurtimientoImportes = "UPDATE facturacion set secciones = '".$secciones."',partSurt = '".$partidasSurtidas."',importSurt = '".number_format($importeSurtido,4,'.', '')."', unidSurt = '".$unidadesSurtidas."', nivelSumCosto = (('".$importeSurtido."'/importeInicial)*100), nivelDeSum = (('".$unidadesSurtidas."'/unidSurt)*100), nivelPartidas = (('".$partidasSurtidas."'/partSurt)*100), usuario = '".$usuario."'  where serie = '".$serie."' and idPedido = '".$folio."'";
                                 mysqli_query($conn, $actualizarSurtimientoImportes) or die("database error:".mysqli_error($conn));
 
                                 $actualizacionFacturaAtencion = "UPDATE atencionaclientes set saldoFacturado = '".$importeSurtido."'  where serie = '".$serie."' and folio = '".$folio."'";
@@ -875,6 +900,25 @@ class AjaxAtencion{
                             $statusCliente =$value["estatus"];
                             $diasCredito = $value["diasCredito"];
 
+                            switch ($value["usuario"]) {
+								case 'AURORACED':
+									$usuario = "Aurora Fernandez";
+									break;
+								case 'DIEGOCED':
+									$usuario = "Diego Avila";
+									break;
+								case 'ROCICED':
+									$usuario = "Rocio Martínez";
+									break;
+								case 'GABRIEL':
+									$usuario = "Gabriel Andrade";
+									break;
+								
+								default:
+									$usuario = "Aurora Fernandez";
+									break;
+							}
+
                             if(mysqli_num_rows($resultado)){
                             	
                             	
@@ -923,7 +967,7 @@ class AjaxAtencion{
                                 $secciones = $datos["secciones"];
                                 $partidasSurtidas = $datos["partidasSurtidas"];
 
-                                $actualizarSurtimientoImportes = "UPDATE facturacion set serieFactura = '".$serieFactura."',folioFactura = '".$folioFactura."', secciones = '".$secciones."',partSurt = '".$partidasSurtidas."',importSurt = '".number_format($importeSurtido,4,'.', '')."', unidSurt = '".$unidadesSurtidas."', nivelSumCosto = (('".$importeSurtido."'/importeInicial)*100), nivelDeSum = (('".$unidadesSurtidas."'/unidSurt)*100), nivelPartidas = (('".$partidasSurtidas."'/partSurt)*100), usuario = 'Aurora Fernandez'  where serie = '".$serie."' and idPedido = '".$folio."'";
+                                $actualizarSurtimientoImportes = "UPDATE facturacion set serieFactura = '".$serieFactura."',folioFactura = '".$folioFactura."', secciones = '".$secciones."',partSurt = '".$partidasSurtidas."',importSurt = '".number_format($importeSurtido,4,'.', '')."', unidSurt = '".$unidadesSurtidas."', nivelSumCosto = (('".$importeSurtido."'/importeInicial)*100), nivelDeSum = (('".$unidadesSurtidas."'/unidSurt)*100), nivelPartidas = (('".$partidasSurtidas."'/partSurt)*100), usuario = '".$usuario."'  where serie = '".$serie."' and idPedido = '".$folio."'";
                                 mysqli_query($conn, $actualizarSurtimientoImportes) or die("database error:".mysqli_error($conn));
 
                                 $actualizarNivelesAlmacen = "UPDATE almacen INNER JOIN facturacion ON almacen.idPedido = facturacion.idPedido and almacen.serie = facturacion.serie SET almacen.sumPartidas = facturacion.partSurt,almacen.nivelPartidas = facturacion.nivelPartidas,almacen.sumUnidades = facturacion.unidSurt,almacen.nivelDeSum = facturacion.nivelDeSum,almacen.importeSurtido = facturacion.importSurt,almacen.nivelSumCosto = facturacion.nivelSumCosto where almacen.serie = '".$serie."' and almacen.idPedido = '".$folio."'";
@@ -1184,18 +1228,15 @@ class AjaxAtencion{
 								$formaPagoOrden = $value["formaPago"];
 							}
 							
-							switch ($value["serie"]) {
-								case 'FAND':
+							switch ($value["usuario"]) {
+								case 'AURORACED':
 									$usuario = "Aurora Fernandez";
 									break;
-								case 'FACD':
+								case 'DIEGOCED':
 									$usuario = "Diego Avila";
 									break;
-								case 'FAPB':
-									$usuario = "Diego Avila";
-									break;
-								case 'DOPR':
-									$usuario = "Diego Avila";
+								case 'ROCICED':
+									$usuario = "Rocio Martínez";
 									break;
 								default:
 									$usuario = "Aurora Fernandez";

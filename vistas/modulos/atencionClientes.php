@@ -299,6 +299,8 @@ MODAL EDITAR PEDIDO
 
                           <option value="Aurora Fernandez">Aurora Fernandez</option>
 
+                          <option value="Gabriel Andrade">Gabriel Andrade</option>
+
 
                         </select>
 

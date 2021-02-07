@@ -314,9 +314,9 @@ MODAL EDITAR PEDIDO
                           
                           <option value="" id="editarUsuario">Seleccionar Usuario</option>
 
-                          <option value="Gerardo Morales">Gerardo Morales</option>
+                         
                           <option value="Miguel Gutierrez Angeles">Miguel Gutierrez Angeles</option>
-                          <option value="Laura Delgado">Laura Delgado</option>
+                          <option value="Rocio Martínez">Rocio Martínez</option>
                           <option value="Diego Avila">Diego Avila</option>
                           <option value="Aurora Fernandez">Aurora Fernandez</option>
                           
@@ -780,9 +780,10 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <select class="form-control" required="true" name="otUsuarioEdit" id="otUsuarioEdit">
 
-                                    <option value="Aurora Fernandez">Aurora Fernandez</option>
-
-                                    <option value="Miguel Gutierrez">Miguel Gutierrez</option>
+                                      <option value="Miguel Gutierrez Angeles">Miguel Gutierrez Angeles</option>
+                                      <option value="Rocio Martínez">Rocio Martínez</option>
+                                      <option value="Diego Avila">Diego Avila</option>
+                                      <option value="Aurora Fernandez">Aurora Fernandez</option>
 
                                     </select>
 

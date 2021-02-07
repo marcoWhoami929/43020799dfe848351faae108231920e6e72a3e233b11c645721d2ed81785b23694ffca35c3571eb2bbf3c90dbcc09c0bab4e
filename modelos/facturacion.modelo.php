@@ -230,7 +230,7 @@ class ModeloFacturacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT'");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and SUBSTRING(fechaPedido, 4, 2) = :$item and serie != 'OTRT' and estado = 1");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -240,7 +240,7 @@ class ModeloFacturacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and serie != 'OTRT'");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(estadoFacturacion) as porFacturar from $tabla where estadoFacturacion = 0 and serie != 'OTRT' and estado = 1");
 
 			$stmt -> execute();
 
