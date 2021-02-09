@@ -122,10 +122,10 @@
 				<input class="form-control" type="text" name="total[]" id="total[]" value="'.number_format($valor["total"],2,'.', '').'" onkeypress="return pulsar(event)"/>
 			</div>
 			<div class="float-left" id="cuadroReferencias">
-					<input class="form-control" type="text" name="referencias[]" id="referencias[]" placeholder="Referencias" value="'.utf8_encode($valor["referenciasProd"]).'" onkeypress="return pulsar(event)"/>
+					<input class="form-control" type="text" name="referencias[]" id="referencias[]" placeholder="Referencias" value="'.$valor["referenciasProd"].'" onkeypress="return pulsar(event)"/>
 			</div>
 			<div class="float-left" id="cuadroObservaciones">
-					<input class="form-control" type="text" name="observaciones[]" id="observaciones[]" placeholder="Observaciones" value="'.utf8_encode($valor["observacionesProd"]).'" onkeypress="return pulsar(event)"/>
+					<input class="form-control" type="text" name="observaciones[]" id="observaciones[]" placeholder="Observaciones" value="'.$valor["observacionesProd"].'" onkeypress="return pulsar(event)"/>
 			</div>
 				</li>
  </ul>
