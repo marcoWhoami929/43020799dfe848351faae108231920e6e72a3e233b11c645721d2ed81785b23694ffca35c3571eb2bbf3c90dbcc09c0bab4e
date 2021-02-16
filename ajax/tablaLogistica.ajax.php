@@ -24,7 +24,7 @@ class TablaLogistica{
 
     if ($usuario == "Aurora Fernandez") {
       
-      $idUsuario = "2";
+      $idUsuario = "1";
    
 
     }else if($usuario == "Miguel Gutierrez Angeles"){
