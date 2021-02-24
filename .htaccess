@@ -1,7 +1,7 @@
 # Impedir que se pueda ver el listado de contenidos de un directorio
 
-php_value session.gc_maxlifetime 7200
-php_value session.cookie_lifetime 7200
+php_value session.gc_maxlifetime 86400
+php_value session.cookie_lifetime 86400
 Options All -Indexes
 
 # Url Amigables
@@ -10,8 +10,3 @@ RewriteEngine On
 
 RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?ruta=$1
 
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^backend.tutorialesatualcance\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\backend.tutorialesatualcance\.com$
-RewriteCond %{HTTPS} !on
-RewriteRule ^(.*)$ https://backend.tutorialesatualcance.com/$1 [R=301,L,NE]
