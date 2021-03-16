@@ -924,32 +924,7 @@ function conocerDiaSemanaFecha($fecha) {
             </tr>
         </thead>
        </table>
-       <table style="width: 100%">
-        <thead>
-            <tr>
-                <th align="center">
-                     <?php
-                        $textqr = $arregloCotizacion;
-                        $sizeqr = 180;
-                        require_once __DIR__ . '../../../vendor/autoload.php';
-
-                        use Endroid\QrCode\QrCode;
-
-                        $qrCode = new QrCode($textqr);//Creo una nueva instancia de la clase
-                        $qrCode->setSize($sizeqr);//Establece el tamaño del qr
-                        //header('Content-Type: '.$qrCode->getContentType());
-                        $image= $qrCode->writeString();//Salida en formato de texto 
-
-                         $imageData = base64_encode($image);//Codifico la imagen usando base64_encode
-
-                        echo '<img src="data:image/png;base64,'.$imageData.'">';
-                    ?>
-        
-                </th>
-            </tr>
-        </thead>
-
-       </table>
+      
        <!--=====================
         | ******************** |
         ======================-->
@@ -959,7 +934,7 @@ function conocerDiaSemanaFecha($fecha) {
 require_once __DIR__ . '../../../extensiones/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
-
+error_reporting(E_ALL);
 $opcion = $_GET["opcion"];
 if ($opcion == 1) {
 

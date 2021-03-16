@@ -765,6 +765,7 @@ class ControladorTickets{
 
 		$url = $_SERVER['REQUEST_URI'];
         $longitud = strlen($url);
+        var_dump($longitud);
         
          
 		  if ($longitud == 56) {
@@ -782,7 +783,13 @@ class ControladorTickets{
              $idNumeroTicket = substr($url, -3, 4);
               //echo $rest;
             
-          }else if ($longitud < 56) {
+          }else if ($longitud == 65) {
+            
+             $idNumeroTicket = substr($url, -4, 4);
+            
+            
+          }
+          else if ($longitud < 56) {
 
           	$idNumeroTicket = "";
           }

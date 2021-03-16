@@ -43,9 +43,7 @@
          
           $url = $_SERVER['REQUEST_URI'];
           $longitud = strlen($url);
- 
-
-
+  
           if ($longitud == 39) {
 
             $rest = substr($url, -1, 4);
@@ -72,6 +70,12 @@
              //echo $rest;
             
           }
+          else if ($longitud == 45) {
+            
+             $rest = substr($url, -4, 4);
+             
+            
+          }
           else if ($longitud == 56) {
             
              $rest = substr($url, -1, 4);
@@ -85,6 +89,11 @@
           }else if ($longitud == 62) {
             
              $rest = substr($url, -3, 4);
+              //echo $rest;
+            
+          }else if ($longitud == 65) {
+            
+             $rest = substr($url, -4, 4);
               //echo $rest;
             
           }
@@ -125,6 +134,12 @@
              //echo $numeroTicket;
            
 
+          }else if ($longitud == 45) {
+            
+             $numeroTicket = substr($url, -18, 4);
+             
+           
+
           }else if ($longitud == 56) {
             
              $rest = substr($url, -18, 1);
@@ -136,7 +151,7 @@
              //echo $rest;
             
           }
-
+          
           $fo = str_replace('=','',$rest);
           $idTicket = $fo;
           $_SESSION["idTicket"] = $idTicket;

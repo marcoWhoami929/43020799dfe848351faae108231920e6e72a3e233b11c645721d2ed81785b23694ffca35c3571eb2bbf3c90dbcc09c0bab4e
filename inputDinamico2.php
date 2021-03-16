@@ -64,7 +64,7 @@
 				<input name="codigo[]" id="codigo[]" type="hidden" value="'.$valor["codigoProducto"].'" required >
 			</div>
 			<div class="float-left" id="cuadroName">
-				<input class="form-control" type="text" name="nombre[]" id="nombre[]" value="'.utf8_encode($valor["nombreProducto"]).'" onkeypress="return pulsar(event)" />
+				<input class="form-control" type="text" name="nombre[]" id="nombre[]" value="'.$valor["nombreProducto"].'" onkeypress="return pulsar(event)" />
 			</div>
 			<div class="float-left" id="cuadroCantidad">
 				<input class="form-control" type="number" name="cantidad[]" id="cantidad[]" step="0.001" value="'.number_format($valor["cantidad"],2,'.', '').'" onkeypress="return pulsar(event)" />

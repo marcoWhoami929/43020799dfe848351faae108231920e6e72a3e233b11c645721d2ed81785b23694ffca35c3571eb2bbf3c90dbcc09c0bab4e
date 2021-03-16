@@ -204,11 +204,29 @@ if(isset($_POST['actualizarHorarioEntrega']))
 	
 	}
 	
-
-
-	
 	
 }
 //ACTUALIZAR HORARIO ENTREGA
+
+if(isset($_POST['listaCotizaciones']))
+{
+	$listaEtregasPendientes = mysqli_query($conn,"SELECT * from cotizaciones where folio = 2747");
+
+
+	if(mysqli_num_rows($listaEtregasPendientes) != 0)
+	{
+			$data = array();
+			while($r = $listaEtregasPendientes->fetch_assoc()){
+				$data[] = $r;
+			}
+			echo json_encode($data);
+
+			}
+	else
+	{
+		echo 'failed';
+	}
+	echo mysqli_error($conn);
+}
 
 ?>

@@ -373,6 +373,8 @@ MODAL EDITAR PEDIDO
 
                           <option value="DOPR">DOPR</option>
 
+                          <option value="DFPR">DFPR</option>
+
                           <option value="PECD">PECD</option>
 
                           <option value="PEBB">PEBB</option>
@@ -830,7 +832,7 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                 <select class="form-control" name="otSerieFacturaEdit1" id="otSerieFacturaEdit1">
                                     
-                                    <option value="FACD">FACD</option>
+                                   <option value="FACD">FACD</option>
 
                                     <option value="FAND">FAND</option>
 
@@ -839,6 +841,16 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="FAMY">FAMY</option>
 
                                     <option value="DOPR">DOPR</option>
+
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
 
 
                                 </select>
@@ -1015,6 +1027,16 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="DOPR">DOPR</option>
 
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
+
                                     </select>
                                     
 
@@ -1099,6 +1121,16 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="FAMY">FAMY</option>
 
                                     <option value="DOPR">DOPR</option>
+
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
 
                                     </select>
                                     
@@ -1185,6 +1217,16 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="DOPR">DOPR</option>
 
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
+
                                     </select>
                                     
 
@@ -1270,6 +1312,16 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="DOPR">DOPR</option>
 
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
+
                                     </select>
                                     
 
@@ -1345,7 +1397,7 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <select class="form-control" name="otSerieFacturaEdit6" id="otSerieFacturaEdit6">
                                     <option value="" id="otSerieFacturaEdit6">Elegir serie</option>
 
-                                    <option value="FACD">FACD</option>
+                                   <option value="FACD">FACD</option>
 
                                     <option value="FAND">FAND</option>
 
@@ -1354,6 +1406,16 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="FAMY">FAMY</option>
 
                                     <option value="DOPR">DOPR</option>
+
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
 
                                     </select>
                                     
@@ -1439,6 +1501,16 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="FAMY">FAMY</option>
 
                                     <option value="DOPR">DOPR</option>
+
+                                    <option value="DFPR">DFPR</option>
+
+                                    <option value="PECD">PECD</option>
+
+                                    <option value="PEBB">PEBB</option>
+
+                                    <option value="PEND">PEND</option>
+
+                                    <option value="PEPB">PEPB</option>
 
                                     </select>
                                     
