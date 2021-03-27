@@ -107,8 +107,8 @@
                      
                      <th style="width:20px;height: 40px;border:none">#</th>
                      <th style="border:none">Fecha Factura</th>
+                     <th style="border:none">Observaciones</th>
                      <th style="border:none">Accion</th>
-                     <th style="border:none">Estatus</th>
                      <th style="border:none">Serie</th>
                      <th style="border:none">Folio</th>
                      <th style="border:none">Codigo Cliente</th>
