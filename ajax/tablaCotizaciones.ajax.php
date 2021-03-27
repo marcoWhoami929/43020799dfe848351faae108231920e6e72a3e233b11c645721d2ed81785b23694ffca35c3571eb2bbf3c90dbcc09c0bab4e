@@ -184,6 +184,7 @@ class TablaCotizaciones{
            
             $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarCotizacion' idCotizacion='".$cotizaciones[$i]["folio"]."' data-toggle='modal' data-target='#modalEditarCotizacion' disabled><i class='fa fa-pencil'></i>Editar</button><br><br><button class='btn btn-danger btnCancelarCotizacion' idCotizacion='".$cotizaciones[$i]["folio"]."' folio='".$cotizaciones[$i]["folio"]."' disabled><i class='fa fa-times'></i>Cancelar</button></div>"; 
          }
+          $oportunidad = "<div class='btn-group'><button class='btn btn-info btnGenerarOportunidad' folioCotizacion='".$cotizaciones[$i]["folio"]."' fecha = '".$fechaNueva."' concepto ='".$cotizaciones[$i]["referencia"]."' observaciones ='".$cotizaciones[$i]["observaciones"]."'  monto='".number_format($cotizaciones[$i]["total_cotizacion"],2, ".", "")."'><i class='fa fa-handshake-o' aria-hidden='true'></i>Oportunidad</button></button></div>";
 
 	 		/*=============================================
 			DEVOLVER DATOS JSON
@@ -205,7 +206,8 @@ class TablaCotizaciones{
               "'.$cotizacionAprobada.'",
               "'.$cotizaciones[$i]["referencia"].'",
               "'.$cotizaciones[$i]["observaciones"].'",
-              "'.$acciones.'"],';
+               "'.$acciones.'",
+              "'.$oportunidad.'"],';
 
 	 	}
 

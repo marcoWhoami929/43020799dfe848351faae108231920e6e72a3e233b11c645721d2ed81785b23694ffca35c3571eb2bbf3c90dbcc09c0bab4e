@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-error_reporting(E_ALL);
+
 //Conexión a la base de datos
 $conn = mysqli_connect("localhost","mat","matriz") or die("could not connect server");
 mysqli_set_charset($conn, 'utf8');

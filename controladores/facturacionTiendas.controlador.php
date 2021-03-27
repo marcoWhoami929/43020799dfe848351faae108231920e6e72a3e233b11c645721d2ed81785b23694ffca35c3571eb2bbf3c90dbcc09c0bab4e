@@ -1202,7 +1202,7 @@ class ControladorFacturasTiendas{
 						           "rutaXml" => $rutaXml,
 						       	   "id" => $_POST["idGasto"]); 
 					
-					if ($response == 1) {
+					if ($response == 2) {
 
 						echo '<script>
 
@@ -1999,6 +1999,24 @@ class ControladorFacturasTiendas{
 			$respuesta = ModeloFacturasTiendas::mdlActualizarFormaPagoFactura($tabla,$item,$valor,$item2,$valor2);
 
 			return $respuesta;
+
+	}
+	static public function ctrMostrarFacturasCrm($item,$valor,$item2,$valor2,$item3,$valor3){
+
+			if ( $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+				
+			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasCrm($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
+
+			return $respuesta;
+
 
 	}
 

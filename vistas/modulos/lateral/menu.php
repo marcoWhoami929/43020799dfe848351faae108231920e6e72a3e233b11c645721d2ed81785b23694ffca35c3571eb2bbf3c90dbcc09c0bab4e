@@ -38,6 +38,7 @@ MENU
     echo '<li><a href="prospectos"><i class="fa fa-users" aria-hidden="true"></i><span>Prospectos</span></a></li>';
     echo '<li><a href="productos"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Productos</span></a></li>';
     echo '<li><a href="reporteCotizacion"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span>Análisis de Cotizaciones</span></a></li>';
+    echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
 
   }else {
 
@@ -46,6 +47,7 @@ MENU
    echo '<li><a href="prospectos"><i class="fa fa-users" aria-hidden="true"></i><span>Prospectos</span></a></li>';
    echo '<li><a href="productos"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Productos</span></a></li>';
    echo '<li><a href="reporteCotizacion"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span>Análisis de Cotizaciones</span></a></li>';
+   echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
 
  }
 

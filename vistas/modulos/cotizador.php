@@ -118,6 +118,7 @@ PÁGINA DE INICIO
                             <th>Referencias</th>
                             <th>Observaciones</th>
                             <th>Acciones</th>
+                            <th>Crm</th>
                         </tr>
                     </thead>
                 </table>

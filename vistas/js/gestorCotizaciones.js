@@ -337,3 +337,20 @@ $(".listaCotizaciones").on("click", ".btnAprobada", function(){
     }
 
 })
+/*=============================================
+GENERAR OPORTUNIDAD
+=============================================*/
+$(".listaCotizaciones").on("click", ".btnGenerarOportunidad", function(){
+
+  var folioCotizacion = $(this).attr("folioCotizacion");
+  var fecha = $(this).attr("fecha");
+  var concepto = $(this).attr("concepto");
+  var monto = $(this).attr("monto");
+  var observaciones = $(this).attr("observaciones");
+  window.open(
+  "https://sanfranciscodekkerlab.com/crmapp/crearOportunidad?folio="+folioCotizacion+"&fecha="+fecha+"&concepto="+concepto+"&monto="+monto+"&observaciones="+observaciones,
+  '_blank' // <- This is what makes it open in a new window.
+);
+  
+
+})

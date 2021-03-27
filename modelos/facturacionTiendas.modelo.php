@@ -2818,6 +2818,47 @@ class ModeloFacturasTiendas{
 
 
 	}
+	static public function mdlMostrarFacturasCrm($tabla,$item,$valor,$item2,$valor2,$item3,$valor3){
+
+		if ($valor2 == 'ALL') {
+
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where $item BETWEEN '$fechaInicio' AND '$fechaFinal' and cancelado != 1");
+
+			$stmt -> execute();
+
+			return $stmt->fetchAll();
+			
+		}else{
+
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where $item BETWEEN '$fechaInicio' AND '$fechaFinal' and  $item2 = :$item2 and seriePedido != 'OTRT' and cancelado != 1");
+
+		
+			$stmt -> bindParam(":".$item2,$valor2,PDO::PARAM_STR);
+			
+
+			$stmt -> execute();
+
+			return $stmt->fetchAll();
+
+		}
+
+	}
 
 }
 
