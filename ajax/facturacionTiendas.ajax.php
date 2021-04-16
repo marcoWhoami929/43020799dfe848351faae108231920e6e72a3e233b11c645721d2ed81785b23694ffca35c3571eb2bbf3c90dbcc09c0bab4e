@@ -2454,6 +2454,46 @@ class AjaxFacturacionTiendas{
 		echo json_encode($respuesta);
 
 	}
+	/*=============================================
+	ACTUALIZAR ABONADO PARCIAL FACTURAS
+	=============================================*/
+	public $conceptoAbonoDelete;
+	public $parcialesAbonoDelete;
+	public $totalDocumentoDelete;
+	public function ajaxLimpiarParcialesFacturas(){
+
+			$valor1 = $this->conceptoAbonoDelete;
+			$valor2 = $this->parcialesAbonoDelete;
+			$valor3 = $this->totalDocumentoDelete;
+
+			$montoFacturas = explode(',',$valor2);
+			$conceptoFacturas = explode(',',$valor1);
+			$totalFacturas = explode(',',$valor3);
+
+			$arregloDocumentoFinal = new MultipleIterator();
+			$arregloDocumentoFinal->attachIterator(new ArrayIterator($montoFacturas));
+			$arregloDocumentoFinal->attachIterator(new ArrayIterator($conceptoFacturas));
+			$arregloDocumentoFinal->attachIterator(new ArrayIterator($totalFacturas));
+
+
+			foreach ($arregloDocumentoFinal as $key => $value) {
+					$factura = explode(" ",$value[1]);
+					$serie = $factura[0];
+					$folio = $factura[1];
+					$abono = number_format(str_replace(',','',$value[0]),2, '.', '');
+					$total = number_format(str_replace(',','',$value[2]),2, '.', '');
+
+					$actualizar = ControladorFacturasTiendas::ctrActualizarAbonoParcial($serie,$folio,$abono,$total);
+					
+
+
+				
+			}
+			
+			$cerrar = "ok";
+			echo json_encode($cerrar);
+
+	}
 
 	
 
@@ -2739,4 +2779,14 @@ if(isset($_POST["idFacturaTiendaPrev"])){
 	$actualizarFormaPago -> formaPagoFactura = $_POST["formaPagoFactura"];
 	$actualizarFormaPago -> ajaxActualizarFormaPagoFactura();
 
+}
+/*=============================================
+ACTUALIZAR ABONADO PARCIAL FACTURAS
+=============================================*/
+if (isset($_POST["conceptoAbonoDelete"])) {
+	$limpiarAbonos = new AjaxFacturacionTiendas();
+	$limpiarAbonos -> conceptoAbonoDelete = $_POST["conceptoAbonoDelete"];
+	$limpiarAbonos -> parcialesAbonoDelete = $_POST["parcialesAbonoDelete"];
+	$limpiarAbonos -> totalDocumentoDelete = $_POST["totalDocumentoDelete"];
+	$limpiarAbonos -> ajaxLimpiarParcialesFacturas();
 }

@@ -2019,6 +2019,28 @@ class ControladorFacturasTiendas{
 
 
 	}
+	static public function ctrMostrarCotizacionesComercial($item,$valor,$item2,$valor2,$item3,$valor3,$empresa){
+
+				
+			$respuesta = ModeloFacturasTiendas::mdlMostrarCotizacionesComercial($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$empresa);
+
+			return $respuesta;
+
+
+	}
+	/*=============================================
+	ACTUALIZAR ABONADO PARCIAL FACTURAS
+	=============================================*/
+	static public function ctrActualizarAbonoParcial($serie,$folio,$abono,$total){
+
+			$tabla = "facturastiendas";
+			
+			$respuesta = ModeloFacturasTiendas::mdlActualizarAbonoParcial($tabla,$serie,$folio,$abono,$total);
+
+			return $respuesta;
+
+	}
+
 
 
 }

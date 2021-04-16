@@ -720,6 +720,7 @@ $(".tablaDepositosTiendas").on("click", ".btnIdentificarDeposito", function() {
 
 });
 $(".tablaDepositosTiendas").on("click", ".btnEditarDeposito", function() {
+    localStorage.setItem('edicionMovimiento','true');
     var idMovimientoBanco = $(this).attr("idMovimientoBanco");
 
     listaFacturasDepositos = $(".tablaListaFacturasDepositos").DataTable({
@@ -1145,19 +1146,91 @@ $(".tablaListaFacturasDepositos").on("click", ".btnQuitarFacturaDepositada", fun
    
 });
 $(".btnActualizarDepositos").click(function(){
-     localStorage.removeItem("arregloFacturas");         
-     localStorage.removeItem("arregloClientes");         
-     localStorage.removeItem("arregloDocumento");   
-     localStorage.removeItem("arregloValorDocumento");       
-     localStorage.removeItem("idMovimientoBanco");
-     localStorage.removeItem("abonoBanco");
-     localStorage.removeItem("nombreSucursal");
-     localStorage.removeItem("numeroParciales");
-     localStorage.removeItem("abonadoFacturas");
-     localStorage.removeItem("fechaAbono");
-     localStorage.removeItem("spanLista");
-     $("#listaFacturas").empty();
-      listaFacturasDepositos.destroy();
+      var conceptoAbono = localStorage.getItem("arregloDocumento");
+    var parcialesAbono = localStorage.getItem("arregloFacturas");
+    var totalDocumento = localStorage.getItem("arregloValorDocumento");
+
+    var datos = new FormData();
+    datos.append("conceptoAbonoDelete", conceptoAbono);
+    datos.append("parcialesAbonoDelete", parcialesAbono);
+    datos.append("totalDocumentoDelete", totalDocumento);
+
+    if (conceptoAbono === null) {
+                
+               $("#cerrarModalDepositos").click();
+              
+             }else{
+                if (localStorage.getItem("edicionMovimiento") == null){
+
+                    $.ajax({
+                url: "ajax/facturacionTiendas.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(respuesta) {
+                  console.log(respuesta);
+
+                      var response = respuesta;
+                      var responseFinal = response.replace(/['"]+/g, '');
+                      if (responseFinal == "ok") {
+
+                       localStorage.removeItem("arregloFacturas");         
+                       localStorage.removeItem("arregloClientes");         
+                       localStorage.removeItem("arregloDocumento");   
+                       localStorage.removeItem("arregloValorDocumento");       
+                       localStorage.removeItem("idMovimientoBanco");
+                       localStorage.removeItem("abonoBanco");
+                       localStorage.removeItem("nombreSucursal");
+                       localStorage.removeItem("numeroParciales");
+                       localStorage.removeItem("abonadoFacturas");
+                       localStorage.removeItem("fechaAbono");
+                       localStorage.removeItem("spanLista");
+                        localStorage.removeItem("edicionMovimiento");
+                       $("#listaFacturas").empty();
+                       listaFacturasDepositos.destroy();
+                   
+                        $("#cerrarModalDepositos").click();
+
+
+                      }else{
+
+                         
+
+                      }
+                  
+
+                }
+              })
+
+                }else {
+
+                    localStorage.removeItem("arregloFacturas");         
+                       localStorage.removeItem("arregloClientes");         
+                       localStorage.removeItem("arregloDocumento");   
+                       localStorage.removeItem("arregloValorDocumento");       
+                       localStorage.removeItem("idMovimientoBanco");
+                       localStorage.removeItem("abonoBanco");
+                       localStorage.removeItem("nombreSucursal");
+                       localStorage.removeItem("numeroParciales");
+                       localStorage.removeItem("abonadoFacturas");
+                       localStorage.removeItem("fechaAbono");
+                       localStorage.removeItem("spanLista");
+                        localStorage.removeItem("edicionMovimiento");
+                       $("#listaFacturas").empty();
+                        listaFacturasDepositos.destroy();
+                         $("#cerrarModalDepositos").click();
+                
+                     
+
+                }
+
+              
+
+             }
+
+   
 });
 
 $("#btnVincularFacturas").click(function(){
@@ -5980,3 +6053,193 @@ facturasCrm = $(".tablaFacturasCrm").DataTable({
    }
 
 });
+/*=============================================
+GENERAR VENTA DIRECTA
+=============================================*/
+$(".tablaFacturasCrm").on("click", ".btnGenerarVentaDirecta", function(){
+  var idFactura = $(this).attr("idFactura");
+  var fechaFactura = $(this).attr("fechaFactura");
+  var serie = $(this).attr("serie");
+  var folio = $(this).attr("folio");
+  var total = $(this).attr("total");
+  var observacionesComercial = $(this).attr("observacionesComercial");
+  var cliente = $(this).attr("cliente");
+ /*
+  window.open(
+  "https://sanfranciscodekkerlab.com/crmapp/ventaDirecta?idFactura="+idFactura+"&fecha="+fechaFactura+"&serie="+serie+"&folio="+folio+"&total="+total+"&observaciones="+observacionesComercial+"&cliente="+cliente,
+  '_blank' // <- This is what makes it open in a new window.
+);
+*/
+
+  window.open(
+  "https://sanfranciscodekkerlab.com/crmapp/ventaDirecta?idFactura="+idFactura+"&fecha="+fechaFactura+"&serie="+serie+"&folio="+folio+"&total="+total+"&observaciones="+observacionesComercial+"&cliente="+cliente,
+  '_blank' // <- This is what makes it open in a new window.
+);
+  
+
+});
+if ($("#fechaCotizacion").val() != "") {
+  var fechaCotizacion = $("#fechaCotizacion").val();
+}
+else {
+  var fechaCotizacion = "";
+}
+if ($("#fechaFinCotizacion").val() != "") {
+  var fechaFinCotizacion = $("#fechaFinCotizacion").val();
+}
+else {
+  var fechaFinCotizacion = "";
+}
+if ($("#empresaCotizacion").val() != "") {
+  var empresa = $("#empresaCotizacion").val();
+}
+else {
+  var empresa = "";
+}
+cotizacionesComercial = $(".tablaCotizacionesComercial").DataTable({
+   "ajax":"ajax/tablaCotizacionesComercial.ajax.php?fechaCotizacion="+fechaCotizacion+"&fechaFinCotizacion="+fechaFinCotizacion+"&empresa="+empresa,
+   //"ajax":"ajax/tablaFacturacionTiendas.ajax.php",
+   "deferRender": true,
+   "retrieve": true,
+   "processing": true,
+    "iDisplayLength": 10,
+    "fixedHeader": true,
+    "order": [[ 0, "desc" ]],
+    /*"scrollX": true,*/
+     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
+   "language": {
+
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+
+   }
+
+});
+/*=============================================
+GENERAR OPORTUNIDAD DE VENTA APARTIR DE COTIZACIONES COMERCIAL
+=============================================*/
+
+$(".tablaCotizacionesComercial").on("click", ".btnGenerarOportunidad", function(){
+
+  var folioCotizacion = $(this).attr("folioCotizacion");
+  var fecha = $(this).attr("fecha");
+  var concepto = $(this).attr("concepto");
+  var monto = $(this).attr("monto");
+  var observaciones = $(this).attr("observaciones");
+  /*
+  window.open(
+  "https://sanfranciscodekkerlab.com/crmapp/crearOportunidad?folio="+folioCotizacion+"&fecha="+fecha+"&concepto="+concepto+"&monto="+monto+"&observaciones="+observaciones,
+  '_blank' // <- This is what makes it open in a new window.
+);
+  */
+ window.open(
+  "https://sanfranciscodekkerlab.com/crmapp/crearOportunidad?folio="+folioCotizacion+"&fecha="+fecha+"&concepto="+concepto+"&monto="+monto+"&observaciones="+observaciones,
+  '_blank' // <- This is what makes it open in a new window.
+);
+
+});
+ function obtenerFacturasRifa(empresa){
+
+  return new Promise((resolve, reject) => {
+
+  n =  new Date();
+  //Año
+  y = n.getFullYear();
+//Mes
+  m = n.getMonth() + 1;
+//Día
+  d = n.getDate();
+
+  var fechaActual = y+"-"+m+"-"+d;
+  //var fechaActual = "2021-04-07";
+
+  var datos = new  FormData();
+
+  datos.append('fechaActualFacturasRifa',fechaActual);
+  datos.append('empresaFacturasRifa', empresa);
+
+   localStorage.setItem("pausadoRifa",1);
+  $.ajax({
+      url:"ajax/atencion.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            
+            if (textStatus == 'parsererror') {
+            
+              localStorage.setItem("pausadoRifa",0);
+              resolve(100);
+            }
+
+      }, 
+      success:function(respuesta){
+        var json = JSON.stringify(respuesta);
+         
+          if (json === null) {
+
+             
+
+          }else{
+           
+              var url = "https://sanfranciscodekkerlab.com/rifa/api.php?callback=?";
+              var listaFacturas = json;
+              var dataString = "listaFacturas=" + listaFacturas +"&cargarFacturasRifa=";
+              $.ajax({
+                type: "POST",
+                url: url,
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                success: function(respuesta) {
+                  console.log(respuesta);
+                  if (respuesta === "finalizado") {
+
+                          if (empresa == "Torres") {
+                               localStorage.setItem("pausadoRifa",0);
+                            }
+                     }else{
+
+                        
+                     }
+                }
+              });
+             
+          }
+          
+
+          
+      }
+
+
+    }).then(() => {
+          
+          resolve(100);
+        })
+
+  });
+              
+}

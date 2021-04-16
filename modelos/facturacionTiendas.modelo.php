@@ -2144,7 +2144,7 @@ class ModeloFacturasTiendas{
 			
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT (SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'EFECTIVO') as efectivo,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CHEQUE NOMINATIVO') as chequeNominativo,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TRANSFERENCIA ELECTRONICA DE FONDOS') as transferenciaElectronica,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE CRÉDITO') as tarjetaCredito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE DÉBITO') as tarjetaDebito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CREDITO') as credito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2  and cancelado != 1 and formaPago = 'POR DEFINIR') as porDefinir UNION ALL SELECT (SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'EFECTIVO') as efectivo,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CHEQUE NOMINATIVO') as chequeNominativo,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TRANSFERENCIA ELECTRONICA DE FONDOS') as transferenciaElectronica,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE CRÉDITO') as tarjetaCredito,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE DÉBITO') as tarjetaDebito,(SELECT IF(sum(total) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CREDITO') as credito,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2  and cancelado != 1 and formaPago = 'POR DEFINIR') as porDefinir");
+			$stmt = Conexion::conectar()->prepare("SELECT (SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'EFECTIVO') as efectivo,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CHEQUE NOMINATIVO') as chequeNominativo,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TRANSFERENCIA ELECTRONICA DE FONDOS') as transferenciaElectronica,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE CRÉDITO') as tarjetaCredito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE DÉBITO') as tarjetaDebito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CREDITO') as credito,(SELECT IF(sum(total) IS NULL,0,sum(total)) FROM $tabla WHERE seriePedido != 'OTRT' and $item = :$item and $item2 = :$item2  and cancelado != 1 and formaPago = 'POR DEFINIR') as porDefinir UNION ALL SELECT (SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'EFECTIVO') as efectivo,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CHEQUE NOMINATIVO') as chequeNominativo,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TRANSFERENCIA ELECTRONICA DE FONDOS') as transferenciaElectronica,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE CRÉDITO') as tarjetaCredito,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'TARJETA DE DÉBITO') as tarjetaDebito,(SELECT IF(sum(total) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2 and cancelado != 1 and formaPago = 'CREDITO') as credito,(SELECT IF(sum(importePendiente) IS NULL,0,sum(importePendiente)) FROM $tabla WHERE seriePedido != 'OTRT' and nuevaFechaFactura = :$item and $item2 = :$item2  and cancelado != 1 and formaPago = 'POR DEFINIR') as porDefinir");
 
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
@@ -2857,6 +2857,173 @@ class ModeloFacturasTiendas{
 			return $stmt->fetchAll();
 
 		}
+
+	}
+	static public function mdlMostrarCotizacionesComercial($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$empresa){
+		switch ($empresa) {
+			case 'Pinturas':
+				
+				require_once "conexion-api-server-pinturas.modelo.php";
+
+				break;
+			case 'Flex':
+			
+				require_once "conexion-api-server-flex.modelo.php";
+				break;
+			case 'Torres':
+				
+				require_once "conexion-api-server-torres.modelo.php";
+				break;
+
+		}
+
+
+		if ($valor2 == 'ALL') {
+
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+
+			if ($empresa == 'Pinturas') {
+				
+
+				$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO IN('COND','COCD') and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+
+
+            $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+				
+			}else{
+
+				$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO IN('COT') and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+
+            	$ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+			}
+			
+
+
+            $i = 0;
+    
+           	if (sqlsrv_has_rows($ejecutar) === false) {
+           		echo  null;
+           	}else{
+           		 while ($value = sqlsrv_fetch_array($ejecutar)) {
+            	
+            	$facturas[$i] = array(
+            						 "idComercial"=>$value["CIDDOCUMENTO"],
+            						 "serie" => $value["CSERIEDOCUMENTO"],
+            						 "folio" => $value["CFOLIO"],
+            						 "fecha" => $value["CFECHA"],
+            						 "fechaVencimiento" => $value["CFECHAVENCIMIENTO"],
+            						 "fechaEntrega" => $value["CFECHA"],
+            						 "partidas" => $value["PARTIDAS"],
+            						 "unidades" => $value["UNIDADES"],
+            						 "nombreCliente" => $value["NOMBRECLIENTE"],
+            						 "agenteVenta"=>$value["CNOMBREAGENTE"],
+            						 "total" => $value["CTOTAL"],
+            						 "estatus" => $value["CCANCELADO"],
+            						 "referencia" => $value["CREFERENCIA"],
+            						 "observaciones" => $value["COBSERVACIONES"]);
+            	$i++;
+            }
+            header("Content-type:application/json"); 
+            return json_encode($facturas)."\n";;
+           	}
+			
+		}else{
+
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+
+			$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO = '".$valor2."' and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+
+
+            $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+            $i = 0;
+           		
+           	if (sqlsrv_has_rows($ejecutar) === false) {
+           		echo null;
+           	}else{
+           		 while ($value = sqlsrv_fetch_array($ejecutar)) {
+            	
+            	$facturas[$i] = array(
+            						 "idComercial"=>$value["CIDDOCUMENTO"],
+            						 "serie" => $value["CSERIEDOCUMENTO"],
+            						 "folio" => $value["CFOLIO"],
+            						 "fecha" => $value["CFECHA"],
+            						 "fechaVencimiento" => $value["CFECHAVENCIMIENTO"],
+            						 "fechaEntrega" => $value["CFECHA"],
+            						 "partidas" => $value["PARTIDAS"],
+            						 "unidades" => $value["UNIDADES"],
+            						 "nombreCliente" => $value["NOMBRECLIENTE"],
+            						 "agenteVenta"=>$value["CNOMBREAGENTE"],
+            						 "total" => $value["CTOTAL"],
+            						 "estatus" => $value["CCANCELADO"],
+            						 "referencia" => $value["CREFERENCIA"],
+            						 "observaciones" => $value["COBSERVACIONES"]);
+            	$i++;
+            }
+            header("Content-type:application/json"); 
+		
+            return json_encode($facturas)."\n";;
+           	}
+
+		}
+
+	}
+	/*=============================================
+	ACTUALIZAR ABONADO PARCIAL FACTURAS
+	=============================================*/
+	static public function mdlActualizarAbonoParcial($tabla,$serie,$folio,$abono,$total){
+			if ($total === $abono) {
+				
+				$pendiente = $abono;
+				$pagado = 0;
+				$depositada = 0;
+				$abono = 0;
+			}else{
+				$consulta = Conexion::conectar()->prepare("SELECT totalAbono,pendienteFactura FROM abonos WHERE serieFactura = '$serie' and folioFactura = $folio");
+				$consulta -> execute();
+
+				if($consulta -> rowCount() > 0){
+					$results = $consulta -> fetch();
+					$pendiente = $results["pendienteFactura"];
+					$pagado = $results["totalAbono"];
+					$depositada = 1;
+					$abono = $results["totalAbono"];
+
+				}else{
+
+					$pendiente = $total;
+					$pagado = 0;
+					$depositada = 0;
+					$abono = 0;
+
+				}
+
+				
+			}
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set pagado = $pagado,depositada = $depositada,abono = $abono,pendiente = $pendiente where serie = '$serie' and folio = $folio");
+
+			if($stmt -> execute()){
+
+				return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
 
 	}
 

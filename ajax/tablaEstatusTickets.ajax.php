@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+ini_set('memory_limit', '-1');
 require_once "../controladores/tickets.controlador.php";
 require_once "../modelos/tickets.modelo.php";
 

@@ -172,9 +172,7 @@ var estatusTickets = $(".tablaEstatusTickets").DataTable({
         }
     }
 });
-setInterval(function() {
-    estatusTickets.ajax.reload(null, false); // user paging is not reset on reload
-}, 5000);
+
 /*=============================================
 VER TICKETS
 =============================================*/

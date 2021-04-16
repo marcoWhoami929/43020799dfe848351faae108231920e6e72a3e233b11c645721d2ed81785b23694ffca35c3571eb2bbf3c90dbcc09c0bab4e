@@ -129,9 +129,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
               <div class="modal-header estilosTablas">
                 <h3 class="modal-title" id="exampleModalLabel">Vincular Factura</h3>
 
-                <button type="button" class="close btnActualizarDepositos" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                
               </div>
               <div class="modal-body">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -201,7 +199,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           
                   <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
-                        <button type="button" class="btn btn-primary btnActualizarDepositos" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="cerrarModalDepositos" data-dismiss="modal" style="background: white;border:none">Cerrar</button>
+                        <button type="button" class="btn btn-primary btnActualizarDepositos" id="btnActualizarDepositos">Cerrar</button>
                       </div>
                   </div>   
                    

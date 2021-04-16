@@ -83,14 +83,13 @@ class TablaFacturasCrm{
     }
  		$facturasCrm = ControladorFacturasTiendas::ctrMostrarFacturasCrm($item, $valor,$item2,$valor2,$item3,$valor3);
 
-
  		$datosJson = '{
 		 
 	 	"data": [ ';
 
 	 	for($i = 0; $i < count($facturasCrm); $i++){
 
-      $acciones = "<button type='button' class='btn btn-warning btnGenerarVentaDirecta' idFactura = '".$facturasCrm[$i]["id"]."' fechaFactura = '".$facturasCrm[$i]["fechaFactura"]."' serie = '".$facturasCrm[$i]["serie"]."' folio = '".$facturasCrm[$i]["folio"]."' total = '".$facturasCrm[$i]["total"]."' observacionesComercial = '".$facturasCrm[$i]["observacionesComercial"]."'><i class='fa fa-ticket'></i>Venta Directa</button>";
+      $acciones = "<button type='button' class='btn btn-warning btnGenerarVentaDirecta' idFactura = '".$facturasCrm[$i]["id"]."' fechaFactura = '".$facturasCrm[$i]["fechaFactura"]."' serie = '".$facturasCrm[$i]["serie"]."' folio = '".$facturasCrm[$i]["folio"]."' total = '".$facturasCrm[$i]["total"]."' observacionesComercial = '".$facturasCrm[$i]["observacionesComercial"]."' cliente = '".rtrim($facturasCrm[$i]["nombreCliente"])."'><i class='fa fa-ticket'></i>Venta Directa</button>";
 
  
 
@@ -100,11 +99,12 @@ class TablaFacturasCrm{
 			
 			$datosJson	 .= '[
 				          "'.$facturasCrm[$i]["id"].'",
-                  "'.$facturasCrm[$i]["fechaFactura"].'",
-                  "'.$facturasCrm[$i]["observacionesComercial"].'",
-                  "'.$acciones.'",
                   "'.$facturasCrm[$i]["serie"].'",
                   "'.$facturasCrm[$i]["folio"].'",
+                  "'.$facturasCrm[$i]["observacionesComercial"].'",
+                  "'.$facturasCrm[$i]["fechaFactura"].'",
+                  "'.$acciones.'",
+                
                   "'.$facturasCrm[$i]["codigoCliente"].'",
                   "'.rtrim($facturasCrm[$i]["nombreCliente"]).'",
 

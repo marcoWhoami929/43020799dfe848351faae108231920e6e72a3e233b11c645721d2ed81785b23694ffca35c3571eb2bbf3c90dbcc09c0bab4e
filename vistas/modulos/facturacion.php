@@ -1789,7 +1789,7 @@ $(document).ready(function() {
     </script>
       <script type="text/javascript">
         $(document).ready(function() {
-          $.timer(30000, function(temporizador){
+          $.timer(60000, function(temporizador){
                 if (localStorage.getItem("pausadoFacturas") === null) {
 
                         localStorage.setItem("pausadoFacturas",0);

@@ -1316,7 +1316,7 @@ $(document).ready(function(){
     </script>
     <script type="text/javascript">
       $(document).ready(function() {        
-          $.timer(15000, function(temporizador){
+          $.timer(60000, function(temporizador){
 
                   if (localStorage.getItem("pausado") === null) {
 

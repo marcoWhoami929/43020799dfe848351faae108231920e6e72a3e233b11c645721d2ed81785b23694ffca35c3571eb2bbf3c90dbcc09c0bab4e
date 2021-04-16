@@ -1790,6 +1790,49 @@ class AjaxAtencion{
 		
 		*/
 	}
+	public $fechaActualFacturasRifa;
+	public $empresaFacturasRifa;
+	public function ajaxObtenerFacturasRifa(){
+
+			switch ($this->empresaFacturasRifa) {
+				case 'Pinturas':
+					include("../modelos/conexion-api-server-pinturas.modelo.php");
+				break;
+				case 'Torres':
+					include("../modelos/conexion-api-server-torres.modelo.php");
+				break;
+				
+			}
+
+			$item = "CFECHA";
+			$valor = $this->fechaActualFacturasRifa;
+	
+			$mostrarFacturas = "SELECT admDoc.CRAZONSOCIAL,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CCANCELADO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDoc.CIDDOCUMENTODE = 4 and admDoc.CTOTAL >= 700  GROUP BY admDoc.CRAZONSOCIAL,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CCANCELADO";
+
+            $ejecutarConsulta = sqlsrv_query($conne,$mostrarFacturas);
+            $i = 0;
+          
+           	if (sqlsrv_has_rows($ejecutarConsulta) === false) {
+           		echo null;
+           	}else{
+           		 while ($value = sqlsrv_fetch_array($ejecutarConsulta)) {
+            	
+            	$facturas[$i] = array("razonSocial" => $value["CRAZONSOCIAL"],
+            						 "serie" => $value["CSERIEDOCUMENTO"],
+            						 "folio" => $value["CFOLIO"],
+            						 "total" => $value["CTOTAL"],
+            						 "cancelado" => $value["CCANCELADO"],
+            						 "fecha"=>$value["CFECHA"]);
+            	$i++;
+            }
+            echo json_encode($facturas);
+           	}
+         
+           
+           
+           
+
+	}
 
 
 
@@ -1912,4 +1955,13 @@ if (isset($_POST["codigoCliente"])) {
 	$detalleCliente -> catalogo = $_POST["catalogo"];
 	$detalleCliente -> idClienteComercial = $_POST["idClienteComercial"];
 	$detalleCliente -> ajaxVerDetalleEstatusCliente();
+}
+/*==============================================
+OBETENER FACTURAS NUEVAS RIFA
+==============================================*/
+if (isset($_POST["fechaActualFacturasRifa"])) {
+	$facturasRifa = new AjaxAtencion();
+	$facturasRifa -> fechaActualFacturasRifa = $_POST["fechaActualFacturasRifa"];
+	$facturasRifa -> empresaFacturasRifa = $_POST["empresaFacturasRifa"];
+	$facturasRifa -> ajaxObtenerFacturasRifa();
 }

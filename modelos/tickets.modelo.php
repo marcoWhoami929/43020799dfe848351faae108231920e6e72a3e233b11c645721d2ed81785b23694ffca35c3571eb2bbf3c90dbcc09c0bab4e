@@ -485,7 +485,7 @@ class ModeloTickets{
 	}
 	static public function mdlVerEstatusTicketsG($tabla, $item, $valor){
 
-			$stmt = Conexion::conectar()->prepare("SELECT  et.*,d.nombreDepartamento as departamentoAsignado,t.idTicket,t.prioridad,t.cerrado, a.nombre as autor,t.fecha FROM $tabla as et INNER JOIN ticket as t ON t.numeroTicket = et.numeroTicket INNER JOIN departamento as d ON d.id = et.idDepartamento INNER JOIN administradores as a ON a.id = t.idAutor GROUP BY numeroTicket");
+			$stmt = Conexion::conectar()->prepare("SELECT  et.*,d.nombreDepartamento as departamentoAsignado,t.idTicket,t.prioridad,t.cerrado, a.nombre as autor,t.fecha FROM $tabla as et INNER JOIN ticket as t ON t.numeroTicket = et.numeroTicket INNER JOIN departamento as d ON d.id = et.idDepartamento INNER JOIN administradores as a ON a.id = t.idAutor   GROUP BY numeroTicket");
 
 			$stmt -> execute();
 

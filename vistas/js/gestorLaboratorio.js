@@ -462,3 +462,28 @@ $(".tablaLaboratorio").on("click", ".btnHabilitarFolio", function(){
     }
 
 })
+$("#btnMandarDatos").click(function(){
+
+   var url = "https://sanfranciscodekkerlab.com/crm/apiTickets.php?callback=?";
+   var subgrupo = "prueba";
+            
+            var dataString = "subgrupo=" + subgrupo + "&ingresarSubgrupo=";
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: dataString,
+              crossDomain: true,
+              cache: false,
+              success: function(data) {
+                if (data != "failed") {
+                  
+                  alert("proceso realizado");
+
+                }else{
+                  
+                  alert("proceso no realizado");
+
+                }
+              }
+            });
+})

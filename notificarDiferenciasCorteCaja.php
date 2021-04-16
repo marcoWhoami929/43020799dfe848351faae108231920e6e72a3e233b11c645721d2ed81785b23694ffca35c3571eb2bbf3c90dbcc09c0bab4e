@@ -2,7 +2,7 @@
 session_start();
 set_time_limit(0);
 ignore_user_abort(true);
-error_reporting(0);
+error_reporting(E_ALL);
 
 $serie = $_POST["serie"];
 $folio = $_POST["folio"];
@@ -48,6 +48,7 @@ $mail = new PHPMailer;
         $mail->Debugoutput = 'html'; //Mostrar mensajes (resultados) de depuración(debug) en html
         /*CONFIGURACIÓN DE PROVEEDOR DE CORREO QUE USARÁ EL EMISOR(GMAIL)*/
         $mail->Host = 'smtp.gmail.com'; //Nombre de host
+
         // $mail->Host = gethostbyname('smtp.gmail.com'); // Si su red no soporta SMTP sobre IPv6
         $mail->Port = 587; //Puerto SMTP, 587 para autenticado TLS
         $mail->SMTPSecure = 'tls'; //Sistema de encriptación - ssl (obsoleto) o tls
@@ -57,7 +58,7 @@ $mail = new PHPMailer;
         );//opciones para "saltarse" comprobación de certificados (hace posible del envío desde localhost)
     //CONFIGURACIÓN DEL EMISOR
         $mail->Username = "cotizador.sfdk@gmail.com";
-        $mail->Password = "CotSfdk2";
+        $mail->Password = "Whoami929";
         $mail->setFrom('cotizador.sfdk@gmail.com', 'Diferencias Corte de Caja '.$serie.' '.$folio.'');
 
     //CONFIGURACIÓN DEL MENSAJE, EL CUERPO DEL MENSAJE SERA UNA PLANTILLA HTML QUE INCLUYE IMAGEN Y CSS
@@ -81,17 +82,23 @@ $mail = new PHPMailer;
 
 
     //CONFIGURACIÓN DE RECEPTORES
+    /*
         $aDestino = explode(";",$sDestino);
         foreach ( $aDestino as $i => $sDest){
             $mail->addAddress(trim($sDest), "Destinatario ".$i+1);
         }
+    */
+    $mail->addAddress(trim($sDestino), "Destinatario 1");
     //ENVIAR MENSAJE
+    /*
     $mail->addCC('mm_marco_mar@hotmail.com');
     $mail->addCC('rgutierrez@sfd.com.mx');
-    $mail->addCC('iherrera@sfd.com.mx');
+    */
+    
         if (!$mail->send()) {
             $fracaso = "fracaso";
             echo json_encode($fracaso);
+             echo "Error: " .$mail->ErrorInfo;
         //$import_status = '?import_status=error';
         //header('Location: nuevoCorteCaja'.$import_status);
         } else {

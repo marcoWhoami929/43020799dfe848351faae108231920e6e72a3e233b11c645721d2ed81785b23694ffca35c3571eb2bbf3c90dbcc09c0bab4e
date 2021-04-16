@@ -39,6 +39,7 @@ MENU
     echo '<li><a href="productos"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Productos</span></a></li>';
     echo '<li><a href="reporteCotizacion"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span>Análisis de Cotizaciones</span></a></li>';
     echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+    echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
   }else {
 
@@ -48,6 +49,7 @@ MENU
    echo '<li><a href="productos"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i><span>Productos</span></a></li>';
    echo '<li><a href="reporteCotizacion"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span>Análisis de Cotizaciones</span></a></li>';
    echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+   echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
  }
 
@@ -398,6 +400,8 @@ if (isset($_SESSION["cotizador"]) == 0) {
   }
 
   echo '<li><a href="tableroCortes" sesion="'.$sucursal.'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
+  echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+  echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
 }else{
 
@@ -428,6 +432,8 @@ if (isset($_SESSION["cotizador"]) == 0) {
 
   </li>';
   echo '<li><a href="tableroCortes" sesion="'.$_SESSION["nombre"].'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
+  echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+  echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
 }else{
 
@@ -456,6 +462,8 @@ if (isset($_SESSION["cotizador"]) == 0) {
 
  </li>';
  echo '<li><a href="tableroCortes" sesion="'.$_SESSION["nombre"].'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
+ echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+ echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
 }
 
