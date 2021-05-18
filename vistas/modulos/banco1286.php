@@ -2136,6 +2136,9 @@ $(document).ready(function(){
                 document.getElementsByTagName("input")[2].focus();
             });
            
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
 
     </script>
   

@@ -377,7 +377,14 @@ if (isset($_SESSION["cotizador"]) == 0) {
 
    echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
 
- }if ( $_SESSION["nombre"] == "Ivan Herrera Perez") {
+ }if ( $_SESSION["nombre"] == "Aydé Flores") {
+
+  echo '<li><a href="gastosSolicitudes"><i class="fa fa-money"></i> <span>Gastos Tiendas</span></a></li>';
+  
+
+
+ }
+ if ( $_SESSION["nombre"] == "Ivan Herrera Perez") {
 
   echo '<li><a href="tableroCortes" sesion="'.$sucursal.'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
    echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
