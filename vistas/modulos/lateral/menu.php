@@ -380,6 +380,9 @@ if (isset($_SESSION["cotizador"]) == 0) {
  }if ( $_SESSION["nombre"] == "Ivan Herrera Perez") {
 
   echo '<li><a href="tableroCortes" sesion="'.$sucursal.'"><i class="fa fa-fax"></i><span>Corte de Caja</span></a></li>';
+   echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+  echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
+
 
  }if($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
 

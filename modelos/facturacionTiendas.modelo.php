@@ -2890,11 +2890,23 @@ class ModeloFacturasTiendas{
 
 			if ($empresa == 'Pinturas') {
 				
+				
+            		if ($_SESSION['nombre'] == 'Ivan Herrera Perez') {
 
-				$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO IN('COND','COCD') and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+						$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO IN('COSM','COCP','CORF','ZCTR','COSG') and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
 
 
-            $ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+            			$ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+				
+						
+					}else{
+						$mostrarFacturas =  "SELECT admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES as UNIDADES,admDoc.CRAZONSOCIAL as NOMBRECLIENTE,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE where admDoc.CFECHA >= '".$fechaInicio."' AND admDoc.CFECHA <= '".$fechaFinal."' and admDoc.CSERIEDOCUMENTO IN('COND','COCD') and admDoc.CIDDOCUMENTODE = 1 GROUP BY admDoc.CIDDOCUMENTO,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CTOTALUNIDADES,admDoc.CRAZONSOCIAL,admAge.CNOMBREAGENTE,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CREFERENCIA,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+
+
+            			$ejecutar = sqlsrv_query($conne,$mostrarFacturas);
+				
+					}
+
 				
 			}else{
 

@@ -2005,7 +2005,14 @@ class ControladorFacturasTiendas{
 
 			if ( $valor2 === "ALL") {
 
-					$tabla = "facturasgenerales";
+					if ($_SESSION['nombre'] == 'Ivan Herrera Perez') {
+
+						$tabla = "facturastiendas";
+						
+					}else{
+						$tabla = "facturasgenerales";
+					}
+
 
 				}else{
 
