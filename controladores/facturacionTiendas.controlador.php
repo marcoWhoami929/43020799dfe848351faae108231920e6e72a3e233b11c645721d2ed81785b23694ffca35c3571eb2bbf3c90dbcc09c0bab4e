@@ -2029,7 +2029,7 @@ class ControladorFacturasTiendas{
 	static public function ctrMostrarCotizacionesComercial($item,$valor,$item2,$valor2,$item3,$valor3,$empresa){
 
 				
-			$respuesta = ModeloFacturasTiendas::mdlMostrarCotizacionesComercial($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$empresa);
+			$respuesta = ModeloFacturasTiendas::mdlMostrarCotizacionesComercial($item,$valor,$item2,$valor2,$item3,$valor3,$empresa);
 
 			return $respuesta;
 

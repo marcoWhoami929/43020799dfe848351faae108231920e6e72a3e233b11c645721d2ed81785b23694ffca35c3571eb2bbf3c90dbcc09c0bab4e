@@ -2859,7 +2859,7 @@ class ModeloFacturasTiendas{
 		}
 
 	}
-	static public function mdlMostrarCotizacionesComercial($tabla,$item,$valor,$item2,$valor2,$item3,$valor3,$empresa){
+	static public function mdlMostrarCotizacionesComercial($item,$valor,$item2,$valor2,$item3,$valor3,$empresa){
 		switch ($empresa) {
 			case 'Pinturas':
 				
