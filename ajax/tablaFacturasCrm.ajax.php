@@ -89,9 +89,12 @@ class TablaFacturasCrm{
 
 	 	for($i = 0; $i < count($facturasCrm); $i++){
 
-      $acciones = "<button type='button' class='btn btn-warning btnGenerarVentaDirecta' idFactura = '".$facturasCrm[$i]["id"]."' fechaFactura = '".$facturasCrm[$i]["fechaFactura"]."' serie = '".$facturasCrm[$i]["serie"]."' folio = '".$facturasCrm[$i]["folio"]."' total = '".$facturasCrm[$i]["total"]."' observacionesComercial = '".$facturasCrm[$i]["observacionesComercial"]."' cliente = '".rtrim($facturasCrm[$i]["nombreCliente"])."'><i class='fa fa-ticket'></i>Venta Directa</button>";
+       if ($facturasCrm[$i]["vinculadoCrm"] == 1) {
+        $acciones = "<button type='button' class='btn btn-success btnActivarVentaDirecta' idFactura = '" . $facturasCrm[$i]["id"] . "' serie = '" . $facturasCrm[$i]["serie"] . "' data-toggle='tooltip' data-placement='top' title='Volver a dar click si no realizó la vinculación en crm,para poder volver a elegirla'><i class='fa fa-ticket'></i>Vinculada</button>";
+      } else {
+        $acciones = "<button type='button' class='btn btn-warning btnGenerarVentaDirecta' idFactura = '" . $facturasCrm[$i]["id"] . "' fechaFactura = '" . $facturasCrm[$i]["fechaFactura"] . "' serie = '" . $facturasCrm[$i]["serie"] . "' folio = '" . $facturasCrm[$i]["folio"] . "' total = '" . $facturasCrm[$i]["total"] . "' observacionesComercial = '" . $facturasCrm[$i]["observacionesComercial"] . "' cliente = '" . rtrim($facturasCrm[$i]["nombreCliente"]) . "'><i class='fa fa-ticket'></i>Venta Directa</button>";
+      }
 
- 
 
 	 		/*=============================================
 			DEVOLVER DATOS JSON

@@ -2047,6 +2047,16 @@ class ControladorFacturasTiendas{
 			return $respuesta;
 
 	}
+	/*=============================================
+	ACTUALIZAR VINCULADO CRM
+	=============================================*/
+	static public function ctrActualizarFacturaVinculadaCrm($tabla, $idFactura, $valor)
+	{
+
+		$respuesta = ModeloFacturasTiendas::mdlActualizarFacturaVinculadaCrm($tabla, $idFactura, $valor);
+
+		return $respuesta;
+	}
 
 
 

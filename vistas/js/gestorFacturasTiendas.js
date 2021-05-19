@@ -6064,19 +6064,66 @@ $(".tablaFacturasCrm").on("click", ".btnGenerarVentaDirecta", function(){
   var total = $(this).attr("total");
   var observacionesComercial = $(this).attr("observacionesComercial");
   var cliente = $(this).attr("cliente");
- /*
-  window.open(
-  "https://sanfranciscodekkerlab.com/crmapp/ventaDirecta?idFactura="+idFactura+"&fecha="+fechaFactura+"&serie="+serie+"&folio="+folio+"&total="+total+"&observaciones="+observacionesComercial+"&cliente="+cliente,
-  '_blank' // <- This is what makes it open in a new window.
-);
-*/
 
-  window.open(
-  "https://sanfranciscodekkerlab.com/crmapp/ventaDirecta?idFactura="+idFactura+"&fecha="+fechaFactura+"&serie="+serie+"&folio="+folio+"&total="+total+"&observaciones="+observacionesComercial+"&cliente="+cliente,
-  '_blank' // <- This is what makes it open in a new window.
-);
-  
+  var datos = new FormData();
+  datos.append("idFacturaCrm",idFactura);
+  datos.append("serieFacturaCrm",serie);
+  datos.append("accion",1);
+  $.ajax({
+    url:"ajax/facturacionTiendas.ajax.php",
+    method:"POST",
+    data:datos,
+    cache:false,
+    contentType:false,
+    processData:false,
+    dataType: "json",
+    success:function(respuesta){
+      var response = respuesta;
+      var responseFinal = response.replace(/['"]+/g, '');
+      if (responseFinal == "ok") {
+        facturasCrm.ajax.reload();
+        
+        window.open(
+          "https://sanfranciscodekkerlab.com/crmapp/ventaDirecta?idFactura="+idFactura+"&fecha="+fechaFactura+"&serie="+serie+"&folio="+folio+"&total="+total+"&observaciones="+observacionesComercial+"&cliente="+cliente,
+          '_blank' // <- This is what makes it open in a new window.
+        );
+        
+        
+      }
+      
+    }
 
+  })
+
+
+});
+$(".tablaFacturasCrm").on("click", ".btnActivarVentaDirecta", function(){
+  var idFactura = $(this).attr("idFactura");
+  var serie = $(this).attr("serie");
+
+  var datos = new FormData();
+  datos.append("idFacturaCrm",idFactura);
+  datos.append("serieFacturaCrm",serie);
+  datos.append("accion",0);
+  $.ajax({
+    url:"ajax/facturacionTiendas.ajax.php",
+    method:"POST",
+    data:datos,
+    cache:false,
+    contentType:false,
+    processData:false,
+    dataType: "json",
+    success:function(respuesta){
+      var response = respuesta;
+      var responseFinal = response.replace(/['"]+/g, '');
+      if (responseFinal == "ok") {
+        facturasCrm.ajax.reload();
+      
+      }
+      
+    }
+
+  })
 });
 if ($("#fechaCotizacion").val() != "") {
   var fechaCotizacion = $("#fechaCotizacion").val();

@@ -3038,6 +3038,26 @@ class ModeloFacturasTiendas{
 
 
 	}
+	/*=============================================
+	ACTUALIZAR VINCULADO CRM
+	=============================================*/
+	static public function mdlActualizarFacturaVinculadaCrm($tabla, $idFactura, $valor)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set vinculadoCrm = $valor  where id = $idFactura");
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt->close();
+
+		$stmt = null;
+	}
 
 }
 

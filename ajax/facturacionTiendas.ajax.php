@@ -2494,6 +2494,38 @@ class AjaxFacturacionTiendas{
 			echo json_encode($cerrar);
 
 	}
+	public $idFacturaCrm;
+	public $serieFacturaCrm;
+	public $accion;
+	public function ajaxActualizarFacturaVinculadaCrm()
+	{
+		$idFactura = $this->idFacturaCrm;
+		$serieFactura = $this->serieFacturaCrm;
+		$valor = $this->accion;
+
+		switch ($serieFactura) {
+			case 'FASM':
+				$tabla = "facturastiendas";
+				break;
+			case 'FATR':
+				$tabla = "facturastiendas";
+				break;
+			case 'FARF':
+				$tabla = "facturastiendas";
+				break;
+			case 'FASG':
+				$tabla = "facturastiendas";
+				break;
+			case 'FACP':
+				$tabla = "facturastiendas";
+				break;
+			default:
+				$tabla = "facturasgenerales";
+				break;
+		}
+		$actualizar = ControladorFacturasTiendas::ctrActualizarFacturaVinculadaCrm($tabla, $idFactura, $valor);
+		echo json_encode($actualizar);
+	}
 
 	
 
@@ -2789,4 +2821,14 @@ if (isset($_POST["conceptoAbonoDelete"])) {
 	$limpiarAbonos -> parcialesAbonoDelete = $_POST["parcialesAbonoDelete"];
 	$limpiarAbonos -> totalDocumentoDelete = $_POST["totalDocumentoDelete"];
 	$limpiarAbonos -> ajaxLimpiarParcialesFacturas();
+}
+/*==============================
+ACTUALIZAR FACTURA VINCULADA CRM
+===============================*/
+if (isset($_POST["idFacturaCrm"])) {
+	$vincularFacturaCrm =  new AjaxFacturacionTiendas();
+	$vincularFacturaCrm->idFacturaCrm = $_POST["idFacturaCrm"];
+	$vincularFacturaCrm->serieFacturaCrm = $_POST["serieFacturaCrm"];
+	$vincularFacturaCrm->accion = $_POST["accion"];
+	$vincularFacturaCrm->ajaxActualizarFacturaVinculadaCrm();
 }
