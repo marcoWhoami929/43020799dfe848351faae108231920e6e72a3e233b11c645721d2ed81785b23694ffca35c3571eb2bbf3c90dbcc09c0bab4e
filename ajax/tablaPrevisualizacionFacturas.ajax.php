@@ -19,6 +19,7 @@ class TablaPrevisualizacionFacturasTiendas{
         $hoy = date("d/m/Y");
         $fecha = str_replace('/', '-', $hoy);
         $fechaFinal = date('Y-m-d', strtotime($fecha));
+        //$fechaFinal = '2021-05-25';
         $valor = $fechaFinal;
 
 
@@ -73,6 +74,7 @@ class TablaPrevisualizacionFacturasTiendas{
         $hoy = date("d/m/Y");
         $fecha = str_replace('/', '-', $hoy);
         $fechaFinal = date('Y-m-d', strtotime($fecha));
+        //$fechaFinal = '2021-05-25';
         $valor3 = $fechaFinal;
 
     }

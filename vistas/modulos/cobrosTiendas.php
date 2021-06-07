@@ -363,7 +363,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
                     break;
                 }
-               
+             
                 $ventasTiendas = ControladorFacturasTiendas::ctrMostrarCobrosDiarioTiendasTotal($item, $valor,$item2, $valor2);
 
               ?>
@@ -371,8 +371,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
              <th style="border:none;color: blue;font-weight: bold;text-align: left;font-size: 13px">Total General</th>
 
              <?php
-
+    
               foreach ($ventasTiendas as $key => $value) {
+            
                   echo '<th style="border:none;color: blue;font-weight: bold;text-align: left;font-size: 12px">$ '.number_format($value[0],2).' </th>';
                   
            
