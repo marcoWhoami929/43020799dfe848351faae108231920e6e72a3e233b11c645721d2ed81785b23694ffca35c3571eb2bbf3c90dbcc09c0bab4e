@@ -80,7 +80,15 @@ class ControladorUltimoSaldoBancos{
 		return $respuesta;
 	
 	}
+	static public function ctrMostrarBanco7338($item, $valor)
+	{
 
+		$tabla = "banco7338";
+
+		$respuesta = ModeloUltimoSaldoBancos::mdlMostrarBanco7338($tabla, $item, $valor);
+
+		return $respuesta;
+	}
 	static public function ctrMostrarUltimaActualizacion0198($item, $valor){
 
 		$tabla = "ultimaactualizacion";
@@ -145,6 +153,15 @@ class ControladorUltimoSaldoBancos{
 
 		return $respuesta;
 	
+	}
+	static public function ctrMostrarUltimaActualizacion7338($item, $valor)
+	{
+
+		$tabla = "ultimaactualizacion";
+
+		$respuesta = ModeloUltimoSaldoBancos::mdlMostrarUltimaActualizacion7338($tabla, $item, $valor);
+
+		return $respuesta;
 	}
 }
 

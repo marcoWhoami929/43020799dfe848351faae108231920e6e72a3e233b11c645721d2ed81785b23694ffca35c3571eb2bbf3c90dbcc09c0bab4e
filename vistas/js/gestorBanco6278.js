@@ -1,127 +1,187 @@
-$(document).ready(function() {
+$(function () {
+  var url = window.location.pathname;
 
-            if (localStorage.getItem('tablaBanco') == 'tablaBanco6278Credito') {
+  var ruta = url.split("/");
+  switch (ruta[1]) {
+    case "banco6278":
+      cargarBanco6278();
 
-              if ($("#fechaIni").val() != "") {
-                var fechaIni = $("#fechaIni").val();
+      break;
+    case "banco6278Credito":
+      cargarBanco6278Credito();
 
-              }  else {
-                var fechaIni = "";
-                 
-              }
-              if ($("#fechaFin").val() != "") {
-                var fechaFin = $("#fechaFin").val();
-
-              }else {
-                var fechaFin = "";
-              }
-
-           tablaBanco6278Credito = $(".tablaBanco6278Credito").DataTable({
-               "ajax":"ajax/tablaBanco6278Credito.ajax.php?fechaIni="+fechaIni+"&fechaFin="+fechaFin,
-                 "deferRender": true,
-                   "retrieve": true,
-                   "processing": true,
-                    "iDisplayLength": 10,
-                    "fixedHeader": true,
-                    "order": [[ 0, "desc" ]],
-                /*"scrollX": true,*/
-                 "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
-               "language": {
-
-                "sProcessing":     "Procesando...",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                  "sFirst":    "Primero",
-                  "sLast":     "Último",
-                  "sNext":     "Siguiente",
-                  "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-
-               }
-
-            });
-
-
-                
-              }else {
-
-                if ($("#fechaIni").val() != "") {
-                    var fechaIni = $("#fechaIni").val();
-
-                  }  else {
-                    var fechaIni = "";
-                     
-                  }
-                  if ($("#fechaFin").val() != "") {
-                    var fechaFin = $("#fechaFin").val();
-
-                  }else {
-                    var fechaFin = "";
-                  }
-
-                tablaBanco6278 = $(".tablaBanco6278").DataTable({
-                   "ajax":"ajax/tablaBanco6278.ajax.php?fechaIni="+fechaIni+"&fechaFin="+fechaFin,
-                   "deferRender": true,
-                   "retrieve": true,
-                   "processing": true,
-                    "iDisplayLength": 10,
-                    "fixedHeader": true,
-                    "order": [[ 0, "desc" ]],
-                    /*"scrollX": true,*/
-                     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
-                   "language": {
-
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                      "sFirst":    "Primero",
-                      "sLast":     "Último",
-                      "sNext":     "Siguiente",
-                      "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-
-                   }
-
-                });
-
-                
-              }
-            
-
-
-  
+      break;
+  }
 });
 
+function cargarBanco6278() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
 
+  banco6278 = $(".tablaBanco6278").DataTable({
+    destroy: true,
+    processing: true,
+    serverSide: true,
+    sAjaxSource:
+      "ajax/processDataBancos.php?action=banco&banco=banco6278&filtro1=" +
+      filtro1 +
+      "&fechaInicio=" +
+      fechaInicio +
+      "&fechaFinal=" +
+      fechaFinal +
+      "&filtro2=" +
+      filtro2 +
+      "&filtro3=" +
+      filtro3 +
+      "",
+    columnDefs: [
+      {
+        data: null,
+      },
+    ],
+    iDisplayLength: 10,
+    fixedHeader: true,
+    order: [[0, "desc"]],
+    /*"scrollX": true,*/
+    lengthMenu: [
+      [10, 25, 50, 100, 150, 200, 300, -1],
+      [10, 25, 50, 100, 150, 200, 300, "All"],
+    ],
+    language: {
+      sProcessing: "Procesando...",
+      sLengthMenu: "Mostrar _MENU_ registros",
+      sZeroRecords: "No se encontraron resultados",
+      sEmptyTable: "Ningún dato disponible en esta tabla",
+      sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+      sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+      sInfoPostFix: "",
+      sSearch: "Buscar:",
+      sUrl: "",
+      sInfoThousands: ",",
+      sLoadingRecords: "Cargando...",
+      oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior",
+      },
+      oAria: {
+        sSortAscending:
+          ": Activar para ordenar la columna de manera ascendente",
+        sSortDescending:
+          ": Activar para ordenar la columna de manera descendente",
+      },
+    },
+  });
+}
+function reporteRangoFechas6278() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
 
+  location.href =
+    "vistas/modulos/reportes.php?bancoRangoFechas=banco6278&filtro1=" +
+    filtro1 +
+    "&fechaInicio=" +
+    fechaInicio +
+    "&fechaFinal=" +
+    fechaFinal +
+    "&filtro2=" +
+    filtro2 +
+    "&filtro3=" +
+    filtro3 +
+    "";
+}
+function reporteRangoFechasCredito6278() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
+
+  location.href =
+    "vistas/modulos/reportes.php?bancoRangoFechasCredito=banco6278&filtro1=" +
+    filtro1 +
+    "&fechaInicio=" +
+    fechaInicio +
+    "&fechaFinal=" +
+    fechaFinal +
+    "&filtro2=" +
+    filtro2 +
+    "&filtro3=" +
+    filtro3 +
+    "";
+}
+function cargarBanco6278Credito() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
+
+  banco6278Credito = $(".tablaBanco6278Credito").DataTable({
+    destroy: true,
+    processing: true,
+    serverSide: true,
+    sAjaxSource:
+      "ajax/processDataBancos.php?action=bancoCredito&banco=banco6278&filtro1=" +
+      filtro1 +
+      "&fechaInicio=" +
+      fechaInicio +
+      "&fechaFinal=" +
+      fechaFinal +
+      "&filtro2=" +
+      filtro2 +
+      "&filtro3=" +
+      filtro3 +
+      "",
+    columnDefs: [
+      {
+        data: null,
+      },
+    ],
+    iDisplayLength: 10,
+    fixedHeader: true,
+    order: [[0, "desc"]],
+    /*"scrollX": true,*/
+    lengthMenu: [
+      [10, 25, 50, 100, 150, 200, 300, -1],
+      [10, 25, 50, 100, 150, 200, 300, "All"],
+    ],
+    language: {
+      sProcessing: "Procesando...",
+      sLengthMenu: "Mostrar _MENU_ registros",
+      sZeroRecords: "No se encontraron resultados",
+      sEmptyTable: "Ningún dato disponible en esta tabla",
+      sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+      sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+      sInfoPostFix: "",
+      sSearch: "Buscar:",
+      sUrl: "",
+      sInfoThousands: ",",
+      sLoadingRecords: "Cargando...",
+      oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior",
+      },
+      oAria: {
+        sSortAscending:
+          ": Activar para ordenar la columna de manera ascendente",
+        sSortDescending:
+          ": Activar para ordenar la columna de manera descendente",
+      },
+    },
+  });
+}
 /*=============================================
 EDITAR BANCO 
 =============================================*/
@@ -130,7 +190,7 @@ $(".tablaBanco6278").on("click", ".btnEditarDatos", function(){
   var idBanco = $(this).attr("idBanco");
   
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
 
@@ -717,7 +777,7 @@ $(".tablaBanco6278Credito").on("click", ".btnEditarDatos", function(){
   var idBanco = $(this).attr("idBanco");
   
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
 
@@ -2451,3 +2511,103 @@ $(".tablaBanco6278Credito").on("click", ".btnVerParciales", function(){
 
 
 })
+/*----------------------------------------------------------------*/
+/***EDITAR MOVIMIENTO ***/
+/*----------------------------------------------------------------*/
+
+$("#editarMovimientoBanco6278").on("submit", function (e) {
+  e.preventDefault(); //detenemos el envio
+  $.post(
+    "ajax/banco6278.ajax.php",
+    $("#editarMovimientoBanco6278").serialize(),
+    function (res) {
+      if (res == '"ok"') {
+        swal({
+          type: "success",
+          title: "Los datos han sido modificados correctamente",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+            $(function () {
+              var url = window.location.pathname;
+
+              var ruta = url.split("/");
+              switch (ruta[1]) {
+                case "banco6278":
+                  if (localStorage.tablaBanco === "tablaBanco6278Credito") {
+                    banco6278Credito.ajax.reload();
+                    $("#minimizar6278").click();
+                  } else {
+                    banco6278.ajax.reload();
+                    $("#minimizar6278").click();
+                  }
+
+                  break;
+              }
+            });
+          }
+        });
+      } else {
+        swal({
+          type: "error",
+          title: "¡No se puede realizar la modificación de los datos!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+          }
+        });
+      }
+    }
+  );
+});
+
+$("#editarMovimientoBanco6278Credito").on("submit", function (e) {
+  e.preventDefault(); //detenemos el envio
+  $.post(
+    "ajax/banco6278.ajax.php",
+    $("#editarMovimientoBanco6278Credito").serialize(),
+    function (res) {
+      if (res == '"ok"') {
+        swal({
+          type: "success",
+          title: "Los datos han sido modificados correctamente",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+            $(function () {
+              var url = window.location.pathname;
+
+              var ruta = url.split("/");
+              console.log(ruta[1]);
+              switch (ruta[1]) {
+                case "banco6278Credito":
+                  if (localStorage.tablaBanco === "tablaBanco6278Credito") {
+                    banco6278Credito.ajax.reload();
+                    $("#minimizar6278Credito").click();
+                  } else {
+                    banco6278Credito.ajax.reload();
+                    $("#minimizar6278Credito").click();
+                  }
+
+                  break;
+              }
+            });
+          }
+        });
+      } else {
+        swal({
+          type: "error",
+          title: "¡No se puede realizar la modificación de los datos!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+          }
+        });
+      }
+    }
+  );
+});

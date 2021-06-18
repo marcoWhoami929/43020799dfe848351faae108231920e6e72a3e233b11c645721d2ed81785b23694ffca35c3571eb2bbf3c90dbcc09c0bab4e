@@ -96,7 +96,17 @@ class ModeloUltimoSaldoBancos{
 		$stmt = null;
 
 	}
+	static public function mdlMostrarBanco7338($tabla, $item, $valor)
+	{
 
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC limit 1");
+
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+		$stmt->close();
+		$stmt = null;
+	}
 	
 
 	/*=============================================
@@ -204,7 +214,17 @@ class ModeloUltimoSaldoBancos{
 		$stmt = null;
 
 	}
+	static public function mdlMostrarUltimaActualizacion7338($tabla, $item, $valor)
+	{
 
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idBanco = 9 ORDER BY id DESC limit 1");
+
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+		$stmt->close();
+		$stmt = null;
+	}
 
 }
 

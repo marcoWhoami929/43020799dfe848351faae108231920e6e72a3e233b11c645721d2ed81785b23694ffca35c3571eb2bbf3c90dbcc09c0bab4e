@@ -2,628 +2,594 @@
 
 require_once "conexion.php";
 
-class ModeloBanco0198{
+class ModeloBanco0198
+{
 
 	/*=============================================
 	MOSTRAR BANCO
 	=============================================*/
 
-	static public function mdlMostrarBanco($tabla, $item, $valor){
+	static public function mdlMostrarBanco($tabla, $item, $valor)
+	{
 
-		if($valor != null){
+		if ($valor != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	MOSTRAR SALDO
 	=============================================*/
 
-	static public function mdlMostrarSaldo($tabla, $item, $valor){
+	static public function mdlMostrarSaldo($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT cargo, abono, saldo FROM $tabla where fecha = '02/01/2019' ORDER BY id ASC  LIMIT 1");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	MOSTRAR SALDO
 	=============================================*/
 
-	static public function mdlMostrarSaldoF($tabla, $item, $valor){
+	static public function mdlMostrarSaldoF($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT cargo, abono, saldo FROM $tabla where fecha = '01/02/2019' ORDER BY id ASC  LIMIT 1");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	INGRESOS NO IDENTIFICADOS
 	=============================================*/
 
-	static public function mdlIngresosNoIdentificados($tabla, $item, $valor){
+	static public function mdlIngresosNoIdentificados($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'NO IDENTIFICADO' and grupo = 'INGRESOS' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	INGRESOS NO IDENTIFICADOS FEBRERO
 	=============================================*/
 
-	static public function mdlIngresosNoIdentificadosF($tabla, $item, $valor){
+	static public function mdlIngresosNoIdentificadosF($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'NO IDENTIFICADO' and grupo = 'INGRESOS' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	INGRESOS NO IDENTIFICADOS VACIOS
 	=============================================*/
 
-	static public function mdlIngresosNoIdentificadosVacios($tabla, $item, $valor){
+	static public function mdlIngresosNoIdentificadosVacios($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento IS null AND mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	INGRESOS NO IDENTIFICADOS VACIOS FEBRERO
 	=============================================*/
 
-	static public function mdlIngresosNoIdentificadosVaciosF($tabla, $item, $valor){
+	static public function mdlIngresosNoIdentificadosVaciosF($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento IS null AND mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	INGRESOS SAN MANUEL
 	=============================================*/
-	static public function mdlIngresosSanManuel($tabla, $item, $valor){
+	static public function mdlIngresosSanManuel($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'SAN MANUEL' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS SAN MANUEL FEBRERO
 	=============================================*/
-	static public function mdlIngresosSanManuelF($tabla, $item, $valor){
+	static public function mdlIngresosSanManuelF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'SAN MANUEL' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS MAYORAZGO
 	=============================================*/
-	static public function mdlIngresosMayorazgo($tabla, $item, $valor){
+	static public function mdlIngresosMayorazgo($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'MAYORAZGO' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS MAYORAZGO FEBRERO
 	=============================================*/
-	static public function mdlIngresosMayorazgoF($tabla, $item, $valor){
+	static public function mdlIngresosMayorazgoF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'MAYORAZGO' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS REFORMA
 	=============================================*/
-	static public function mdlIngresosReforma($tabla, $item, $valor){
+	static public function mdlIngresosReforma($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'REFORMA' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS REFORMA FEBRERO
 	=============================================*/
-	static public function mdlIngresosReformaF($tabla, $item, $valor){
+	static public function mdlIngresosReformaF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'REFORMA' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS XONACA
 	=============================================*/
-	static public function mdlIngresosXonaca($tabla, $item, $valor){
+	static public function mdlIngresosXonaca($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'XONACA' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS XONACA FEBRERO
 	=============================================*/
-	static public function mdlIngresosXonacaF($tabla, $item, $valor){
+	static public function mdlIngresosXonacaF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'XONACA' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS VERGEL
 	=============================================*/
-	static public function mdlIngresosVergel($tabla, $item, $valor){
+	static public function mdlIngresosVergel($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'VERGEL' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS VERGEL FEBRERO
 	=============================================*/
-	static public function mdlIngresosVergelF($tabla, $item, $valor){
+	static public function mdlIngresosVergelF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'VERGEL' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS CAPU
 	=============================================*/
-	static public function mdlIngresosCapu($tabla, $item, $valor){
+	static public function mdlIngresosCapu($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'CAPU' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS CAPU FEBRERO
 	=============================================*/
-	static public function mdlIngresosCapuF($tabla, $item, $valor){
+	static public function mdlIngresosCapuF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'CAPU' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS LAS TORRES
 	=============================================*/
-	static public function mdlIngresosLasTorres($tabla, $item, $valor){
+	static public function mdlIngresosLasTorres($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'LAS TORRES' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	INGRESOS LAS TORRES FEBRERO
 	=============================================*/
-	static public function mdlIngresosLasTorresF($tabla, $item, $valor){
+	static public function mdlIngresosLasTorresF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
-			
+
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT SUM(importe) as ingresos FROM $tabla WHERE departamento = 'LAS TORRES' and grupo = 'INGRESOS' and subgrupo = 'Clientes' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
-
 	}
 	/*=============================================
 	PAGOS A PROVEEDORES
 	=============================================*/
-	static public function mdlPagoAProveedores($tabla, $item, $valor){
+	static public function mdlPagoAProveedores($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Proveedores' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
 	/*=============================================
 	PAGOS A PROVEEDORES FEBRERO
 	=============================================*/
-	static public function mdlPagoAProveedoresF($tabla, $item, $valor){
+	static public function mdlPagoAProveedoresF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Proveedores' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
 	/*=============================================
@@ -632,6140 +598,6140 @@ class ModeloBanco0198{
 	/*=============================================
 	EGRESOS SUBGRUPOS***********************************************************************************************************************************
 	=============================================*/
-	static public function mdlAcreedoresBancarios($tabla, $item, $valor){
+	static public function mdlAcreedoresBancarios($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Acreedores Bancarios' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-		/*=============================================
+	/*=============================================
 	EGRESOS SUBGRUPOS FEBRERO
 	=============================================*/
-	static public function mdlAcreedoresBancariosF($tabla, $item, $valor){
+	static public function mdlAcreedoresBancariosF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Acreedores Bancarios' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAcreedoresBancariosM($tabla, $item, $valor){
+	static public function mdlAcreedoresBancariosM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Acreedores Bancarios' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAcreedoresBancariosA($tabla, $item, $valor){
+	static public function mdlAcreedoresBancariosA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Acreedores Bancarios' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
 	/***************************************************/
-	static public function mdlPrestamosBancarios($tabla, $item, $valor){
+	static public function mdlPrestamosBancarios($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prestamos Bancarios' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrestamosBancariosF($tabla, $item, $valor){
+	static public function mdlPrestamosBancariosF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prestamos Bancarios' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrestamosBancariosM($tabla, $item, $valor){
+	static public function mdlPrestamosBancariosM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prestamos Bancarios' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrestamosBancariosA($tabla, $item, $valor){
+	static public function mdlPrestamosBancariosA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prestamos Bancarios' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIVAAcreditable($tabla, $item, $valor){
+	static public function mdlIVAAcreditable($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'I.V.A Acreditable' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIVAAcreditableF($tabla, $item, $valor){
+	static public function mdlIVAAcreditableF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'I.V.A Acreditable' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIVAAcreditableM($tabla, $item, $valor){
+	static public function mdlIVAAcreditableM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'I.V.A Acreditable' and mes = 'MARZO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIVAAcreditableA($tabla, $item, $valor){
+	static public function mdlIVAAcreditableA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'I.V.A Acreditable' and mes = 'ABRIL'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos1($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Computo-Accesorio)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos1F($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Computo-Accesorio)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos1M($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Computo-Accesorio)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos1A($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Computo-Accesorio)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos2($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Transporte)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos2F($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Transporte)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos2M($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Transporte)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos2A($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Equipo Transporte)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos3($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Maquinaria y Equipo)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos3F($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Maquinaria y Equipo)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos3M($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Maquinaria y Equipo)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos3A($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Maquinaria y Equipo)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos4($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos4($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Mobiliario y Equipo Oficina)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos4F($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos4F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Mobiliario y Equipo Oficina)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos4M($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos4M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Mobiliario y Equipo Oficina)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAdquisiciondeActivos4A($tabla, $item, $valor){
+	static public function mdlAdquisiciondeActivos4A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '02. Adquisición de Activos (Mobiliario y Equipo Oficina)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones1($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Desperdicio Industrial' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones1F($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Desperdicio Industrial' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones1M($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Desperdicio Industrial' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones1A($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Desperdicio Industrial' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones2($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Fletes y Acarreos' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones2F($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Fletes y Acarreos' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones2M($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Fletes y Acarreos' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones2A($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Fletes y Acarreos' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones3($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Honorarios Personas Fisicas' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones3F($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Honorarios Personas Fisicas' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones3M($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Honorarios Personas Fisicas' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones3A($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Honorarios Personas Fisicas' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones4($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones4($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Fisica' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones4F($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones4F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Fisica' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones4M($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones4M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Fisica' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones4A($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones4A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Fisica' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones5($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones5($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Moral' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones5F($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones5F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Moral' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones5M($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones5M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Moral' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosConRetenciones5A($tabla, $item, $valor){
+	static public function mdlGastosOperativosConRetenciones5A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '03. Gastos Operativos con Retenciones  Renta Local Persona Moral' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados1($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Administ y Servicio Personal' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados1F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Administ y Servicio Personal' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados1M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Administ y Servicio Personal' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados1A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Administ y Servicio Personal' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados2($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Atencion Clientes-Proveedores' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados2F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Atencion Clientes-Proveedores' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados2M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Atencion Clientes-Proveedores' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados2A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Atencion Clientes-Proveedores' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados3($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Capacitacion al Personal' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados3F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Capacitacion al Personal' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados3M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Capacitacion al Personal' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados3A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Capacitacion al Personal' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados4($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados4($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Casetas Autopistas' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados4F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados4F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Casetas Autopistas' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados4M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados4M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Casetas Autopistas' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados4A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados4A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Casetas Autopistas' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados5($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados5($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Cerrajeria' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados5F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados5F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Cerrajeria' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados5M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados5M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Cerrajeria' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados5A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados5A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Cerrajeria' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados6($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados6($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Combustibles y Lubricantes' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados6F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados6F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Combustibles y Lubricantes' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados6M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados6M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Combustibles y Lubricantes' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados6A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados6A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Combustibles y Lubricantes' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados7($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados7($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Convenciones' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados7F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados7F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Convenciones' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados7M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados7M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Convenciones' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados7A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados7A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Convenciones' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados8($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados8($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Demostracion de Productos' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados8F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados8F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Demostracion de Productos' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados8M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados8M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Demostracion de Productos' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados8A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados8A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Demostracion de Productos' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados9($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados9($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Energia Electrica' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados9F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados9F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Energia Electrica' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados9M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados9M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Energia Electrica' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados9A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados9A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Energia Electrica' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados10($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados10($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Equipos y Accesorios Uso Almacen' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados10F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados10F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Equipos y Accesorios Uso Almacen' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados10M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados10M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Equipos y Accesorios Uso Almacen' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados10A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados10A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Equipos y Accesorios Uso Almacen' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados11($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados11($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Farmaceuticas Laboral' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados11F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados11F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Farmaceuticas Laboral' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados11M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados11M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Farmaceuticas Laboral' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados11A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados11A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Farmaceuticas Laboral' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados12($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados12($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Ferreteria y Herramientas' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados12F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados12F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Ferreteria y Herramientas' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados12M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados12M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Ferreteria y Herramientas' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados12A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados12A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Ferreteria y Herramientas' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados13($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados13($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gastos Diversos (CON IVA)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados13F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados13F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gastos Diversos (CON IVA)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados13M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados13M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gastos Diversos (CON IVA)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados13A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados13A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gastos Diversos (CON IVA)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados14($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados14($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gestoria Recuperacion Cartera' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados14F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados14F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gestoria Recuperacion Cartera' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados14M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados14M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gestoria Recuperacion Cartera' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados14A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados14A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Gestoria Recuperacion Cartera' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados15($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados15($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Limpieza y Accesorios' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados15F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados15F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Limpieza y Accesorios' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados15M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados15M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Limpieza y Accesorios' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados15A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados15A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Limpieza y Accesorios' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados16($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados16($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Computo' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados16F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados16F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Computo' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados16M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados16M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Computo' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados16A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados16A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Computo' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados17($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados17($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Instalacion Electrica' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados17F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados17F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Instalacion Electrica' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados17M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados17M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Instalacion Electrica' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados17A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados17A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Instalacion Electrica' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados18($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados18($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Local y Mejoras' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados18F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados18F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Local y Mejoras' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados18M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados18M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Local y Mejoras' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados18A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados18A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Local y Mejoras' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados19($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados19($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Maquinaria y Equipos' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados19F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados19F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Maquinaria y Equipos' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados19M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados19M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Maquinaria y Equipos' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados19A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados19A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Maquinaria y Equipos' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados20($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados20($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Mobiliario y Equipo Oficina' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados20F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados20F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Mobiliario y Equipo Oficina' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados20M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados20M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Mobiliario y Equipo Oficina' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados20A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados20A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Mobiliario y Equipo Oficina' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados21($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados21($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Transporte' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados21F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados21F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Transporte' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados21M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados21M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Transporte' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados21A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados21A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mantto Transporte' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados22($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados22($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio Electrico' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados22F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados22F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio Electrico' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados22M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados22M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio Electrico' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados22A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados22A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio Electrico' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados23($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados23($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio para Computo' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados23F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados23F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio para Computo' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados23M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados23M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio para Computo' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados23A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados23A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Material y Accesorio para Computo' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados24($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados24($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mercadotecnia' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados24F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados24F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mercadotecnia' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados24M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados24M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mercadotecnia' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados24A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados24A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Mercadotecnia' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados25($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados25($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Papeleria y Articulos Oficina' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados25F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados25F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Papeleria y Articulos Oficina' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados25M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados25M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Papeleria y Articulos Oficina' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados25A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados25A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Papeleria y Articulos Oficina' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados26($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados26($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Propaganda y Publicidad' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados26F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados26F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Propaganda y Publicidad' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados26M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados26M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Propaganda y Publicidad' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados26A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados26A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Propaganda y Publicidad' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados27($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados27($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Reclutamiento Personal' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados27F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados27F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Reclutamiento Personal' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados27M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados27M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Reclutamiento Personal' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados27A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados27A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Reclutamiento Personal' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados28($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados28($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Renta Auto-Carga' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados28F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados28F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Renta Auto-Carga' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados28M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados28M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Renta Auto-Carga' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados28A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados28A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Renta Auto-Carga' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados29($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados29($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguridad Industrial y Salud' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados29F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados29F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguridad Industrial y Salud' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados29M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados29M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguridad Industrial y Salud' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados29A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados29A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguridad Industrial y Salud' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados30($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados30($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguros y Fianza' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados30F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados30F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguros y Fianza' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados30M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados30M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguros y Fianza' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados30A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados30A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Seguros y Fianza' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados31($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados31($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Sistema Software/Datos' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados31F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados31F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Sistema Software/Datos' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados31M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados31M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Sistema Software/Datos' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados31A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados31A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Sistema Software/Datos' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados32($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados32($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Telefonia' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados32F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados32F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Telefonia' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados32M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados32M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Telefonia' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados32A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados32A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Telefonia' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados33($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados33($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Uniformes' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados33F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados33F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Uniformes' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados33M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados33M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Uniformes' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados33A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados33A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Uniformes' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados34($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados34($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Viaticos (Cosumo-Hospedaje-Pasaje-Vias)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados34F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados34F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Viaticos (Cosumo-Hospedaje-Pasaje-Vias)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados34M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados34M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Viaticos (Cosumo-Hospedaje-Pasaje-Vias)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados34A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados34A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Viaticos (Cosumo-Hospedaje-Pasaje-Vias)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados35($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados35($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Vigilancia y Seguridad' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados35F($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados35F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Vigilancia y Seguridad' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados35M($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados35M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Vigilancia y Seguridad' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosGravados35A($tabla, $item, $valor){
+	static public function mdlGastosOperativosGravados35A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '04. Gastos Operativos Gravados  Vigilancia y Seguridad' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos1($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Agua' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos1F($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Agua' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos1M($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Agua' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos1A($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Agua' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos2($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Control y Verificacion Vehicular' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos2F($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Control y Verificacion Vehicular' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos2M($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Control y Verificacion Vehicular' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos2A($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Control y Verificacion Vehicular' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos3($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Gastos Diversos (SIN IVA)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos3F($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Gastos Diversos (SIN IVA)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos3M($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Gastos Diversos (SIN IVA)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativosExentos3A($tabla, $item, $valor){
+	static public function mdlGastosOperativosExentos3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '05. Gastos Operativos Exentos  Gastos Diversos (SIN IVA)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales1($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Cuotas SIEM Empresarial' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales1F($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Cuotas SIEM Empresarial' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales1M($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Cuotas SIEM Empresarial' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales1A($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Cuotas SIEM Empresarial' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales2($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Servicios Limpia' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales2F($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Servicios Limpia' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales2M($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Servicios Limpia' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales2A($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Servicios Limpia' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales3($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Vehicular Tenencia/Control' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales3F($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Vehicular Tenencia/Control' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales3M($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Vehicular Tenencia/Control' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales3A($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto Vehicular Tenencia/Control' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales4($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales4($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto y Derechos' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales4F($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales4F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto y Derechos' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales4M($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales4M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto y Derechos' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosImpuestosLocales4A($tabla, $item, $valor){
+	static public function mdlGastosImpuestosLocales4A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '06. Gastos Impuestos Locales  Impuesto y Derechos' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros1($tabla, $item, $valor){
+	static public function mdlGastosFinancieros1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones Bancarias' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros1F($tabla, $item, $valor){
+	static public function mdlGastosFinancieros1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones Bancarias' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros1M($tabla, $item, $valor){
+	static public function mdlGastosFinancieros1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones Bancarias' and mes = 'MARZO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros1A($tabla, $item, $valor){
+	static public function mdlGastosFinancieros1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones Bancarias' and mes = 'ABRIL'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros2($tabla, $item, $valor){
+	static public function mdlGastosFinancieros2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones NO Bancarias' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros2F($tabla, $item, $valor){
+	static public function mdlGastosFinancieros2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones NO Bancarias' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros2M($tabla, $item, $valor){
+	static public function mdlGastosFinancieros2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones NO Bancarias' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros2A($tabla, $item, $valor){
+	static public function mdlGastosFinancieros2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Comisiones NO Bancarias' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros3($tabla, $item, $valor){
+	static public function mdlGastosFinancieros3($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Intereses a Cargo Bancarios' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros3F($tabla, $item, $valor){
+	static public function mdlGastosFinancieros3F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Intereses a Cargo Bancarios' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros3M($tabla, $item, $valor){
+	static public function mdlGastosFinancieros3M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Intereses a Cargo Bancarios' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosFinancieros3A($tabla, $item, $valor){
+	static public function mdlGastosFinancieros3A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '07. Gastos Financieros  Intereses a Cargo Bancarios' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos1($tabla, $item, $valor){
+	static public function mdlGastosOperativos1($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  Multas' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos1F($tabla, $item, $valor){
+	static public function mdlGastosOperativos1F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  Multas' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos1M($tabla, $item, $valor){
+	static public function mdlGastosOperativos1M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  Multas' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos1A($tabla, $item, $valor){
+	static public function mdlGastosOperativos1A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  Multas' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos2($tabla, $item, $valor){
+	static public function mdlGastosOperativos2($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos2F($tabla, $item, $valor){
+	static public function mdlGastosOperativos2F($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos2M($tabla, $item, $valor){
+	static public function mdlGastosOperativos2M($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlGastosOperativos2A($tabla, $item, $valor){
+	static public function mdlGastosOperativos2A($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = '99. Gastos Operativos NO Deducibles  SIN Requisitos Fiscales' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSueldosySalarios($tabla, $item, $valor){
+	static public function mdlSueldosySalarios($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Sueldos y Salarios' and mes = 'ENERO' and departamento != 'MGA' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSueldosySalariosF($tabla, $item, $valor){
+	static public function mdlSueldosySalariosF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Sueldos y Salarios' and mes = 'FEBRERO' and departamento != 'MGA' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSueldosySalariosM($tabla, $item, $valor){
+	static public function mdlSueldosySalariosM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Sueldos y Salarios' and mes = 'MARZO' and departamento != 'MGA' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSueldosySalariosA($tabla, $item, $valor){
+	static public function mdlSueldosySalariosA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Sueldos y Salarios' and mes = 'ABRIL' and departamento != 'MGA' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSAT($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSAT($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SAT' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSATF($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSATF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SAT' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSATM($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSATM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SAT' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSATA($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSATA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SAT' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSUA($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSUA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SUA' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSUAF($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSUAF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SUA' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSUAM($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSUAM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SUA' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlImpuestosFederalesSUAA($tabla, $item, $valor){
+	static public function mdlImpuestosFederalesSUAA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Impuestos Federales SUA' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAguinaldo($tabla, $item, $valor){
+	static public function mdlAguinaldo($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Aguinaldo' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAguinaldoF($tabla, $item, $valor){
+	static public function mdlAguinaldoF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Aguinaldo' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAguinaldoM($tabla, $item, $valor){
+	static public function mdlAguinaldoM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Aguinaldo' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlAguinaldoA($tabla, $item, $valor){
+	static public function mdlAguinaldoA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Aguinaldo' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlDespensa($tabla, $item, $valor){
+	static public function mdlDespensa($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Despensa' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlDespensaF($tabla, $item, $valor){
+	static public function mdlDespensaF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Despensa' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlDespensaM($tabla, $item, $valor){
+	static public function mdlDespensaM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Despensa' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlDespensaA($tabla, $item, $valor){
+	static public function mdlDespensaA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Despensa' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlVacaciones($tabla, $item, $valor){
+	static public function mdlVacaciones($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Vacaciones' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlVacacionesF($tabla, $item, $valor){
+	static public function mdlVacacionesF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Vacaciones' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlVacacionesM($tabla, $item, $valor){
+	static public function mdlVacacionesM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Vacaciones' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlVacacionesA($tabla, $item, $valor){
+	static public function mdlVacacionesA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Vacaciones' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaVacacional($tabla, $item, $valor){
+	static public function mdlPrimaVacacional($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Vacacional' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaVacacionalF($tabla, $item, $valor){
+	static public function mdlPrimaVacacionalF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Vacacional' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaVacacionalM($tabla, $item, $valor){
+	static public function mdlPrimaVacacionalM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Vacacional' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaVacacionalA($tabla, $item, $valor){
+	static public function mdlPrimaVacacionalA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Vacacional' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaAntiguedad($tabla, $item, $valor){
+	static public function mdlPrimaAntiguedad($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Antigüedad' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaAntiguedadF($tabla, $item, $valor){
+	static public function mdlPrimaAntiguedadF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Antigüedad' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaAntiguedadM($tabla, $item, $valor){
+	static public function mdlPrimaAntiguedadM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Antigüedad' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPrimaAntiguedadA($tabla, $item, $valor){
+	static public function mdlPrimaAntiguedadA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Prima Antigüedad' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeptimoDia($tabla, $item, $valor){
+	static public function mdlSeptimoDia($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Septimo Día' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeptimoDiaF($tabla, $item, $valor){
+	static public function mdlSeptimoDiaF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Septimo Día' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeptimoDiaM($tabla, $item, $valor){
+	static public function mdlSeptimoDiaM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Septimo Día' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeptimoDiaA($tabla, $item, $valor){
+	static public function mdlSeptimoDiaA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Septimo Día' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeparacion($tabla, $item, $valor){
+	static public function mdlSeparacion($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Separacion' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeparacionF($tabla, $item, $valor){
+	static public function mdlSeparacionF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Separacion' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeparacionM($tabla, $item, $valor){
+	static public function mdlSeparacionM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Separacion' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSeparacionA($tabla, $item, $valor){
+	static public function mdlSeparacionA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Separacion' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIndemnizacion($tabla, $item, $valor){
+	static public function mdlIndemnizacion($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Indemnizacion' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIndemnizacionF($tabla, $item, $valor){
+	static public function mdlIndemnizacionF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Indemnizacion' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIndemnizacionM($tabla, $item, $valor){
+	static public function mdlIndemnizacionM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Indemnizacion' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlIndemnizacionA($tabla, $item, $valor){
+	static public function mdlIndemnizacionA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Indemnizacion' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSubsidioEmpleo($tabla, $item, $valor){
+	static public function mdlSubsidioEmpleo($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Subsidio Empleo (SP)' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSubsidioEmpleoF($tabla, $item, $valor){
+	static public function mdlSubsidioEmpleoF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Subsidio Empleo (SP)' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSubsidioEmpleoM($tabla, $item, $valor){
+	static public function mdlSubsidioEmpleoM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Subsidio Empleo (SP)' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlSubsidioEmpleoA($tabla, $item, $valor){
+	static public function mdlSubsidioEmpleoA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'Subsidio Empleo (SP)' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPTU($tabla, $item, $valor){
+	static public function mdlPTU($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'PTU' and mes = 'ENERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPTUF($tabla, $item, $valor){
+	static public function mdlPTUF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'PTU' and mes = 'FEBRERO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPTUM($tabla, $item, $valor){
+	static public function mdlPTUM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'PTU' and mes = 'MARZO' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlPTUA($tabla, $item, $valor){
+	static public function mdlPTUA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE subgrupo = 'PTU' and mes = 'ABRIL' and departamento != 'MGA'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlMGA($tabla, $item, $valor){
+	static public function mdlMGA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE departamento = 'MGA' and mes = 'ENERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlMGAF($tabla, $item, $valor){
+	static public function mdlMGAF($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE departamento = 'MGA' and mes = 'FEBRERO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlMGAM($tabla, $item, $valor){
+	static public function mdlMGAM($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE departamento = 'MGA' and mes = 'MARZO'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
-	static public function mdlMGAA($tabla, $item, $valor){
+	static public function mdlMGAA($tabla, $item, $valor)
+	{
 
 		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-			
-		}else {
+			return $stmt->fetch();
+		} else {
 
 			$stmt =  Conexion::conectar()->prepare("SELECT (SUM(abono)-SUM(cargo)) as egresos FROM $tabla WHERE departamento = 'MGA' and mes = 'ABRIL'");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
+			return $stmt->fetchAll();
 		}
 	}
 	/*=============================================
@@ -6776,103 +6742,95 @@ class ModeloBanco0198{
 	MOSTRAR BANCO CREDITO
 	=============================================*/
 
-	static public function mdlMostrarBancoCredito($tabla, $item, $valor){
+	static public function mdlMostrarBancoCredito($tabla, $item, $valor)
+	{
 
-		if($valor != null){
+		if ($valor != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item and abono > 0 ORDER BY id ASC");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE abono > 0 ORDER BY id ASC");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	MOSTRAR ULTIMO SALDO
 	=============================================*/
 
-	static public function mdlMostrarUltimoSaldo($tabla, $item, $valor){
+	static public function mdlMostrarUltimoSaldo($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC LIMIT 1");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	MOSTRAR PARCIALES
 	=============================================*/
 
-	static public function mdlMostrarParciales($tabla, $item, $valor){
+	static public function mdlMostrarParciales($tabla, $item, $valor)
+	{
 
-		if($item != null){
+		if ($item != null) {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetch();
-
-		}else{
+			return $stmt->fetch();
+		} else {
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt -> execute();
+			$stmt->execute();
 
-			return $stmt -> fetchAll();
-
+			return $stmt->fetchAll();
 		}
 
-		$stmt-> close();
+		$stmt->close();
 
 		$stmt = null;
-
-
 	}
 	/*=============================================
 	AGREGAR DATOS
 	=============================================*/
 
-	static public function mdlAgregarDatos0198($tabla, $datos){
+	static public function mdlAgregarDatos0198($tabla, $datos)
+	{
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(departamento, grupo, subgrupo, mes, fecha, descripcion, cargo, abono, saldo, parciales, parcial, departamentoParcial1, parcial2, departamentoParcial2, parcial3, departamentoParcial3, parcial4, departamentoParcial4, parcial5, departamentoParcial5, parcial6, departamentoParcial6, parcial7, departamentoParcial7, serie, acreedor, concepto, numeroDocumento, tieneIva, tieneRetenciones, tipoRetencion, ultimoSaldo) VALUES(:departamento, :grupo, :subgrupo, :mes, :fecha, :descripcion, :cargo, :abono, :saldo, :parciales, :parcial, :departamentoParcial1, :parcial2, :departamentoParcial2, :parcial3, :departamentoParcial3, :parcial4, :departamentoParcial4, :parcial5, :departamentoParcial5, :parcial6, :departamentoParcial6, :parcial7, :departamentoParcial7, :serie, :acreedor, :concepto, :numeroDocumento, :tieneIva, :tieneRetenciones, :tipoRetencion, :ultimoSaldo)");
 
@@ -6911,614 +6869,565 @@ class ModeloBanco0198{
 
 
 
-		if($stmt->execute()){
+		if ($stmt->execute()) {
 
-			return "ok";	
-
-		}else{
+			return "ok";
+		} else {
 
 			return "error";
-		
 		}
 
 		$stmt->close();
-		
-		$stmt = null;
 
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA 
 	=============================================*/
-	static public function mdlCalcularIva($tabla){
+	static public function mdlCalcularIva($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set iva = importe * 0.16");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set iva = importe * 0.16");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIvaImportacion($tabla){
+	static public function mdlCalcularIvaImportacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set iva = (importe/1.16) * 0.16");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set iva = (importe/1.16) * 0.16");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR DIFERENCIA
 	=============================================*/
-	static public function mdlCalcularDiferencia($tabla){
+	static public function mdlCalcularDiferencia($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set diferencia = comprobacion-saldo where id !=1");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set diferencia = comprobacion-saldo where id !=1");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR DIFERENCIA IMPORTACION
 	=============================================*/
-	static public function mdlCalcularDiferenciaImportacion($tabla){
+	static public function mdlCalcularDiferenciaImportacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set diferencia = comprobacion-saldo where id !=1");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set diferencia = comprobacion-saldo where id !=1");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
-	
+
 	/*=============================================
 	CALCULAR FOLIO
 	=============================================*/
-	static public function mdlCalcularFolio($tabla){
+	static public function mdlCalcularFolio($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set folio = id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set folio = id");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR FOLIO IMPORTACION
 	=============================================*/
-	static public function mdlCalcularFolioImportacion($tabla){
+	static public function mdlCalcularFolioImportacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set folio = id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set folio = id");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IMPORTE
 	=============================================*/
-	static public function mdlCalcularImporte($tabla){
+	static public function mdlCalcularImporte($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importe = (cargo+abono) / 1.16");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importe = (cargo+abono) / 1.16");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IMPORTE IMPORTACION
 	=============================================*/
-	static public function mdlCalcularImporteImportacion($tabla){
+	static public function mdlCalcularImporteImportacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importe = (cargo+abono)");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importe = (cargo+abono)");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IMPORTE PARCIALES
 	=============================================*/
-	static public function mdlCalcularImporteParciales($tabla){
+	static public function mdlCalcularImporteParciales($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12)");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12)");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR COMPROBACION
 	=============================================*/
-	static public function mdlCalcularComprobacion($tabla){
+	static public function mdlCalcularComprobacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set comprobacion = ultimoSaldo+abono-cargo where id != 1");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set comprobacion = ultimoSaldo+abono-cargo where id != 1");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR COMPROBACION IMPORTACION
 	=============================================*/
-	static public function mdlCalcularComprobacionImportacion($tabla){
+	static public function mdlCalcularComprobacionImportacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set comprobacion = ultimoSaldo+abono-cargo where id != 1");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set comprobacion = ultimoSaldo+abono-cargo where id != 1");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
+		$stmt = null;
 	}
 	/*=============================================
 	REGISTRO BITACORA
 	=============================================*/
-	static public function mdlRegistroBitacora($tabla, $datos){
+	static public function mdlRegistroBitacora($tabla, $datos)
+	{
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
 
 		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 		$stmt->bindParam(":accion", $datos["accion"], PDO::PARAM_STR);
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+		if ($stmt->execute()) {
 
-			return "ok";	
-
-		}else{
+			return "ok";
+		} else {
 
 			return "error";
-		
 		}
 
 		$stmt->close();
-		
+
 		$stmt = null;
 	}
 	/*=============================================
 	REGISTRO BITACORA REPORTE
 	=============================================*/
-	static public function mdlRegistroBitacoraReporte($tabla, $datos){
+	static public function mdlRegistroBitacoraReporte($tabla, $datos)
+	{
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
 
 		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 		$stmt->bindParam(":accion", $datos["accion"], PDO::PARAM_STR);
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+		if ($stmt->execute()) {
 
-			return "ok";	
-
-		}else{
+			return "ok";
+		} else {
 
 			return "error";
-		
 		}
 
 		$stmt->close();
-		
+
 		$stmt = null;
 	}
 	/*=============================================
 	REGISTRO BITACORA AGREGAR
 	=============================================*/
-	static public function mdlRegistroBitacoraAgregar($tabla, $datos){
+	static public function mdlRegistroBitacoraAgregar($tabla, $datos)
+	{
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(usuario, perfil, accion, folio) VALUES(:usuario, :perfil, :accion, :folio)");
 
 		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 		$stmt->bindParam(":accion", $datos["accion"], PDO::PARAM_STR);
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+		if ($stmt->execute()) {
 
-			return "ok";	
-
-		}else{
+			return "ok";
+		} else {
 
 			return "error";
-		
 		}
 
 		$stmt->close();
-		
+
 		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA ARRENDAMIENTO
 	=============================================*/
-	static public function mdlCalcularIva1($tabla){
+	static public function mdlCalcularIva1($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva = (importe * 10.6667)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva = (importe * 10.6667)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA ARRENDAMIENTO IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIva1Importacion($tabla){
+	static public function mdlCalcularIva1Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva = (importe * 10.6667)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva = (importe * 10.6667)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR ARRENDAMIENTO
 	=============================================*/
-	static public function mdlCalcularIsr1($tabla){
+	static public function mdlCalcularIsr1($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr = (importe * 10)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr = (importe * 10)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR ARRENDAMIENTO IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIsr1Importacion($tabla){
+	static public function mdlCalcularIsr1Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr = (importe * 10)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr = (importe * 10)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA FLETE
 	=============================================*/
-	static public function mdlCalcularIva2($tabla){
+	static public function mdlCalcularIva2($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva2 = (importe * 4)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva2 = (importe * 4)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA FLETE IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIva2Importacion($tabla){
+	static public function mdlCalcularIva2Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva2 = (importe * 4)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva2 = (importe * 4)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR FLETE
 	=============================================*/
-	static public function mdlCalcularIsr2($tabla){
+	static public function mdlCalcularIsr2($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr2 = (importe * 0)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr2 = (importe * 0)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR FLETE IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIsr2Importacion($tabla){
+	static public function mdlCalcularIsr2Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr2 = (importe * 0)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr2 = (importe * 0)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA HONORARIOS
 	=============================================*/
-	static public function mdlCalcularIva3($tabla){
+	static public function mdlCalcularIva3($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva3 = (importe * 10)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva3 = (importe * 10)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR IVA HONORARIOS IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIva3Importacion($tabla){
+	static public function mdlCalcularIva3Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva3 = (importe * 10.6667)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIva3 = (importe * 10.6667)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR HONORARIOS
 	=============================================*/
-	static public function mdlCalcularIsr3($tabla){
+	static public function mdlCalcularIsr3($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr3 = (importe * 10)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr3 = (importe * 10)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
 	/*=============================================
 	CALCULAR ISR HONORARIOS IMPORTACION
 	=============================================*/
-	static public function mdlCalcularIsr3Importacion($tabla){
+	static public function mdlCalcularIsr3Importacion($tabla)
+	{
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr3 = (importe * 10)/100");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set retIsr3 = (importe * 10)/100");
 
-			if ($stmt -> execute()) {
+		if ($stmt->execute()) {
 
-				return "ok";
+			return "ok";
+		} else {
 
-			}else {
+			return "error";
+		}
 
-				return "error";
-			}
+		$stmt->close();
 
-			$stmt -> close();
-
-			$stmt = null;
-
-
+		$stmt = null;
 	}
-	
+
 	/*=============================================
 	EDITAR DATOS
 	=============================================*/
 
-	static public function mdlEditarDatos0198($tabla, $datos){
-	
+	static public function mdlEditarDatos0198($tabla, $datos)
+	{
+
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET departamento = :departamento, grupo = :grupo, subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, cargo = :cargo, abono = :abono, saldo = :saldo,  serie = :serie, folio = :folio, parciales = :parciales, parcial = :parcial, departamentoParcial1 = :departamentoParcial1, parcial2 = :parcial2, departamentoParcial2 = :departamentoParcial2, parcial3 = :parcial3, departamentoParcial3 = :departamentoParcial3, parcial4 = :parcial4, departamentoParcial4 = :departamentoParcial4, parcial5 = :parcial5, departamentoParcial5 = :departamentoParcial5, parcial6 = :parcial6, departamentoParcial6 = :departamentoParcial6, parcial7 = :parcial7, departamentoParcial7 = :departamentoParcial7, parcial8 = :parcial8, departamentoParcial8 = :departamentoParcial8, parcial9 = :parcial9, departamentoParcial9 = :departamentoParcial9, parcial10 = :parcial10, departamentoParcial10 = :departamentoParcial10, parcial11 = :parcial11, departamentoParcial11 = :departamentoParcial11, parcial12 = :parcial12, departamentoParcial12 = :departamentoParcial12,  acreedor = :acreedor, concepto = :concepto, numeroDocumento = :numeroDocumento, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones WHERE id = :id");
 
-		
+
 		$stmt->bindParam(":departamento", $datos["departamento"], PDO::PARAM_STR);
 		$stmt->bindParam(":grupo", $datos["grupo"], PDO::PARAM_STR);
 		$stmt->bindParam(":subgrupo", $datos["subgrupo"], PDO::PARAM_STR);
@@ -7564,57 +7473,73 @@ class ModeloBanco0198{
 		$stmt->bindParam(":importeRetenciones", $datos["importeRetenciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+		if ($stmt->execute()) {
 
 			return "ok";
-		
-		}else{
+		} else {
 
-			return "error";	
-
+			return "error";
 		}
 
-		$stmt -> close();
+		$stmt->close();
 
 		$stmt = null;
-
 	}
 	/* FILTRADO DE DATOS POR RANGO DE FECHAS */
-	static public function mdlMostrarRangoFechas($tabla,$item1,$valor1,$valor2){
-	       
-			$fInicio = str_replace('-', '/', $valor1);
-			$fechaInicio = date('d/m/Y',strtotime($fInicio));
+	static public function mdlMostrarRangoFechas($tabla, $item1, $valor1, $valor2)
+	{
 
-			$fFin = str_replace('-', '/', $valor2);
-			$fechaFinal = date('d/m/Y',strtotime($fFin));
+		$fInicio = str_replace('-', '/', $valor1);
+		$fechaInicio = date('d/m/Y', strtotime($fInicio));
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')");
-			
-			$stmt -> execute();
+		$fFin = str_replace('-', '/', $valor2);
+		$fechaFinal = date('d/m/Y', strtotime($fFin));
 
-			return $stmt->fetchAll();
+		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')");
 
-		$stmt-> close();
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+
+		$stmt->close();
 		$stmt = null;
-
 	}
-	static public function mdlMostrarRangoFechasCredito($tabla,$item1,$valor1,$valor2){
-	       
-			$fInicio = str_replace('-', '/', $valor1);
-			$fechaInicio = date('d/m/Y',strtotime($fInicio));
+	static public function mdlMostrarRangoFechasCredito($tabla, $item1, $valor1, $valor2)
+	{
 
-			$fFin = str_replace('-', '/', $valor2);
-			$fechaFinal = date('d/m/Y',strtotime($fFin));
+		$fInicio = str_replace('-', '/', $valor1);
+		$fechaInicio = date('d/m/Y', strtotime($fInicio));
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')  AND abono > 0 ORDER BY id ASC");
-			
-			$stmt -> execute();
+		$fFin = str_replace('-', '/', $valor2);
+		$fechaFinal = date('d/m/Y', strtotime($fFin));
 
-			return $stmt->fetchAll();
+		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.departamento,banc.grupo,banc.subgrupo,banc.mes,banc.fecha,banc.descripcion,banc.cargo,banc.abono,banc.saldo,banc.ultimoSaldo,banc.comprobacion,banc.diferencia,banc.parciales,banc.serie,banc.folio,banc.numeroMovimiento,banc.acreedor,banc.concepto,banc.numeroDocumento,banc.importe,banc.importeRetenciones,banc.importeParciales,banc.tieneIva,banc.tieneRetenciones,banc.tipoRetencion,banc.iva,banc.iva,banc.retIva,banc.retIsr,banc.retIva2,banc.retIsr2,banc.retIva3,banc.retIsr3,banc.iden FROM $tabla as banc where STR_TO_DATE($item1,'%d/%m/%Y') BETWEEN STR_TO_DATE('$fechaInicio','%d/%m/%Y') AND STR_TO_DATE('$fechaFinal','%d/%m/%Y ')  AND abono > 0 ORDER BY id ASC");
 
-		$stmt-> close();
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+
+		$stmt->close();
 		$stmt = null;
-
 	}
+	/*=============================================
+	CALCULAR TODOS LOS NIVELES DEL BANCO
+	=============================================*/
+	static public function mdlActualizarValoresMovimiento($tabla, $idBanco)
+	{
 
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12),iva = (importe/1.16) * 0.16,retIva = (importe * 10.6667)/100,retIsr = (importe * 10)/100,retIva2 = (importe * 4)/100,retIsr2 = (importe * 0)/100,retIva3 = (importe * 10.6667)/100,retIsr3 = (importe * 10)/100 where id = $idBanco");
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt->close();
+
+		$stmt = null;
+	}
 }

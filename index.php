@@ -48,6 +48,8 @@ require_once "controladores/almacenRuta.controlador.php";
 require_once "controladores/facturacionRuta.controlador.php";
 require_once "controladores/facturacionTiendas.controlador.php";
 require_once "controladores/entregas.controlador.php";
+/*CONTROLADOR NUEVO BANCO*/
+require_once "controladores/banco7338.controlador.php";
 /*CONTROLADORES DE CONTROL MATRIZ*/
 
 
@@ -103,6 +105,8 @@ require_once "modelos/entregas.modelo.php";
 /*MODELOS DE CONTROL MATRIZ*/
 require_once "extensiones/PHPMailer/PHPMailerAutoload.php";
 require_once "extensiones/vendor/autoload.php";
+/*MODELOS NUEVO BANCO*/
+require_once "modelos/banco7338.modelo.php";
 
 /**
  * CONEXION SERVER 

@@ -1,93 +1,189 @@
-  if ($("#fechaIni").val() != "") {
-    var fechaIni = $("#fechaIni").val();
+$(function () {
+  var url = window.location.pathname;
+  
+  var ruta = url.split("/");
+  
+  switch (ruta[1]) {
+    case "banco0198":
+      if (localStorage.tablaBanco === "tablaBanco0198Credito") {
+        cargarBanco0198Credito();
+      } else {
+        cargarBanco0198();
+      }
 
-  }  else {
-    var fechaIni = "";
-     
+      break;
   }
-  if ($("#fechaFin").val() != "") {
-    var fechaFin = $("#fechaFin").val();
-
-  }else {
-    var fechaFin = "";
-  }
-
-tablaBanco0198 = $(".tablaBanco0198").DataTable({
-   "ajax":"ajax/tablaBanco0198.ajax.php?fechaIni="+fechaIni+"&fechaFin="+fechaFin,
-   "deferRender": true,
-   "retrieve": true,
-   "processing": true,
-    "iDisplayLength": 10,
-    "fixedHeader": true,
-    "order": [[ 0, "desc" ]],
-    /*"scrollX": true,*/
-     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
-   "language": {
-
-    "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
-    "sZeroRecords":    "No se encontraron resultados",
-    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
-    "sUrl":            "",
-    "sInfoThousands":  ",",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-      "sFirst":    "Primero",
-      "sLast":     "Último",
-      "sNext":     "Siguiente",
-      "sPrevious": "Anterior"
-    },
-    "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    }
-
-   }
-
 });
 
-$(".tablaBanco0198Credito").DataTable({
-   "ajax":"ajax/tablaBanco0198Credito.ajax.php?fechaIni="+fechaIni+"&fechaFin="+fechaFin,
-   "deferRender": true,
-   "retrieve": true,
-   "processing": true,
-    "iDisplayLength": 10,
-    "order": [[ 0, "desc" ]],
+function cargarBanco0198() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
+
+  banco0198 = $(".tablaBanco0198").DataTable({
+    destroy: true,
+    processing: true,
+    serverSide: true,
+    sAjaxSource:
+      "ajax/processDataBancos.php?action=banco&banco=banco0198&filtro1=" +
+      filtro1 +
+      "&fechaInicio=" +
+      fechaInicio +
+      "&fechaFinal=" +
+      fechaFinal +
+      "&filtro2=" +
+      filtro2 +
+      "&filtro3=" +
+      filtro3 +
+      "",
+    columnDefs: [
+      {
+        data: null,
+      },
+    ],
+    iDisplayLength: 10,
+    fixedHeader: true,
+    order: [[0, "desc"]],
     /*"scrollX": true,*/
-     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
-   "language": {
-
-    "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
-    "sZeroRecords":    "No se encontraron resultados",
-    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
-    "sUrl":            "",
-    "sInfoThousands":  ",",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-      "sFirst":    "Primero",
-      "sLast":     "Último",
-      "sNext":     "Siguiente",
-      "sPrevious": "Anterior"
+    lengthMenu: [
+      [10, 25, 50, 100, 150, 200, 300, -1],
+      [10, 25, 50, 100, 150, 200, 300, "All"],
+    ],
+    language: {
+      sProcessing: "Procesando...",
+      sLengthMenu: "Mostrar _MENU_ registros",
+      sZeroRecords: "No se encontraron resultados",
+      sEmptyTable: "Ningún dato disponible en esta tabla",
+      sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+      sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+      sInfoPostFix: "",
+      sSearch: "Buscar:",
+      sUrl: "",
+      sInfoThousands: ",",
+      sLoadingRecords: "Cargando...",
+      oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior",
+      },
+      oAria: {
+        sSortAscending:
+          ": Activar para ordenar la columna de manera ascendente",
+        sSortDescending:
+          ": Activar para ordenar la columna de manera descendente",
+      },
     },
-    "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    }
+  });
+}
+function reporteRangoFechas() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
 
-   }
+  location.href =
+    "vistas/modulos/reportes.php?bancoRangoFechas=banco0198&filtro1=" +
+    filtro1 +
+    "&fechaInicio=" +
+    fechaInicio +
+    "&fechaFinal=" +
+    fechaFinal +
+    "&filtro2=" +
+    filtro2 +
+    "&filtro3=" +
+    filtro3 +
+    "";
+}
+function reporteRangoFechasCredito() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
 
-});
+  location.href =
+    "vistas/modulos/reportes.php?bancoRangoFechasCredito=banco0198&filtro1=" +
+    filtro1 +
+    "&fechaInicio=" +
+    fechaInicio +
+    "&fechaFinal=" +
+    fechaFinal +
+    "&filtro2=" +
+    filtro2 +
+    "&filtro3=" +
+    filtro3 +
+    "";
+}
+function cargarBanco0198Credito() {
+  var filtro1 = $("#departamentoSelect").val();
+  var fechaInicio = $("#fechaIni").val();
+  var fechaFinal = $("#fechaFin").val();
+  var filtro2 = $("#movimientoSelect").val();
+  var filtro3 = $("#verificarErrorSelect").val();
+
+  banco0198Credito = $(".tablaBanco0198Credito").DataTable({
+    destroy: true,
+    processing: true,
+    serverSide: true,
+    sAjaxSource:
+      "ajax/processDataBancos.php?action=bancoCredito&banco=banco0198&filtro1=" +
+      filtro1 +
+      "&fechaInicio=" +
+      fechaInicio +
+      "&fechaFinal=" +
+      fechaFinal +
+      "&filtro2=" +
+      filtro2 +
+      "&filtro3=" +
+      filtro3 +
+      "",
+    columnDefs: [
+      {
+        data: null,
+      },
+    ],
+    iDisplayLength: 10,
+    fixedHeader: true,
+    order: [[0, "desc"]],
+    /*"scrollX": true,*/
+    lengthMenu: [
+      [10, 25, 50, 100, 150, 200, 300, -1],
+      [10, 25, 50, 100, 150, 200, 300, "All"],
+    ],
+    language: {
+      sProcessing: "Procesando...",
+      sLengthMenu: "Mostrar _MENU_ registros",
+      sZeroRecords: "No se encontraron resultados",
+      sEmptyTable: "Ningún dato disponible en esta tabla",
+      sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+      sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+      sInfoPostFix: "",
+      sSearch: "Buscar:",
+      sUrl: "",
+      sInfoThousands: ",",
+      sLoadingRecords: "Cargando...",
+      oPaginate: {
+        sFirst: "Primero",
+        sLast: "Último",
+        sNext: "Siguiente",
+        sPrevious: "Anterior",
+      },
+      oAria: {
+        sSortAscending:
+          ": Activar para ordenar la columna de manera ascendente",
+        sSortDescending:
+          ": Activar para ordenar la columna de manera descendente",
+      },
+    },
+  });
+}
+
 
 
 /*=============================================
@@ -98,7 +194,7 @@ $(".tablaBanco0198").on("click", ".btnEditarDatos", function(){
   var idBanco = $(this).attr("idBanco");
   
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
 
@@ -683,7 +779,7 @@ $(".tablaBanco0198Credito").on("click", ".btnEditarDatos", function(){
   var idBanco = $(this).attr("idBanco");
   
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
 
@@ -2412,4 +2508,56 @@ $(".tablaBanco0198Credito").on("click", ".btnVerParciales", function(){
   })
 
 
-})
+});
+/*----------------------------------------------------------------*/
+/***EDITAR MOVIMIENTO ***/
+/*----------------------------------------------------------------*/
+
+$("#editarMovimientoBanco0198").on("submit", function (e) {
+  e.preventDefault(); //detenemos el envio
+  $.post(
+    "ajax/banco0198.ajax.php",
+    $("#editarMovimientoBanco0198").serialize(),
+    function (res) {
+      if (res == '"ok"') {
+        swal({
+          type: "success",
+          title: "Los datos han sido modificados correctamente",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+            $(function () {
+              var url = window.location.pathname;
+
+              var ruta = url.split("/");
+              switch (ruta[1]) {
+                case "banco0198":
+                  if (localStorage.tablaBanco === "tablaBanco0198Credito") {
+                    banco0198Credito.ajax.reload();
+                    $("#minimizar0198").click();
+                  } else {
+                    console.log("prueba");
+                    banco0198.ajax.reload();
+                    $("#minimizar0198").click();
+                  }
+
+                  break;
+              }
+            });
+          }
+        });
+      } else {
+        swal({
+          type: "error",
+          title: "¡No se puede realizar la modificación de los datos!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+          }
+        });
+      }
+    }
+  );
+});

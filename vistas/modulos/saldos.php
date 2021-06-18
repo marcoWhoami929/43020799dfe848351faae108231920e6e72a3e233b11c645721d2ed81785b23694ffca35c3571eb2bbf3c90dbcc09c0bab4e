@@ -1,37 +1,34 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Compras" ){
-
-
-
-}else {
+if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Compras") {
+} else {
   echo '<script>
 
   window.location = "inicio";
 
   </script>';
-
 }
 
 
 ?>
 <style>
-  img{
--webkit-transition: all 1s ease;
--moz-transition: all 1s ease;
--ms-transition: all 1s ease;
-transition: all 1s ease;
+  img {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
   }
+
   img:hover {
-height: 70%;
-width: 100%;
-margin-left: -10%;
-}
+    height: 70%;
+    width: 100%;
+    margin-left: -10%;
+  }
 </style>
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>Saldos</h1>
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -45,9 +42,9 @@ margin-left: -10%;
     <div class="box">
 
       <div class="box-header with-border">
-        <?php 
+        <?php
         $dia = date("l");
-        $mes = date("l"); 
+        $mes = date("l");
         $dianumero = date("d");
         $año = date("Y");
 
@@ -61,33 +58,33 @@ margin-left: -10%;
         <span id="liveclock" style="left:0;top:0; font-size:36px; font-family:'Lucida Sans'"></span>
       </div>
       <br>
-       <div class="logi" id="logi">
-          <CENTER><h2>CONTROL SALDOS</h2></CENTER>
-    </div>
-    <br><br>
+      <div class="logi" id="logi">
+        <CENTER>
+          <h2>CONTROL SALDOS</h2>
+        </CENTER>
+      </div>
+      <br><br>
     </div>
 
 
     <div class="box-body">
       <?php
-        if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
+      if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
 
-              $tabla = "Credito";
-          
-        }else{
+        $tabla = "Credito";
+      } else {
 
-              $tabla = "";
+        $tabla = "";
+      }
 
-        }
-       
 
       ?>
       <div class="col-lg-3 col-xs-8">
         <div class="">
-            <a href="banco0198" class="btnBancoElegido" banco="banco0198" tabla="<?php echo 'tablaBanco0198'.$tabla ?>"><img src="vistas/img/bancos/Crd_0198.png" alt="" style="width: 90%; height: 60%"></a>
+          <a href="banco0198" class="btnBancoElegido" banco="banco0198" tabla="<?php echo 'tablaBanco0198' . $tabla ?>"><img src="vistas/img/bancos/Crd_0198.png" alt="" style="width: 90%; height: 60%"></a>
           <div class="alert alert-info alert-dismissable" style="width:90%">
             <div>
-            <?php
+              <?php
               $item = null;
               $valor = null;
 
@@ -98,21 +95,19 @@ margin-left: -10%;
 
               if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo0198."</h4>";
-                
-              }else {
-                
-                echo '';
+                echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo0198 . "</h4>";
+              } else {
 
+                echo '';
               }
 
-            
 
-            ?>
+
+              ?>
             </div>
             <div>
-              <?php 
-               $item = null;
+              <?php
+              $item = null;
               $valor = null;
 
               $B0198UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion0198($item, $valor);
@@ -120,255 +115,236 @@ margin-left: -10%;
               foreach ($B0198UltimaActualizacion as $key => $value) {
                 $actualizacion0198 = $value["fecha"];
               }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion0198."</h5>";
-               ?>
+              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion0198 . "</h5>";
+              ?>
             </div>
           </div>
         </div>
-        
+
       </div>
 
-      <?php 
+      <?php
 
-        if ($_SESSION["perfil"] != "Credito y Cobranza") {
+      if ($_SESSION["perfil"] != "Credito y Cobranza") {
 
-          echo "<div class='col-lg-3 col-xs-8'>
+        echo "<div class='col-lg-3 col-xs-8'>
               <div class=''>
-                <a href='banco0840' class='btnBancoElegido' banco='banco0840' tabla='tablaBanco0840".$tabla."'><img src='vistas/img/bancos/Crd_0840.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
-          
-              $item = null;
-              $valor = null;
+                <a href='banco0840' class='btnBancoElegido' banco='banco0840' tabla='tablaBanco0840" . $tabla . "'><img src='vistas/img/bancos/Crd_0840.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
 
-              $B0840 = ControladorUltimoSaldoBancos::ctrMostrarBanco0840($item, $valor);
-              foreach ($B0840 as $key => $value) {
-                $saldo0840 = $value["saldo"];
-              }
+        $item = null;
+        $valor = null;
 
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
+        $B0840 = ControladorUltimoSaldoBancos::ctrMostrarBanco0840($item, $valor);
+        foreach ($B0840 as $key => $value) {
+          $saldo0840 = $value["saldo"];
+        }
 
-                echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo0840."</h4>";
-                
-              }else {
-                
-                echo '';
+        if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-              }
+          echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo0840 . "</h4>";
+        } else {
 
-            echo "</div>
+          echo '';
+        }
+
+        echo "</div>
             <div>";
-              
-               $item = null;
-              $valor = null;
 
-              $B0840UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion0840($item, $valor);
+        $item = null;
+        $valor = null;
 
-              foreach ($B0840UltimaActualizacion as $key => $value) {
-                $actualizacion0840 = $value["fecha"];
-              }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion0840."</h5>";
-               
-            echo "</div>
+        $B0840UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion0840($item, $valor);
+
+        foreach ($B0840UltimaActualizacion as $key => $value) {
+          $actualizacion0840 = $value["fecha"];
+        }
+        echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion0840 . "</h5>";
+
+        echo "</div>
           </div>
         </div>
         
       </div>";
-        
-        }else{
-
-        }
+      } else {
+      }
 
 
       ?>
 
-      <?php 
+      <?php
 
-        if ($_SESSION["perfil"] != "Credito y Cobranza") {
+      if ($_SESSION["perfil"] != "Credito y Cobranza") {
 
-          echo "<div class='col-lg-3 col-xs-8'>
+        echo "<div class='col-lg-3 col-xs-8'>
               <div class=''>
-                <a href='banco1219' class='btnBancoElegido' banco='banco1219' tabla='tablaBanco1219".$tabla."'><img src='vistas/img/bancos/Crd_1219.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
-          
-              $item = null;
-              $valor = null;
+                <a href='banco1219' class='btnBancoElegido' banco='banco1219' tabla='tablaBanco1219" . $tabla . "'><img src='vistas/img/bancos/Crd_1219.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
 
-              $B1219 = ControladorUltimoSaldoBancos::ctrMostrarBanco1219($item, $valor);
-              foreach ($B1219 as $key => $value) {
-                $saldo1219 = $value["saldo"];
-              }
+        $item = null;
+        $valor = null;
 
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
+        $B1219 = ControladorUltimoSaldoBancos::ctrMostrarBanco1219($item, $valor);
+        foreach ($B1219 as $key => $value) {
+          $saldo1219 = $value["saldo"];
+        }
 
-                echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo1219."</h4>";
-                
-              }else {
-                
-                echo '';
+        if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-              }
+          echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo1219 . "</h4>";
+        } else {
 
-            echo "</div>
+          echo '';
+        }
+
+        echo "</div>
             <div>";
-              
-               $item = null;
-              $valor = null;
 
-              $B1219UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1219($item, $valor);
+        $item = null;
+        $valor = null;
 
-              foreach ($B1219UltimaActualizacion as $key => $value) {
-                $actualizacion1219 = $value["fecha"];
-              }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion1219."</h5>";
-               
-            echo "</div>
+        $B1219UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1219($item, $valor);
+
+        foreach ($B1219UltimaActualizacion as $key => $value) {
+          $actualizacion1219 = $value["fecha"];
+        }
+        echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion1219 . "</h5>";
+
+        echo "</div>
           </div>
         </div>
         
       </div>";
-        
-        }else{
-
-        }
+      } else {
+      }
 
 
       ?>
 
-       <?php 
+      <?php
 
-        if ($_SESSION["perfil"] != "Credito y Cobranza") {
+      if ($_SESSION["perfil"] != "Credito y Cobranza") {
 
-          echo "<div class='col-lg-3 col-xs-8'>
+        echo "<div class='col-lg-3 col-xs-8'>
               <div class=''>
-                <a href='banco1286' class='btnBancoElegido' banco='banco1286' tabla='tablaBanco1286".$tabla."'><img src='vistas/img/bancos/Crd_1286.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
-          
-              $item = null;
-              $valor = null;
+                <a href='banco1286' class='btnBancoElegido' banco='banco1286' tabla='tablaBanco1286" . $tabla . "'><img src='vistas/img/bancos/Crd_1286.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
 
-              $B1286 = ControladorUltimoSaldoBancos::ctrMostrarBanco1286($item, $valor);
-              foreach ($B1286 as $key => $value) {
-                $saldo1286 = $value["saldo"];
-              }
+        $item = null;
+        $valor = null;
 
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
+        $B1286 = ControladorUltimoSaldoBancos::ctrMostrarBanco1286($item, $valor);
+        foreach ($B1286 as $key => $value) {
+          $saldo1286 = $value["saldo"];
+        }
 
-                echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo1286."</h4>";
-                
-              }else {
-                
-                echo '';
+        if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-              }
+          echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo1286 . "</h4>";
+        } else {
 
-            echo "</div>
+          echo '';
+        }
+
+        echo "</div>
             <div>";
-              
-               $item = null;
-              $valor = null;
 
-              $B1286UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1286($item, $valor);
+        $item = null;
+        $valor = null;
 
-              foreach ($B1286UltimaActualizacion as $key => $value) {
-                $actualizacion1286 = $value["fecha"];
-              }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion1286."</h5>";
-               
-            echo "</div>
+        $B1286UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1286($item, $valor);
+
+        foreach ($B1286UltimaActualizacion as $key => $value) {
+          $actualizacion1286 = $value["fecha"];
+        }
+        echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion1286 . "</h5>";
+
+        echo "</div>
           </div>
         </div>
         
       </div>";
-        
-        }else{
-
-        }
+      } else {
+      }
 
 
       ?>
-     
+
     </div>
 
     <div class="box-body">
-      <?php 
+      <?php
 
-        if ($_SESSION["perfil"] != "Credito y Cobranza") {
+      if ($_SESSION["perfil"] != "Credito y Cobranza") {
 
-          echo "<div class='col-lg-3 col-xs-8'>
+        echo "<div class='col-lg-3 col-xs-8'>
               <div class=''>
-                <a href='banco1340' class='btnBancoElegido' banco='banco1340' tabla='tablaBanco1340".$tabla."'><img src='vistas/img/bancos/Crd_1340.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
-          
-              $item = null;
-              $valor = null;
+                <a href='banco1340' class='btnBancoElegido' banco='banco1340' tabla='tablaBanco1340" . $tabla . "'><img src='vistas/img/bancos/Crd_1340.png' alt='' style='width: 90%; height: 60%'></a><div class='alert alert-info alert-dismissable' style='width:90%'><div>";
 
-              $B1340 = ControladorUltimoSaldoBancos::ctrMostrarBanco1340($item, $valor);
-              foreach ($B1340 as $key => $value) {
-                $saldo1340 = $value["saldo"];
-              }
+        $item = null;
+        $valor = null;
 
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
+        $B1340 = ControladorUltimoSaldoBancos::ctrMostrarBanco1340($item, $valor);
+        foreach ($B1340 as $key => $value) {
+          $saldo1340 = $value["saldo"];
+        }
 
-                echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo1340."</h4>";
-                
-              }else {
-                
-                echo '';
+        if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-              }
+          echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo1340 . "</h4>";
+        } else {
 
-            echo "</div>
+          echo '';
+        }
+
+        echo "</div>
             <div>";
-              
-               $item = null;
-              $valor = null;
 
-              $B1340UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1340($item, $valor);
+        $item = null;
+        $valor = null;
 
-              foreach ($B1340UltimaActualizacion as $key => $value) {
-                $actualizacion1340 = $value["fecha"];
-              }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion1340."</h5>";
-               
-            echo "</div>
+        $B1340UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion1340($item, $valor);
+
+        foreach ($B1340UltimaActualizacion as $key => $value) {
+          $actualizacion1340 = $value["fecha"];
+        }
+        echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion1340 . "</h5>";
+
+        echo "</div>
           </div>
         </div>
         
       </div>";
-        
-        }else{
-
-        }
+      } else {
+      }
 
 
       ?>
 
       <div class="col-lg-3 col-xs-6">
         <div class="">
-          <a href="banco3450" class="btnBancoElegido" banco="banco3450" tabla="<?php echo 'tablaBanco3450'.$tabla ?>"><img src="vistas/img/bancos/Crd_3450.png" alt="" style="width: 90%; height: 60%"></a>
+          <a href="banco3450" class="btnBancoElegido" banco="banco3450" tabla="<?php echo 'tablaBanco3450' . $tabla ?>"><img src="vistas/img/bancos/Crd_3450.png" alt="" style="width: 90%; height: 60%"></a>
           <div class="alert alert-info alert-dismissable" style="width:90%">
             <div>
               <?php
-                $item = null;
-                $valor = null;
+              $item = null;
+              $valor = null;
 
-                $B3450 = ControladorUltimoSaldoBancos::ctrMostrarBanco3450($item, $valor);
-                foreach ($B3450 as $key => $value) {
-                  $saldo3450 = $value["saldo"];
-                }
+              $B3450 = ControladorUltimoSaldoBancos::ctrMostrarBanco3450($item, $valor);
+              foreach ($B3450 as $key => $value) {
+                $saldo3450 = $value["saldo"];
+              }
 
-              
-                 if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                 echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo3450."</h4>";
+              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                
-                }else {
-                  
-                  echo '';
+                echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo3450 . "</h4>";
+              } else {
 
-                }
-            ?>
+                echo '';
+              }
+              ?>
             </div>
-            <div >
-              <?php 
-               $item = null;
+            <div>
+              <?php
+              $item = null;
               $valor = null;
 
               $B3450UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion3450($item, $valor);
@@ -376,8 +352,8 @@ margin-left: -10%;
               foreach ($B3450UltimaActualizacion as $key => $value) {
                 $actualizacion3450 = $value["fecha"];
               }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion3450."</h5>";
-               ?>
+              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion3450 . "</h5>";
+              ?>
             </div>
           </div>
         </div>
@@ -386,34 +362,31 @@ margin-left: -10%;
 
       <div class="col-lg-3 col-xs-6">
         <div class="">
-          <a href="<?php echo 'banco6278'.$tabla ?>"  class="btnBancoElegido" banco="banco6278" tabla="<?php echo 'tablaBanco6278'.$tabla ?>"><img src="vistas/img/bancos/Crd_6278.png" alt="" style="width: 90%; height: 60%"></a>
+          <a href="<?php echo 'banco6278' . $tabla ?>" class="btnBancoElegido" banco="banco6278" tabla="<?php echo 'tablaBanco6278' . $tabla ?>"><img src="vistas/img/bancos/Crd_6278.png" alt="" style="width: 90%; height: 60%"></a>
           <div class="alert alert-info alert-dismissable" style="width:90%">
             <div>
               <?php
-                $item = null;
-                $valor = null;
+              $item = null;
+              $valor = null;
 
-                $B6278 = ControladorUltimoSaldoBancos::ctrMostrarBanco6278($item, $valor);
-                foreach ($B6278 as $key => $value) {
-                  $saldo6278 = $value["saldo"];
-                }
+              $B6278 = ControladorUltimoSaldoBancos::ctrMostrarBanco6278($item, $valor);
+              foreach ($B6278 as $key => $value) {
+                $saldo6278 = $value["saldo"];
+              }
 
-                
-                if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                 echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldo6278."</h4>";
+              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                
-                }else {
-                  
-                  echo '';
+                echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo6278 . "</h4>";
+              } else {
 
-                }
+                echo '';
+              }
               ?>
             </div>
-            <div >
-              <?php 
-               $item = null;
+            <div>
+              <?php
+              $item = null;
               $valor = null;
 
               $B6278UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion6278($item, $valor);
@@ -421,42 +394,79 @@ margin-left: -10%;
               foreach ($B6278UltimaActualizacion as $key => $value) {
                 $actualizacion6278 = $value["fecha"];
               }
-              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: ".$actualizacion6278."</h5>";
-               ?>
+              echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion6278 . "</h5>";
+              ?>
             </div>
           </div>
         </div>
       </div>
-      
-       <?php 
-       if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-          echo '<div class="col-lg-3 col-xs-6">
+      <?php
+      if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
+
+        echo '<div class="col-lg-3 col-xs-6">
             <div class="">
               <a href="caja"><img src="vistas/img/bancos/Crd_Caja.png" alt="" style="width: 90%; height: 60%;"></a><br>
               <div class="alert alert-info alert-dismissable" style="width:90%">
                <div>';
-               ?>
+      ?>
 
-                <?php
-                  $item = null;
-                  $valor = null;
+        <?php
+        $item = null;
+        $valor = null;
 
-                  $caja = ControladorUltimoSaldoBancos::ctrMostrarCaja($item, $valor);
-                  foreach ($caja as $key => $value) {
-                    $saldoCaja = number_format($value["saldo"],2);
-                  }
+        $caja = ControladorUltimoSaldoBancos::ctrMostrarCaja($item, $valor);
+        foreach ($caja as $key => $value) {
+          $saldoCaja = number_format($value["saldo"], 2);
+        }
 
-                  echo "<h4 style='margin-left:10%'>Saldo Actual: $ ".$saldoCaja."</h4>";
-                  ?>
-              <?php 
-                echo '</div>
+        echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldoCaja . "</h4>";
+        ?>
+        <?php
+        echo '<div><br><br></div>';
+        echo '</div>
               </div>
             </div>
           </div>';
-         
-       }
-      
+        echo '<div class="col-lg-3 col-xs-6">
+          <div class="">
+            <a href="banco7338" class="btnBancoElegido" banco="banco7338" tabla="tablaBanco7338"><img src="vistas/img/bancos/banco7338.png" alt="" style="width: 90%; height: 60%;"></a><br>
+            <div class="alert alert-info alert-dismissable" style="width:90%">
+             <div>';
+        ?>
+
+        <?php
+        $item = null;
+        $valor = null;
+
+        $banco7338 = ControladorUltimoSaldoBancos::ctrMostrarBanco7338($item, $valor);
+        foreach ($banco7338 as $key => $value) {
+          $saldo7338 = number_format($value["saldo"], 2);
+        }
+
+        echo "<h4 style='margin-left:10%'>Saldo Actual: $ " . $saldo7338 . "</h4>";
+        echo '<div >';
+        ?>
+        <?php
+        $item = null;
+        $valor = null;
+
+        $B7338UltimaActualizacion = ControladorUltimoSaldoBancos::ctrMostrarUltimaActualizacion7338($item, $valor);
+
+        foreach ($B7338UltimaActualizacion as $key => $value) {
+          $actualizacion7338 = $value["fecha"];
+        }
+        echo "<h5 style='margin-left:-5%'>Ultima Actualizacion: " . $actualizacion7338 . "</h5>";
+        echo '</div>';
+        ?>
+
+      <?php
+        echo '</div>
+            </div>
+          </div>
+        </div>';
+      }
+
       ?>
 
     </div>

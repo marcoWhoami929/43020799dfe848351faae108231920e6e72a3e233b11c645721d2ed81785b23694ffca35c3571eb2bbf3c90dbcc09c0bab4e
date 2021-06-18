@@ -358,6 +358,7 @@ JS PERSONALIZADO
 <script src="vistas/js/gestorEntregas.js"></script>
 <script src="vistas/js/timer.js"></script>
 <script src="vistas/js/menuDinamico.js"></script>
+<script src="vistas/js/gestorBanco7338.js"></script>
 
 <!-- GESTORES DE CONTROL MATRIZ -->
 

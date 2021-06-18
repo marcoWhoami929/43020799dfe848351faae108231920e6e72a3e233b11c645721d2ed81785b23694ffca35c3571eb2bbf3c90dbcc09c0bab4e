@@ -4785,7 +4785,7 @@ $("#btnLigarFacturasPendientesCredito").click(function(){
                   
   
                     var datos = new FormData();
-                    datos.append("idBanco", idBanco);
+                    datos.append("idBancoEditar", idBanco);
                    
                    $.ajax({
 

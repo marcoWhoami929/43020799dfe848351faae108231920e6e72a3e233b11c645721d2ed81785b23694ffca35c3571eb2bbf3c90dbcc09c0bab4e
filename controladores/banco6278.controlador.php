@@ -3488,109 +3488,12 @@ class ControladorBanco6278{
 	EDITAR DATOS
 	=============================================*/
 
-	static public function ctrEditarDatos6278(){
+	static public function ctrEditarDatos6278($tabla, $datos)
+	{
 
-		if(isset($_POST["idBanco"])){
+		$respuesta = ModeloBanco6278::mdlEditarDatos6278($tabla, $datos);
 
-			if(isset($_POST["editarDepartamento"])){
-
-				
-
-				$tabla = "banco6278";
-
-
-				$datos = array("id" => $_POST["idBanco"],
-							   "departamento" => $_POST["editarDepartamento"],
-					           "grupo" => $_POST["editarGrupo"],
-					           "subgrupo" => $_POST["editarSubgrupo"],
-					           "mes" => $_POST["editarMes"],
-					           "fecha" => $_POST["editarFecha"],
-					           "descripcion" => $_POST["editarDescripcion"],
-					           "cargo" => $_POST["editarCargo"],
-					           "abono" => $_POST["editarAbono"],
-					           "saldo" => $_POST["editarSaldo"],
-					           "serie" => $_POST["editarSerie"],
-					           "folio" => $_POST["editarFolio"],
-					           "parciales" => $_POST["editarParciales"],
-					           "parcial" => $_POST["editarParcial"],
-					           "departamentoParcial1" => $_POST["editarDepartamentoParcial1"],
-					           "parcial2" => $_POST["editarParcial2"],
-					           "departamentoParcial2" => $_POST["editarDepartamentoParcial2"],
-					           "parcial3" => $_POST["editarParcial3"],
-					           "departamentoParcial3" => $_POST["editarDepartamentoParcial3"],
-					           "parcial4" => $_POST["editarParcial4"],
-					           "departamentoParcial4" => $_POST["editarDepartamentoParcial4"],
-					           "parcial5" => $_POST["editarParcial5"],
-					           "departamentoParcial5" => $_POST["editarDepartamentoParcial5"],
-					           "parcial6" => $_POST["editarParcial6"],
-					           "departamentoParcial6" => $_POST["editarDepartamentoParcial6"],
-					           "parcial7" => $_POST["editarParcial7"],
-					           "departamentoParcial7" => $_POST["editarDepartamentoParcial7"],
-					           "parcial8" => $_POST["editarParcial8"],
-					           "departamentoParcial8" => $_POST["editarDepartamentoParcial8"],
-					           "parcial9" => $_POST["editarParcial9"],
-					           "departamentoParcial9" => $_POST["editarDepartamentoParcial9"],
-					           "parcial10" => $_POST["editarParcial10"],
-					           "departamentoParcial10" => $_POST["editarDepartamentoParcial10"],
-					           "parcial11" => $_POST["editarParcial11"],
-					           "departamentoParcial11" => $_POST["editarDepartamentoParcial11"],
-					           "parcial12" => $_POST["editarParcial12"],
-					           "departamentoParcial12" => $_POST["editarDepartamentoParcial12"],
-					           "acreedor" => $_POST["editarAcreedor"],
-					           "concepto" => $_POST["editarConcepto"],
-					           "numeroDocumento" => $_POST["editarNumeroDocumento"],
-					       	   "tieneIva" => $_POST["editarTieneIva"],
-					           "tieneRetenciones" => $_POST["editarTieneRetenciones"],
-					           "tipoRetencion" => $_POST["editarTipoRetencion"],
-					       	   "importeRetenciones" => $_POST["editarImporteRetenciones"]);
-
-				$respuesta = ModeloBanco6278::mdlEditarDatos6278($tabla, $datos);
-
-				if($respuesta == "ok"){
-
-					echo'<script>
-
-					swal({
-						  type: "success",
-						  title: "Los datos han sido modificados correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
-									if (result.value) {
-
-									
-
-									}
-								})
-
-					</script>';
-
-				}
-
-
-			}else{
-
-				echo'<script>
-
-					swal({
-						  type: "error",
-						  title: "¡No se puede realizar la modificación de los datos!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
-							if (result.value) {
-
-							window.location = "banco6278";
-
-							}
-						})
-
-			  	</script>';
-
-			}
-
-		}
-
+		return $respuesta;
 	}
 	/* FILTRADO DE DATOS POR RANGO DE FECHAS */
 	static public function ctrMostrarRangoFechas($item1,$valor1,$valor2){
@@ -3606,6 +3509,14 @@ class ControladorBanco6278{
 		$tabla = "banco6278";
 
 		$respuesta = ModeloBanco6278::mdlMostrarRangoFechasCredito($tabla,$item1,$valor1,$valor2);
+
+		return $respuesta;
+	}
+	static public function ctrActualizarValoresMovimiento($idBanco)
+	{
+		$tabla = "banco6278";
+
+		$respuesta = ModeloBanco6278::mdlActualizarValoresMovimiento($tabla, $idBanco);
 
 		return $respuesta;
 	}

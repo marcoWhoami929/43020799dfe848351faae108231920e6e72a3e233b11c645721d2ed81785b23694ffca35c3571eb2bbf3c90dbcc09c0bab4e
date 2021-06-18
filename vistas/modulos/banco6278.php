@@ -79,225 +79,171 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
 
       <div class="box-body">
         <div class="box-tools">
-         <?php 
-          
-            if ($_SESSION["grupo"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
-              
+         
+        <?php
 
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
-                echo '
-                <button class="respaldo btn btn-warning" id="respaldo" name="respaldo" onclick="respaldo()"><i class="fa fa-database" aria-hidden="true"></i>Reporte</button>';
-
-                   echo '<a href="vistas/modulos/reportes.php?reporteBancosGeneral=banco6278">
-
-                  <button class="report btn btn-warning" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte General</button>
-
-                </a>';
-
-              }else if($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras"){
-
-                echo '<div class="col-lg-12 col-md-12 col-sm-12">
-                  <div class="col-md-1">
-
-                    <a href="vistas/modulos/reportes.php?reporteBancosCredito=banco6278">
-
-                    <button class="report btn btn-info" id="report" name="report" onclick="myFunction()" disabled><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
-
-                    </a>
-                  </div>
-                  <div class="col-md-3">';
-
-                    if (isset($_POST["fechaIni"])) {
-                      echo '<a href="vistas/modulos/reportes.php?bancoRangoFechasCredito=banco6278&fechaInicioF='.date('Y-m-d', strtotime($_POST["fechaIni"])).'&fechaFinalF='.date('Y-m-d', strtotime($_POST["fechaFin"])).'">
-
-                        <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
-
-                      </a>';
-                      
-                    }else{
-                      echo '<a href="vistas/modulos/reportes.php?bancoRangoFechasCredito=banco6278">
-
-                        <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
-
-                      </a>';
-                    }
-
-                  echo '</div>
-                  <div class="col-lg-8" >
-                    <form action="banco6278" method="POST">
-                      <div class="col-lg-3">'?>
-                        <?php
-                          if (isset($_POST["fechaIni"])) {
-                            echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaIni"])).'" required>';
-
-                            echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaFin"])).'" required>';
-                                       
-                          }else {
-
-                            echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" required>';
-
-                            echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" required>';
-
-                        }
-
-                      echo'</div>
-
-                      <div class="col-lg-2" >
-                        <input type="submit" class="btn btn-info" value="BUSCAR">
-                      </div>
-                    </form>
-                  </div>
-                </div>';
-
-              }else if($_SESSION["perfil"] == "Contabilidad"){
-
-                echo '<div class="col-lg-12 col-md-12 col-sm-12">
-                 
-                  <div class="col-md-3">';
-
-                    if (isset($_POST["fechaIni"])) {
-                      echo '<a href="vistas/modulos/reportes.php?bancoRangoFechas=banco6278&fechaInicioF='.date('Y-m-d', strtotime($_POST["fechaIni"])).'&fechaFinalF='.date('Y-m-d', strtotime($_POST["fechaFin"])).'">
-
-                        <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
-
-                      </a>';
-                  
-                    }else{
-                      echo '<a href="vistas/modulos/reportes.php?bancoRangoFechas=banco6278">
-
-                        <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
-
-                      </a>';
-                    }
-
-                  echo'</div>
-                  <div class="col-lg-8">
-                    <form action="banco6278" method="POST">
-                      <div class="col-lg-3">';?>
-                        <?php
-                          if (isset($_POST["fechaIni"])) {
-                            echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaIni"])).'" required>';
-
-                            echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaFin"])).'" required>';
-                                       
-                          }else {
-
-                            echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" required>';
-
-                            echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" required>';
-
-                          }
-
-                      echo'</div>
-
-                      <div class="col-lg-3">
-                        <input type="submit" class="btn btn-info" value="BUSCAR">
-                      </div>
-                    </form>
-                  </div>
-                </div>';
-          
-              }
-              
-            }else{
+          if ($_SESSION["grupo"] == "Visualizador" || $_SESSION["perfil"] == "Generador de Reportes" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
 
 
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
               echo '
-              <a href="vistas/modulos/reportes.php?reporteBancosEdicion=banco6278">
+      <button class="respaldo btn btn-warning" id="respaldo" name="respaldo" onclick="respaldo()"><i class="fa fa-database" aria-hidden="true"></i>Reporte</button>';
 
-                <button class="report btn btn-success" id="reporte" name="reporte"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
-              </a>
-              <button class="respaldo btn btn-warning" id="respaldo" name="respaldo" onclick="respaldo()"><i class="fa fa-database" aria-hidden="true"></i>Respaldo</button>
+              echo '<a href="vistas/modulos/reportes.php?reporteBancosGeneral=banco6278">
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#list-archive">
-                LISTA DE RESPALDOS
-              </button>
+        <button class="report btn btn-warning" id="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte General</button>
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#restauracion">
-                Restaurar Datos
-              </button>';?>
+      </a>';
+            } else if ($_SESSION["perfil"] == "Contabilidad") {
 
-            <?php
+              echo '<div class="col-lg-12 col-md-12 col-sm-12">
+        
+        <div class="col-md-3">';
 
-              if (isset($_POST["fechaIni"])) {
-                echo '<a href="vistas/modulos/reportes.php?bancoRangoFechas=banco6278&fechaInicioF='.date('Y-m-d', strtotime($_POST["fechaIni"])).'&fechaFinalF='.date('Y-m-d', strtotime($_POST["fechaFin"])).'">
+              echo '<a onclick="reporteRangoFechas6278()">
 
-                <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
+        <button class="report btn btn-info" id="reportRangoF" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
 
-              </a>';
-              }else{
-                echo '<a href="vistas/modulos/reportes.php?bancoRangoFechas=banco6278&fechaInicioF='.date('Y-m-d').'&fechaFinalF='.date('Y-m-d').'">
+      </a>';
 
-                    <button class="report btn btn-info" id="reportRangoF" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
-
-                  </a>';
-              }              
+              echo '</div>
+       
+      </div>';
             }
+          } else {
+
+
+            echo '
+    <a href="vistas/modulos/reportes.php?reporteBancosEdicion=banco6278">
+
+      <button class="report btn btn-success" id="reporte" name="reporte"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+    </a>
+    <button class="respaldo btn btn-warning" id="respaldo" name="respaldo" onclick="respaldo()"><i class="fa fa-database" aria-hidden="true"></i>Respaldo</button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#list-archive">
+      LISTA DE RESPALDOS
+    </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#restauracion">
+      Restaurar Datos
+    </button>'; ?>
+
+          <?php
+
+            echo '<a onclick="reporteRangoFechas6278()">
+
+    <button class="report btn btn-info" id="reportRangoF"  ><i class="fa fa-file-excel-o" aria-hidden="true"></i> Reporte Rango de Fechas</button>
+
+    </a>';
+          }
 
           ?>
-        </div> 
+        </div>
         <br>
         <?php
 
-          if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos" ) {
-          
-            echo '<div class="col-lg-12 col-md-12 col-sm-12">
-              <form action="import6278.php" method="post" enctype="multipart/form-data" id="import_form">
-                <div class="col-md-3">
-                  <input type="file" name="file"  id="inputFile"/>
-                </div>
-                <div class="col-md-2">
-                  <input type="submit" class="btn btn-success" name="import_data" onclick="agregar()" value="IMPORTAR DATOS">
-                </div>';?>
-                <?php 
-                    //$calcularFolioImportacion =  new ControladorBanco6278();
-                    //$calcularFolioImportacion -> ctrCalcularFolioImportacion();
+        if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Bancos") {
 
-                  $comprobacionImportacion =  new ControladorBanco6278();
-                  $comprobacionImportacion -> ctrCalcularComprobacionImportacion();
+          echo '<div class="col-lg-12 col-md-12 col-sm-12">
+    <form action="import6278.php" method="post" enctype="multipart/form-data" id="import_form">
+      <div class="col-md-3">
+        <input type="file" name="file"  id="inputFile"/>
+      </div>
+      <div class="col-md-2">
+        <input type="submit" class="btn btn-success" name="import_data" onclick="agregar()" value="IMPORTAR DATOS">
+      </div>'; ?>
+        <?php
+          //$calcularFolioImportacion =  new ControladorBanco6278();
+          //$calcularFolioImportacion -> ctrCalcularFolioImportacion();
 
-                  $calcularDiferenciaImportacion = new ControladorBanco6278();
-                  $calcularDiferenciaImportacion -> ctrCalcularDiferenciaImportacion();
+          $comprobacionImportacion =  new ControladorBanco6278();
+          $comprobacionImportacion->ctrCalcularComprobacionImportacion();
 
-              echo '</form>
-                <div class="col-md-7">
-                <form action="banco6278" method="POST">
-                  <div class="col-xs-4">';?>
-                    <?php
-                      if (isset($_POST["fechaIni"])) {
-                        echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaIni"])).'" required>';
+          $calcularDiferenciaImportacion = new ControladorBanco6278();
+          $calcularDiferenciaImportacion->ctrCalcularDiferenciaImportacion();
 
-                        echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" value="'.date('Y-m-d', strtotime($_POST["fechaFin"])).'" required>';
-                                   
-                      }else {
-
-                        echo '<input type="date" id="fechaIni" name="fechaIni" class="form-control" placeholder="Fecha" required>';
-
-                        echo '<input type="date" id="fechaFin" name="fechaFin" class="form-control" placeholder="Fecha" required>';
-
-                      }
-
-                  echo'</div>
-                  <div class="col-md-3">
-                    <input type="submit" class="btn btn-info" value="BUSCAR">
-                  </div>
-                  
-                </form>
-              </div>
-            </div>';
-
-              
+          echo '</form>
+     
+  </div>';
         }
-        
+
+        $accion = "cargarBanco6278();";
+
         ?>
-          <!--
-           <form action="reconstruccionNumeroMovimiento.php" method="POST" >
-            <div class="col-lg-3">
-              <input type="hidden" name="banco" id="banco" value="banco6278">
-              <button type="submit" name="reconstruccion" id="reconstruccion" class="btn btn-info"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only"></span></button>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="row">
+            <div class='col-lg-2 col-md-2  col-sm-2'>
+              <label class=''>Departamento</label>
+              <select class='form-control' id='departamentoSelect' onchange='<?php echo $accion ?>'>
+                <option value="">TODOS</option>
+
+                <option value="ADMINISTRACION">ADMINISTRACION</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS">RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS">CEDIS</option>
+                <option value="DIAGONAL">DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO">MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL">VERGEL</option>
+                <option value="XONACA">XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+              </select>
             </div>
-          </form>
-          -->
+
+            <div class="col-lg-2 col-md-2  col-sm-2">
+              <label class="">Tipo Movimiento</label>
+              <select class="form-control" id="movimientoSelect" onchange='<?php echo $accion ?>'>
+                <option value="">TODOS</option>
+                <?php
+                if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
+                } else {
+                  echo '<option value="CARGOS">CARGOS</option>';
+                }
+                ?>
+
+                <option value="ABONOS">ABONOS</option>
+
+              </select>
+            </div>
+
+            <div class="col-lg-2 col-md-2  col-sm-2">
+              <label class="">Estatus</label>
+              <select class="form-control" id="verificarErrorSelect" onchange='<?php echo $accion ?>'>
+                <option value="">TODOS</option>
+                <option value="ERROR">ERROR</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6 col-md-6  col-sm-6">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <label class="">Fecha Inicial</label>
+                  <input type="date" id="fechaIni" class="form-control" placeholder="Fecha" required>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <label class="">Fecha Final</label>
+                  <input type="date" id="fechaFin" class="form-control" placeholder="Fecha" required>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                  <button type="button" class="btn btn-success" onclick='<?php echo $accion ?>'>
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
         <br>
         <table class="table-bordered table-striped dt-responsive tablaBanco6278" width="100%" id="banco6278" style="border: 2px solid #187092">
          
@@ -332,6 +278,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
              <th style="border:none">Retención IVA Honorarios</th>
              <th style="border:none">Retencion ISR Honorarios</th>
              <th style="border:none" class="acciones">Acciones</th>
+             <th style="border:none">Error Diferencia</th>
              
 
            </tr> 
@@ -380,7 +327,7 @@ foreach ($banco6278Valores as $key => $value4) {
 <div class="modal fade" id="modalIdentificarDocumentosPendientes" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document" style="width: 80%;">
             <div class="modal-content">
-              <div class="modal-header" style="background:#001f3f;color: white">
+              <div class="modal-header" style="background:#187092;color: white">
                 <h3 class="modal-title" id="exampleModalLabel">Vincular Facturas</h3>
 
                 <button type="button" class="close btnCerrarFacturasPendientes" data-dismiss="modal" aria-label="Close">
@@ -428,7 +375,7 @@ foreach ($banco6278Valores as $key => $value4) {
                       <div id="listaFacturas"></div>
                        <table class="table-bordered table-striped dt-responsive tablaPendientesCredito" width="100%" id="pendientesCredito" style="border: 2px solid #001f3f">
                  
-                        <thead style="background:#001f3f;color: white">
+                        <thead style="background:#187092;color: white">
                          
                          <tr style="">
                            <th style="border:none">Serie</th>
@@ -474,7 +421,7 @@ MODAL EDITAR DATOS
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+       <form role="form" method="post" enctype="multipart/form-data" id="editarMovimientoBanco6278">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -1554,49 +1501,12 @@ MODAL EDITAR DATOS
 
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="minimizar">Salir</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="minimizar6278">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar</button>
 
         </div>
         
-        <?php
-
-        $editarDatos = new ControladorBanco6278();
-        $editarDatos -> ctrEditarDatos6278();
-
-        $registroBitacora =  new ControladorBanco6278();
-        $registroBitacora -> ctrRegistroBitacora(); 
-
-                $calcularImporteImportacion =  new ControladorBanco6278();
-                $calcularImporteImportacion -> ctrCalcularImporteImportacion();
-
-                $calcularImporteParciales = new ControladorBanco6278();
-                $calcularImporteParciales -> ctrCalcularImporteParciales();
-
-                $calcularIvaImportacion = new ControladorBanco6278();
-                $calcularIvaImportacion -> ctrCalcularIvaImportacion();
-
-                $calcularIvaArrendamientoImportacion = new ControladorBanco6278();
-                $calcularIvaArrendamientoImportacion -> ctrCalcularIva1Importacion();
-
-                $calcularIsrArrendamientoImportacion = new ControladorBanco6278();
-                $calcularIsrArrendamientoImportacion -> ctrCalcularIsr1Importacion();
-
-                $calcularIvaFleteImportacion = new ControladorBanco6278();
-                $calcularIvaFleteImportacion -> ctrCalcularIva2Importacion();
-
-                $calcularIsrFleteImportacion = new ControladorBanco6278();
-                $calcularIsrFleteImportacion -> ctrCalcularIsr2Importacion();
-
-                $calcularIvaHonorariosImportacion = new ControladorBanco6278();
-                $calcularIvaHonorariosImportacion -> ctrCalcularIva3Importacion();
-
-                $calcularIsrHonorariosImportacion = new ControladorBanco6278();
-                $calcularIsrHonorariosImportacion -> ctrCalcularIsr3Importacion();
-       
-
-        ?>
 
       </form>
 
@@ -1613,7 +1523,7 @@ MODAL VER PARCIALES
 <div class="modal fade" id="modalVerParciales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background: tomato">
+      <div class="modal-header" style="background:#187092;color: white">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" style="color: white">Parciales</h4>
       </div>
@@ -2165,7 +2075,7 @@ $(document).ready(function(){
                  document.getElementById("editarBanco").click();
             });
             shortcut.add("Esc",function() {
-                 document.getElementById("minimizar").click();
+                 document.getElementById("minimizar6278").click();
             });
             shortcut.add("Ctrl+B", function() {
                 document.getElementsByTagName("input")[2].focus();

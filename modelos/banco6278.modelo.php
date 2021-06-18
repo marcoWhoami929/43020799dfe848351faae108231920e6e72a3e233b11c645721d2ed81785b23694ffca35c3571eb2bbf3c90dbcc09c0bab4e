@@ -7735,11 +7735,12 @@ class ModeloBanco6278{
 	EDITAR DATOS
 	=============================================*/
 
-	static public function mdlEditarDatos6278($tabla, $datos){
-	
+	static public function mdlEditarDatos6278($tabla, $datos)
+	{
+
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET departamento = :departamento, grupo = :grupo, subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, cargo = :cargo, abono = :abono, saldo = :saldo,  serie = :serie, folio = :folio, parciales = :parciales, parcial = :parcial, departamentoParcial1 = :departamentoParcial1, parcial2 = :parcial2, departamentoParcial2 = :departamentoParcial2, parcial3 = :parcial3, departamentoParcial3 = :departamentoParcial3, parcial4 = :parcial4, departamentoParcial4 = :departamentoParcial4, parcial5 = :parcial5, departamentoParcial5 = :departamentoParcial5, parcial6 = :parcial6, departamentoParcial6 = :departamentoParcial6, parcial7 = :parcial7, departamentoParcial7 = :departamentoParcial7, parcial8 = :parcial8, departamentoParcial8 = :departamentoParcial8, parcial9 = :parcial9, departamentoParcial9 = :departamentoParcial9, parcial10 = :parcial10, departamentoParcial10 = :departamentoParcial10, parcial11 = :parcial11, departamentoParcial11 = :departamentoParcial11, parcial12 = :parcial12, departamentoParcial12 = :departamentoParcial12,  acreedor = :acreedor, concepto = :concepto, numeroDocumento = :numeroDocumento, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones WHERE id = :id");
 
-		
+
 		$stmt->bindParam(":departamento", $datos["departamento"], PDO::PARAM_STR);
 		$stmt->bindParam(":grupo", $datos["grupo"], PDO::PARAM_STR);
 		$stmt->bindParam(":subgrupo", $datos["subgrupo"], PDO::PARAM_STR);
@@ -7785,23 +7786,17 @@ class ModeloBanco6278{
 		$stmt->bindParam(":importeRetenciones", $datos["importeRetenciones"], PDO::PARAM_STR);
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
-
-		
-
-		if($stmt -> execute()){
+		if ($stmt->execute()) {
 
 			return "ok";
-		
-		}else{
+		} else {
 
-			return "error";	
-
+			return "error";
 		}
 
-		$stmt -> close();
+		$stmt->close();
 
 		$stmt = null;
-
 	}
 	/* FILTRADO DE DATOS POR RANGO DE FECHAS */
 	static public function mdlMostrarRangoFechas($tabla,$item1,$valor1,$valor2){
@@ -7839,6 +7834,26 @@ class ModeloBanco6278{
 		$stmt-> close();
 		$stmt = null;
 
+	}
+	/*=============================================
+	CALCULAR TODOS LOS NIVELES DEL BANCO
+	=============================================*/
+	static public function mdlActualizarValoresMovimiento($tabla, $idBanco)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12),iva = (importe/1.16) * 0.16,retIva = (importe * 10.6667)/100,retIsr = (importe * 10)/100,retIva2 = (importe * 4)/100,retIsr2 = (importe * 0)/100,retIva3 = (importe * 10.6667)/100,retIsr3 = (importe * 10)/100 where id = $idBanco");
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt->close();
+
+		$stmt = null;
 	}
 
 }

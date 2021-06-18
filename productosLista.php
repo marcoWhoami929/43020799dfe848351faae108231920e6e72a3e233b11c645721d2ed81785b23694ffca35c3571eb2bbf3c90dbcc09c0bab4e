@@ -18,13 +18,13 @@
 			$productos[] = array('codigo'=> '', 'descripcion' => '', 'precio' => '', 'resultado' => 0);
 		}else{
 			while ($row = mysqli_fetch_row($sql)) {
-			    $codigo = $row[1];
-			    $descripcion = str_replace('pul', '"', $row[2]);
-			    $precio = $row[11];
-			    $unidadMedida = $row[14];
-			    $valorMedida = $row[15];
-			    $gramaje = $row[16];
-			    $nombreAbrev = $row[17];
+			    $codigo = $row[3];
+			    $descripcion = str_replace('pul', '"', $row[4]);
+			    $precio = $row[13];
+			    $unidadMedida = $row[16];
+			    $valorMedida = $row[17];
+			    $gramaje = $row[18];
+			    $nombreAbrev = $row[19];
 			
 
 			    $productos[] = array('descripcion'=> $descripcion, 'precio' => $precio, 'unidadMedida' => $unidadMedida, 'valorMedida' => $valorMedida, 'gramaje' => $gramaje, 'nombre' => $nombreAbrev,  'resultado'=>1);
