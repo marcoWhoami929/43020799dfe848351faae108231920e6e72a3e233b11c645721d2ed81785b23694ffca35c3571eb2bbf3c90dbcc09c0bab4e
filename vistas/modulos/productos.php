@@ -63,42 +63,17 @@ if($_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["nombre"] == "Jesú
       </div>
 
       <div class="box-body">
-         <?php
-          if ($_SESSION["perfil"] == "Administrador General") {
-                      
-                        echo '<div class="">
-                      <div class="row">
-                        <form action="importListaPrecios.php" method="post" enctype="multipart/form-data" id="import_form">
-                          <div class="col-md-4">
-                            <input type="file" name="file" id="inputFile" />
-                          </div>
-                          <div class="col-md-2">
-                            <input type="submit" class="btn btn-success" name="import_data" onclick="agregar()" value="ACTUALIZAR PRECIOS">
-                          </div>';
-
-                          ?>
-                         <?php 
-
-
-                           
-
-                       echo '</form>
-                      </div>
-                    </div>';
-
-                     
-
-                    }
-        ?>
+        
         <div class="logi" id="logi">
           <CENTER><h2>LISTA DE PRODUCTOS</h2></CENTER>
          
          <div class="box-tools">
           <a href="vistas/modulos/reportes.php?reporte=productos">
 
-            <button class="report btn btn-info" id="report" name="report" onclick="myFunction()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
+            <button class="report btn btn-info" id="report" name="report"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Reporte</button>
 
           </a>
+          <button type="button" class="btn btn-success" onclick="actualizarProductos()"   data-toggle="modal" data-target="#modalActualizacionProductos" data-dismiss="modal" data-backdrop="false"><i class="fa fa-refresh" aria-hidden="true"></i> Actualizar</button>
         
 
         </div>
@@ -127,9 +102,6 @@ if($_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["nombre"] == "Jesú
              <th>Clave Sat</th>
              <th>Unidad Medida</th>
 
-      
-
-
            </tr> 
 
           </thead>
@@ -146,99 +118,22 @@ if($_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["nombre"] == "Jesú
   </section>
 
 </div>
-<script>
-    /**
-     * Funcion que captura las variables pasados por GET
-     * Devuelve un array de clave=>valor
-     */
-    function getGET()
-    {
-        // capturamos la url
-        var loc = document.location.href;
-        // si existe el interrogante
-        if(loc.indexOf('?')>0)
-        {
-            // cogemos la parte de la url que hay despues del interrogante
-            var getString = loc.split('?')[1];
-            // obtenemos un array con cada clave=valor
-            var GET = getString.split('&');
-            var get = {};
- 
-            // recorremos todo el array de valores
-            for(var i = 0, l = GET.length; i < l; i++){
-                var tmp = GET[i].split('=');
-                get[tmp[0]] = unescape(decodeURI(tmp[1]));
-            }
-            return get;
-        }
-    }
- 
-    window.onload = function()
-    {
-        // Cogemos los valores pasados por get
-        var valores=getGET();
-        if(valores)
-        {
-            // hacemos un bucle para pasar por cada indice del array de valores
-            for(var index in valores)
-            {
-                
-                if (valores[index] == "success") {
-              
-                  swal({
+<div class="modal fade" id="modalActualizacionProductos" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header estilosTablas">
+                  <center><h4>Procesando Datos</h4></center>
+                </div>
+                <div class="modal-body">
 
-                      type: "success",
-                      title: "¡Los precios han sido actualizados correctamente!",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar"
+                  <div class="alert alert" role="alert" id="loaderProductos" style="display: none;opacity:1;background: white;height: 250px">
+                           <center><span id="productosTextLoader" style="font-weight: bold;font-size: 17px;color:#001f3f"></span></center>
+                           <center><img src="vistas/img/plantilla/loader.gif" alt="img-responsive" style="width: 100%;"></center>
 
-                    }).then(function(result){
+                  </div>
+                  <span id="processLoaderProductos"></span>
+                </div>
 
-                      if(result.value){
-                        
-                        window.location = "productos";
-
-                      }
-
-                    });
-                }else if (valores[index] == "error") {
-                  swal({
-
-                        type: "error",
-                        title: "¡UPPS! Hubo un error durante la ejecución",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-
-                      }).then(function(result){
-
-                        if(result.value){
-                        
-                          window.location = "productos";
-
-                        }
-
-                      });
-                }else if (valores[index] == "invalid_file") {
-                      swal({
-
-                        type: "error",
-                        title: "¡UPPS!El formato del archivo es inválido",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-
-                      }).then(function(result){
-
-                        if(result.value){
-                        
-                          window.location = "productos";
-
-                        }
-
-                      });
-                }
-            }
-        }else{
-            
-        }
-    }
-    </script>
+              </div>
+            </div>
+          </div>

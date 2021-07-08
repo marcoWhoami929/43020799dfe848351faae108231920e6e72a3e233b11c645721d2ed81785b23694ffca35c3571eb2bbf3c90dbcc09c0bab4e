@@ -2,7 +2,7 @@
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 =============================================*/
 
-$(".tablaProductos").DataTable({
+tablaProductos = $(".tablaProductos").DataTable({
    "ajax":"ajax/tablaProductos.ajax.php",
    "deferRender": true,
    "retrieve": true,
@@ -35,3 +35,51 @@ $(".tablaProductos").DataTable({
    }
 
 });
+/****ACTUALIZACION DE PRODUCTOS***/
+function actualizarProductos(){
+ document.getElementById("loaderProductos").style.display = "";
+  $("#loaderProductos").addClass("animated fadeInDown");
+  document.getElementById("productosTextLoader").innerHTML =
+    "Conectando CONTPAQI COMERCIAL.....";
+  setTimeout(function () {
+    document.getElementById("productosTextLoader").innerHTML =
+      "Actualizando productos , espere un momento porfavor.....";
+  }, 3000);
+
+  var datos = new FormData();
+  datos.append("empresaProductos", "PINTURAS");
+
+  $.ajax({
+    url: "ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function (respuesta) {
+      var json = JSON.stringify(respuesta);
+
+      var datosFacturas = new FormData();
+      datosFacturas.append("listadoActualizacionProductos", json);
+
+      $.ajax({
+        url: "ajax/productos.ajax.php",
+        method: "POST",
+        data: datosFacturas,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+          if (respuesta === "finalizado") {
+            $("#modalActualizacionProductos").modal("hide");
+
+            tablaProductos.ajax.reload();
+          } else {
+          }
+        },
+      });
+    },
+  });
+}

@@ -1807,7 +1807,75 @@ class AjaxAtencion{
 			$item = "CFECHA";
 			$valor = $this->fechaActualFacturasRifa;
 	
-			$mostrarFacturas = "SELECT admDoc.CRAZONSOCIAL,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CCANCELADO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDoc.CIDDOCUMENTODE = 4 and admDoc.CTOTAL >= 700  GROUP BY admDoc.CRAZONSOCIAL,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CCANCELADO";
+			$mostrarFacturas = "with ventas as(SELECT
+			admDocs.CSERIEDOCUMENTO
+			,admDocs.CFOLIO
+			,admDocs.CFECHA
+			,admMov.CIDPRODUCTO
+			,admMov.CTOTAL
+			,admDocs.CRAZONSOCIAL
+			,admDocs.CTOTAL AS TOTALVENTA
+			,'1' AS CLASIFICACION
+			,admDocs.CCANCELADO
+			
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(2197,
+	  2198,
+	  2199,
+	  2200,
+	  2201,
+	  2202,
+	  2203,
+	  2204,
+	  6934) UNION SELECT
+	  admDocs.CSERIEDOCUMENTO
+			,admDocs.CFOLIO
+			,admDocs.CFECHA
+			,admMov.CIDPRODUCTO
+			,admMov.CTOTAL
+			,admDocs.CRAZONSOCIAL
+			,admDocs.CTOTAL AS TOTALVENTA
+			,'2' AS CLASIFICACION
+			,admDocs.CCANCELADO
+			
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+	  admDocs.CSERIEDOCUMENTO
+			,admDocs.CFOLIO
+			,admDocs.CFECHA
+			,admMov.CIDPRODUCTO
+			,admMov.CTOTAL
+			,admDocs.CRAZONSOCIAL
+			,admDocs.CTOTAL AS TOTALVENTA
+			,'3' AS CLASIFICACION
+			,admDocs.CCANCELADO
+			
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+	  admDocs.CSERIEDOCUMENTO
+			,admDocs.CFOLIO
+			,admDocs.CFECHA
+			,admMov.CIDPRODUCTO
+			,admMov.CTOTAL
+			,admDocs.CRAZONSOCIAL
+			,admDocs.CTOTAL AS TOTALVENTA
+			,'4' AS CLASIFICACION
+			,admDocs.CCANCELADO
+			
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0))
+	  ,
+	  ventasAcumulado AS(
+		  SELECT 
+			  vn.CRAZONSOCIAL,
+			 vn.CSERIEDOCUMENTO,
+			 vn.CFOLIO,
+			 vn.CTOTAL,
+			 vn.CFECHA,
+			 vn.TOTALVENTA,
+			 vn.CLASIFICACION,
+			 vn.CCANCELADO
+			 
+			  
+		  FROM ventas AS vn
+	  )
+	  SELECT * FROM ventasAcumulado PIVOT(SUM(CTOTAL) FOR CLASIFICACION in([1],[2],[3],[4])) as pivotTable ";
 
             $ejecutarConsulta = sqlsrv_query($conne,$mostrarFacturas);
             $i = 0;
@@ -1817,12 +1885,16 @@ class AjaxAtencion{
            	}else{
            		 while ($value = sqlsrv_fetch_array($ejecutarConsulta)) {
             	
-            	$facturas[$i] = array("razonSocial" => $value["CRAZONSOCIAL"],
+            	$facturas[$i] = array("cliente" => $value["CRAZONSOCIAL"],
             						 "serie" => $value["CSERIEDOCUMENTO"],
             						 "folio" => $value["CFOLIO"],
-            						 "total" => $value["CTOTAL"],
+									 "fecha"=>$value["CFECHA"],
+									 "total"=>$value["TOTALVENTA"],
             						 "cancelado" => $value["CCANCELADO"],
-            						 "fecha"=>$value["CFECHA"]);
+									 "acumulado1" => $value["1"],
+									 "acumulado2" => $value["2"],
+									 "acumulado3" => $value["3"],
+									 "acumulado4" => $value["4"]);
             	$i++;
             }
             echo json_encode($facturas);
