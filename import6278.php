@@ -115,6 +115,30 @@
 						$ivaComVentas = preg_match('/IVA COM. VENTAS DEBITO/i', $emp_record[1]);
 						$ivaComVentasCredito = preg_match("/IVA COM. VENTAS CREDITO/i", $emp_record[1]);
 
+						if ($emp_record[2] == "") {
+							$cargo = 0;
+						}else{
+							$cargo = (str_replace(',','',$emp_record[2]));
+						}
+
+						if ($emp_record[3] == "") {
+							$abono = 0;
+						}else{
+							$abono = (str_replace(',','',$emp_record[3]));
+						}
+						
+						
+
+						$importe = $cargo + $abono;
+
+						$iva = ($importe/1.16) * 0.16;
+						$retIva = (($importe * 10.6667)/100);
+						$retIsr = (($importe * 10)/100);
+						$retIva2 = (($importe * 4)/100);
+						$retIsr2 = (($importe * 0)/100);
+						$retIva3 = (($importe * 10.6667)/100);
+						$retIsr3 = (($importe * 10)/100);
+
 						if ( $cuotaTransaccion == true || $comisionVentasDebito == true || $comisionVentasCredito == true) {
 
 							 $consulta = mysqli_query($conn,'SELECT MAX(numeroMovimiento) as numeroMovimiento FROM banco6278 LIMIT 1');
@@ -130,7 +154,7 @@
 			                  $mes=strftime("%B",mktime(0, 0, 0, $numero, 1, 2000)); 
 			                  $mesFinal = strtoupper($mes);
 
-							$mysql_insert = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento,grupo,subgrupo,acreedor,concepto)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."','EGRESOS','07. Gastos Financieros  Comisiones Bancarias','BBVA BANCOMER SA','COMISIONES BANCARIAS')";
+							$mysql_insert = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento,grupo,subgrupo,acreedor,concepto,importe,iva,retIva,retIsr,retIva2,retIsr2,retIva3,retIsr3)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."','EGRESOS','07. Gastos Financieros  Comisiones Bancarias','BBVA BANCOMER SA','COMISIONES BANCARIAS','".$importe."','".$iva."','".$retIva."','".$retIsr."','".$retIva2."','".$retIsr2."','".$retIva3."','".$retIsr3."')";
 
 
 							mysqli_query($conn, $mysql_insert) or die("database error:". mysqli_error($conn));
@@ -151,7 +175,7 @@
 			                  $mes=strftime("%B",mktime(0, 0, 0, $numero, 1, 2000)); 
 			                  $mesFinal = strtoupper($mes);
 
-							$mysql_insert2 = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento,grupo,subgrupo,acreedor,concepto)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."','EGRESOS','I.V.A Acreditable','BBVA BANCOMER SA','COMISIONES BANCARIAS')";
+							$mysql_insert2 = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento,grupo,subgrupo,acreedor,concepto,importe,iva,retIva,retIsr,retIva2,retIsr2,retIva3,retIsr3)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."','EGRESOS','I.V.A Acreditable','BBVA BANCOMER SA','COMISIONES BANCARIAS','".$importe."','".$iva."','".$retIva."','".$retIsr."','".$retIva2."','".$retIsr2."','".$retIva3."','".$retIsr3."')";
 
 
 							mysqli_query($conn, $mysql_insert2) or die("database error:". mysqli_error($conn));
@@ -172,7 +196,7 @@
 			             $mesFinal = strtoupper($mes);
 
 
-						$mysql_insert3 = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."')";
+						$mysql_insert3 = "INSERT INTO banco6278 (mes,fecha,descripcion,cargo,abono,saldo,ultimoSaldo,iden,tieneIva, tieneRetenciones, numeroMovimiento,importe,iva,retIva,retIsr,retIva2,retIsr2,retIva3,retIsr3)VALUES('".$mesFinal."','".$emp_record[0]."','".$emp_record[1]."','".str_replace(',','',$emp_record[2])."','".str_replace(',','',$emp_record[3])."','".str_replace(',','',$emp_record[4])."','".str_replace(',','',$emp_record[5])."','".$emp_record[6]."','No',0,'".$codigo."','".$importe."','".$iva."','".$retIva."','".$retIsr."','".$retIva2."','".$retIsr2."','".$retIva3."','".$retIsr3."')";
 
 
 						mysqli_query($conn, $mysql_insert3) or die("database error:". mysqli_error($conn));
