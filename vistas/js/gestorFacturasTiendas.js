@@ -6252,7 +6252,7 @@ $(".tablaCotizacionesComercial").on("click", ".btnGenerarOportunidad", function(
 
           }else{
            
-              var url = "https://sanfranciscodekkerlab.com/sorteo/api.php?callback=?";
+              var url = "https://sanfranciscodekkerlab.com/sorteos/api.php?callback=?";
               var listaFacturas = json;
               var dataString = "listaFacturas=" + listaFacturas +"&cargarFacturasRifa=";
               $.ajax({
