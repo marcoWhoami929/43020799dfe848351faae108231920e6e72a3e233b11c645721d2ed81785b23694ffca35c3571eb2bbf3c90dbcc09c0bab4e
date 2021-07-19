@@ -1818,7 +1818,7 @@ class AjaxAtencion{
 			,'1' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(2197,
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-07-14' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(2197,
 	  2198,
 	  2199,
 	  2200,
@@ -1837,7 +1837,7 @@ class AjaxAtencion{
 			,'2' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-07-14' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
 	  admDocs.CSERIEDOCUMENTO
 			,admDocs.CFOLIO
 			,admDocs.CFECHA
@@ -1848,7 +1848,7 @@ class AjaxAtencion{
 			,'3' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-07-14' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
 	  admDocs.CSERIEDOCUMENTO
 			,admDocs.CFOLIO
 			,admDocs.CFECHA
@@ -1859,7 +1859,7 @@ class AjaxAtencion{
 			,'4' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-06-25' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0))
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '2021-07-14' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0))
 	  ,
 	  ventasAcumulado AS(
 		  SELECT 
