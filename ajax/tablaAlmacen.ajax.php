@@ -39,6 +39,7 @@ class TablaAlmacen{
                         $hora_en_segundos = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
 
                         /*********estado de cliente*/
+                        /*
                         $item = 'codigoCliente';
                         $valor = $almacen[$i]["codigoCliente"];
 
@@ -113,6 +114,7 @@ class TablaAlmacen{
                             $estadoCredito  = "<button class='btn btn-danger btnDetailClientAlmacen' codigoCliente='".$almacen[$i]["codigoCliente"]."' catalogo='".$catalogo."' idClienteComercial = '".$idClienteComercial."' data-toggle='modal' data-target='#modalDetailClientAlmacen'><i class='fa fa-money'></i></button>";
 
                         }
+                        */
                         /*********estado de cliente*/
 
                         if ($almacen[$i]["orden"] == 1) {
@@ -347,7 +349,7 @@ class TablaAlmacen{
 				      "'.$almacen[$i]["fechaRecepcion"].'",
 				      "'.$almacen[$i]["fechaSuministro"].'",
 				      "'.$estatusPedido.'",
-              "'.$estadoCredito.'",
+             
 				      "'.$almacen[$i]["fechaTermino"].'",
 				      "'.$observaciones.'",
               "'.$importante.'",

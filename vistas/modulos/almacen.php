@@ -119,7 +119,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Alm
              <th style="border:none">Fecha de Recepción</th>
              <th style="border:none">Fecha de Suministro</th>
              <th style="border:none">Estatus</th>
-             <th style="border:none">ESTADO</th>
+             
              <th style="border:none">Fecha de Término</th>
              <th style="border:none">Observaciones</th>
              <th style="border:none">Importante</th>
