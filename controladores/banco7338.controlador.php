@@ -6,8 +6,8 @@ class ControladorBanco7338
 
 
     /*=============================================
-	MOSTRAR BANCO
-	=============================================*/
+    MOSTRAR BANCO
+    =============================================*/
 
     static public function ctrMostrarBanco($item, $valor)
     {
@@ -19,8 +19,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	MOSTRAR SALDO INICIAL
-	=============================================*/
+    MOSTRAR SALDO INICIAL
+    =============================================*/
 
     static public function ctrMostrarSaldo($item, $valor)
     {
@@ -32,8 +32,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	MOSTRAR SALDO INICIAL
-	=============================================*/
+    MOSTRAR SALDO INICIAL
+    =============================================*/
 
     static public function ctrMostrarSaldoF($item, $valor)
     {
@@ -45,8 +45,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS
+    =============================================*/
 
     static public function ctrIngresosNoIdentificados($item, $valor)
     {
@@ -58,8 +58,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS FEBRERO
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS FEBRERO
+    =============================================*/
 
     static public function ctrIngresosNoIdentificadosF($item, $valor)
     {
@@ -71,8 +71,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS VACIOS
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS VACIOS
+    =============================================*/
 
     static public function ctrIngresosNoIdentificadosVacios($item, $valor)
     {
@@ -84,8 +84,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS VACIOS FEBRERO
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS VACIOS FEBRERO
+    =============================================*/
 
     static public function ctrIngresosNoIdentificadosVaciosF($item, $valor)
     {
@@ -97,8 +97,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS SAN MANUEL
-	=============================================*/
+    INGRESOS SAN MANUEL
+    =============================================*/
     static public function ctrIngresosSanManuel($item, $valor)
     {
 
@@ -109,8 +109,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS SAN MANUEL FEBRERO
-	=============================================*/
+    INGRESOS SAN MANUEL FEBRERO
+    =============================================*/
     static public function ctrIngresosSanManuelF($item, $valor)
     {
 
@@ -121,8 +121,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS MAYORAZGO
-	=============================================*/
+    INGRESOS MAYORAZGO
+    =============================================*/
     static public function ctrIngresosMayorazgo($item, $valor)
     {
 
@@ -133,8 +133,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS MAYORAZGO FEBRERO
-	=============================================*/
+    INGRESOS MAYORAZGO FEBRERO
+    =============================================*/
     static public function ctrIngresosMayorazgoF($item, $valor)
     {
 
@@ -145,8 +145,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS REFORMA
-	=============================================*/
+    INGRESOS REFORMA
+    =============================================*/
     static public function ctrIngresosReforma($item, $valor)
     {
 
@@ -157,8 +157,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS REFORMA FEBRERO
-	=============================================*/
+    INGRESOS REFORMA FEBRERO
+    =============================================*/
     static public function ctrIngresosReformaF($item, $valor)
     {
 
@@ -169,8 +169,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS XONACA
-	=============================================*/
+    INGRESOS XONACA
+    =============================================*/
     static public function ctrIngresosXonaca($item, $valor)
     {
 
@@ -181,8 +181,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS XONACA FEBRERO
-	=============================================*/
+    INGRESOS XONACA FEBRERO
+    =============================================*/
     static public function ctrIngresosXonacaF($item, $valor)
     {
 
@@ -193,8 +193,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS VERGEL
-	=============================================*/
+    INGRESOS VERGEL
+    =============================================*/
     static public function ctrIngresosVergel($item, $valor)
     {
 
@@ -205,8 +205,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS VERGEL FEBRERO
-	=============================================*/
+    INGRESOS VERGEL FEBRERO
+    =============================================*/
     static public function ctrIngresosVergelF($item, $valor)
     {
 
@@ -217,8 +217,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS CAPU
-	=============================================*/
+    INGRESOS CAPU
+    =============================================*/
     static public function ctrIngresosCapu($item, $valor)
     {
 
@@ -229,8 +229,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS CAPU FEBRERO
-	=============================================*/
+    INGRESOS CAPU FEBRERO
+    =============================================*/
     static public function ctrIngresosCapuF($item, $valor)
     {
 
@@ -241,8 +241,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS LAS TORRES
-	=============================================*/
+    INGRESOS LAS TORRES
+    =============================================*/
     static public function ctrIngresosLasTorres($item, $valor)
     {
 
@@ -253,8 +253,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	INGRESOS LAS TORRES FEBRERO
-	=============================================*/
+    INGRESOS LAS TORRES FEBRERO
+    =============================================*/
     static public function ctrIngresosLasTorresF($item, $valor)
     {
 
@@ -265,8 +265,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	PAGOS A PROVEEDORES
-	=============================================*/
+    PAGOS A PROVEEDORES
+    =============================================*/
     static public function ctrPagoAProveedores($item, $valor)
     {
 
@@ -277,8 +277,8 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	PAGOS A PROVEEDORES FEBRERO
-	=============================================*/
+    PAGOS A PROVEEDORES FEBRERO
+    =============================================*/
     static public function ctrPagoAProveedoresF($item, $valor)
     {
 
@@ -289,11 +289,11 @@ class ControladorBanco7338
         return $respuesta;
     }
     /*=============================================
-	PAGOS A PROVEEDORES
-	=============================================*/
+    PAGOS A PROVEEDORES
+    =============================================*/
     /*=============================================
-	EGRESOS SUBGRUPOS
-	=============================================*/
+    EGRESOS SUBGRUPOS
+    =============================================*/
     static public function ctrAcreedoresBancarios($item, $valor)
     {
 
@@ -1564,7 +1564,7 @@ class ControladorBanco7338
 
         return $respuesta;
     }
-    static public function ctrGastosOperativosGravados24F($item, $valor)
+     static public function ctrGastosOperativosGravados24F($item, $valor)
     {
 
         $tabla = "banco7338";
@@ -3452,106 +3452,12 @@ class ControladorBanco7338
     EDITAR DATOS
     =============================================*/
 
-    static public function ctrEditarDatos7338()
+    static public function ctrEditarDatos7338($tabla, $datos)
     {
 
-        if (isset($_POST["idBanco"])) {
+        $respuesta = ModeloBanco7338::mdlEditarDatos7338($tabla, $datos);
 
-            if (isset($_POST["editarDepartamento"])) {
-
-
-
-                $tabla = "banco7338";
-
-
-                $datos = array(
-                    "id" => $_POST["idBanco"],
-                    "departamento" => $_POST["editarDepartamento"],
-                    "grupo" => $_POST["editarGrupo"],
-                    "subgrupo" => $_POST["editarSubgrupo"],
-                    "mes" => $_POST["editarMes"],
-                    "fecha" => $_POST["editarFecha"],
-                    "descripcion" => $_POST["editarDescripcion"],
-                    "cargo" => $_POST["editarCargo"],
-                    "abono" => $_POST["editarAbono"],
-                    "saldo" => $_POST["editarSaldo"],
-                    "serie" => $_POST["editarSerie"],
-                    "folio" => $_POST["editarFolio"],
-                    "parciales" => $_POST["editarParciales"],
-                    "parcial" => $_POST["editarParcial"],
-                    "departamentoParcial1" => $_POST["editarDepartamentoParcial1"],
-                    "parcial2" => $_POST["editarParcial2"],
-                    "departamentoParcial2" => $_POST["editarDepartamentoParcial2"],
-                    "parcial3" => $_POST["editarParcial3"],
-                    "departamentoParcial3" => $_POST["editarDepartamentoParcial3"],
-                    "parcial4" => $_POST["editarParcial4"],
-                    "departamentoParcial4" => $_POST["editarDepartamentoParcial4"],
-                    "parcial5" => $_POST["editarParcial5"],
-                    "departamentoParcial5" => $_POST["editarDepartamentoParcial5"],
-                    "parcial6" => $_POST["editarParcial6"],
-                    "departamentoParcial6" => $_POST["editarDepartamentoParcial6"],
-                    "parcial7" => $_POST["editarParcial7"],
-                    "departamentoParcial7" => $_POST["editarDepartamentoParcial7"],
-                    "parcial8" => $_POST["editarParcial8"],
-                    "departamentoParcial8" => $_POST["editarDepartamentoParcial8"],
-                    "parcial9" => $_POST["editarParcial9"],
-                    "departamentoParcial9" => $_POST["editarDepartamentoParcial9"],
-                    "parcial10" => $_POST["editarParcial10"],
-                    "departamentoParcial10" => $_POST["editarDepartamentoParcial10"],
-                    "parcial11" => $_POST["editarParcial11"],
-                    "departamentoParcial11" => $_POST["editarDepartamentoParcial11"],
-                    "parcial12" => $_POST["editarParcial12"],
-                    "departamentoParcial12" => $_POST["editarDepartamentoParcial12"],
-                    "acreedor" => $_POST["editarAcreedor"],
-                    "concepto" => $_POST["editarConcepto"],
-                    "numeroDocumento" => $_POST["editarNumeroDocumento"],
-                    "tieneIva" => $_POST["editarTieneIva"],
-                    "tieneRetenciones" => $_POST["editarTieneRetenciones"],
-                    "tipoRetencion" => $_POST["editarTipoRetencion"],
-                    "importeRetenciones" => $_POST["editarImporteRetenciones"]
-                );
-
-                $respuesta = ModeloBanco7338::mdlEditarDatos7338($tabla, $datos);
-
-                if ($respuesta == "ok") {
-
-                    echo '<script>
-
-                    swal({
-                          type: "success",
-                          title: "Los datos han sido modificados correctamente",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar"
-                          }).then(function(result) {
-                                    if (result.value) {
-
-                                    
-
-                                    }
-                                })
-
-                    </script>';
-                }
-            } else {
-
-                echo '<script>
-
-                    swal({
-                          type: "error",
-                          title: "¡No se puede realizar la modificación de los datos!",
-                          showConfirmButton: true,
-                          confirmButtonText: "Cerrar"
-                          }).then(function(result) {
-                            if (result.value) {
-
-                            window.location = "banco7338";
-
-                            }
-                        })
-
-                </script>';
-            }
-        }
+        return $respuesta;
     }
     /* FILTRADO DE DATOS POR RANGO DE FECHAS */
     static public function ctrMostrarRangoFechas($item1, $valor1, $valor2)
@@ -3569,6 +3475,14 @@ class ControladorBanco7338
         $tabla = "banco7338";
 
         $respuesta = ModeloBanco7338::mdlMostrarRangoFechasCredito($tabla, $item1, $valor1, $valor2);
+
+        return $respuesta;
+    }
+    static public function ctrActualizarValoresMovimiento($idBanco)
+    {
+        $tabla = "banco7338";
+
+        $respuesta = ModeloBanco7338::mdlActualizarValoresMovimiento($tabla, $idBanco);
 
         return $respuesta;
     }

@@ -598,7 +598,9 @@ CARGAR LA TABLA DINÁMICA DE DEPOSITOS DE TIENDAS
 $("#btnBuscarMovimientoBancario").click(function(){
 
   var movimiento = $("#movimientoBancario").val();
+  var bancoNuevo = $("#bancoNuevoElegido").val();
   localStorage.setItem("busquedaMovimiento", movimiento);
+  localStorage.setItem("bancoNuevoElegido",bancoNuevo);
   location.reload();
 
 })
@@ -611,14 +613,24 @@ if (localStorage.getItem("busquedaMovimiento") == null) {
     var numeroMovimientoBanco = localStorage.getItem("busquedaMovimiento");
 
 }
+if (localStorage.getItem("bancoNuevoElegido") == null) {
+  
+    var bancoNuevoElegido = $("#bancoNuevoElegido").val();
+
+}else{
+    $("#bancoNuevoElegido").val(localStorage.getItem("bancoNuevoElegido"));
+    var bancoNuevoElegido = localStorage.getItem("bancoNuevoElegido");
+
+}
 $("#btnLimpiarMovimiento").click(function(){
 
     localStorage.removeItem("busquedaMovimiento");
+   
 
 });
 
 depositosTiendas = $(".tablaDepositosTiendas").DataTable({
-    "ajax":"ajax/tablaDepositosTiendas.ajax.php?numeroMovimientoBanco="+numeroMovimientoBanco,
+    "ajax":"ajax/tablaDepositosTiendas.ajax.php?numeroMovimientoBanco="+numeroMovimientoBanco+"&bancoNuevo="+bancoNuevoElegido,
     "deferRender": true,
     "responsive": true,
     "retrieve": true,

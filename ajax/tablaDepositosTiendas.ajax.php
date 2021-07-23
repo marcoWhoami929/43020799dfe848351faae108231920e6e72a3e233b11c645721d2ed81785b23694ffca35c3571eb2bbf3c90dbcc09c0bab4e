@@ -26,10 +26,18 @@ class TablaDepositosTiendas{
           $valor2 = null;
 
       }else{
+          if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+                $_SESSION["bancoNuevoElegido"] = $_GET["bancoNuevo"];
 
-          $item2 = 'sucursal';
-          $usuario = $_SESSION["id"];
-          $valor2 = $usuario;
+            }else{
+                
+                $_SESSION["bancoNuevoElegido"] = "banco0198";
+
+            }
+            $item2 = 'sucursal';
+            $usuario = $_SESSION["id"];
+            $valor2 = $usuario;
 
       }
 

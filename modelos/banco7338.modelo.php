@@ -6,8 +6,8 @@ class ModeloBanco7338
 {
 
     /*=============================================
-	MOSTRAR BANCO
-	=============================================*/
+    MOSTRAR BANCO
+    =============================================*/
 
     static public function mdlMostrarBanco($tabla, $item, $valor)
     {
@@ -35,8 +35,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	MOSTRAR SALDO
-	=============================================*/
+    MOSTRAR SALDO
+    =============================================*/
 
     static public function mdlMostrarSaldo($tabla, $item, $valor)
     {
@@ -64,8 +64,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	MOSTRAR SALDO
-	=============================================*/
+    MOSTRAR SALDO
+    =============================================*/
 
     static public function mdlMostrarSaldoF($tabla, $item, $valor)
     {
@@ -93,8 +93,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS
+    =============================================*/
 
     static public function mdlIngresosNoIdentificados($tabla, $item, $valor)
     {
@@ -122,8 +122,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS FEBRERO
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS FEBRERO
+    =============================================*/
 
     static public function mdlIngresosNoIdentificadosF($tabla, $item, $valor)
     {
@@ -151,8 +151,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS VACIOS
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS VACIOS
+    =============================================*/
 
     static public function mdlIngresosNoIdentificadosVacios($tabla, $item, $valor)
     {
@@ -180,8 +180,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	INGRESOS NO IDENTIFICADOS VACIOS FEBRERO
-	=============================================*/
+    INGRESOS NO IDENTIFICADOS VACIOS FEBRERO
+    =============================================*/
 
     static public function mdlIngresosNoIdentificadosVaciosF($tabla, $item, $valor)
     {
@@ -209,8 +209,8 @@ class ModeloBanco7338
         $stmt = null;
     }
     /*=============================================
-	INGRESOS SAN MANUEL
-	=============================================*/
+    INGRESOS SAN MANUEL
+    =============================================*/
     static public function mdlIngresosSanManuel($tabla, $item, $valor)
     {
 
@@ -233,8 +233,8 @@ class ModeloBanco7338
         }
     }
     /*=============================================
-	INGRESOS SAN MANUEL FEBRERO
-	=============================================*/
+    INGRESOS SAN MANUEL FEBRERO
+    =============================================*/
     static public function mdlIngresosSanManuelF($tabla, $item, $valor)
     {
 
@@ -257,8 +257,8 @@ class ModeloBanco7338
         }
     }
     /*=============================================
-	INGRESOS MAYORAZGO
-	=============================================*/
+    INGRESOS MAYORAZGO
+    =============================================*/
     static public function mdlIngresosMayorazgo($tabla, $item, $valor)
     {
 
@@ -7520,6 +7520,26 @@ class ModeloBanco7338
         return $stmt->fetchAll();
 
         $stmt->close();
+        $stmt = null;
+    }
+    /*=============================================
+    CALCULAR TODOS LOS NIVELES DEL BANCO
+    =============================================*/
+    static public function mdlActualizarValoresMovimiento($tabla, $idBanco)
+    {
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12),iva = (importe/1.16) * 0.16,retIva = (importe * 10.6667)/100,retIsr = (importe * 10)/100,retIva2 = (importe * 4)/100,retIsr2 = (importe * 0)/100,retIva3 = (importe * 10.6667)/100,retIsr3 = (importe * 10)/100 where id = $idBanco");
+
+        if ($stmt->execute()) {
+
+            return "ok";
+        } else {
+
+            return "error";
+        }
+
+        $stmt->close();
+
         $stmt = null;
     }
 }

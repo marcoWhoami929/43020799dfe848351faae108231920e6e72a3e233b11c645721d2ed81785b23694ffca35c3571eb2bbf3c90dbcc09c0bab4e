@@ -21,7 +21,7 @@ function cargarBanco7338() {
   var filtro2 = $("#movimientoSelect").val();
   var filtro3 = $("#verificarErrorSelect").val();
 
-  $(".tablaBanco7338").DataTable({
+  banco7338 = $(".tablaBanco7338").DataTable({
     destroy: true,
     processing: true,
     serverSide: true,
@@ -125,7 +125,7 @@ function cargarBanco7338Credito() {
   var filtro2 = $("#movimientoSelect").val();
   var filtro3 = $("#verificarErrorSelect").val();
 
-  $(".tablaBanco7338Credito").DataTable({
+  banco7338Credito = $(".tablaBanco7338Credito").DataTable({
     destroy: true,
     processing: true,
     serverSide: true,
@@ -190,7 +190,7 @@ $(".tablaBanco7338").on("click", ".btnEditarDatos", function () {
   var idBanco = $(this).attr("idBanco");
 
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
     url: "ajax/banco7338.ajax.php",
@@ -735,7 +735,7 @@ $(".tablaBanco7338Credito").on("click", ".btnEditarDatos", function () {
   var idBanco = $(this).attr("idBanco");
 
   var datos = new FormData();
-  datos.append("idBanco", idBanco);
+  datos.append("idBancoEditar", idBanco);
 
   $.ajax({
     url: "ajax/banco7338.ajax.php",
@@ -2371,4 +2371,60 @@ $(".tablaBanco7338Credito").on("click", ".btnVerParciales", function () {
       }
     },
   });
+});
+/*----------------------------------------------------------------*/
+/***EDITAR MOVIMIENTO ***/
+/*----------------------------------------------------------------*/
+
+$("#editarMovimientoBanco7338").on("submit", function (e) {
+  e.preventDefault(); //detenemos el envio
+  $.post(
+    "ajax/banco7338.ajax.php",
+    $("#editarMovimientoBanco7338").serialize(),
+    function (res) {
+ 
+      if (res == '"ok"') {
+
+        
+        swal({
+          type: "success",
+          title: "Los datos han sido modificados correctamente",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+            $(function () {
+              var url = window.location.pathname;
+
+              var ruta = url.split("/");
+
+              switch (ruta[1]) {
+                case "banco7338":
+                  if (localStorage.tablaBanco === "tablaBanco7338Credito") {
+                    banco7338Credito.ajax.reload();
+                    $("#minimizar7338").click();
+                  } else {
+                    banco7338.ajax.reload();
+                    $("#minimizar7338").click();
+                  }
+
+                  break;
+              }
+            });
+          }
+        });
+        
+      } else {
+        swal({
+          type: "error",
+          title: "¡No se puede realizar la modificación de los datos!",
+          showConfirmButton: true,
+          confirmButtonText: "Cerrar",
+        }).then(function (result) {
+          if (result.value) {
+          }
+        });
+      }
+    }
+  );
 });

@@ -343,7 +343,7 @@ if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ba
                 }
                 ?>
 
-            </div>
+                </div>
 
         </div>
 
@@ -452,7 +452,7 @@ MODAL EDITAR DATOS
 
         <div class="modal-content">
 
-            <form role="form" method="post" enctype="multipart/form-data">
+            <form role="form" method="post" enctype="multipart/form-data" id="editarMovimientoBanco7338">
 
                 <!--=====================================
         CABEZA DEL MODAL
@@ -525,7 +525,7 @@ MODAL EDITAR DATOS
                                             </select>
 
                                         </div>
-                                    </div>
+                                                                            </div>
                                     <div class="col-lg-3">
                                         <!-- ENTRADA PARA SELECCIONAR EL GRUPO -->
                                         <span style="font-weight: bold">Grupo</span>
@@ -636,7 +636,7 @@ MODAL EDITAR DATOS
                                             </select>
 
                                         </div>
-                                    </div>
+                                        </div>
                                     <div class="col-lg-3">
                                         <!-- ENTRADA PARA SELECCIONAR EL MES -->
                                         <span style="font-weight: bold">Mes</span>
@@ -791,7 +791,7 @@ MODAL EDITAR DATOS
                                         </div>
                                     </div>
 
-                                </div>
+</div>
                                 <div class="row">
                                     <div id="1P" style="display:none">
                                         <div class="col-lg-2">
@@ -1182,7 +1182,7 @@ MODAL EDITAR DATOS
                                                     <option value="XONACA">XONACA</option>
                                                 </select>
 
-                                            </div>
+                                                </div>
                                         </div>
                                     </div>
                                     <div id="9P" style="display: none">
@@ -1400,7 +1400,7 @@ MODAL EDITAR DATOS
                                 
                         </select>
                         -->
-                                            <input type="text" class="form-control input-lg" name="editarAcreedor" placeholder="Cliente / Proveedor / Acreedor" id="editarAcreedor">
+                        <input type="text" class="form-control input-lg" name="editarAcreedor" placeholder="Cliente / Proveedor / Acreedor" id="editarAcreedor">
 
                                         </div>
 
@@ -1434,7 +1434,7 @@ MODAL EDITAR DATOS
 
                                             </div>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <div class="col-lg-2 col-md-2 col-sm-2" style="display:none">
                                             <a href="#modalIdentificarDocumentosPendientes" role="button" class="btn btn-success" data-toggle="modal" id="vincularPendientesCredito"><i class='fa fa-chain-broken' aria-hidden='true'></i></a>
 
                                         </div>
@@ -1545,7 +1545,7 @@ MODAL EDITAR DATOS
 
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="minimizar">Salir</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="minimizar7338">Salir</button>
 
                     <button type="submit" class="btn btn-primary">Guardar</button>
 

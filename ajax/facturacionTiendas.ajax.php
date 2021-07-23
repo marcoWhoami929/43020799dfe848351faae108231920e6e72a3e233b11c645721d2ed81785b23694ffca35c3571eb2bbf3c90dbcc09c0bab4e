@@ -621,7 +621,15 @@ class AjaxFacturacionTiendas{
 
 		}else{
 
-			$bancoElegidoMov = "banco0198";
+			if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+                $bancoElegidoMov = $_SESSION["bancoNuevoElegido"];
+
+            }else{
+                
+                $bancoElegidoMov = "banco0198";
+
+            }
 
 		}
 		

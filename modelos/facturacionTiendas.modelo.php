@@ -512,7 +512,16 @@ class ModeloFacturasTiendas{
 
 			}else{
 
-				$banco = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $banco =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $banco = "banco0198";
+
+	            }
 
 			}
 
@@ -548,7 +557,16 @@ class ModeloFacturasTiendas{
 
 			}else{
 
-				$banco = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $banco =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $banco = "banco0198";
+
+	            }
 
 			}
 
@@ -1141,7 +1159,16 @@ class ModeloFacturasTiendas{
 
 			 if ($serie != "FASG" && $serie != "FAND" && $serie != "FACD" && $serie != "FAPB") {
         
-		        $banco = "banco0198";
+		        if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $banco =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $banco = "banco0198";
+
+	            }
 		      }else if($serie == "FAPB"){
 
 		        $banco = "banco3450";
@@ -1224,7 +1251,7 @@ class ModeloFacturasTiendas{
 	}
 	static public function mdlLimpiarParcialesAbonos($tabla,$movimientoB,$movimientoBanco){
 
-			if ($tabla == 'banco3450') {
+			if ($tabla == 'banco3450'  || $tabla == 'banco7338') {
 
 				$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET parcial = 0, departamentoParcial1 = '',parcial2 = 0, departamentoParcial2 = '',parcial3 = 0, departamentoParcial3 = '',parcial4 = 0, departamentoParcial4 = '',parcial5 = 0, departamentoParcial5 = '',parcial6 = 0, departamentoParcial6 = '',parcial7 = 0, departamentoParcial7 = '',parcial8 = 0, departamentoParcial8 = '',parcial9 = 0, departamentoParcial9 = '',parcial10 = 0, departamentoParcial10 = '',parcial11 = 0, departamentoParcial11 = '',parcial12 = 0, departamentoParcial12 = '',importeParciales = 0 WHERE $movimientoB = :$movimientoB");
 
@@ -1787,7 +1814,16 @@ class ModeloFacturasTiendas{
 
 			}else{
 
-				$banco = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $banco =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $banco = "banco0198";
+
+	            }
 
 			}
 
@@ -1845,7 +1881,16 @@ class ModeloFacturasTiendas{
 
 			}else{
 
-				$banco = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $banco =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $banco = "banco0198";
+
+	            }
 
 			}
 

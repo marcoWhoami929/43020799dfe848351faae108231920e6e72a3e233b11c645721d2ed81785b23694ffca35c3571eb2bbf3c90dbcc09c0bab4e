@@ -95,6 +95,20 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
           
         </div>
         <br>
+        <?php 
+            if ($_SESSION["nombre"] == "Sucursal Reforma") {
+
+                echo "<div class='col-lg-12 col-md-12 col-sm-12'>
+                      <select class='form-control' id='bancoNuevoElegido'>
+                          <option value='banco0198'>Banco 0198</option>
+                          <option value='banco7338'>Banco 7338</option>
+                      </select>
+                      
+                    </div>";
+            }else{
+
+            }
+         ?>
         <div class="col-lg-12 col-md-6 col-sm-6">
            <form class="form-wrapper">
             <input  id='movimientoBancario' type='movimientoBancario' placeholder='Buscar Movimiento Bancario' />
@@ -266,7 +280,30 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4">
                              <h3>Terminación Bancaria:</h3>
-                             <span style="font-weight:bold;color:#2667ce;font-size:22px"><?php if($_SESSION["nombre"] != "Sucursal Santiago"){echo "**** **** **** 0198";}else{echo "**** **** **** 6278";} ?></span>
+                             <span style="font-weight:bold;color:#2667ce;font-size:22px"><?php 
+                             if($_SESSION["nombre"] != "Sucursal Santiago"){
+                              if($_SESSION["nombre"] == "Sucursal Reforma"){
+                                  switch ($_SESSION["bancoNuevoElegido"]) {
+                                    case 'banco0198':
+                                      $banco = "0198";
+                                      break;
+                                    case 'banco7338':
+                                      $banco = "7338";
+                                      break;
+             
+                                  }
+                                 echo "**** **** **** ".$banco."";
+
+                              }else{
+                                  
+                                  echo "**** **** **** 0198";
+
+                              }
+                              
+                              }
+                              else{
+                                echo "**** **** **** 6278";
+                              } ?></span>
                           </div>
                           
                         </div>

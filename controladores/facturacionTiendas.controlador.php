@@ -422,7 +422,17 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $tabla =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $tabla = "banco0198";
+
+	            }
+	            
 
 			}
 
@@ -645,7 +655,16 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $tabla =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $tabla = "banco0198";
+
+	            }
 
 			}
 
@@ -829,7 +848,16 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $tabla =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $tabla = "banco0198";
+
+	            }
 
 			}
 
@@ -858,7 +886,16 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				$tabla = "banco0198";
+				if($_SESSION["nombre"] == "Sucursal Reforma"){
+                  
+	              
+	                $tabla =  $_SESSION["bancoNuevoElegido"];
+
+	            }else{
+	                
+	                $tabla = "banco0198";
+
+	            }
 
 			}
 
