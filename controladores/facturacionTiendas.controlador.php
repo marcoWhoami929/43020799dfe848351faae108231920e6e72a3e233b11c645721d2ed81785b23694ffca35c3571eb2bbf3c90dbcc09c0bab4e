@@ -616,7 +616,7 @@ class ControladorFacturasTiendas{
 
 
 	}
-	static public function ctrBuscarDepositoBancario($item,$valor){
+	static public function ctrBuscarDepositoBancario($tabla2,$item,$valor){
 
 			if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Administrador General") {
 
@@ -629,7 +629,7 @@ class ControladorFacturasTiendas{
 			}
 
 
-			$respuesta = ModeloFacturasTiendas::mdlBuscarDepositoBancario($tabla,$item,$valor);
+			$respuesta = ModeloFacturasTiendas::mdlBuscarDepositoBancario($tabla,$tabla2,$item,$valor);
 
 			return $respuesta;
 

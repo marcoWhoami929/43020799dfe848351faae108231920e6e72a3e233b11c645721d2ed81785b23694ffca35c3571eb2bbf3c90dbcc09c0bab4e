@@ -64,7 +64,7 @@ function conocerDiaSemanaFecha($fecha) {
                 color: #0362CE;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 text-align: left;
                 margin-left: -70px;
             }
@@ -72,28 +72,28 @@ function conocerDiaSemanaFecha($fecha) {
                 color: #0362CE;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: -70px;
             }
             .matriz{
                 color: #0362CE;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: -70px;
             }
             .matriz1{
                 color: #000000;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: 10px;
             }
             .direccion{
                 color: #000000;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: -70px;
 
             }
@@ -101,7 +101,7 @@ function conocerDiaSemanaFecha($fecha) {
                 color: #000000;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: -70px;
 
             }
@@ -109,7 +109,7 @@ function conocerDiaSemanaFecha($fecha) {
                 color: #000000;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: -70px;
 
             }
@@ -117,21 +117,21 @@ function conocerDiaSemanaFecha($fecha) {
                 color: #0362CE;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: 200px;
             }
             .pedido{
                 color: #0362CE;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
                 margin-left: 50px;
             }
             .numFolio{
                 color: black;
                 font-family: Helvetica, Sans-Serif;
                 font-weight: lighter;
-                font-size: 12px;
+                font-size: 10px;
             }
             .expedicion{
                 color: black;
@@ -375,14 +375,14 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Código Cliente:</b><br>
-                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><?php echo $codigoCliente ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Código Cliente:</b><br>
+                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;"><?php echo $codigoCliente ?></b>
                     </th>
                     <th>
                         
                     </th>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Días de Crédito:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><?php echo $diasCredito ?> Días</b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Días de Crédito:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;"><?php echo $diasCredito ?> Días</b>
                     </th>
                     <th>
                         
@@ -394,8 +394,8 @@ function conocerDiaSemanaFecha($fecha) {
                         
                     </th>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Fecha de Vencimiento:</b><br>
-                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: capitalize;"><?php echo $fechaVencimientoC ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Fecha de Vencimiento:</b><br>
+                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: capitalize;"><?php echo $fechaVencimientoC ?></b>
                     </th>
                     <th>
                             
@@ -405,7 +405,7 @@ function conocerDiaSemanaFecha($fecha) {
                         </th>
 
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Método Pago: </b><b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $metodoPago ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Método Pago: </b><b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $metodoPago ?></b>
                     </th>
                     <th>
                             
@@ -418,7 +418,7 @@ function conocerDiaSemanaFecha($fecha) {
                         </th>
 
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Núm Cuenta:</b><b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"> NO IDENTIFICADO</b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Núm Cuenta:</b><b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"> NO IDENTIFICADO</b>
                     </th>
                 </tr>
             </thead>
@@ -428,24 +428,24 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Cliente:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nombreCliente ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Cliente:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $nombreCliente ?></b>
                         <br>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Domicilio:</b>
-                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo str_replace ("Ñ", "&Ntilde;" ,$domicilio) ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Domicilio:</b>
+                        <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo str_replace ("Ñ", "&Ntilde;" ,$domicilio) ?></b>
                         <br>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Colonia:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Colonia:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <?php echo $colonia  ?>
                         </b>
                     </th>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left:-120px;" >RFC:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $rfc ?>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left:-120px;" >RFC:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $rfc ?>
                         </b>
                         <br>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left:-120px;" >Tels:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left:-120px;" >Tels:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <?php echo $telefono ?>
                         </b>
                         <br>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left:-120px;" >C.P.</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left:-120px;" >C.P.</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <?php echo $cp ?>
                         </b>
                     </th>
@@ -457,18 +457,18 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Municipio:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $municipio  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Municipio:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $municipio  ?></b>
                     </th>
                         
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left: -50px;" >Ciudad:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $ciudad  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left: -50px;" >Ciudad:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $ciudad  ?></b>
                     </th>
 
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left: -50px;" >Estado:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $estado  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left: -50px;" >Estado:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $estado  ?></b>
                     </th>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-left: -50px;" >País:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $pais  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;margin-left: -50px;" >País:</b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $pais  ?></b>
                     </th>
                 </tr>
             </thead>
@@ -478,20 +478,20 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Observaciones: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $observaciones  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Observaciones: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 8px;text-transform: uppercase;"><?php echo $observaciones  ?></b>
                     </th>
                      <!--======================
                     |   HECHO POR DIEGO-PC   |
                     =======================-->
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Fecha de Entrega: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $fechaEntrega  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Fecha de Entrega: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $fechaEntrega  ?></b>
                     </th>
                     <!--=====================
                     *************************
                     ======================-->
 
                     <th>
-                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" >Referencia: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;"><?php echo $referencia  ?></b>
+                        <b style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;" >Referencia: </b> <b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;"><?php echo $referencia  ?></b>
                     </th>
                 </tr>
             </thead>
@@ -500,21 +500,21 @@ function conocerDiaSemanaFecha($fecha) {
         <table class="table" style="width: 100%" cellspacing="0">
             <thead>
                 <tr class="row datos" style="background: #D9D4D4" >
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;height: 45px">Cantidad</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;">Unidad</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;">Código</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;">Descripción</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">Precio Unitario</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">Importe</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">%Descto.</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">Descto.</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">%Descto2.</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">Descto2.</th>
-                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-align: right;">Importe Total</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;height: 45px">Cantidad</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;">Unidad</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;">Código</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;">Descripción</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">Precio Unitario</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">Importe</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">%Descto.</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">Descto.</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">%Descto2.</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">Descto2.</th>
+                    <th style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-align: right;">Importe Total</th>
                 </tr>
             </thead>
 
-            <tbody style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">
+            <tbody style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size:8px;text-transform: uppercase;">
                 <?php
                     require_once __DIR__ . '../../../vistas/modulos/conversor.php';
 
@@ -804,7 +804,7 @@ function conocerDiaSemanaFecha($fecha) {
                                 <td style='height:10px'>".number_format($producto['cantidad'],3)."</td>
                                 <td style='height:10px'>".$valorUnidad."</td>
                                 <td style='height:10px'>".$producto['codigoProducto']."</td>
-                                <td style='height:10px;padding-top:23px;'>".$producto['nombreProducto'].'<br>'.$observacionesProd.'<br>'.$referenciasProd."</td>
+                                <td style='height:10px;padding-top:23px;font-size:8px'>".$producto['nombreProducto'].'<br>'.$observacionesProd.'<br>'.$referenciasProd."</td>
                                 <td style='text-align:right;height:10px;'>".number_format($producto['precio'],4)."</td>
                                 <td style='text-align:right;height:10px;'>".number_format($producto['neto'],2)."</td>
                                 <td style='text-align:right;height:10px;'>".number_format($producto['porcentajeDescuento'],2)." %</td>
@@ -862,19 +862,19 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <strong style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>Importe Total en Letra: </b></strong><br> 
-                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;text-transform: uppercase;">
+                        <strong style="color: #0362CE;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>Importe Total en Letra: </b></strong><br> 
+                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;text-transform: uppercase;">
                             <b><?php echo $resultado ?></b><strong>
                             <div class="vl"></div>
                     </th>
                     <th>
-                        <strong id="Strong1" style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>Subtotal: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;margin-top: -15px;"><?php echo $subtotal  ?></b><br>
+                        <strong id="Strong1" style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>Subtotal: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-top: -15px;"><?php echo $subtotal  ?></b><br>
                         <hr style="margin-left: -3px; margin-top: 0px;z-index: 101; width: 97%;margin-bottom: -10px" >
-                         <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;margin-right: 150px;margin-top: -15px;"><b>Descuentos: </b></strong>&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;" ><?php echo $totalDescuentos  ?></b><br>
+                         <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-right: 150px;margin-top: -15px;"><b>Descuentos: </b></strong>&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;" ><?php echo $totalDescuentos  ?></b><br>
                         <hr style="margin-left: -3px; margin-top: 0px;z-index: 101; width: 97%;margin-bottom: -10px" >
-                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;margin-right: 150px;margin-top: -15px;"><b>IVA 16%: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><?php echo $totalImpuestos  ?></b><br>
+                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-right: 150px;margin-top: -15px;"><b>IVA 16%: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><?php echo $totalImpuestos  ?></b><br>
                         <hr style="margin-left: -3px; margin-top: 0px;z-index: 101; width: 97%;margin-bottom: -10px" >
-                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;margin-right: 150px;margin-top: -15px;"><b>Total: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 12px;"><?php echo $totalGeneral  ?></b><br>
+                        <strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;margin-right: 150px;margin-top: -15px;"><b>Total: </b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><b>$</b></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #000000;font-family: Helvetica, Sans-Serif;font-weight: lighter;font-size: 10px;"><?php echo $totalGeneral  ?></b><br>
                         
                         
                     </th>

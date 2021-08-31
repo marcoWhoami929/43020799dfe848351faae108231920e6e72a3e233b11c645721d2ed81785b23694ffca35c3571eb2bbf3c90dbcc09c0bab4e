@@ -634,7 +634,7 @@ class AjaxFacturacionTiendas{
 		}
 		
 
-		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($item,$valor);
+		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($bancoElegidoMov,$item,$valor);
 
 		if ($consultarDepositoBanco[0] == 0) {
 				
@@ -1960,8 +1960,9 @@ class AjaxFacturacionTiendas{
 
 		$span = $this->listaSpanMovimiento;
 		$bancoElegidoMov = $this->bancoMovimiento;
+		$tabla2 = $this->bancoMovimiento;
 
-		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($item,$valor);
+		$consultarDepositoBanco = ControladorFacturasTiendas::ctrBuscarDepositoBancario($tabla2,$item,$valor);
 
 		if ($consultarDepositoBanco[0] == 0) {
 				
@@ -2144,7 +2145,7 @@ class AjaxFacturacionTiendas{
 			$hoy = date("d/m/Y");
 	        $fecha = str_replace('/', '-', $hoy);
 	        $fechaFinal = date('Y-m-d', strtotime($fecha));
-	    	//$fechaFinal = '2021-01-23';
+	    	//$fechaFinal = '2021-08-17';
 	    	$usuario = $_SESSION["nombre"];
 			    switch ($usuario) {
                     case 'Sucursal San Manuel':
@@ -2432,8 +2433,8 @@ class AjaxFacturacionTiendas{
 							$creditoPendiente = "0";
 
 						}
-
-						$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus,creditoPendiente) VALUES('".$concepto."','".$fecha."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".$value["codigoCliente"]."','".$value["rfc"]."','".$value["razonSocial"]."','".$fechaVencimiento."','".$value["diasCredito"]."','0','".str_replace(',','',$value["neto"])."','".str_replace(',','',$value["descuento"])."','".str_replace(',','',$value["impuesto"])."','".str_replace(',','',$value["total"])."','".str_replace(',','',$value["pendiente"])."','0','".$fecha."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."','".$creditoPendiente."')";
+						$cliente = str_replace("'","",$value["razonSocial"]);
+						$insertarFacturas = "INSERT INTO facturastiendas(concepto,fechaFactura,serie,folio,codigoCliente,rfc,nombreCliente,fechaVencimiento,diasCredito,cancelado,neto,descuento,impuesto,total,pendiente,pagado,fechaCobro,formaPago,agente,estatus,creditoPendiente) VALUES('".$concepto."','".$fecha."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".$value["codigoCliente"]."','".$value["rfc"]."','".$cliente."','".$fechaVencimiento."','".$value["diasCredito"]."','0','".str_replace(',','',$value["neto"])."','".str_replace(',','',$value["descuento"])."','".str_replace(',','',$value["impuesto"])."','".str_replace(',','',$value["total"])."','".str_replace(',','',$value["pendiente"])."','0','".$fecha."','".strtoupper($formaPago)."','".$sucursal."','".$estatus."','".$creditoPendiente."')";
 							mysqli_query($conn, $insertarFacturas) or die("database error:". mysqli_error($conn));
 
 

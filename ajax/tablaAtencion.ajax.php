@@ -46,7 +46,7 @@ class TablaAtencion{
 
                     $catalogo = 'FLEX';
                   }
-
+                  /*
                   $estadoCliente = ControladorAtencion::ctrMostrarEstadoCliente($item, $valor,$catalogo);
 
                   $limiteCredito  = $estadoCliente["limiteCredito"];
@@ -111,15 +111,15 @@ class TablaAtencion{
 
                   }
                   
-                
+                */
 
                 if($statusCliente == "activado" || $statusCliente == 1){
 
                           $statusCliente = "<button class='btn btn-success btn-xs'>Activado</button>";
 
                         }else{
-
-                          $statusCliente = "<button class='btn btn-danger btn-xs'>Desactivado</button>";
+                          $statusCliente = "<button class='btn btn-success btn-xs'>Activado</button>";
+                          //$statusCliente = "<button class='btn btn-danger btn-xs'>Desactivado</button>";
 
                         } 
 
@@ -390,9 +390,9 @@ class TablaAtencion{
       /*=============================================
       DEVOLVER DATOS JSON
       =============================================*/
-      
+      /*"'.$estadoCredito.'",*/
       $datosJson   .= '[
-              "'.($i+1).'",
+              "'.$atencion[$i]["id"].'",
               "'.$atencion[$i]["creado"].'",
               "'.$atencion[$i]["codigoCliente"].'",
               "'.rtrim($atencion[$i]["nombreCliente"]).'",
@@ -401,7 +401,7 @@ class TablaAtencion{
               "'.$atencion[$i]["agenteVentas"].'",
               "'.$atencion[$i]["diasCredito"].'",
               "'.$statusCliente.'",
-              "'.$estadoCredito.'",
+              
               "'.$estado.'",
               "'.$atencion[$i]["serie"].'",
               "'.$atencion[$i]["folio"].'",

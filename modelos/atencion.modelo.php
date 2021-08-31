@@ -22,7 +22,7 @@ class ModeloAtencion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY folio asc");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY fechaPedido desc");
 
 			$stmt -> execute();
 

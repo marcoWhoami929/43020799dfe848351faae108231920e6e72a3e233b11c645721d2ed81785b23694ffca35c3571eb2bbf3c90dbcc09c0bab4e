@@ -174,7 +174,8 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ate
              <th style="border:none">Agente de Ventas</th>
              <th style="border:none">Días de Crédito</th>
              <th style="border:none">Estatus del Cliente</th>
-             <th style="border:none">ESTADO</th>
+             <!--
+             <th style="border:none">ESTADO</th>-->
              <th style="border:none">Estatus del Pedido</th>
              <th style="border:none">Serie</th>
              <th style="border:none">Folio</th>

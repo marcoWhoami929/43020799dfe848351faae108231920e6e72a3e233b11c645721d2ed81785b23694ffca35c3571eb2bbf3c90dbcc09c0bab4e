@@ -357,7 +357,7 @@ class TablaFacturacion{
       =============================================*/
       
       $datosJson   .= '[
-              "'.($i+1).'",
+              "'.$facturacion[$i]["id"].'",
               "'.rtrim($nombreCliente).'",
               "'.$facturacion[$i]["serie"].'",
               "'.$facturacion[$i]["idPedido"].'",

@@ -316,7 +316,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
     echo '<li><a href="saldos"><i class="fa fa-bank"></i> <span>Bancos</span></a></li>';
 
   }
-  if ($_SESSION["nombre"] == "José Martinez") {
+  if ($_SESSION["nombre"] == "Annet Landa Alvarado") {
 
    echo '<li class="treeview">
 

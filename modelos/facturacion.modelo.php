@@ -58,7 +58,7 @@ class ModeloFacturacion{
 	}*/
 	static public function mdlMostrarFacturacion($tabla){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla order by fechaPedido desc");
 			$stmt -> execute();
 			return $stmt -> fetchAll();
 

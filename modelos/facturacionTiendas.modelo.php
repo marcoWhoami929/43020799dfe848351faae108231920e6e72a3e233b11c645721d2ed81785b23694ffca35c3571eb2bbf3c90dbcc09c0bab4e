@@ -480,7 +480,7 @@ class ModeloFacturasTiendas{
 			$movimiento = $valor;
 			
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco WHERE $item LIKE '%$movimiento%' AND banc.departamento IS NULL and banc.cargo = 0 order by banc.id desc");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE $item LIKE '%$movimiento%' AND banc.departamento IS NULL and banc.cargo = 0  order by banc.id desc");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 
@@ -525,7 +525,7 @@ class ModeloFacturasTiendas{
 
 			}
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from ".$banco." banc INNER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco WHERE dep.$item2 = :$item2");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from ".$banco." banc INNER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE dep.$item2 = :$item2");
 
 			$stmt -> bindParam(":".$item2,$valor2,PDO::PARAM_STR);
 
@@ -570,7 +570,7 @@ class ModeloFacturasTiendas{
 
 			}
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from ".$banco." banc INNER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from ".$banco." banc INNER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco");
 
 
 			$stmt ->execute();
@@ -861,10 +861,10 @@ class ModeloFacturasTiendas{
 
 
 	}
-	static public function mdlBuscarDepositoBancario($tabla,$item,$valor){
+	static public function mdlBuscarDepositoBancario($tabla,$tabla2,$item,$valor){
 
 
-			$stmt = Conexion::conectar()->prepare("SELECT COUNT(idMovimientoBanco) from $tabla where $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT COUNT(idMovimientoBanco) from $tabla where $item = :$item and banco = '".$tabla2."'");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_INT);
 
@@ -2742,7 +2742,7 @@ class ModeloFacturasTiendas{
 	}
 	static public function mdlMostrarDepositosTiendasGenerales($tabla,$item,$valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from $tabla banc INNER JOIN depositosgenerales dep ON banc.id = dep.idMovimientoBanco WHERE dep.$item = :$item and dep.banco = '".$tabla."'");
+		$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span,dep.reciboGenerado as reciboGenerado from $tabla banc INNER JOIN depositosgenerales dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE dep.$item = :$item and dep.banco = '".$tabla."'");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 

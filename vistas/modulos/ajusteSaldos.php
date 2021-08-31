@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "José Martinez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Cre
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "José Martinez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteAjustes=ajustesaldos">
 

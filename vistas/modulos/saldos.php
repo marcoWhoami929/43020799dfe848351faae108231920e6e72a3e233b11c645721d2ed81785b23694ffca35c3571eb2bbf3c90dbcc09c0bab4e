@@ -428,11 +428,27 @@ if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ba
               </div>
             </div>
           </div>';
-        echo '<div class="col-lg-3 col-xs-6">
+           }
+          if($_SESSION["nombre"] == "COBRANZA 2" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Bancos"){
+
+
+          if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {
+
+            $tabla = "Credito";
+          } else {
+
+            $tabla = "";
+          }
+
+
+  
+            echo '<div class="col-lg-3 col-xs-6">
           <div class="">
-            <a href="banco7338" class="btnBancoElegido" banco="banco7338" tabla="tablaBanco7338"><img src="vistas/img/bancos/banco7338.png" alt="" style="width: 90%; height: 60%;"></a><br>
+            <a href="banco7338" class="btnBancoElegido" banco="banco7338" tabla="tablaBanco7338'. $tabla.'"><img src="vistas/img/bancos/banco7338.png" alt="" style="width: 90%; height: 60%;"></a><br>
             <div class="alert alert-info alert-dismissable" style="width:90%">
              <div>';
+
+                
         ?>
 
         <?php
@@ -465,8 +481,8 @@ if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ba
             </div>
           </div>
         </div>';
-      }
-
+     
+        }  
       ?>
 
     </div>

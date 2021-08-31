@@ -88,7 +88,7 @@ if($_SESSION["nombre"] == "Marco Lopez"){
 </div>
  <script type="text/javascript">
       $(document).ready(function() {        
-          $.timer(60000, function(temporizador){
+          $.timer(180000, function(temporizador){
 
                   if (localStorage.getItem("pausadoRifa") === null) {
 

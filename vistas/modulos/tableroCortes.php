@@ -163,7 +163,7 @@
           <!-- /.box -->
         </div>
         <?php
-          if ($_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "José Martinez") {
+          if ($_SESSION["nombre"] == "Roberto Gutierrez" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado") {
 
             echo '<div class="col-lg-3 col-md-3 col-sm-3">
                   <div class="box box-warning box-solid">
@@ -242,7 +242,7 @@
         </div>
 
         <?php
-          if ($_SESSION["perfil"] == "Administrador General" ) {
+          if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado") {
 
             echo '<div class="col-lg-3 col-md-3 col-sm-3">
                     <div class="box box-warning box-solid">
