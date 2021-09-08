@@ -81,6 +81,33 @@ class AjaxAlmacen{
 		echo $respuesta;
 
 	}
+	/*=============================================
+	ACTUALIZAR FECHA SUMINISTRO
+	=============================================*/
+
+	public $idPedidoActualizar;
+	public $accion;
+	public function ajaxActualizarFechaSuministro(){
+
+		$item = "id";
+		$valor = $this->idPedidoActualizar;
+
+		if ($this->accion == "suministro") {
+			$item2 = "fechaSuministro";
+			$status = 2;
+		}else{
+			$item2 = "fechaTermino";
+			$status = 3;
+		}
+
+		$valor2 = date("Y-m-d H:i:s");
+
+
+		$respuesta = ControladorAlmacen::ctrActualizarFechaSuministro($item, $valor,$item2, $valor2,$status);
+
+		echo json_encode($respuesta);
+
+	}
 
 
 
@@ -129,5 +156,16 @@ if(isset($_POST["validarPedido"])){
 	$valPedido = new AjaxAlmacen();
 	$valPedido -> validarPedido = $_POST["validarPedido"];
 	$valPedido -> ajaxValidarPedido();
+
+}
+/*=============================================
+ACTUALIZAR FECHA SUMINISTRO
+=============================================*/
+if(isset($_POST["idPedidoActualizar"])){
+
+	$actualizarSuministro = new AjaxAlmacen();
+	$actualizarSuministro -> idPedidoActualizar = $_POST["idPedidoActualizar"];
+	$actualizarSuministro -> accion = $_POST["accion"];
+	$actualizarSuministro -> ajaxActualizarFechaSuministro();
 
 }

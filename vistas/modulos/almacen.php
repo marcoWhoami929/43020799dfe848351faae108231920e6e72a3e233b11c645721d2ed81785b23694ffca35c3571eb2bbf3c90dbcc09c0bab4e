@@ -264,38 +264,24 @@ MODAL EDITAR PEDIDO
                   <div class="col-lg-6">
                      <!-- ENTRADA PARA FECHA Y HORA RECEPCION -->
                      <span style="font-weight: bold">Fecha Recepción</span>
-                      <div class="input-group datepick" id="datepick">
-                          <input type="text" class="form-control input-lg datepick" name="editarFechaRecepcion" id="editarFechaRecepcion" required>
-                          <div class="input-group-addon add-on datepick">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                          </div>
-                        </div>
+                      <input type="text" class="form-control input-lg"  name="editarFechaRecepcion" id="editarFechaRecepcion" required>
                         
                   </div>
                 </div>
                 <br>
                 <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12" id="messageUpdate">
+                      <div class="alert alert-success collapse" role="alert" id="messageAlertUpdate" style="display:none;">Fecha de suministro actualizada.</div>
+                      <div class="alert alert-success collapse" role="alert" id="messageAlertUpdateFin" style="display:none;">Fecha de termino actualizada.</div>
+                  </div>
                   <div class="col-lg-6">
                      <!-- ENTRADA PARA FECHA SUMINISTRO -->
-                     <span style="font-weight: bold">Fecha Suministro</span>
-                        <div class="input-group datepick1" id="datepick1">
-                          <input type="text" class="form-control input-lg datepick1" name="editarFechaSuministro" id="editarFechaSuministro" required>
-                          <div class="input-group-addon add-on datepick1">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                          </div>
-                        </div>
-                        
+                     <button class="form-control btn btn-warning" type="button" name="btnActualizarFechaInicio" id="btnActualizarFechaInicio">Iniciar</button>
+
                   </div>
                   <div class="col-lg-6">
                      <!-- ENTRADA PARA FECHA TÉRMINO -->
-                     <span style="font-weight: bold">Fecha Término</span>
-                        <div class="input-group datepick2" id="datepick2">
-                          <input type="text" class="form-control input-lg datepick2" name="editarFechaTermino" id="editarFechaTermino" required>
-                          <div class="input-group-addon add-on datepick2">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                          </div>
-                        </div>
-                        
+                      <button class="form-control btn btn-warning" type="button" name="btnActualizarFechaTermino" id="btnActualizarFechaTermino">Finalizar</button>
                   </div>
                 </div>
                 <br>
@@ -788,31 +774,7 @@ $(document).ready(function(){
 </script>
 
 
-<script type="text/javascript">
-  $(document).ready(function() {
-  $('.datepick').datetimepicker({
-    format: 'YYYY-MM-DD HH:mm:ss',
-    ignoreReadonly: true
-  });
-});
-</script>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $('.datepick1').datetimepicker({
-    format: 'YYYY-MM-DD HH:mm:ss',
-    ignoreReadonly: true
-  });
-});
-</script>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $('.datepick2').datetimepicker({
-     format: 'YYYY-MM-DD HH:mm:ss',
-    ignoreReadonly: true
-  });
 
-});
-</script>
 <script type="text/javascript">
   $(document).ready(function() {
   $('.dtp1').datetimepicker({

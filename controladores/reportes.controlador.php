@@ -35581,6 +35581,55 @@ class ControladorReportes{
 
 			}
 			/* aqui termina */
+			/*=============================================
+			REPORTE DE BANCO 7338
+			=============================================*/
+
+			if($_GET["reporteBancosEdicion"] == "banco7338"){	
+
+				echo utf8_decode("<table> 
+
+				
+						<tr>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Id</td> 
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Descripcion</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Cargo</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Abono</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Saldo</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Fecha</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Departamento</td> 
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Grupo</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Subgrupo</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Cliente / Proveedor /Acreedor</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Concepto</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Número de Documento</td>
+						<td style='font-weight:bold; background:#ffa420; color:white;'>Identificador</td>
+						</tr>");
+
+				foreach ($reporteBancosEdicion as $key => $value) {
+          
+					 echo utf8_decode("<tr>
+					 					<td style='color:black;'>".$value["id"]."</td>
+				 						<td style='color:black;'>".$value["descripcion"]."</td>
+				 						<td style='color:black;'>".$value["cargo"]."</td>
+				 						<td style='color:black;'>".$value["abono"]."</td>
+				 						<td style='color:black;'>".$value["saldo"]."</td>
+				 						<td style='color:black;'>".$value["fecha"]."</td>
+				 						<td style='color:black;'>".$value["departamento"]."</td>
+				 						<td style='color:black;'>".$value["grupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["subgrupo"]."</td>
+				 						<td style='color:black;width:420px'>".$value["acreedor"]."</td>
+				 						<td style='color:black;width:420px'>".$value["concepto"]."</td>
+				 						<td style='color:black;text-align:left'>".$value["numeroDocumento"]."</td>
+				 						<td style='color:black;text-align:left'>".$value["iden"]."</td></tr>");
+				 						
+										
+										}
+
+
+			echo "</table>";
+
+			}
 		}
 	}
 	/*=============================================

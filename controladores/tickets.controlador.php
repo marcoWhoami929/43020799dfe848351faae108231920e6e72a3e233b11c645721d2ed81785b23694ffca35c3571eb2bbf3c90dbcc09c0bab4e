@@ -765,7 +765,7 @@ class ControladorTickets{
 
 		$url = $_SERVER['REQUEST_URI'];
         $longitud = strlen($url);
-        var_dump($longitud);
+       
         
          
 		  if ($longitud == 56) {

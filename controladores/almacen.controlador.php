@@ -361,8 +361,7 @@ class ControladorAlmacen{
 					           "serie" => $_POST["editarSerie"],
 					           "idPedido" => $_POST["editarIdPedido"],
 					           "fechaRecepcion" => $_POST["editarFechaRecepcion"],
-					           "fechaSuministro" => $_POST["editarFechaSuministro"],
-					           "fechaTermino" => $_POST["editarFechaTermino"],
+					          
 					           "status" => $_POST["editarStatus"],
 					           "tipoCompra" => $_POST["editarTipoCompra"],
 					           "observaciones" => trim($_POST["editarObservaciones"]),
@@ -707,6 +706,17 @@ class ControladorAlmacen{
 		
 		
 		
+	}
+	/*=============================================
+	ACTUALIZAR FECHA SUMINISTRO
+	=============================================*/
+	static public function ctrActualizarFechaSuministro($item, $valor,$item2, $valor2,$status){
+
+		$tabla = "almacen";
+
+		$respuesta = ModeloAlmacen::mdlActualizarFechaSuministro($tabla, $item, $valor,$item2, $valor2,$status);
+
+		return $respuesta;
 	}
 
 

@@ -609,15 +609,14 @@ SET $tabla2.tipoCompra = $tabla.tipoCompra WHERE $tabla2.folio = $tabla.idPedido
 
 	static public function mdlEditarPedido($tabla, $datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET suministrado = :suministrado, serie = :serie, idPedido = :idPedido, fechaRecepcion = :fechaRecepcion, fechaSuministro = :fechaSuministro, fechaTermino = :fechaTermino, status = :status, observaciones = :observaciones, tipoCompra = :tipoCompra, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importeTotal = :importeTotal, estado = :estado, habilitado = :habilitado, pendiente = :pendiente WHERE idPedido = :idPedido and serie = :serie");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET suministrado = :suministrado, serie = :serie, idPedido = :idPedido, fechaRecepcion = :fechaRecepcion, status = :status, observaciones = :observaciones, tipoCompra = :tipoCompra, numeroPartidas = :numeroPartidas, numeroUnidades = :numeroUnidades, importeTotal = :importeTotal, estado = :estado, habilitado = :habilitado, pendiente = :pendiente WHERE idPedido = :idPedido and serie = :serie");
 
 		
 		$stmt->bindParam(":suministrado", $datos["suministrado"], PDO::PARAM_STR);
 		$stmt->bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":idPedido", $datos["idPedido"], PDO::PARAM_INT);
 		$stmt->bindParam(":fechaRecepcion", $datos["fechaRecepcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":fechaSuministro", $datos["fechaSuministro"], PDO::PARAM_STR);
-		$stmt->bindParam(":fechaTermino", $datos["fechaTermino"], PDO::PARAM_STR);
+		
 		$stmt->bindParam(":status", $datos["status"], PDO::PARAM_INT);
 		$stmt->bindParam(":tipoCompra", $datos["tipoCompra"], PDO::PARAM_INT);
 		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
@@ -776,6 +775,31 @@ SET $tabla2.tipoCompra = $tabla.tipoCompra WHERE $tabla2.folio = $tabla.idPedido
 		$stmt->close();
 		
 		$stmt = null;
+	}
+	/*=============================================
+		ACTUALIZAR FECHA SUMINISTRO
+	=============================================*/
+	static public function mdlActualizarFechaSuministro($tabla, $item, $valor,$item2, $valor2,$status){
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item2 = :$item2 ,status = $status WHERE $item = :$item");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+
+			if($stmt -> execute()){
+
+				return "ok";
+
+			}else{
+
+				return "error";
+
+			}
+
+			$stmt -> close();
+
+			$stmt = null;
+
 	}
 
 }

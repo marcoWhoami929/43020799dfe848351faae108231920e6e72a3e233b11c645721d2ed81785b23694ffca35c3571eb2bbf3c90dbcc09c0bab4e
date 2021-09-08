@@ -41,7 +41,131 @@ tablaAlmacen = $(".tablaAlmacen").DataTable({
 
 });
 
+function actualizarFechaInicio(id){
+  var datos = new FormData();
+  datos.append("idPedidoActualizar", id);
+  datos.append("accion", "suministro");
+   $.ajax({
+      url:"ajax/almacen.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var response = respuesta;
+        var responseFinal = response.replace(/['"]+/g, '');
+        if (responseFinal == "ok") {
 
+          $('#messageAlertUpdate').show();
+          setTimeout(function(){
+              $('#messageAlertUpdate').fadeOut(1000);
+              var datos = new FormData();
+              datos.append("idAlmacen2", id);
+
+              $.ajax({
+
+                url:"ajax/almacen.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta){
+
+                  $("#editarSuministrado").val(respuesta["suministrado"]);
+                  $("#idAlmacen2").val(respuesta["id"]);
+                  $("#editarSerie").val(respuesta["serie"]);
+                  $("#editarIdPedido").val(respuesta["idPedido"]);
+                  $("#editarFechaRecepcion").val(respuesta["fechaRecepcion"]);
+
+                  $("#editarStatus").val(respuesta["status"]);
+                  $("#editarTipoCompra").val(respuesta["tipoCompra"]);
+                  $("#editarObservaciones").val(respuesta["observaciones"]);
+                  $("#editarNumeroPartidas").val(respuesta["numeroPartidas"]);
+                  $("#editarNumeroUnidades").val(respuesta["numeroUnidades"]);
+                  $("#editarImporteTotal").val(respuesta["importeTotal"]);
+
+
+
+                }
+
+
+              })
+          },3000);
+
+        }
+
+      }
+
+    })
+}
+function actualizarFechaTermino(id){
+  var datos = new FormData();
+  datos.append("idPedidoActualizar", id);
+  datos.append("accion", "finalizar");
+
+   $.ajax({
+      url:"ajax/almacen.ajax.php",
+      method:"POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success:function(respuesta){
+        var response = respuesta;
+        var responseFinal = response.replace(/['"]+/g, '');
+        if (responseFinal == "ok") {
+
+          $('#messageAlertUpdateFin').show();
+          var datos = new FormData();
+          datos.append("idAlmacen2", id);
+
+          $.ajax({
+
+            url:"ajax/almacen.ajax.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(respuesta){
+
+              $("#editarSuministrado").val(respuesta["suministrado"]);
+              $("#idAlmacen2").val(respuesta["id"]);
+              $("#editarSerie").val(respuesta["serie"]);
+              $("#editarIdPedido").val(respuesta["idPedido"]);
+              $("#editarFechaRecepcion").val(respuesta["fechaRecepcion"]);
+
+              $("#editarStatus").val(respuesta["status"]);
+              $("#editarTipoCompra").val(respuesta["tipoCompra"]);
+              $("#editarObservaciones").val(respuesta["observaciones"]);
+              $("#editarNumeroPartidas").val(respuesta["numeroPartidas"]);
+              $("#editarNumeroUnidades").val(respuesta["numeroUnidades"]);
+              $("#editarImporteTotal").val(respuesta["importeTotal"]);
+
+
+
+
+            }
+
+
+          })
+          setTimeout(function(){
+          
+              $("#modificar").click();
+          },3000);
+
+        }
+
+      }
+
+    })
+}
 /*=============================================
 EDITAR PEDIDO
 =============================================*/
@@ -76,6 +200,10 @@ $(".tablaAlmacen").on("click", ".btnEditarPedido", function(){
       $("#editarNumeroPartidas").val(respuesta["numeroPartidas"]);
       $("#editarNumeroUnidades").val(respuesta["numeroUnidades"]);
       $("#editarImporteTotal").val(respuesta["importeTotal"]);
+      var btnActualizarFechaInicio = document.getElementById("btnActualizarFechaInicio");
+      btnActualizarFechaInicio.setAttribute("onclick","actualizarFechaInicio("+respuesta['id']+")");
+      var btnActualizarFechaTermino = document.getElementById("btnActualizarFechaTermino");
+      btnActualizarFechaTermino.setAttribute("onclick","actualizarFechaTermino("+respuesta['id']+")");
 
 
     }

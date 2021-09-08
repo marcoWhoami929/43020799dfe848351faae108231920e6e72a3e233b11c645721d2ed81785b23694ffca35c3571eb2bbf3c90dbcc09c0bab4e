@@ -97,9 +97,19 @@
 				}
 				
 			break;
-			default:
-				// code...
-				break;
+			case "banco7338":
+
+				$consulta = "SELECT iden from banco7338 WHERE iden = '".$_GET["iden"]."'";
+				$resultado = mysqli_query($conn,$consulta);
+				if (mysqli_num_rows($resultado)) {
+
+					$actualizar = "UPDATE banco7338 set departamento = '".$departamento."', grupo = '".$grupo."', subgrupo = '".$subgrupo."', acreedor = '".$acreedor."', concepto = '".$concepto."', numeroDocumento = '".$numeroDocumento."', tieneIva = '".$tieneIva."' where iden = '".$_GET["iden"]."'";
+					mysqli_query($conn, $actualizar);
+					
+				}
+				
+			break;
+			
 		}
 
 	}

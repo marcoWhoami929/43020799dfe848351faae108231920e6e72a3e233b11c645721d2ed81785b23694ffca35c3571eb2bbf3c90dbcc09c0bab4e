@@ -234,7 +234,7 @@ class TablaAlmacen{
 
                           }else {
 
-                                $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idAlmacen2='".$almacen[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' disabled><i class='fa fa-pencil'></i>Editar Pedido</button></div>";
+                                $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarPedido' idAlmacen2='".$almacen[$i]["id"]."' data-toggle='modal' data-target='#modalEditarPedido' ><i class='fa fa-pencil'></i>Editar Pedido</button></div>";
                             
                           }
                         }else{
