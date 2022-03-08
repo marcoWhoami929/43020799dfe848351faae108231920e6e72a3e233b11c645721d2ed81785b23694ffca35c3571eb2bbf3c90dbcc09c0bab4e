@@ -47,7 +47,7 @@ session_start();
         );//opciones para "saltarse" comprobación de certificados (hace posible del envío desde localhost)
     //CONFIGURACIÓN DEL EMISOR
         $mail->Username = "cotizador.sfdk@gmail.com";
-        $mail->Password = "CotSfdk2";
+        $mail->Password = "Whoami929";
         $mail->setFrom('cotizador.sfdk@gmail.com', 'Cotizador San Francisco Dekkerlab');
 
     //CONFIGURACIÓN DEL MENSAJE, EL CUERPO DEL MENSAJE SERA UNA PLANTILLA HTML QUE INCLUYE IMAGEN Y CSS

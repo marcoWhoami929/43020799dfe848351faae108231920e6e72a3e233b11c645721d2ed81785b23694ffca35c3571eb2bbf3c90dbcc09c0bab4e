@@ -319,6 +319,37 @@ class AjaxFacturacionTiendas{
 				$numeroParcial = $verAbonadoFactura[0]["numeroParcial"]+1;
 
 			}
+
+			if ($_SESSION["nombre"] == "Sucursal Santiago") {
+
+				$bancoElegidoMovi = "banco6278";
+
+				}else if($_SESSION["nombre"] == "Diego Ávila"){
+
+					$bancoElegidoMovi = "banco6278";
+
+				}else if($_SESSION["nombre"] == "Aurora Fernandez"){
+
+					$bancoElegidoMovi = "banco6278";
+
+				}else if($_SESSION["nombre"] == "Rocio Martínez Morales"){
+
+					$bancoElegidoMovi = "banco3450";
+
+				}else{
+
+					if($_SESSION["nombre"] == "Sucursal Reforma"){
+		                  
+		                $bancoElegidoMovi = $_SESSION["bancoNuevoElegido"];
+
+		            }else{
+		                
+		                $bancoElegidoMovi = "banco0198";
+
+		            }
+
+				}
+		
 			
 			$datosAbono = array('idMovimientoBanco' => $movimientoBanco,
 								'serieAbono' => 'ABGM',
@@ -329,7 +360,8 @@ class AjaxFacturacionTiendas{
 								'creadorAbono' => $_SESSION["id"],
 								'numeroParcial' => $numeroParcial,
 								'conceptoAbono' => 'ABONO CLIENTE',
-								'idAjusteSaldo' => '0');
+								'idAjusteSaldo' => '0',
+								'banco'=> $bancoElegidoMovi);
 
 			$buscarAbono =  ControladorFacturasTiendas::ctrBuscarAbonosRealizados($datosAbono);
 
@@ -763,6 +795,7 @@ class AjaxFacturacionTiendas{
 				$totalDocumentosDeposito = $verAbonoDepositoBancario[0]["totalDocumentos"];
 				$abonadoDepositoDeposito = $verAbonoDepositoBancario[0]["abonadoDeposito"];
 				$estatusDeposito = $verAbonoDepositoBancario[0]["estatus"];
+				$bancoElegi = $verAbonoDepositoBancario[0]["banco"];
 
 				$totalFactura = $verAbonoDepositoBancario[0]["total"];
 				$pagadoFactura = number_format(str_replace(',','',$verAbonoDepositoBancario[0]["pagado"]),2, '.', '');
@@ -831,7 +864,8 @@ class AjaxFacturacionTiendas{
 									'creadorAbono' => $_SESSION["id"],
 									'numeroParcial' => $numeroParcial,
 									'conceptoAbono' => 'ABONO CLIENTE / AJUSTE SALDO',
-									'idAjusteSaldo' => $folioAjuste);
+									'idAjusteSaldo' => $folioAjuste,
+									'banco'=>$bancoElegi);
 
 				$buscarAbono =  ControladorFacturasTiendas::ctrBuscarAbonosRealizados($datosAbono);
 
@@ -895,7 +929,6 @@ class AjaxFacturacionTiendas{
  			case 'FACTURA TORRES':
  				$serie = 'AJTR';
  				break;
- 			
  			case 'ALL':
  				$serie = 'AJRU';
  				break;
@@ -904,6 +937,30 @@ class AjaxFacturacionTiendas{
  				break;
  			case 'FACTURA INDUSTRIAL V 3.3':
  				$serie = 'AJND';
+ 				break;
+ 			case 'Factura Industrial':
+ 				$serie = 'AJIN';
+ 				break;
+ 			case 'Factura Mayoreo':
+ 				$serie = 'AJMY';
+ 				break;
+ 			case 'Factura Capu':
+ 				$serie = 'AJCA';
+ 				break;
+ 			case 'Factura Santiago':
+ 				$serie = 'AJST';
+ 				break;
+ 			case 'Factura Ecommerce':
+ 				$serie = 'AJEC';
+ 				break;
+ 			case 'Factura Reforma':
+ 				$serie = 'AJRM';
+ 				break;
+ 			case 'Factura San Manuel':
+ 				$serie = 'AJSN';
+ 				break;
+ 			case 'Factura Torres':
+ 				$serie = 'AJTO';
  				break;
  			
  		}
@@ -1087,25 +1144,25 @@ class AjaxFacturacionTiendas{
 	      }
 		switch ($usuario) {
 			case 'Sucursal San Manuel':
-				$concepto = "FACTURA SAN MANUEL V 3.3";
+				$concepto = "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
 				break;
 			case 'Sucursal Capu':
-				$concepto = "FACTURA CAPU V 3.3";
+				$concepto = "'FACTURA CAPU V 3.3','Factura Capu'";
 				break;
 			case 'Sucursal Santiago':
-				$concepto = "FACTURA SANTIAGO V 3.3";
+				$concepto = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
 				break;
 			case 'Sucursal Reforma':
-				$concepto = "FACTURA REFORMA V 3.3";
+				$concepto =  "'FACTURA REFORMA V 3.3','Factura Reforma'";
 				break;
 			case 'Sucursal Las Torres':
-				$concepto = "FACTURA TORRES";
+				$concepto = "'FACTURA TORRES','Factura Torres'";
 				break;
 			case 'Mayoreo':
-                $concepto = "FACTURA MAYOREO V 3.3";
+                $concepto = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
                 break;
             case 'Industrial':
-                $concepto = "FACTURA INDUSTRIAL V 3.3";
+                $concepto = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
                 break;
             case 'Rutas':
                 $concepto = "ALL";
@@ -1330,25 +1387,25 @@ class AjaxFacturacionTiendas{
 
 		switch ($usuario) {
 			case 'Sucursal San Manuel':
-				$concepto = "FACTURA SAN MANUEL V 3.3";
+				$concepto = "Factura San Manuel";
 				break;
 			case 'Sucursal Capu':
-				$concepto = "FACTURA CAPU V 3.3";
+				$concepto = "Factura Capu";
 				break;
 			case 'Sucursal Santiago':
-				$concepto = "FACTURA SANTIAGO V 3.3";
+				$concepto = "Factura Santiago";
 				break;
 			case 'Sucursal Reforma':
-				$concepto = "FACTURA REFORMA V 3.3";
+				$concepto = "Factura Reforma";
 				break;
 			case 'Sucursal Las Torres':
-				$concepto = "FACTURA TORRES";
+				$concepto = "Factura Torres";
 				break;
 			case 'Mayoreo':
-                $concepto = "FACTURA MAYOREO V 3.3";
+                $concepto = "Factura Mayoreo";
                 break;
             case 'Industrial':
-                $concepto = "FACTURA INDUSTRIAL V 3.3";
+                $concepto = "Factura Industrial";
                 break;
             case 'Rutas':
                 $concepto = "ALL";
@@ -1674,7 +1731,7 @@ class AjaxFacturacionTiendas{
 				$numeroParcial = $verAbonadoFactura[0]["numeroParcial"]+1;
 
 			}
-			
+			$bancoMovi =  $this->bancoMovimiento;
 			$datosAbono = array('idMovimientoBanco' => $movimientoBanco,
 								'serieAbono' => 'ABGM',
 								'serieFactura' => $serieFac,
@@ -1684,7 +1741,8 @@ class AjaxFacturacionTiendas{
 								'creadorAbono' => $_SESSION["id"],
 								'numeroParcial' => $numeroParcial,
 								'conceptoAbono' => 'ABONO CLIENTE',
-								'idAjusteSaldo' => '0');
+								'idAjusteSaldo' => '0',
+								'banco'=> $bancoMovi);
 
 			$buscarAbono =  ControladorFacturasTiendas::ctrBuscarAbonosRealizados($datosAbono);
 
@@ -2006,7 +2064,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaCred;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR' || $serie == "FCMY" || $serie == "FCIN") {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2031,7 +2089,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaConfirm;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR' || $serie == "FCMY" || $serie == "FCIN") {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2091,7 +2149,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaUpload;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR' || $serie == "FCMY" || $serie == "FCIN") {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2118,7 +2176,7 @@ class AjaxFacturacionTiendas{
 
 		$serie = $this->serieFacturaLoad;
 
-		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR') {
+		if ($serie == 'FACD' || $serie == 'FAND' || $serie == 'FAPB' || $serie == 'DOPR' || $serie == 'DFPR' || $serie == "FCMY" || $serie == "FCIN") {
 			$tabla = "facturasgenerales";
 		}else{
 			$tabla = "facturastiendas";
@@ -2136,32 +2194,28 @@ class AjaxFacturacionTiendas{
 	public $sucursalComercial;
 	public function ajaxObtenerFacturasTiendasComercial(){
 
-			if ($this->sucursalComercial != "Sucursal Las Torres") {
-				include("../modelos/conexion-api-server-pinturas.modelo.php");
-			}else{
-				include("../modelos/conexion-api-server-torres.modelo.php");
-			}
+			include("../modelos/conexion-api-server-pinturas.modelo.php");
 			
 			$hoy = date("d/m/Y");
 	        $fecha = str_replace('/', '-', $hoy);
 	        $fechaFinal = date('Y-m-d', strtotime($fecha));
-	    	//$fechaFinal = '2021-08-17';
+	    	//$fechaFinal = '2022-01-11';
 	    	$usuario = $_SESSION["nombre"];
 			    switch ($usuario) {
                     case 'Sucursal San Manuel':
-                        $serie = "FASM";
+                        $serie = "FCSN";
                         break;
                     case 'Sucursal Reforma':
-                        $serie = "FARF";
+                        $serie = "FCRM";
                         break;
                    	case 'Sucursal Capu':
-                        $serie = "FACP";
+                        $serie = "FCCA";
                         break;
                     case 'Sucursal Las Torres':
-                       	$serie = "FATR";
+                       	$serie = "FCTO";
                         break;
                     case 'Sucursal Santiago':
-                        $serie = "FASG";
+                        $serie = "FCST";
                         break;
  
                 }
@@ -2324,20 +2378,20 @@ class AjaxFacturacionTiendas{
 				}else{	
 
 						switch ($value["serie"]) {
-							case 'FASM':
-								$concepto = "FACTURA SAN MANUEL V 3.3";
+							case 'FCSN':
+								$concepto = "Factura San Manuel";
 								break;
-							case 'FARF':
-								$concepto = "FACTURA REFORMA V 3.3";
+							case 'FCRM':
+								$concepto = "Factura Reforma";
 								break;
-							case 'FACP':
-								$concepto = "FACTURA CAPU V 3.3";
+							case 'FCCA':
+								$concepto = "Factura Capu";
 								break;
-							case 'FASG':
-								$concepto = "FACTURA SANTIAGO V 3.3";
+							case 'FCST':
+								$concepto = "Factura Santiago";
 								break;
-							case 'FATR':
-								$concepto = "FACTURA TORRES";
+							case 'FCTO':
+								$concepto = "Factura Torres";
 								break;
 						
 						}
@@ -2513,19 +2567,19 @@ class AjaxFacturacionTiendas{
 		$valor = $this->accion;
 
 		switch ($serieFactura) {
-			case 'FASM':
+			case 'FCSN':
 				$tabla = "facturastiendas";
 				break;
-			case 'FATR':
+			case 'FCTO':
 				$tabla = "facturastiendas";
 				break;
-			case 'FARF':
+			case 'FCRM':
 				$tabla = "facturastiendas";
 				break;
-			case 'FASG':
+			case 'FCST':
 				$tabla = "facturastiendas";
 				break;
-			case 'FACP':
+			case 'FCCA':
 				$tabla = "facturastiendas";
 				break;
 			default:

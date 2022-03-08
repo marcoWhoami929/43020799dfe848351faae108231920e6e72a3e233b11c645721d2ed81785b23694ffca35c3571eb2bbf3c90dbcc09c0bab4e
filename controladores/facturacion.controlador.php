@@ -584,6 +584,15 @@ class ControladorFacturacion{
 	            }else if ($serieFactura == "DOPR") {
 	                $concepto = 'PEDIDO PRUEBA V 3.3';
 	                $agente = 'Documento de Prueba';
+	            }else if ($serieFactura == "FCMY") {
+	                $concepto = 'Factura Mayoreo';
+	                $agente = 'Mayoreo';
+	            }else if($serieFactura == "FCIN"){
+	                $concepto = 'Factura Industrial';
+	                $agente = 'Industrial';
+	            }else if($serieFactura == "FAPB") {
+	                $concepto = 'FACTURA FX PUEBLA V 3.3';
+	                $agente = 'Flex';
 	            }
 
 	            $formaPago = 'EFECTIVO';

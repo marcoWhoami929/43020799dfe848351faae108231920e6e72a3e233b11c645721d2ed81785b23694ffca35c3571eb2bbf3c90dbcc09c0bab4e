@@ -344,6 +344,7 @@ $(".btnCerrarTicket").click(function() {
         confirmButtonText: 'Si, cerrar!',
     }).then(function(result) {
         if (result.value) {
+            /*
              var url = "https://sanfranciscodekkerlab.com/crm/apiTickets.php?callback=?";
             
             var dataString = "serieFactura=" + serieFactura + "&folioFactura=" + folioFactura + "&motivoCancelacion=" + motivoCancelacion + "&cancelarFacturaVenta=";
@@ -365,8 +366,8 @@ $(".btnCerrarTicket").click(function() {
                 }
               }
             });
-
-            
+*/
+            window.location = rutaFinal + "&idNumeroTicket=" + idNumeroTicket;
         } else {
             swal("Error!", 'Opps estuvo apunto de cerrar el ticket', "error");
         }

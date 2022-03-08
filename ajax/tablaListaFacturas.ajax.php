@@ -37,37 +37,36 @@ class TablaListaFacturasTiendas{
     switch ($usuario) {
       case 'Sucursal San Manuel':
 
-        $valor = "FACTURA SAN MANUEL V 3.3";
-
+        $valor = "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
         break;
       case 'Sucursal Capu':
 
-        $valor = "FACTURA CAPU V 3.3";
+        $valor = "'FACTURA CAPU V 3.3','Factura Capu'";
 
         break;
       case 'Sucursal Reforma':
 
-        $valor = "FACTURA REFORMA V 3.3";
+        $valor = "'FACTURA REFORMA V 3.3','Factura Reforma'";
 
         break;
       case 'Sucursal Las Torres':
 
-        $valor = "FACTURA TORRES";
+        $valor = "'FACTURA TORRES','Factura Torres'";
 
         break;
       case 'Sucursal Santiago':
 
-        $valor = "FACTURA SANTIAGO V 3.3";
+        $valor = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
 
         break;
        case 'Mayoreo':
 
-        $valor = "FACTURA MAYOREO V 3.3";
+        $valor = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
 
         break;
       case 'Industrial':
 
-        $valor = "FACTURA INDUSTRIAL V 3.3";
+        $valor = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
 
         break;
       case 'Rutas':

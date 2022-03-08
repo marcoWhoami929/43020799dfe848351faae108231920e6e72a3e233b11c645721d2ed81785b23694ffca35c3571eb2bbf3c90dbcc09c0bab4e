@@ -110,6 +110,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
             }
 
           ?>
+          <button type="button" class="btn btn-warning" onclick="limpiarCorte()">Limpiar <i class="fa fa-plus-trash " aria-hidden="true"></i></button>
           <div class="container">
               <h5 style="font-weight: bold;font-size: 25px">Búsqueda por dia</h5>
               <div class="row">
@@ -299,6 +300,11 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
   </section>
 
 </div>
+<script type="text/javascript">
+  function limpiarCorte(){
+  localStorage.removeItem("folioCorteCaja");
+}
+</script>
 <style type="text/css" >
   .denominaciones {
 

@@ -83,7 +83,7 @@ class AjaxAtencion{
 			admDoc.CFECHA = '".$valor."'
 
 			*/
-			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB','PEEC') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO";
+			$mostrarPedidos = "SELECT admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO, COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES,admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR LEFT JOIN dbo.admAgentes as admAge ON admAge.CIDAGENTE = admDoc.CIDAGENTE  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO  where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('PECD','PEND','PEPB','PEBB','PEEC','PDEC','PDIN','PDMY','PDPR') GROUP BY admDoc.CIDDOCUMENTO,admCli.CCODIGOCLIENTE,admDoc.CRAZONSOCIAL,admDoc.CRFC,admAge.CNOMBREAGENTE,admAge.CCODIGOAGENTE,admCli.CDIASCREDITOCLIENTE,admCli.CESTATUS,admCli.CLIMITECREDITOCLIENTE,admCli.CBANEXCEDERCREDITO,admCli.CLIMDOCTOS,admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTALUNIDADES,admDoc.CTOTAL,admDoc.CFECHA,admDoc.CTIMESTAMP,admDoc.CMETODOPAG,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)),admDoc.CCANCELADO,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CUSUARIO";
 
             $ejecutar = sqlsrv_query($conne,$mostrarPedidos);
             $i = 0;
@@ -146,7 +146,7 @@ class AjaxAtencion{
 			SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,admDoc.CIDDOCUMENTODE FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where  admDoc.CFECHA >= '2021-01-25' AND admDoc.CFECHA <= '2021-02-06' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') and admDoc.CIDDOCUMENTODE = 4 GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,admDoc.CIDDOCUMENTODE
 			*/
 			 
-			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR','FAEC') and admDoc.CIDDOCUMENTODE = 4 GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
+			$mostrarFacturas = "SELECT admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,COUNT(admMov.CIDDOCUMENTO) as PARTIDAS,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000)) AS COBSERVACIONES FROM dbo.admDocumentos as admDoc LEFT JOIN dbo.admClientes as admCli ON admCli.CIDCLIENTEPROVEEDOR = admDoc.CIDCLIENTEPROVEEDOR  LEFT JOIN dbo.admMovimientos as admMov ON admMov.CIDDOCUMENTO = admDoc.CIDDOCUMENTO   where admDoc.CFECHA = '".$valor."' and admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR','FAEC','FCIN','FCMY','FCPR','FCEC') and admDoc.CIDDOCUMENTODE = 4 GROUP BY admDoc.CSERIEDOCUMENTO,admDoc.CFOLIO,admDoc.CTOTAL,admDoc.CCANCELADO,admDoc.CTOTALUNIDADES,admDoc.CPENDIENTE,admDoc.CFECHA,admDoc.CFECHAVENCIMIENTO,admDoc.CRAZONSOCIAL,admDoc.CREFERENCIA,admDoc.CMETODOPAG,admCli.CCODIGOCLIENTE,admCli.CRFC,admCli.CESTATUS,admCli.CDIASCREDITOCLIENTE,admDoc.CIDCLIENTEPROVEEDOR,admDoc.CTIMESTAMP,admDoc.CUSUARIO,CAST(admDoc.COBSERVACIONES AS NVARCHAR(4000))";
 
 
 
@@ -263,7 +263,7 @@ class AjaxAtencion{
 						break;
 				}
 				/***OBTENER SALDO VENCIDO DOCUMENTOS VENCIDOS*/
-				$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido FROM dbo.admDocumentos as admDoc  WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$value["idCliente"]."' AND admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0";
+				$estatusCliente = "SELECT COUNT(admDoc.CIDDOCUMENTO) AS documentosVencidos,SUM(admDoc.CPENDIENTE) as saldoVencido FROM dbo.admDocumentos as admDoc  WHERE admDoc.CIDCLIENTEPROVEEDOR = '".$value["idCliente"]."' AND admDoc.CSERIEDOCUMENTO IN ('FACD','FAND','FAPB','DFPR','DOPR','FCMY','FCIN') AND admDoc.CPENDIENTE != 0 AND admDoc.CCANCELADO = 0";
 
 				$ejecutarConsulta = sqlsrv_query($conne,$estatusCliente);
 
@@ -274,7 +274,7 @@ class AjaxAtencion{
 
 				 }
 
-				 if ($value["serie"] != "PEPB") {
+				 if ($value["serie"] != "PEPB" || $value["serie"] != "PDPR") {
 				 	$catalogo = "PINTURAS";
 				 }else{
 				 	$catalogo = "FLEX";
@@ -475,11 +475,11 @@ class AjaxAtencion{
                             $estatusFactura = 1;
                             $serieFactura = $value["serie"];
 
-                            if ($serieFactura == "FACD") {
-                                $concepto = 'FACTURA MAYOREO V 3.3';
+                            if ($serieFactura == "FCMY") {
+                                $concepto = 'Factura Mayoreo';
                                 $agente = 'Mayoreo';
-                            }else if($serieFactura == "FAND"){
-                                $concepto = 'FACTURA INDUSTRIAL V 3.3';
+                            }else if($serieFactura == "FCIN"){
+                                $concepto = 'Factura Industrial';
                                 $agente = 'Industrial';
                             }else if($serieFactura == "FAPB") {
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
@@ -788,11 +788,12 @@ class AjaxAtencion{
                             $estatusFactura = 1;
                             $serieFactura = $value["serie"];
 
-                            if ($serieFactura == "FACD") {
-                                $concepto = 'FACTURA MAYOREO V 3.3';
+                         
+                            if ($serieFactura == "FCMY") {
+                                $concepto = 'Factura Mayoreo';
                                 $agente = 'Mayoreo';
-                            }else if($serieFactura == "FAND"){
-                                $concepto = 'FACTURA INDUSTRIAL V 3.3';
+                            }else if($serieFactura == "FCIN"){
+                                $concepto = 'Factura Industrial';
                                 $agente = 'Industrial';
                             }else if($serieFactura == "FAPB") {
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
@@ -1097,11 +1098,12 @@ class AjaxAtencion{
                             $estatusFactura = 1;
                             $serieFactura = $value["serie"];
 
-                            if ($serieFactura == "FACD") {
-                                $concepto = 'FACTURA MAYOREO V 3.3';
+                            
+                            if ($serieFactura == "FCMY") {
+                                $concepto = 'Factura Mayoreo';
                                 $agente = 'Mayoreo';
-                            }else if($serieFactura == "FAND"){
-                                $concepto = 'FACTURA INDUSTRIAL V 3.3';
+                            }else if($serieFactura == "FCIN"){
+                                $concepto = 'Factura Industrial';
                                 $agente = 'Industrial';
                             }else if($serieFactura == "FAPB") {
                                 $concepto = 'FACTURA FX PUEBLA V 3.3';
@@ -2541,7 +2543,7 @@ class AjaxAtencion{
 			,'1' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND admMov.CIDPRODUCTO IN(".$folios.") UNION SELECT
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP','FCCA','FCST','FCRM','FCSN','FCTO') and admDocs.CIDDOCUMENTODE = 4 AND admMov.CIDPRODUCTO IN(".$folios.") UNION SELECT
 	  admDocs.CSERIEDOCUMENTO
 			,admDocs.CFOLIO
 			,admDocs.CFECHA
@@ -2552,7 +2554,7 @@ class AjaxAtencion{
 			,'2' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP','FCCA','FCST','FCRM','FCSN','FCTO') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
 	  admDocs.CSERIEDOCUMENTO
 			,admDocs.CFOLIO
 			,admDocs.CFECHA
@@ -2563,7 +2565,7 @@ class AjaxAtencion{
 			,'3' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP','FCCA','FCST','FCRM','FCSN','FCTO') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0) UNION SELECT
 	  admDocs.CSERIEDOCUMENTO
 			,admDocs.CFOLIO
 			,admDocs.CFECHA
@@ -2574,7 +2576,7 @@ class AjaxAtencion{
 			,'4' AS CLASIFICACION
 			,admDocs.CCANCELADO
 			
-		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0))
+		FROM admDocumentos as admDocs INNER JOIN admMovimientos as admMov ON admDocs.CIDDOCUMENTO = admMov.CIDDOCUMENTO where admDocs.CFECHA = '".$valor."' AND admDocs.CSERIEDOCUMENTO IN ('FASM','FASG','FATR','FARF','FACP','FCCA','FCST','FCRM','FCSN','FCTO') and admDocs.CIDDOCUMENTODE = 4 AND  admMov.CIDPRODUCTO IN(0))
 	  ,
 	  ventasAcumulado AS(
 		  SELECT 

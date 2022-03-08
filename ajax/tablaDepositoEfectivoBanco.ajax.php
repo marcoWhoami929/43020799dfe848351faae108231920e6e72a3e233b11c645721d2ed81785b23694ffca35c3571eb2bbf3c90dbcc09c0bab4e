@@ -21,37 +21,37 @@ class TablaDepositosBanco{
     switch ($usuario) {
       case 'Sucursal San Manuel':
 
-        $valor2 = "FACTURA SAN MANUEL V 3.3";
+        $valor2 = "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
 
         break;
       case 'Sucursal Capu':
 
-        $valor2 = "FACTURA CAPU V 3.3";
+        $valor2 = "'FACTURA CAPU V 3.3','Factura Capu'";
 
         break;
       case 'Sucursal Reforma':
 
-        $valor2 = "FACTURA REFORMA V 3.3";
+        $valor2 = "'FACTURA REFORMA V 3.3','Factura Reforma'";
 
         break;
       case 'Sucursal Las Torres':
 
-        $valor2 = "FACTURA TORRES";
+        $valor2 = "'FACTURA TORRES','Factura Torres'";
 
         break;
       case 'Sucursal Santiago':
 
-        $valor2 = "FACTURA SANTIAGO V 3.3";
+        $valor2 = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
 
         break;
       case 'Mayoreo':
 
-        $valor2 = "FACTURA MAYOREO V 3.3";
+        $valor2 = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
 
         break;
       case 'Industrial':
 
-        $valor2 = "FACTURA INDUSTRIAL V 3.3";
+        $valor2 = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
 
         break;
       case 'Rutas':

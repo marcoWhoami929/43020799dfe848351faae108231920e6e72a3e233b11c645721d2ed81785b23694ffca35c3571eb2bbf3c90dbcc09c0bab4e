@@ -128,6 +128,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
                   <option value="VERGEL">VERGEL</option>
                   <option value="XONACA">XONACA</option>
                   <option value="MAYOREO">MAYOREO</option>
+                  <option value="ECOMMERCE">ECOMMERCE</option>
                 </select>
               </div>
 
@@ -400,7 +401,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
-                          <option value="MAYOREO">MAYOREO</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -435,6 +437,7 @@ MODAL EDITAR DATOS
 
                                   <option value="" id="editarSubgrupo">Elegir Subgrupo</option>
                                   <option value="Acreedores Bancarios">Acreedores Bancarios</option>
+                                   <option value="Arrendamientos Vehiculares">Arrendamientos Vehiculares</option>
                                   <option value="Proveedores">Proveedores</option>
                                   <option value="Clientes">Clientes</option>
                                   <option value="Prestamos Bancarios">Prestamos Bancarios</option>
@@ -716,6 +719,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -764,6 +769,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -812,6 +819,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -864,6 +873,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -912,6 +923,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -960,6 +973,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1012,6 +1027,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1060,6 +1077,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1108,6 +1127,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1159,6 +1180,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1207,6 +1230,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1255,6 +1280,8 @@ MODAL EDITAR DATOS
                           <option value="VENTAS">VENTAS</option>
                           <option value="VERGEL">VERGEL</option>
                           <option value="XONACA">XONACA</option>
+                           <option value="MAYOREO">MAYOREO</option>
+                            <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>

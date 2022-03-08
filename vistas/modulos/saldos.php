@@ -429,7 +429,7 @@ if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ba
             </div>
           </div>';
            }
-          if($_SESSION["nombre"] == "COBRANZA 2" || $_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Bancos"){
+          if($_SESSION["nombre"] == "COBRANZA 2" || $_SESSION["nombre"] == "COBRANZA 1" ||  $_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Contabilidad" || $_SESSION["perfil"] == "Bancos"){
 
 
           if ($_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Compras") {

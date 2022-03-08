@@ -284,9 +284,10 @@ class ControladorReporteador
 							$tablaB = $tabla;
 							$item = "idMovimientoBanco";
 							$valor =  $value["id"];
+							$bancoMov = $_GET["bancoRangoFechas"];
 							$tipo = "cerrado";
 
-							$mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB, $item, $valor, $tipo);
+							$mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB, $item, $valor, $tipo,$bancoMov);
 
 							if (count($mostrarParciales) > 0) {
 
@@ -683,9 +684,10 @@ class ControladorReporteador
 							$tablaB = $tabla;
 							$item = "idMovimientoBanco";
 							$valor =  $value["id"];
+							$bancoMov = $_GET["bancoRangoFechasCredito"];
 							$tipo = "cerrado";
 
-							$mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB, $item, $valor, $tipo);
+							$mostrarParciales = ModeloReporteador::mdlMostrarListaParcialesMovimiento($tablaB, $item, $valor, $tipo,$bancoMov);
 
 							if (count($mostrarParciales) > 0) {
 								foreach ($mostrarParciales as $key => $values) {

@@ -39,7 +39,7 @@ class TablaAtencion{
                   $item = 'codigoCliente';
                   $valor = $atencion[$i]["codigoCliente"];
 
-                  if ($atencion[$i]["serie"] != "PEPB") {
+                  if ($atencion[$i]["serie"] != "PEPB" || $atencion[$i]["serie"] != "PDPR") {
                     $catalogo = 'PINTURAS';
 
                   }else{

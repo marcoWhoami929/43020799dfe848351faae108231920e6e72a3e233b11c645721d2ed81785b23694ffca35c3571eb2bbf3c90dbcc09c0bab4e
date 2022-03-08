@@ -48,47 +48,48 @@ class TablaCobrosTiendas{
     
     
     switch ($usuario) {
-      case 'Sucursal San Manuel':
 
-        $valor2 = "FACTURA SAN MANUEL V 3.3";
+                  case 'Sucursal San Manuel':
 
-        break;
-      case 'Sucursal Capu':
+                    $valor2 = "Factura San Manuel";
 
-        $valor2 = "FACTURA CAPU V 3.3";
+                    break;
+                  case 'Sucursal Capu':
 
-        break;
-      case 'Sucursal Reforma':
+                    $valor2 = "Factura Capu";
 
-        $valor2 = "FACTURA REFORMA V 3.3";
+                    break;
+                  case 'Sucursal Reforma':
 
-        break;
-      case 'Sucursal Las Torres':
+                    $valor2 = "Factura Reforma";
 
-        $valor2 = "FACTURA TORRES";
+                    break;
+                  case 'Sucursal Las Torres':
 
-        break;
-      case 'Sucursal Santiago':
+                    $valor2 = "Factura Torres";
 
-        $valor2 = "FACTURA SANTIAGO V 3.3";
+                    break;
+                  case 'Sucursal Santiago':
 
-        break;
-      case 'Mayoreo':
+                    $valor2 = "Factura Santiago";
 
-        $valor2 = "FACTURA MAYOREO V 3.3";
+                    break;
+                  case 'Mayoreo':
 
-        break;
-      case 'Industrial':
+                    $valor2 = "Factura Mayoreo";
 
-        $valor2 = "FACTURA INDUSTRIAL V 3.3";
+                    break;
+                  case 'Industrial':
 
-        break;
-      case 'Rutas':
+                    $valor2 = "Factura Industrial";
 
-        $valor2 = "ALL";
-        
-        break;
-    }
+                    break;
+                  case 'Rutas':
+
+                    $valor2 = "ALL";
+                    
+                    break;
+                }
 
     $cobrosTiendas = ControladorFacturasTiendas::ctrMostrarCobrosDiarioTiendas($item, $valor,$item2, $valor2);
 

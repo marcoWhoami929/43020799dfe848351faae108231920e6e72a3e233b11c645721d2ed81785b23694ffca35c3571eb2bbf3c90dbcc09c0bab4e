@@ -271,7 +271,7 @@ class ModeloReportes{
 
 				$fechaFinal = date('Y-m-d',$fecha2);
 
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  WHERE fechaFactura BETWEEN '$fechaInicio' AND '$fechaFinal'and $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3') and seriePedido = 'OTRT' and cancelado != 1");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  WHERE fechaFactura BETWEEN '$fechaInicio' AND '$fechaFinal'and $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3','Factura Mayoreo') and seriePedido = 'OTRT' and cancelado != 1");
 
 				$stmt -> bindParam(":".$item,$valor, PDO::PARAM_STR);
 
@@ -287,7 +287,7 @@ class ModeloReportes{
 
 				$fechaFinal = date('Y-m-d',$fecha2);
 
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  WHERE fechaFactura BETWEEN '$fechaInicio' AND '$fechaFinal'and $item = :$item and seriePedido != 'OTRT' and cancelado != 1");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  WHERE fechaFactura BETWEEN '$fechaInicio' AND '$fechaFinal'and $item IN($valor) and seriePedido != 'OTRT' and cancelado != 1");
 
 				$stmt -> bindParam(":".$item,$valor, PDO::PARAM_STR);
 
@@ -337,7 +337,7 @@ class ModeloReportes{
 
 			if($valor == 'ALL'){
 
-				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,fechaFactura,sum(neto) as importe,sum(impuesto) as impuesto, sum(total) as totalDocumento FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3') and seriePedido = 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by nombreCliente");
+				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,fechaFactura,sum(neto) as importe,sum(impuesto) as impuesto, sum(total) as totalDocumento FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3','Factura Mayoreo') and seriePedido = 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by nombreCliente");
 
 				
 				$stmt -> bindParam(":".$item2,$valor2, PDO::PARAM_STR);
@@ -348,7 +348,7 @@ class ModeloReportes{
 
 			}else{
 
-				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,fechaFactura,sum(neto) as importe,sum(impuesto) as impuesto, sum(total) as totalDocumento FROM $tabla WHERE $item = :$item and $item2 = :$item2 and seriePedido != 'OTRT' and cancelado != 1 GROUP by nombreCliente");
+				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,fechaFactura,sum(neto) as importe,sum(impuesto) as impuesto, sum(total) as totalDocumento FROM $tabla WHERE $item IN($valor) and $item2 = :$item2 and seriePedido != 'OTRT' and cancelado != 1 GROUP by nombreCliente");
 
 				$stmt -> bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt -> bindParam(":".$item2,$valor2, PDO::PARAM_STR);
@@ -385,7 +385,7 @@ class ModeloReportes{
 
 			if ($valor == 'ALL') {
 				
-				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3') and seriePedido = 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by serie,folio UNION ALL SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3') and seriePedido = 'OTRT' and nuevaFechaFactura = :$item2 and cancelado != 1 GROUP by serie,folio ORDER BY nombreCliente");
+				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3','Factura Mayoreo') and seriePedido = 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by serie,folio UNION ALL SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3','Factura Mayoreo') and seriePedido = 'OTRT' and nuevaFechaFactura = :$item2 and cancelado != 1 GROUP by serie,folio ORDER BY nombreCliente");
 
 		
 				$stmt -> bindParam(":".$item2,$valor2, PDO::PARAM_STR);
@@ -396,7 +396,7 @@ class ModeloReportes{
 
 			}else{
 
-				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item = :$item and seriePedido != 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by serie,folio UNION ALL SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item = :$item and seriePedido != 'OTRT' and nuevaFechaFactura = :$item2 and cancelado != 1 GROUP by serie,folio ORDER BY nombreCliente");
+				$stmt = Conexion::conectar()->prepare("SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item in($valor) and seriePedido != 'OTRT' and $item2 = :$item2 and cancelado != 1 GROUP by serie,folio UNION ALL SELECT nombreCliente,serie,folio,IF(formaPago = 'EFECTIVO',sum(total),'0') as efectivo,IF(formaPago = 'TARJETA DE DÉBITO',sum(total),'0') as tarjetaDebito,IF(formaPago = 'TARJETA DE CRÉDITO',sum(total),'0') as tarjetaCredito,IF(formaPago = 'TRANSFERENCIA ELECTRÓNICA DE FONDOS',sum(total),'0') as transferenciaElectronica,IF(formaPago = 'CHEQUE NOMINATIVO',sum(total),'0') as chequeNominativo,IF(formaPago = 'CREDITO',sum(total),'0') as credito,IF(formaPago = 'POR DEFINIR',sum(total),'0') as porDefinir,sum(total) as totalGeneral FROM $tabla WHERE $item in($valor) and seriePedido != 'OTRT' and nuevaFechaFactura = :$item2 and cancelado != 1 GROUP by serie,folio ORDER BY nombreCliente");
 
 				$stmt -> bindParam(":".$item,$valor, PDO::PARAM_STR);
 				$stmt -> bindParam(":".$item2,$valor2, PDO::PARAM_STR);

@@ -37,6 +37,21 @@ class TablaPendientesCredito{
         case 'FARF':
           $usuario = "Sucursal Reforma";
           break;
+        case 'FCSN':
+          $usuario = "Sucursal San Manuel";
+          break;
+        case 'FCTO':
+          $usuario = "Sucursal Las Torres";
+          break;
+        case 'FCST':
+          $usuario = "Sucursal Santiago";
+          break;
+        case 'FCCA':
+          $usuario = "Sucursal Capu";
+          break;
+        case 'FCRM':
+          $usuario = "Sucursal Reforma";
+          break;
  
       }
 

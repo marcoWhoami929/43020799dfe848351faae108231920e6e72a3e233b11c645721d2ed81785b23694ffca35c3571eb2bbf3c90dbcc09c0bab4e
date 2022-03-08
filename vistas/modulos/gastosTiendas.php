@@ -233,8 +233,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                       <option value="VENTAS">VENTAS</option>
                                       <option value="VERGEL">VERGEL</option>
                                       <option value="XONACA">XONACA</option>
-                                      <option value="MAYOREO">MAYOREO</option>
+                                       <option value="MAYOREO">MAYOREO</option>
                                       <option value="COMPRAS">COMPRAS</option>
+                                       <option value="ECOMMERCE">ECOMMERCE</option>
                                 </select>
 
                               </div>
@@ -267,6 +268,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                 <select class="js-example-basic-single" name="subgrupo" id="subgrupo" required="true" style="width: 210px">
                                               <option value="">Elegir Subgrupo</option>
                                               <option value="Acreedores Bancarios">Acreedores Bancarios</option>
+                                               <option value="Arrendamientos Vehiculares">Arrendamientos Vehiculares</option>
                                               <option value="Proveedores">Proveedores</option>
                                               <option value="Clientes">Clientes</option>
                                               <option value="Prestamos Bancarios">Prestamos Bancarios</option>
@@ -686,8 +688,9 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                     <option value="VENTAS">VENTAS</option>
                                     <option value="VERGEL">VERGEL</option>
                                     <option value="XONACA">XONACA</option>
-                                    <option value="MAYOREO">MAYOREO</option>
+                                     <option value="MAYOREO">MAYOREO</option>
                                     <option value="COMPRAS">COMPRAS</option>
+                                    <option value="ECOMMERCE">ECOMMERCE</option>
                                 </select>
                                 <input type="hidden" name="idGasto" id="idGasto">
                                 <input type="hidden" name="editarFolioGasto" id="editarFolioGasto">
@@ -722,6 +725,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                 <select class="js-example-basic-single" name="editarSubgrupo" id="editarSubgrupo" required="true" style="width: 210px">
                                               <option value="">Elegir Subgrupo</option>
                                               <option value="Acreedores Bancarios">Acreedores Bancarios</option>
+                                              <option value="Arrendamientos Vehiculares">Arrendamientos Vehiculares</option>
                                               <option value="Proveedores">Proveedores</option>
                                               <option value="Clientes">Clientes</option>
                                               <option value="Prestamos Bancarios">Prestamos Bancarios</option>

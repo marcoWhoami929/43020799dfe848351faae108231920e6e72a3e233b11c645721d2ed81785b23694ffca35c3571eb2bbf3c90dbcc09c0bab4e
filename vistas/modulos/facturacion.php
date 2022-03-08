@@ -383,6 +383,13 @@ MODAL EDITAR PEDIDO
 
                           <option value="PEPB">PEPB</option>
 
+                          <option value="FCMY">FCMY</option>
+
+                          <option value="FCIN">FCIN</option>
+
+                          <option value="FCPR">FCPR</option>
+
+                          <option value="PDPR">PDPR</option>
 
 
                         </select>
@@ -852,6 +859,14 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="PEPB">PEPB</option>
 
+                                     <option value="FCMY">FCMY</option>
+
+                                    <option value="FCIN">FCIN</option>
+
+                                    <option value="FCPR">FCPR</option>
+
+                                    <option value="PDPR">PDPR</option>
+
 
                                 </select>
                                    
@@ -1037,6 +1052,14 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="PEPB">PEPB</option>
 
+                                     <option value="FCMY">FCMY</option>
+
+                                    <option value="FCIN">FCIN</option>
+
+                                    <option value="FCPR">FCPR</option>
+
+                                    <option value="PDPR">PDPR</option>
+
                                     </select>
                                     
 
@@ -1131,6 +1154,14 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="PEND">PEND</option>
 
                                     <option value="PEPB">PEPB</option>
+
+                                     <option value="FCMY">FCMY</option>
+
+                                      <option value="FCIN">FCIN</option>
+
+                                      <option value="FCPR">FCPR</option>
+
+                                      <option value="PDPR">PDPR</option>
 
                                     </select>
                                     
@@ -1227,6 +1258,14 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="PEPB">PEPB</option>
 
+                                     <option value="FCMY">FCMY</option>
+
+                                    <option value="FCIN">FCIN</option>
+
+                                    <option value="FCPR">FCPR</option>
+
+                                    <option value="PDPR">PDPR</option>
+
                                     </select>
                                     
 
@@ -1321,6 +1360,14 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="PEND">PEND</option>
 
                                     <option value="PEPB">PEPB</option>
+
+                                     <option value="FCMY">FCMY</option>
+
+                                    <option value="FCIN">FCIN</option>
+
+                                    <option value="FCPR">FCPR</option>
+
+                                    <option value="PDPR">PDPR</option>
 
                                     </select>
                                     
@@ -1417,6 +1464,14 @@ MODAL EDITAR ORDEN DE TRABAJO
 
                                     <option value="PEPB">PEPB</option>
 
+                                     <option value="FCMY">FCMY</option>
+
+                                      <option value="FCIN">FCIN</option>
+
+                                      <option value="FCPR">FCPR</option>
+
+                                      <option value="PDPR">PDPR</option>
+
                                     </select>
                                     
 
@@ -1511,6 +1566,14 @@ MODAL EDITAR ORDEN DE TRABAJO
                                     <option value="PEND">PEND</option>
 
                                     <option value="PEPB">PEPB</option>
+
+                                     <option value="FCMY">FCMY</option>
+
+                                    <option value="FCIN">FCIN</option>
+
+                                    <option value="FCPR">FCPR</option>
+
+                                    <option value="PDPR">PDPR</option>
 
                                     </select>
                                     

@@ -27,7 +27,7 @@ class ControladorFacturasTiendas{
 				$tabla = "facturasgenerales";
 
 			}else{
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -54,7 +54,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'" || $valor2 === "ALL") {
 
 					$tabla = "facturasgenerales";
 
@@ -81,7 +81,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+			if ($valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "ALL") {
 
 					$tabla = "facturasgenerales";
 
@@ -107,7 +107,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -133,7 +133,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 				$tabla = "facturasgenerales";
 
@@ -158,7 +158,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -183,7 +183,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+			if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -208,7 +208,7 @@ class ControladorFacturasTiendas{
 
 		}else{
 
-			if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+			if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL" || $valor === "Factura Mayoreo" || $valor === "Factura Industrial" || $valor === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -235,7 +235,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL" || $valor === "Factura Mayoreo" || $valor === "Factura Industrial" || $valor === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -262,7 +262,7 @@ class ControladorFacturasTiendas{
 				$tabla = "facturasgenerales";
 
 			}else{
-			  	if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
+			  	if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR" || $serie === "FCMY" || $serie === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -288,7 +288,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR" || $serie === "FCMY" || $serie === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -313,7 +313,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR" || $serie === "FCMY" || $serie === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -338,7 +338,7 @@ class ControladorFacturasTiendas{
 				$tabla = "facturasgenerales";
 
 			}else{
-				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR") {
+				if ($serie === "FACD" || $serie === "FAND" || $serie === "FAPB" || $serie === "DOPR" || $serie === "DFPR" || $serie === "FCMY" || $serie === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -383,7 +383,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -449,7 +449,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL" || $valor === "Factura Mayoreo" || $valor === "Factura Industrial" || $valor === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -476,7 +476,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR" || $valor === "FCMY" || $valor === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -503,7 +503,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR" || $valor === "FCMY" || $valor === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -561,7 +561,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR" || $valor === "FCMY" || $valor === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -732,7 +732,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR" || $valor === "FCMY" || $valor === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -758,7 +758,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($serieFacturaPrev === "FACD" || $serieFacturaPrev === "FAND" || $serieFacturaPrev === "FAPB" || $serieFacturaPrev === "DOPR" || $serieFacturaPrev === "DFPR") {
+				if ($serieFacturaPrev === "FACD" || $serieFacturaPrev === "FAND" || $serieFacturaPrev === "FAPB" || $serieFacturaPrev === "DOPR" || $serieFacturaPrev === "DFPR" || $serieFacturaPrev === "FCMY" || $serieFacturaPrev === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -1531,7 +1531,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($datos["concepto"] === "FACTURA MAYOREO V 3.3" || $datos["concepto"] === "FACTURA INDUSTRIAL V 3.3" || $datos["concepto"] === "ALL") {
+				if ($datos["concepto"] === "FACTURA MAYOREO V 3.3" || $datos["concepto"] === "FACTURA INDUSTRIAL V 3.3" || $datos["concepto"] === "ALL" || $datos["concepto"] === "Factura Mayoreo" || $datos["concepto"] === "Factura Industrial" || $datos["concepto"] === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $datos["concepto"] === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -1578,7 +1578,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($datosSaldado["serie"] === "FACD" || $datosSaldado["serie"] === "FAND" || $datosSaldado["serie"] === "FAPB" || $datosSaldado["serie"] === "DOPR" || $datosSaldado["serie"] === "DFPR" ) {
+				if ($datosSaldado["serie"] === "FACD" || $datosSaldado["serie"] === "FAND" || $datosSaldado["serie"] === "FAPB" || $datosSaldado["serie"] === "DOPR" || $datosSaldado["serie"] === "DFPR" || $datosSaldado["serie"] === "FCMY" || $datosSaldado["serie"] === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -1604,7 +1604,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR") {
+				if ($valor === "FACD" || $valor === "FAND" || $valor === "FAPB" || $valor === "DOPR" || $valor === "DFPR" || $valor === "FCMY" || $valor === "FCIN") {
 
 					$tabla = "facturasgenerales";
 
@@ -1731,7 +1731,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -1849,7 +1849,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL") {
+				if ($valor === "FACTURA MAYOREO V 3.3" || $valor === "FACTURA INDUSTRIAL V 3.3" || $valor === "ALL" || $valor === "Factura Mayoreo" || $valor === "Factura Industrial" || $valor === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 
@@ -1876,7 +1876,7 @@ class ControladorFacturasTiendas{
 
 			}else{
 
-				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL") {
+				if ($valor2 === "FACTURA MAYOREO V 3.3" || $valor2 === "FACTURA INDUSTRIAL V 3.3" || $valor2 === "ALL" || $valor2 === "Factura Mayoreo" || $valor2 === "Factura Industrial" || $valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'") {
 
 					$tabla = "facturasgenerales";
 

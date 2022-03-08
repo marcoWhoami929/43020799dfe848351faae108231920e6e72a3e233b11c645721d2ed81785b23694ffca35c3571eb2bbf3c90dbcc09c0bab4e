@@ -2499,25 +2499,25 @@ $(".minimizarGastos").on("click",function(){
 
       switch (concepto) {
         case "Sucursal San Manuel":
-          var conceptoFactura = "FACTURA SAN MANUEL V 3.3";
+          var conceptoFactura = "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
           break;
         case "Sucursal Capu":
-          var conceptoFactura = "FACTURA CAPU V 3.3";
+          var conceptoFactura = "'FACTURA CAPU V 3.3','Factura Capu'";
         break;
         case "Sucursal Reforma":
-          var conceptoFactura = "FACTURA REFORMA V 3.3";
+          var conceptoFactura = "'FACTURA REFORMA V 3.3','Factura Reforma'";
         break;
         case "Sucursal Las Torres":
-          var conceptoFactura = "FACTURA TORRES";
+          var conceptoFactura = "'FACTURA TORRES','Factura Torres'";
         break;
         case "Sucursal Santiago":
-          var conceptoFactura = "FACTURA SANTIAGO V 3.3";
+          var conceptoFactura = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
         break;
         case 'Industrial':
-          var conceptoFactura = "FACTURA INDUSTRIAL V 3.3";
+          var conceptoFactura = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
         break;
         case 'Mayoreo':
-          var conceptoFactura = "FACTURA MAYOREO V 3.3";
+          var conceptoFactura = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
           break;
         case 'Rutas':
           var conceptoFactura = "ALL";
@@ -2606,25 +2606,25 @@ $("#btnGenerarAjusteRemanentes").on("click", function(){
           var concepto = document.getElementById("sucursalAjuste").value;
           switch (concepto) {
               case "Sucursal San Manuel":
-                var conceptoFactura = "FACTURA SAN MANUEL V 3.3";
+                var conceptoFactura = "Factura San Manuel";
                 break;
               case "Sucursal Capu":
-                var conceptoFactura = "FACTURA CAPU V 3.3";
+                var conceptoFactura = "Factura Capu";
               break;
               case "Sucursal Reforma":
-                var conceptoFactura = "FACTURA REFORMA V 3.3";
+                var conceptoFactura = "Factura Reforma";
               break;
               case "Sucursal Las Torres":
-                var conceptoFactura = "FACTURA TORRES";
+                var conceptoFactura = "Factura Torres";
               break;
               case "Sucursal Santiago":
-                var conceptoFactura = "FACTURA SANTIAGO V 3.3";
+                var conceptoFactura = "Factura Santiago";
               break;
               case 'Industrial':
-                var conceptoFactura = "FACTURA INDUSTRIAL V 3.3";
+                var conceptoFactura = "Factura Industrial";
                 break;
               case 'Mayoreo':
-                var conceptoFactura = "FACTURA MAYOREO V 3.3";
+                var conceptoFactura = "Factura Mayoreo";
                 break;
               case 'Rutas':
                 var conceptoFactura = "ALL";
@@ -3498,7 +3498,7 @@ swal({
                                               button :"Cerrar",
 
                                             }).then(function(result){
-
+                                              localStorage.removeItem("folioCorteCaja");
                                               window.location.href = 'corteCaja';
 
                                             });
@@ -4001,25 +4001,25 @@ $("#generarCorteCaja").on("click", function() {
 
     switch (sucursal) {
       case 'Sucursal San Manuel':
-        var concepto = "FACTURA SAN MANUEL V 3.3";
+        var concepto = "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
         break;
       case 'Sucursal Reforma':
-        var concepto = "FACTURA REFORMA V 3.3";
+        var concepto = "'FACTURA REFORMA V 3.3','Factura Reforma'";
         break;
       case 'Sucursal Capu':
-        var concepto = "FACTURA CAPU V 3.3";
+        var concepto = "'FACTURA CAPU V 3.3','Factura Capu'";
         break;
       case 'Sucursal Santiago':
-        var concepto = "FACTURA SANTIAGO V 3.3";
+        var concepto = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
         break;
       case 'Sucursal Las Torres':
-        var concepto = "FACTURA TORRES";
+        var concepto = "'FACTURA TORRES','Factura Torres'";
         break;
       case 'Industrial':
-        var concepto = "FACTURA INDUSTRIAL V 3.3";
+        var concepto = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
         break;
       case 'Mayoreo':
-        var concepto = "FACTURA MAYOREO V 3.3";
+        var concepto = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
         break;
       case 'Rutas':
         var concepto = "ALL";

@@ -105,12 +105,13 @@ class AjaxListadoProductos{
 				$ejecutar = mysqli_query($conn, $consulta1) or die("database error:". mysqli_error($conn));
 				
 				$row_count = mysqli_num_rows($ejecutar);
+				$producto = str_replace('"', 'pul', $value["DESCRIPCION"]); 
 
 				if ($row_count != 0) {
 
 						
 					
-						$actualizarProductos = "UPDATE productos set  base = '".$value["BASE"]."', cubeta = '".$value["CUBETA"]."', galon = '".$value["GALON"]."', litro = '".$value["LITRO"]."', quiml = '".$value["QUIML"]."', dosml = '".$value["DOSML"]."',unoml = '".$value["UNOML"]."', distribuidor = '".$value["DISTRIBUIDOR"]."', estatus = '".$value["ESTATUS"]."' WHERE idComercial = '".$value["IDCOMERCIAL"]."'";
+						$actualizarProductos = "UPDATE productos set  descripcion = '".$producto."',base = '".$value["BASE"]."', cubeta = '".$value["CUBETA"]."', galon = '".$value["GALON"]."', litro = '".$value["LITRO"]."', quiml = '".$value["QUIML"]."', dosml = '".$value["DOSML"]."',unoml = '".$value["UNOML"]."', distribuidor = '".$value["DISTRIBUIDOR"]."', estatus = '".$value["ESTATUS"]."' WHERE idComercial = '".$value["IDCOMERCIAL"]."'";
 						mysqli_query($conn, $actualizarProductos) or die("database error:". mysqli_error($conn));
 
 
