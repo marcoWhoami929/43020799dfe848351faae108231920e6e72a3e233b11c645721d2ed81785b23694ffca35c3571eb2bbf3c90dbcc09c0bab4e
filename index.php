@@ -107,6 +107,7 @@ require_once "extensiones/PHPMailer/PHPMailerAutoload.php";
 require_once "extensiones/vendor/autoload.php";
 /*MODELOS NUEVO BANCO*/
 require_once "modelos/banco7338.modelo.php";
+require_once "clases/data.php";
 
 /**
  * CONEXION SERVER 

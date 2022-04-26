@@ -132,6 +132,9 @@ error_reporting(0);
   ======================================-->
   <link rel="stylesheet" type="text/css" href="vistas/css/app_style.css">
 
+  <!--tags editor-->
+  <link rel="stylesheet" type="text/css" href="vistas/css/jquery.tag.editor.css">
+
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -243,6 +246,9 @@ error_reporting(0);
     <script src="extensiones/plantilla/js/script.js"></script>
 
 
+    <!-- tags editor-->
+    <script src="vistas/js/jquery.caret.min.js"></script>
+    <script src="vistas/js/jquery.tag-editor.js"></script>
 
 </head>
 
@@ -359,6 +365,7 @@ JS PERSONALIZADO
 <script src="vistas/js/timer.js"></script>
 <script src="vistas/js/menuDinamico.js"></script>
 <script src="vistas/js/gestorBanco7338.js"></script>
+  <script src="vistas/js/template.js"></script>
 
 <!-- GESTORES DE CONTROL MATRIZ -->
 

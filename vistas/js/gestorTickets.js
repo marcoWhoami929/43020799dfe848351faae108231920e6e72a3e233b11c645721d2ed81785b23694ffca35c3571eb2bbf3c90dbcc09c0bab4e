@@ -624,3 +624,17 @@ $(".btnVerTicketsPendientes").click(function(){
           nodos.removeChild(nodos.firstChild);
         }
 });
+$("#crearTitulo").on("change",function(){
+   
+    if($("#crearTitulo").val() == 'Pagos Mercado Libre'){
+        $("#loadFile1").html("Cargar Comprobante");
+        $("#loadFile2").html("Cargar Comprobante");
+        document.getElementById("serieFactura").setAttribute("type","text");
+        document.getElementById("folioFactura").setAttribute("type","text");
+    }else{
+        $("#loadFile1").html("Cargar Pedido");
+        $("#loadFile2").html("Cargar Factura");
+         document.getElementById("serieFactura").setAttribute("type","hidden");
+        document.getElementById("folioFactura").setAttribute("type","hidden");
+    }
+})

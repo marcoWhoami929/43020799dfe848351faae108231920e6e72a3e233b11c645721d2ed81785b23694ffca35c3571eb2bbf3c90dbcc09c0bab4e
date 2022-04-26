@@ -106,6 +106,7 @@ class AjaxAtencion{
             						 "estatus" => $value["CESTATUS"],
             						 "serie"=>$value["CSERIEDOCUMENTO"],
             						 "folio"=>$value["CFOLIO"],
+            						 "idComercial"=>$value["CIDDOCUMENTO"],
             						 "partidas" => $value["PARTIDAS"],
             						 "unidades" => $value["CTOTALUNIDADES"],
             						 "total" => $value["CTOTAL"],
@@ -259,7 +260,7 @@ class AjaxAtencion{
 						break;
 					
 					default:
-						$usuario = "Aurora Fernandez";
+						$usuario = "Diego Avila";
 						break;
 				}
 				/***OBTENER SALDO VENCIDO DOCUMENTOS VENCIDOS*/
@@ -312,7 +313,7 @@ class AjaxAtencion{
 					mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 					
 					
-					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."', estadoCompras = 1,creado = '".$usuario."'  WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
+					$sql_update = "UPDATE atencionaclientes set codigoCliente='".$value["codigoCliente"]."', nombreCliente='".$value["razonSocial"]."', rfc='".$value["rfc"]."', agenteVentas='".$value["agente"]."',codigoAgente='".$value["codigoAgente"]."', diasCredito='".$value["diasCredito"]."',idClienteComercial='".$value["idCliente"]."', statusCliente='".$value["estatus"]."', serie='".$value["serie"]."', folio='".str_replace(',','',$value["folio"])."', numeroUnidades='".str_replace(',','',$value["unidades"])."',numeroPartidas = '".$value["partidas"]."', importe='".str_replace(',','',$value["total"])."', fechaPedido = '".$fecha."',fechaElaboracion = '".$fechaElaboracion."',formaPago = '".$formaPago."',metodoPago = '".$metodoPago."',tipoPago = '".$tipoPago."',fechaRecepcion = '".$fechaElaboracion."',ordenCompra = '".$value["observaciones"]."', estadoCompras = 1,creado = '".$usuario."',idComercial = '".$value["idComercial"]."'  WHERE folio = '".str_replace(',','',$value["folio"])."' and serie = '".$value["serie"]."'";
 					mysqli_query($conn, $sql_update) or die("database error:". mysqli_error($conn));
 
 					
@@ -336,7 +337,7 @@ class AjaxAtencion{
 
 					if ($value["razonSocial"] == "FLEX FINISHES MEXICO, S.A. DE C.V." || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V." ) {
 
-						$mysql_insert = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial, statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,tipoRuta,tipoCompra,observaciones,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,estadoCompras,statusCompras,sinAdquisicion,estadoLogistica,statusLogistica,concluido,fechaElaboracion,formaPago,creado,metodoPago,tipoPago,fechaRecepcion,ordenCompra,habilitado)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','Mostrador','2','Compra Interna','1','3','1','0','1','6','0','1','2','1','".$fechaElaboracion."','".$formaPago."','".$usuario."','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1)";
+						$mysql_insert = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial, statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,tipoRuta,tipoCompra,observaciones,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,estadoCompras,statusCompras,sinAdquisicion,estadoLogistica,statusLogistica,concluido,fechaElaboracion,formaPago,creado,metodoPago,tipoPago,fechaRecepcion,ordenCompra,habilitado,idComercial)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','Mostrador','2','Compra Interna','1','3','1','0','1','6','0','1','2','1','".$fechaElaboracion."','".$formaPago."','".$usuario."','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1,'".$value["idComercial"]."')";
 							mysqli_query($conn, $mysql_insert) or die("database error:". mysqli_error($conn));
 
 							
@@ -371,7 +372,7 @@ class AjaxAtencion{
 						$actualizarCliente = "UPDATE clientes set limiteCredito = '".$value["limiteCredito"]."',diasCredito = '".$value["diasCredito"]."',excederCredito = '".$value["excederCredito"]."',limDoctosVenc = '".$value["limDoctosVenc"]."',saldoVencido = '".$saldoVencido."',doctosVenc = '".$documentosVencidos."',statusCliente = '".$estadoSituacional."',idClienteComercial = '".$value["idCliente"]."' where codigoCliente = '".$value["codigoCliente"]."'  and catalogo = '".$catalogo."'";
 						mysqli_query($conn, $actualizarCliente) or die("database error:". mysqli_error($conn));
 
-						$mysql_insert7 = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial,statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,fechaElaboracion,formaPago,creado,tipoRuta,metodoPago,tipoPago,fechaRecepcion,ordenCompra,estadoCompras)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','".$fechaElaboracion."','".$formaPago."','".$usuario."','Mostrador','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1)";
+						$mysql_insert7 = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial,statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,fechaElaboracion,formaPago,creado,tipoRuta,metodoPago,tipoPago,fechaRecepcion,ordenCompra,estadoCompras,idComercial)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','".$fechaElaboracion."','".$formaPago."','".$usuario."','Mostrador','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1,'".$value["idComercial"]."')";
 							mysqli_query($conn, $mysql_insert7) or die("database error:". mysqli_error($conn));
 
 

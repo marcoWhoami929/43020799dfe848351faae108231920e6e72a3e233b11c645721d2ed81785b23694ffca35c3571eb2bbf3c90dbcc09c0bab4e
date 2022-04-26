@@ -845,4 +845,144 @@ class ControladorReporteador
 			/****FIN DE TABLA***/
 		}
 	}
+	/**
+	 * REPORTEADOR NEW
+	 */
+	public function ctrDescargarReporteBackorder($search)
+	{
+		switch ($search["empresa"]) {
+			case "dekkerlab":
+
+				$database = new data();
+				$nombreEmpresa = "P I N T U R A S";
+				break;
+			case "flex":
+
+				$database = new data();
+				$nombreEmpresa = "F L E X";
+				break;
+			case "":
+
+				$database = new data();
+				$nombreEmpresa = "T O D A S";
+				break;
+		}
+
+		$reporte = $database->getListaProductosBackorder($search);
+
+		/*=============================================
+			CREAMOS EL ARCHIVO DE EXCEL
+			=============================================*/
+
+		$nombre = "backorder" . '.xls';
+
+		header('Expires: 0');
+		header('Cache-control: private');
+		header('Content-type: application/vnd.ms-excel'); // Archivo de Excel
+		header("Cache-Control: cache, must-revalidate");
+		header('Content-Description: File Transfer');
+		header('Last-Modified: ' . date('D, d M Y H:i:s'));
+		header("Pragma: public");
+		header('Content-Disposition:; filename="' . $nombre . '"');
+		header("Content-Transfer-Encoding: binary");
+
+		$arregloHeaders = ['ID', 'SERIE', 'FOLIO', 'CLIENTE', 'FECHA', 'CODIGO', 'PRODUCTO', 'UNIDAD', 'CLASIF', 'MARCA', 'ALMACEN', 'EXIST','DESC', 'PRECIO', 'UNIDADES', 'TOTAL SOLICITADO', 'PENDIENTES', 'TOTAL PENDIENTE'];
+
+
+		echo utf8_decode("<table>");
+		echo "<tr>
+					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>SAN FRANCISCO DEKKERLAB</th>
+					</tr>
+
+					<tr>
+					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>R E P O R T E &nbsp; D E &nbsp; B A C K O R D E R &nbsp; P E D I D O S &nbsp</th>
+					</tr>
+
+					<tr>
+					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>$nombreEmpresa</th>
+					</tr>";
+		echo utf8_decode("<tr>");
+		for ($i = 0; $i < count($arregloHeaders); $i++) {
+			echo utf8_decode("<td style='font-weight:bold; background:#000000; color:white;'></td>");
+		}
+		echo utf8_decode("</tr>");
+		echo utf8_decode("<tr>");
+
+		foreach ($arregloHeaders as $key => $value) {
+
+			echo utf8_decode("<td style='font-weight:bold; background:#000000; color:white;'>" . $value . "</td>");
+		}
+		echo utf8_decode("</tr>");
+
+		foreach ($reporte as $key => $value) {
+			 if ($search['estatus'] === 'FALTANTE' AND $value["backorder"] == null AND $value["surtido"] == null) {
+
+                            $pendientes = $value["CUNIDADESPENDIENTES"] - $value["backorder"];
+                            $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+                        
+                        }else if ($search['estatus'] === 'FALTANTE' AND $value["surtido"] != 0) {
+
+                            $pendientes = $value["CUNIDADESPENDIENTES"] - $value["surtido"];
+                            $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+                            
+                        }else if ($search['estatus'] === 'BACKORDER' AND $value["surtido"] != 0 AND  $value["backorder"] != 0) {
+
+                            $pendientes = $value["backorder"] ;
+                           $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+                       
+                        }else if ($search['estatus'] === 'SURTIDOS') {
+
+                            $pendientes = $value["surtido"] ;
+                            $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+
+                           
+                        } else if ($search['estatus'] === 'MULTIPLE') {
+
+                            $pendientes = $value["CUNIDADESPENDIENTES"] - $value["surtido"] -$value["backorder"];
+                            $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+                          
+                        } else {
+
+                            $pendientes =  $value["backorder"];
+                            $descuento = ($value["CPRECIOCAPTURADO"] * $pendientes)*$value["CPORCENTAJEDESCUENTO1"]/100;
+                            $total = $value["CPRECIOCAPTURADO"] * $pendientes - $descuento ;
+                          
+                           
+                        }
+                      
+                        $unidades = $value["CUNIDADESCAPTURADAS"];
+ 
+
+			$codigoProducto = "=\"" . $value["CCODIGOPRODUCTO"] . "\"";
+			$style = 'mso-number-format:"@";';
+			echo utf8_decode("<tr>
+										<td style='color:black;'>" . $value["CIDPRODUCTO"] . "</td>
+										<td style='color:black;'>" . $value["CSERIEDOCUMENTO"] . "</td>
+										<td style='color:black;'>" . bcdiv($value["CFOLIO"], '1', 0) . "</td>
+										<td style='color:black;'>" . $value["CRAZONSOCIAL"] . "</td>
+										<td style='color:black;'>" . $value["CFECHA"] . "</td>
+									    <td style='" . $style . "'>" . $value["CCODIGOPRODUCTO"] . "</td>
+				 						<td style='color:black;'>" . $value["CNOMBREPRODUCTO"] . "</td>
+										 <td style='color:black;'>" . $value["UNIDAD"] . "</td>
+										 <td style='color:black;'>" . $value["CLASIFICACION"] . "</td>
+										 <td style='color:black;'>" . $value["MARCA"] . "</td>
+										 <td style='color:black;'>" . $value["CNOMBREALMACEN"] . "</td>
+										 <td style='color:black;'>" . bcdiv($value["EXISTENCIA"], '1', 2) . "</td>
+										 <td style='color:black;'>" . number_format(bcdiv($value["CPORCENTAJEDESCUENTO1"] , '1', 2),2). "</td>
+										 <td style='color:black;'>" .  number_format(bcdiv($value["CPRECIO"] , '1', 2),2) . "</td>
+										 <td style='color:black;'>" .  bcdiv($unidades, '1', 5) . "</td>
+										 <td style='color:black;'>" .  number_format(bcdiv($value["CNETO"]-$value["CDESCUENTO1"]-$value["CDESCUENTO2"], '1', 2),2) . "</td>
+										 <td style='color:black;'>" . bcdiv($pendientes, '1', 2). "</td>
+										 <td style='color:black;'>" .  number_format($total,2) . "</td>
+										</tr>");
+		}
+
+
+		echo "</table>";
+	}
 }

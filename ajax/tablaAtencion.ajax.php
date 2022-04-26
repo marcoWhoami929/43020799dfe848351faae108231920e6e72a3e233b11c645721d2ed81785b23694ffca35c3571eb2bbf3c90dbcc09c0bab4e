@@ -291,7 +291,19 @@ class TablaAtencion{
 
                           }
                            
-
+                      if ($atencion[$i]["serie"] == 'PDMY' || $atencion[$i]["serie"] == 'PDIN' || $atencion[$i]["serie"] == 'PDEC' || $atencion[$i]["serie"] == 'PDPR') {
+                        $empresa = 1; //dekkerlab
+                      } else if ($atencion[$i]["serie"] == 'PECD' || $atencion[$i]["serie"] == 'PEND' || $atencion[$i]["serie"] == 'PEEC' || $atencion[$i]["serie"] == 'PEBB') {
+                        $empresa = 2; //pinturas
+                      } else if ($atencion[$i]["serie"] == 'PEPB') {
+                        $empresa = 3; //flex
+                      } else {
+                        $empresa = 0;
+                      }
+                      if($_SESSION['nombre'] == 'Diego Ávila' || $_SESSION['nombre'] == 'Rocio Martínez Morales' || $_SESSION['nombre'] == 'Marco Lopez'){
+                        $acciones .= "<button class='btn btn-info' onclick='detalleProductos(" . $atencion[$i]["idComercial"] . "," . $empresa . ")' data-toggle='modal' data-target='#modalProductos'><i class='fa fa-eye'></i>Productos</button>";
+                      }
+                     
                        /*========HABILITAR FOLIO============*/
 
                       if ($_SESSION["nombre"] == "Marco Lopez" || $_SESSION["nombre"] == "Manuel Acevo" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Elsa Martinez" || $_SESSION["nombre"] == "Roberto Gutierrez") {

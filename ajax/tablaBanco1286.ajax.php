@@ -128,6 +128,9 @@ class TablaBanco1286{
                             }else if ($banco1286[$i]["tipoRetencion"] == "Arrendamiento" && $banco1286[$i]["tieneRetenciones"] == 01) {
                               $retIva = '$ '.number_format(($banco1286[$i]["importeRetenciones"]* 10.6667)/100,2).'';
                               $retIsr = '$ '.number_format(($banco1286[$i]["importeRetenciones"]*10)/100,2).'';
+                            }else if ($banco1286[$i]["tipoRetencion"] == "Arrendamiento(simplificado)" && $banco1286[$i]["tieneRetenciones"] == 01) {
+                              $retIva = '$ '.number_format(($banco1286[$i]["importeRetenciones"]* 10.6667)/100,2).'';
+                              $retIsr = '$ '.number_format(($banco1286[$i]["importeRetenciones"]*1.25)/100,2).'';
                             }
                             else {
 

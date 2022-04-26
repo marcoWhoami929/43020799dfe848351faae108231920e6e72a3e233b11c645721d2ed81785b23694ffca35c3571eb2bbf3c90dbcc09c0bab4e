@@ -231,6 +231,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
   <ul class="treeview-menu" style="z-index: 101; width:200px;">
 
   <li><a href="indicadores"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Indicadores</span></a></li>
+    <li><a href="backorder"><i class="fa fa-th" aria-hidden="true"></i><span>Backorder</span></a></li>
   
   </ul>
 

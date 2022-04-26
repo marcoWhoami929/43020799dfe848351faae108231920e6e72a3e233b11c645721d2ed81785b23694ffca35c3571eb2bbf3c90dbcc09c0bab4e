@@ -11624,6 +11624,9 @@ class ControladorReportes{
 			                            }else if ($value["tipoRetencion"] == "Arrendamiento" && $value["tieneRetenciones"] == 01) {
 			                              echo '<td style="text-transform:uppercase">'.number_format(($value["importeRetenciones"]* 10.6667)/100,2).'</td>
 			                                  <td style="text-transform:uppercase">'.number_format(($value["importeRetenciones"]*10)/100,2).'</td>';
+			                            }else if ($value["tipoRetencion"] == "Arrendamiento(simplificado)" && $value["tieneRetenciones"] == 01) {
+			                              echo '<td style="text-transform:uppercase">'.number_format(($value["importeRetenciones"]* 10.6667)/100,2).'</td>
+			                                  <td style="text-transform:uppercase">'.number_format(($value["importeRetenciones"]*1.25)/100,2).'</td>';
 			                            }
 			                            else {
 

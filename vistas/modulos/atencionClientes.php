@@ -1182,33 +1182,65 @@ MODAL EDITAR ORDEN DE TRABAJO
 <!--=====================================
 MODAL DETALLE CLIENTE
 ======================================-->
-<div class="modal fade" id="modalDetailClient"  data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDetailClient" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    <div class="modal-header estilosTablas" >
-    <center><h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i> DETALLE CLIENTE</h3></center>
+      <div class="modal-header estilosTablas">
+        <center>
+          <h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i> DETALLE CLIENTE</h3>
+        </center>
         <button type="button" class="close btnCerrarDetailClient" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div id="detailClient" name="detailClient">
 
-                    <div class="table-responsive">
-                      <table class="table" id="tablaDetailClient">
-                     
-                      </table>
-                    </div>
-                          
-                </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div id="detailClient" name="detailClient">
+
+            <div class="table-responsive">
+              <table class="table" id="tablaDetailClient">
+
+              </table>
             </div>
-       
-      
+
+          </div>
+        </div>
+
+
       </div>
       <div class="modal-footer" style="margin-top:100px">
         <button type="button" class="btn btn-default btnCerrarDetailClient" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--=====================================
+MODAL DETALLE PRODUCTOS
+======================================-->
+<div class="modal fade" id="modalProductos" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header estilosTablas">
+        <center>
+          <h3 class="modal-title" style="color:white"><i class="fa fa-file-text"></i>PRODUCTOS VENDIDOS</h3>
+        </center>
+        <button type="button" class="close btnCerrarDetalleProductos" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div id="detailProductos" class="detailProductos">
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class=" modal-footer" style="margin-top:100px">
+        <button type="button" class="btn btn-info btnCerrarDetalleProductos" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

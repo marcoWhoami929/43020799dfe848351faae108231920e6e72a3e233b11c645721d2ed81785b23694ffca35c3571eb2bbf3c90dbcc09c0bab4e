@@ -68,3 +68,72 @@ NUEVOS ESTILOS
 	background:#2667CE;
 	color: white
 }
+table {
+  position: relative;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.25em;
+}
+
+thead tr th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #2667ce;
+  color: white;
+}
+
+thead tr th:first-child {
+  left: 0;
+  z-index: 10;
+}
+/*
+  thead tr th:nth-child(0n+15) {
+    right: 0;
+    z-index: 1001;
+    background:red;
+  }
+  */
+
+tbody tr th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #2667ce;
+  border-right: 1px solid #ccc;
+}
+
+tfoot tr th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background-color: #2667ce;
+}
+
+.table-responsive {
+  height: auto;
+  overflow: scroll;
+}
+.table-responsive {
+  width: 100%;
+}
+.fixedHead {
+  position: sticky;
+  z-index: 1001;
+  max-width: auto;
+  width: 100%;
+}
+.fixedTable {
+  position: sticky;
+  z-index: 1;
+  max-width: auto;
+  width: 100%;
+}
+.selection .ui .dropdown{
+  z-index: 10001;
+}

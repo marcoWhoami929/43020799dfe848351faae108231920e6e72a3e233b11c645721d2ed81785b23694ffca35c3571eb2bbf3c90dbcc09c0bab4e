@@ -75,7 +75,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Lab
               ?>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mostrarIgualados">Pedidos con Igualado  <span class="badge"><?php echo $pedidosLaboratorio["tieneIgualado"]; ?></span></button>
 
-              <button type="<button type=" class="btn btn-info " id="btnMandarDatos">Prueba</button>             
+              <!--<button type="<button type=" class="btn btn-info " id="btnMandarDatos">Prueba</button>  -->           
               <br>
 
         </div>

@@ -206,13 +206,13 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
 
                 <option value="ADMINISTRACION">ADMINISTRACION</option>
                 <option value="DESGLOSE">DESGLOSE</option>
-                <option value="RUTAS">RUTAS</option>
+                <option value="RUTAS" disabled>RUTAS</option>
                 <option value="CAPU">CAPU</option>
-                <option value="CEDIS">CEDIS</option>
-                <option value="DIAGONAL">DIAGONAL</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
                 <option value="INDUSTRIAL">INDUSTRIAL</option>
                 <option value="LAS TORRES">LAS TORRES</option>
-                <option value="MAYORAZGO">MAYORAZGO</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
                 <option value="MGA">MGA</option>
                 <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
                 <option value="OPERACIONES">OPERACIONES</option>
@@ -220,10 +220,11 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
                 <option value="SAN MANUEL">SAN MANUEL</option>
                 <option value="SANTIAGO">SANTIAGO</option>
                 <option value="VENTAS">VENTAS</option>
-                <option value="VERGEL">VERGEL</option>
-                <option value="XONACA">XONACA</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
-                  <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
+                
               </select>
             </div>
 
@@ -510,16 +511,15 @@ MODAL EDITAR DATOS
                         <select class="form-control" name="editarDepartamento" id="editarDepartamento" required="true">
                           
                           <option value="" id="editarDepartamento">Elegir Departamento</option>
-
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
                           <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
+                          <option value="RUTAS" disabled>RUTAS</option>
                           <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
+                          <option value="CEDIS" disabled>CEDIS</option>
+                          <option value="DIAGONAL" disabled>DIAGONAL</option>
                           <option value="INDUSTRIAL">INDUSTRIAL</option>
                           <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
+                          <option value="MAYORAZGO" disabled>MAYORAZGO</option>
                           <option value="MGA">MGA</option>
                           <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
                           <option value="OPERACIONES">OPERACIONES</option>
@@ -527,8 +527,8 @@ MODAL EDITAR DATOS
                           <option value="SAN MANUEL">SAN MANUEL</option>
                           <option value="SANTIAGO">SANTIAGO</option>
                           <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
+                          <option value="VERGEL" disabled>VERGEL</option>
+                          <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
@@ -830,13 +830,13 @@ MODAL EDITAR DATOS
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
                           <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
+                          <option value="RUTAS" disabled>RUTAS</option>
                           <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
+                          <option value="CEDIS" disabled>CEDIS</option>
+                          <option value="DIAGONAL" disabled>DIAGONAL</option>
                           <option value="INDUSTRIAL">INDUSTRIAL</option>
                           <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
+                          <option value="MAYORAZGO" disabled>MAYORAZGO</option>
                           <option value="MGA">MGA</option>
                           <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
                           <option value="OPERACIONES">OPERACIONES</option>
@@ -844,10 +844,10 @@ MODAL EDITAR DATOS
                           <option value="SAN MANUEL">SAN MANUEL</option>
                           <option value="SANTIAGO">SANTIAGO</option>
                           <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                          <option value="VERGEL" disabled>VERGEL</option>
+                          <option value="XONACA" disabled>XONACA</option>
+                          <option value="MAYOREO">MAYOREO</option>
+                          <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -878,26 +878,26 @@ MODAL EDITAR DATOS
                           
                           <option value="" id="editarDepartamentoParcial2">Elegir Departamento</option>
 
-                          <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                         <option value="ADMINISTRACION">ADMINISTRACION</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -929,25 +929,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial3">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -983,25 +983,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial4">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1033,25 +1033,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial5">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1083,25 +1083,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial6">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1137,25 +1137,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial7">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1187,25 +1187,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial8">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1237,25 +1237,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial9">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1289,26 +1289,26 @@ MODAL EDITAR DATOS
                           
                           <option value="" id="editarDepartamentoParcial10">Elegir Departamento</option>
 
-                          <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                         <option value="ADMINISTRACION">ADMINISTRACION</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1340,25 +1340,25 @@ MODAL EDITAR DATOS
                           <option value="" id="editarDepartamentoParcial11">Elegir Departamento</option>
 
                           <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>
@@ -1389,26 +1389,26 @@ MODAL EDITAR DATOS
                           
                           <option value="" id="editarDepartamentoParcial12">Elegir Departamento</option>
 
-                          <option value="ADMINISTRACION">ADMINISTRACION</option>
-                          <option value="DESGLOSE">DESGLOSE</option>
-                          <option value="RUTAS">RUTAS</option>
-                          <option value="CAPU">CAPU</option>
-                          <option value="CEDIS">CEDIS</option> 
-                          <option value="DIAGONAL">DIAGONAL</option>
-                          <option value="INDUSTRIAL">INDUSTRIAL</option>
-                          <option value="LAS TORRES">LAS TORRES</option>
-                          <option value="MAYORAZGO">MAYORAZGO</option>
-                          <option value="MGA">MGA</option>
-                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
-                          <option value="OPERACIONES">OPERACIONES</option>
-                          <option value="REFORMA">REFORMA</option>
-                          <option value="SAN MANUEL">SAN MANUEL</option>
-                          <option value="SANTIAGO">SANTIAGO</option>
-                          <option value="VENTAS">VENTAS</option>
-                          <option value="VERGEL">VERGEL</option>
-                          <option value="XONACA">XONACA</option>
-                           <option value="MAYOREO">MAYOREO</option>
-                            <option value="ECOMMERCE">ECOMMERCE</option>
+                         <option value="ADMINISTRACION">ADMINISTRACION</option>
+                <option value="DESGLOSE">DESGLOSE</option>
+                <option value="RUTAS" disabled>RUTAS</option>
+                <option value="CAPU">CAPU</option>
+                <option value="CEDIS" disabled>CEDIS</option>
+                <option value="DIAGONAL" disabled>DIAGONAL</option>
+                <option value="INDUSTRIAL">INDUSTRIAL</option>
+                <option value="LAS TORRES">LAS TORRES</option>
+                <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                <option value="MGA">MGA</option>
+                <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                <option value="OPERACIONES">OPERACIONES</option>
+                <option value="REFORMA">REFORMA</option>
+                <option value="SAN MANUEL">SAN MANUEL</option>
+                <option value="SANTIAGO">SANTIAGO</option>
+                <option value="VENTAS">VENTAS</option>
+                <option value="VERGEL" disabled>VERGEL</option>
+                <option value="XONACA" disabled>XONACA</option>
+                <option value="MAYOREO">MAYOREO</option>
+                <option value="ECOMMERCE">ECOMMERCE</option>
                         </select>
 
                       </div>

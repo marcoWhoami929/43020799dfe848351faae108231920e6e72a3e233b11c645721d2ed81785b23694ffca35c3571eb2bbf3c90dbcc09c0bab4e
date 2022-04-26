@@ -210,8 +210,8 @@
                   
                   <div class="col-lg-12 col-md-12 col-sm-12">
                  
-                    <h2 class="estiloDatosTicket"><?php echo '#'.$numeroTicket.'&nbsp;&nbsp;&nbsp;'.$titulo?></h2>
-
+                    <h2 class="estiloDatosTicket" ><?php echo '#'.$numeroTicket.'&nbsp;&nbsp;&nbsp;'.$titulo?></h2>
+                    <input type="hidden" id="tituloTicket" value="<?php echo $titulo?>">
                     
                     </div>
                   
@@ -280,11 +280,11 @@
                   <div class="row">
                    
                     <div class="col-lg-3 col-md-3 col-sm-3">
-                      <h3 class="estiloTicket2">Serie Pedido</h3>
+                      <h3 class="estiloTicket2" id="seriePedidoTicket">Serie Pedido</h3>
                        <h4 class="estiloDatosTicket"><?php echo $seriePedido?></h4>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
-                      <h3 class="estiloTicket2">Folio Pedido</h3>
+                      <h3 class="estiloTicket2" id="folioPedidoTicket">Folio Pedido</h3>
                        <h4 class="estiloDatosTicket"><?php echo $folioPedido?></h4>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -356,7 +356,7 @@
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6"   style='padding-bottom:20px;'>
                      
-                      <h4>Pedido:</h4>
+                      <h4 id="nameFile1">Pedido:</h4>
                       <?php
                          if ($urlPedido != "") {
 
@@ -369,7 +369,7 @@
                       ?>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6"   style='padding-bottom:20px;'>
-                      <h4>Factura:</h4>
+                      <h4 id="nameFile2">Factura:</h4>
                   <?php
                      if ($urlFactura != "") {
 
@@ -626,6 +626,18 @@
   var idUltimoTicket = localStorage.getItem('idTicketE');
   
   $("#idTicketElegido").val(idUltimoTicket);
+  if($("#tituloTicket").val() == 'Pagos Mercado Libre'){
+     $("#nameFile1").html("Comprobante");
+    $("#nameFile2").html("Comprobante");
+    $("#seriePedidoTicket").html("");
+     $("#folioPedidoTicket").html("");
+  
+  }else{
+  $("#nameFile1").html("Pedido");
+    $("#nameFile2").html("Factura");
+    $("#seriePedidoTicket").html("Serie Pedido");
+     $("#folioPedidoTicket").html("Folio Pedido");
+  }
 };
 </script>
 <script type="text/javascript">

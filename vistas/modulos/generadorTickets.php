@@ -178,6 +178,7 @@
                               <option value="Refacturación">Refacturación</option>
                               <option value="Recibo Electrónico de Pago">Recibo Electrónico de Pago</option>
                               <option value="Enviar PDF Y XML">Enviar PDF Y XML</option>
+                              <option value="Pagos Mercado Libre">Pagos Mercado Libre</option>
                               <option value="otro">Otro</option>
 
                           </select>
@@ -212,8 +213,8 @@
                           ?>
                           <input type="hidden" class="form-control input-lg" name="seriePedido" id="seriePedido" value="<?php echo $seriePedido ?>">
                           <input type="hidden" class="form-control input-lg" name="folioPedido" id="folioPedido" value="<?php echo $folioPedido ?>">
-                          <input type="hidden" class="form-control input-lg" name="serieFactura" id="serieFactura" value="<?php echo $serieFactura ?>">
-                          <input type="hidden" class="form-control input-lg" name="folioFactura" id="folioFactura" value="<?php echo $folioFactura ?>">
+                          <input type="hidden" class="form-control input-lg" placeholder="Serie Factura" name="serieFactura" id="serieFactura" value="<?php echo $serieFactura ?>">
+                          <input type="hidden" class="form-control input-lg" placeholder="Folio Factura"  name="folioFactura" id="folioFactura" value="<?php echo $folioFactura ?>">
 
                         </div>
                       </div>
@@ -267,7 +268,7 @@
                     <br>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                       <div class="form-group">
-                        <span style="font-weight: bold">Cargar Pedido</span>
+                        <span style="font-weight: bold" id="loadFile1">Cargar Pedido</span>
                         <div class="input-group">
                           <input id="archivoPedido" type="file" name="archivoPedido" onchange="return fileValidation()">
                         </div>
@@ -277,7 +278,7 @@
                     <br>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                       <div class="form-group">
-                        <span style="font-weight: bold">Cargar Factura</span>
+                        <span style="font-weight: bold" id="loadFile2">Cargar Factura</span>
                         <div class="input-group">
                           <input id="archivoFactura" type="file" name="archivoFactura" onchange="return fileValidationFactura()">
                         </div>
