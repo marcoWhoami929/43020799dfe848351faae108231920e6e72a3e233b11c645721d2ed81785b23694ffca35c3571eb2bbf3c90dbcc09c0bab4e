@@ -95,7 +95,7 @@ Highcharts.chart('container4', {
 
                     require_once("db_connect.php");
 
-                    $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas  FROM almacen WHERE nombreCliente != 'FLEX FINISHES MEXICO, S.A. DE C.V.' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.'";
+                    $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas  FROM almacen WHERE nombreCliente != 'FLEX FINISHES MEXICO' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA'";
                     $resultado = mysqli_query($conn, $sql_query) or die("database_error:".mysqli_error($conn));
                     
                     $total = mysqli_fetch_array($resultado,MYSQLI_ASSOC);

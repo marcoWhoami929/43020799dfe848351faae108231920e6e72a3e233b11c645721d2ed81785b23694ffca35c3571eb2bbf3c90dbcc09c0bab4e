@@ -117,7 +117,46 @@ class ModeloFacturasTiendas{
 		}
 
 	}
+static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2,$valor2,$item3, $valor3){
 
+		if($valor2 == 'ALL'){
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where $item BETWEEN '$fechaInicio' AND '$fechaFinal' and $item2 IN('FACTURA MAYOREO V 3.3','FACTURA FX PUEBLA V 3.3','Factura Mayoreo') and seriePedido = 'OTRT' and pendiente != 0 and cancelado != 1");
+
+
+			$stmt -> execute();
+
+			return $stmt->fetchAll();
+
+		}else{
+
+
+			$fecha = strtotime($valor);
+
+			$fechaInicio = date('Y-m-d',$fecha);
+			$fecha2 = strtotime($valor3);
+
+			$fechaFinal = date('Y-m-d',$fecha2);
+			$concepto = $valor2;
+
+			$stmt = Conexion::conectar()->prepare("SELECT  fc.*,ab.id from $tabla  as fc  left outer join abonos as ab ON fc.serie = ab.serieFactura and fc.folio = ab.folioFactura where fc.$item BETWEEN '$fechaInicio' AND '$fechaFinal' and fc.$item2 in ($concepto)  and fc.seriePedido != 'OTRT' and fc.pendiente = 0 and fc.cancelado != 1 and ab.id IS NULL ORDER BY fc.folio asc");
+
+			
+			$stmt -> bindParam(":".$item2,$valor2,PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt->fetchAll();
+		}
+
+	}
 	static public function mdlMostrarVentasDiarioTiendas($tabla,$item,$valor,$item2,$valor2){
 
 		if($valor2 == 'ALL'){
@@ -491,7 +530,7 @@ class ModeloFacturasTiendas{
 			$movimiento = $valor;
 			
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE $item LIKE '%$movimiento%' AND banc.departamento IS NULL and banc.cargo = 0  order by banc.id desc");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE banc.$item LIKE '%$movimiento%' and dep.estatus IS NULL and YEAR(STR_TO_DATE(banc.fecha, '%d/%m/%Y')) = '2022' and banc.cargo = 0  order by banc.id desc");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 

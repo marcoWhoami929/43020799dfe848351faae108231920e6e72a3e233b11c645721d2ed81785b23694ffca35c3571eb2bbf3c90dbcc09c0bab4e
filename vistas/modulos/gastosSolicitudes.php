@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Aydé Flores"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Aydé Flores" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza"){
 
 
 
@@ -84,7 +84,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Ann
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteGastos=gastos">
 

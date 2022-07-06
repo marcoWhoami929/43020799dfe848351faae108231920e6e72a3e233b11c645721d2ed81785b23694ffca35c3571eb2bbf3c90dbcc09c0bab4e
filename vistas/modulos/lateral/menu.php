@@ -317,7 +317,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
     echo '<li><a href="saldos"><i class="fa fa-bank"></i> <span>Bancos</span></a></li>';
 
   }
-  if ($_SESSION["nombre"] == "Annet Landa Alvarado") {
+  if ($_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Sebastián Rodríguez") {
 
    echo '<li class="treeview">
 
@@ -521,7 +521,7 @@ if ($_SESSION["perfil"] == "Credito y Cobranza") {
   </a>
 
   <ul class="treeview-menu" style="z-index: 101; width:200px;">
-
+<li><a href="tableroCortes" sesion="'.$_SESSION["nombre"].'"><i class="fa fa-fax"></i><span>Corte de Caja</a></li>
   <li><a href="ajusteSaldos"><i class="fa fa-fax"></i><span>Ajustes De Saldos</a></li>
   <li><a href="abonos"><i class="fa fa-money"></i><span>Abonos Facturas</a></li>
   <li><a href="facturasTiendas"><i class="fa fa-file-text"></i><span>Facturas Tiendas</a></li>

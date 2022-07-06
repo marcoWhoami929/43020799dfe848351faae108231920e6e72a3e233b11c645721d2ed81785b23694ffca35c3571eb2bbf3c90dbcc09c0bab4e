@@ -1746,9 +1746,11 @@ MODAL EDITAR COMPRA
       </div>
       <div class="modal-body">
           
-           <?php foreach ($comprasProveedores as $key => $value2){
+           <?php 
+           
+           foreach ($comprasProveedores as $key => $value2){
 
-              echo '<span style="font-size:14px; font-weight:bold">Serie:</span> '.$value["serie"].' <span style="font-size:14px; font-weight:bold">Folio:</span> '.$value["idPedido"].'';
+              echo '<span style="font-size:14px; font-weight:bold">Serie:</span> '.$value2["serie"].' <span style="font-size:14px; font-weight:bold">Folio:</span> '.$value2["folio"].'';
               echo '<br>';
               
            }

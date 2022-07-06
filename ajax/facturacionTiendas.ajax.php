@@ -2199,7 +2199,7 @@ class AjaxFacturacionTiendas{
 			$hoy = date("d/m/Y");
 	        $fecha = str_replace('/', '-', $hoy);
 	        $fechaFinal = date('Y-m-d', strtotime($fecha));
-	    	//$fechaFinal = '2022-01-11';
+	    	//$fechaFinal = '2022-05';
 	    	$usuario = $_SESSION["nombre"];
 			    switch ($usuario) {
                     case 'Sucursal San Manuel':

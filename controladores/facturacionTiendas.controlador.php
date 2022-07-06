@@ -72,7 +72,32 @@ class ControladorFacturasTiendas{
 
 
 	}
+static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor2,$item3,$valor3){
 
+			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
+
+				$tabla = "facturasgenerales";
+
+			}else{
+
+				if ($valor2 === "'FACTURA MAYOREO V 3.3','Factura Mayoreo'" || $valor2 === "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'" || $valor2 === "ALL") {
+
+					$tabla = "facturasgenerales";
+
+				}else{
+
+					$tabla = "facturastiendas";
+
+				}
+
+			}
+
+			$respuesta = ModeloFacturasTiendas::mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2,$valor2,$item3,$valor3);
+
+			return $respuesta;
+
+
+	}
 	static public function ctrMostrarVentasDiarioTiendas($item,$valor,$item2,$valor2){
 
 		if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {

@@ -36158,7 +36158,7 @@ class ControladorReportes{
 
 				echo utf8_decode("<table> 
 					<tr>
-					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V. & FLEX FINISHES DE MEXICO S.A. DE C.V.</th>
+					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>PINTURAS Y COMPLEMENTOS DE PUEBLA & FLEX FINISHES DE MEXICO</th>
 					</tr>
 
 					<tr>

@@ -35,7 +35,7 @@ class data extends Conexion
         $sWhere = " amov.CUNIDADESPENDIENTES != 0 and amov.CIDDOCUMENTODE = 2 and adoc.CIDCONCEPTODOCUMENTO IN(3016,3017,3018,3079) and adoc.CTOTALUNIDADES >= adoc.CUNIDADESPENDIENTES and adoc.CCANCELADO = 0";
         $sWhere1 = " amov.CUNIDADESPENDIENTES != 0 and amov.CIDDOCUMENTODE = 2 and adoc.CIDCONCEPTODOCUMENTO IN(3051) and adoc.CTOTALUNIDADES >= adoc.CUNIDADESPENDIENTES and adoc.CCANCELADO = 0";
 
-        $sWhere2 = "WHERE CIDPRODUCTO != 0 and CRAZONSOCIAL NOT IN('FLEX FINISHES MEXICO, S.A. DE C.V.','PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.')";
+        $sWhere2 = "WHERE CIDPRODUCTO != 0 and CRAZONSOCIAL NOT IN('FLEX FINISHES MEXICO','PINTURAS Y COMPLEMENTOS DE PUEBLA')";
         if ($search["marca"] != "") {
             $sWhere2 .= " and MARCA = '" . $search["marca"] . "'";
         }
@@ -530,7 +530,7 @@ class data extends Conexion
 
 
         $query = $this->mysqli->query($sql);
-
+           
         $sql1 = "WITH productos as(SELECT  
         amov.CNUMEROMOVIMIENTO
         ,adoc.CSERIEDOCUMENTO

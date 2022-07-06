@@ -211,6 +211,13 @@ class TablaFacturacionTiendas{
           $accionCredito = "";
       }
 
+      if($_SESSION["perfil"] == "Credito y Cobranza" ){
+        $formaPago = "<select class='form-control formaPagoFacturas' style='width:200px' name='pay' id='pays".$facturacionTiendas[$i]["id"]."'><option value='CREDITO'>CREDITO</option></select><button type='button' class='btn btn-success btnActualizarFormasPago' idFactura = '".$facturacionTiendas[$i]["id"]."' onclick='actualizarFormasPago(".$facturacionTiendas[$i]["id"].")'><i class='fa fa-send'></i></button>";
+      }else{
+
+          $formaPago ="";
+      }
+      
 	 		/*=============================================
 			DEVOLVER DATOS JSON
 			=============================================*/
@@ -235,8 +242,8 @@ class TablaFacturacionTiendas{
                   "'.$facturacionTiendas[$i]["fechaCobro"].'",
                   "'.$facturacionTiendas[$i]["formaPago"].'",
                   "'.$facturacionTiendas[$i]["agente"].'",
-                  
-                  "'.$estatus." ".$acciones.'"],';
+                  "'.$estatus." ".$acciones.'",
+                  "'.$formaPago.'"],';
 
 	     	}
 

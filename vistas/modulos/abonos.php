@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Cre
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteAbonos=abonos">
 

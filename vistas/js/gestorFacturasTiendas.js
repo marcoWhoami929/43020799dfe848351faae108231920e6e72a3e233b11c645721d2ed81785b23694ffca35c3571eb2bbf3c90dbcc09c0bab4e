@@ -103,7 +103,45 @@ facturasTiendasSaldosPendientes = $(".tablaFacturacionTiendasSaldosPendientes").
    }
 
 });
+facturacionTiendasAbonoParcial = $(".tablaFacturacionTiendasAbonoParcial").DataTable({
+   "ajax":"ajax/tablaFacturacionTiendasAbonoParcial.ajax.php?fecha="+fecha+"&fechaFin="+fechaFin+"&sucursal="+sucursal,
+   //"ajax":"ajax/tablaFacturacionTiendas.ajax.php",
+   "deferRender": true,
+   "retrieve": true,
+   "processing": true,
+    "iDisplayLength": 10,
+    "fixedHeader": true,
+    "order": [[ 0, "desc" ]],
+    /*"scrollX": true,*/
+     "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
+   "language": {
 
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+
+   }
+
+});
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE VENTAS TIENDAS
 =============================================*/
@@ -5960,10 +5998,12 @@ ACTUALIZAR FORMA DE PAGO
 $(".tablaPrevisualizacionFacturas").on('click','.btnActualizarFormaPago', function() {
   let idFactura = $(this).attr("idFactura");
   let formaPago = $("#pay"+idFactura+"").val();
+
     
             var datos = new FormData();
             datos.append('idFacturaTiendaPrev',idFactura);
             datos.append('formaPagoFactura',formaPago);
+
           
             $.ajax({
 
@@ -6007,6 +6047,59 @@ $(".tablaPrevisualizacionFacturas").on('click','.btnActualizarFormaPago', functi
 
 });
 
+function actualizarFormasPago(id){
+   let idFactura = id;
+  let formaPago = $("#pays"+idFactura+"").val();
+  //var forma = document.getElementById("pays"+idFactura+"");
+  //var formaPago = forma.options[forma.selectedIndex].value;
+
+    
+            var datos = new FormData();
+            datos.append('idFacturaTiendaPrev',idFactura);
+            datos.append('formaPagoFactura',formaPago);
+         
+            $.ajax({
+
+                url:"ajax/facturacionTiendas.ajax.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType:"json",
+                success: function(respuesta){ 
+
+                  if (respuesta = "ok") {
+                      alerta = document.getElementById("successFormaPago");
+                      alerta.style.display = "";
+                      $("#successFormaPago").addClass("alert-success");
+                      document.getElementById("msgSuccessOrError").innerHTML = "<strong>Forma de pago actualizada</strong>.";
+
+                      setTimeout( function () {
+                          alerta.style.display = "none";
+                          
+                      }, 3000);
+                    facturasTiendas.ajax.reload();
+                  }else{
+                    alerta = document.getElementById("successFormaPago");
+                      alerta.style.display = "";
+                      $("#successFormaPago").addClass("alert-danger");
+                      document.getElementById("msgSuccessOrError").innerHTML = "<strong>Upps !!!,No se pudo actualizar la forma de pago</strong>.";
+
+                      setTimeout( function () {
+                          alerta.style.display = "none";
+                          
+                      }, 3000);
+                    facturasTiendas.ajax.reload();
+                  }
+                                    
+                }
+
+
+            });
+            
+
+}
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE FACTURAS CRM
 =============================================*/

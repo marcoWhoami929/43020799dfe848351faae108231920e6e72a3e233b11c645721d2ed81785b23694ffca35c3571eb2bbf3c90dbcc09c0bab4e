@@ -8,7 +8,7 @@ class TablaCortesDeCaja{
 
 	public function mostrarTablas(){	
    
-	 if ($_SESSION["perfil"] == "Administrador General"  || $_SESSION["nombre"] == "Annet Landa Alvarado") {
+	 if ($_SESSION["perfil"] == "Administrador General"  || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Sebastián Rodríguez"  || $_SESSION["perfil"] == "Credito y Cobranza") {
       
       $item = null;
       $valor = null;

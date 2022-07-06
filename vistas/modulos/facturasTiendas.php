@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Ivan Herrera Perez"){
+
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Ivan Herrera Perez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado"  || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Ivan Herrera Perez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado"  || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Ivan Herrera Perez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza") {
 
 
                if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
@@ -190,7 +190,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                     
                    </div>';
               }
-              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado"  || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Ivan Herrera Perez") {?>
+              if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Annet Landa Alvarado"  || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Ivan Herrera Perez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza") {?>
                   <?php
                   echo '<div class="container">
                     <h5 style="font-weight: bold;font-size: 25px">Búsqueda por Sucursal y Rango de Fechas</h5>
@@ -264,9 +264,16 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         <small>Nota: Para visualizar las tablas dar doble click en la pestaña seleccionada.</small>
         <div class="container  col-lg-12 col-md-12 col-sm-12">
           <h2></h2>
+           <div class="alert alert-dismissible animated fadeInDown" role="alert" id="successFormaPago" style="display: none;z-index: 1001;position: absolute;">
+            <span id="msgSuccessOrError"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
           <ul class="nav nav-tabs">
             <li class="active" ><a data-toggle="tab" href="#facturas" id="obtenerListaFacturasGenerales" class="tabsFacturas">Mis Facturas</a></li>
             <li><a data-toggle="tab" href="#facturasSaldosPendientes" id="obtenerFacturasSaldosPendientes" class="tabsFacturas" >Facturas Con Saldos Pendientes</a></li>
+                <li><a data-toggle="tab" href="#facturasAbonoParcial" id="obtenerFacturasAbonoParcial" class="tabsFacturas" >Facturas Con Abono Parcial</a></li>
           </ul>
 
           <div class="tab-content col-lg-12 col-md-12 col-sm-12">
@@ -298,6 +305,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                      <th style="border:none">Forma Pago</th>
                      <th style="border:none">Sucursal</th>
                      <th style="border:none">Estatus</th>
+                     <th>Forma Pago</th>
 
                    </tr> 
 
@@ -331,6 +339,36 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                    <th style="border:none">Forma Pago</th>
                    <th style="border:none">Sucursal</th>
                    <th style="border:none">Estatus</th>
+
+                 </tr> 
+
+                </thead>
+              </table>
+            </div>
+            <div id="facturasAbonoParcial" class="tab-pane fade">
+              <br>
+              <table class="table-bordered table-striped dt-responsive tablaFacturacionTiendasAbonoParcial estiloBordesTablas" width="100%" id="facturacionTiendasAbonoParcial" >
+         
+                <thead class="estilosTablas">
+                 
+                 <tr style="">
+                   
+                   <th style="width:20px;height: 40px;border:none">#</th>
+                   <th style="border:none">Fecha Factura</th>
+                   <th style="border:none">Serie</th>
+                   <th style="border:none">Folio</th>
+                   <th style="border:none">Codigo Cliente</th>
+                   <th style="border:none">Rfc</th>
+                   <th style="border:none">Cliente</th>
+                   <th style="border:none">Neto</th>
+                   <th style="border:none">Descuento</th>
+                   <th style="border:none">Impuesto</th>
+                   <th style="border:none">Total</th>
+                   <th style="border:none">Pendiente</th>
+                   <th style="border:none">Pagado</th>
+                   <th style="border:none">Fecha Cobro</th>
+                   <th style="border:none">Forma Pago</th>
+                   <th style="border:none">Sucursal</th>
 
                  </tr> 
 

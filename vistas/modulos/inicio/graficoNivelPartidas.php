@@ -100,7 +100,7 @@ Highcharts.chart('container', {
                              $fechaInicio = date('d/m/Y', strtotime($_POST["fechaInicio"]));
                              $fechaFinal =  date('d/m/Y', strtotime($_POST["fechaFinal"]));
                             
-                            $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas FROM almacen WHERE STR_TO_DATE(fechaPedido,'%d/%m/%y') >= STR_TO_DATE('".$fechaInicio."', '%d/%m/%y') and STR_TO_DATE(fechaPedido,'%d/%m/%y') <= STR_TO_DATE('".$fechaFinal."', '%d/%m/%y') and nombreCliente != 'FLEX FINISHES MEXICO, S.A. DE C.V.' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.' and estado != 0 and status != 0 and pendiente != 2 and serie != 'OTRT'";
+                            $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas FROM almacen WHERE STR_TO_DATE(fechaPedido,'%d/%m/%y') >= STR_TO_DATE('".$fechaInicio."', '%d/%m/%y') and STR_TO_DATE(fechaPedido,'%d/%m/%y') <= STR_TO_DATE('".$fechaFinal."', '%d/%m/%y') and nombreCliente != 'FLEX FINISHES MEXICO' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA' and estado != 0 and status != 0 and pendiente != 2 and serie != 'OTRT'";
                             $resultado = mysqli_query($conn, $sql_query) or die("database_error:".mysqli_error($conn));
                             
                             $total = mysqli_fetch_array($resultado,MYSQLI_ASSOC);
@@ -109,7 +109,7 @@ Highcharts.chart('container', {
                         
                     }else {
 
-                            $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas FROM almacen WHERE nombreCliente != 'FLEX FINISHES MEXICO, S.A. DE C.V.' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.' and estado != 0 and status != 0 and pendiente != 2 and serie != 'OTRT'";
+                            $sql_query = "SELECT (SUM(sumPartidas)/SUM(numeroPartidas)*100) AS nivelPartidas FROM almacen WHERE nombreCliente != 'FLEX FINISHES MEXICO' AND nombreCliente != 'PINTURAS Y COMPLEMENTOS DE PUEBLA' and estado != 0 and status != 0 and pendiente != 2 and serie != 'OTRT'";
                             $resultado = mysqli_query($conn, $sql_query) or die("database_error:".mysqli_error($conn));
                             
                             $total = mysqli_fetch_array($resultado,MYSQLI_ASSOC);

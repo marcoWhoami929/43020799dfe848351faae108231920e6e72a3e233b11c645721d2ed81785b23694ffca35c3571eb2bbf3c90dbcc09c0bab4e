@@ -69,7 +69,7 @@ $(".tablaAtencion").on("click", ".btnEditarPedido", function(){
       $("#editarNombreCliente").val(respuesta["nombreCliente"]);
       var nombreCliente = $("#editarNombreCliente").val(respuesta["nombreCliente"]);
 
-      if(nombreCliente.val() == "FLEX FINISHES MEXICO, S.A. DE C.V." || nombreCliente.val() == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V."){
+      if(nombreCliente.val() == "FLEX FINISHES MEXICO" || nombreCliente.val() == "PINTURAS Y COMPLEMENTOS DE PUEBLA"){
 
            $("#editarCreado").val("Miguel Gutierrez");
            $("#editarTipoPago").val("Crédito");

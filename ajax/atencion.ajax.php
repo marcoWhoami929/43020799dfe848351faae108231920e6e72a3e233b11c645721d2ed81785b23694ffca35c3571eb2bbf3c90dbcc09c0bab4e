@@ -335,7 +335,7 @@ class AjaxAtencion{
 
 				}else{
 
-					if ($value["razonSocial"] == "FLEX FINISHES MEXICO, S.A. DE C.V." || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V." ) {
+					if ($value["razonSocial"] == "FLEX FINISHES MEXICO" || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA" ) {
 
 						$mysql_insert = "INSERT INTO atencionaclientes (codigoCliente, nombreCliente, canal, rfc, agenteVentas,codigoAgente, diasCredito,idClienteComercial, statusCliente, serie, folio, numeroUnidades,numeroPartidas, importe, fechaPedido,tipoRuta,tipoCompra,observaciones,estadoAlmacen,statusAlmacen,estadoFacturacion,statusFacturacion,estadoCompras,statusCompras,sinAdquisicion,estadoLogistica,statusLogistica,concluido,fechaElaboracion,formaPago,creado,metodoPago,tipoPago,fechaRecepcion,ordenCompra,habilitado,idComercial)VALUES('".$value["codigoCliente"]."','".$value["razonSocial"]."','Cedis','".$value["rfc"]."','".$value["agente"]."','".$value["codigoAgente"]."','".$value["diasCredito"]."','".$value["idCliente"]."','".$value["estatus"]."','".$value["serie"]."','".str_replace(',','',$value["folio"])."','".str_replace(',','',$value["unidades"])."','".$value["partidas"]."','".str_replace(',','',$value["total"])."','".$fecha."','Mostrador','2','Compra Interna','1','3','1','0','1','6','0','1','2','1','".$fechaElaboracion."','".$formaPago."','".$usuario."','".$metodoPago."','".$tipoPago."','".$fechaElaboracion."','".$value["observaciones"]."',1,'".$value["idComercial"]."')";
 							mysqli_query($conn, $mysql_insert) or die("database error:". mysqli_error($conn));
@@ -686,7 +686,7 @@ class AjaxAtencion{
                                 $actualizarUnidades = "UPDATE facturasgenerales set numeroUnidades = ($unidades[0]-($unidades[0]-unidadesPendientes)) where serie = '".$serieFactura."' && folio = '".$folioFactura."'";
                                 mysqli_query($conn,$actualizarUnidades ) or die("database error:".mysqli_error($conn));
                                 
-                                if ($value["razonSocial"] == "FLEX FINISHES MEXICO, S.A. DE C.V." || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.") {
+                                if ($value["razonSocial"] == "FLEX FINISHES MEXICO" || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA") {
 
                                 	
                                 	$actualizarEstatusFactura = "UPDATE facturacion set estatusFactura = 1,status = 1,facturaPendiente = 0,habilitado = 1 where serie ='".$serie."' and idPedido = '".$folio."'";
@@ -714,7 +714,7 @@ class AjaxAtencion{
                                 $actualizarSurtimientoImportes = "UPDATE facturacion set serieFactura = '".$value["serie"]."',folioFactura = '".str_replace(',','',$value["folio"])."',secciones = '".$secciones."',partSurt = '".$partidasSurtidas."',importSurt = '".number_format($importeSurtido,4,'.', '')."', unidSurt = '".$unidadesSurtidas."', nivelSumCosto = (('".$importeSurtido."'/importeInicial)*100), nivelDeSum = (('".$unidadesSurtidas."'/unidSurt)*100), nivelPartidas = (('".$partidasSurtidas."'/partSurt)*100)  where serie = '".$serie."' and idPedido = '".$folio."'";
                                 mysqli_query($conn, $actualizarSurtimientoImportes) or die("database error:".mysqli_error($conn));
 
-                                if ($value["razonSocial"] == "FLEX FINISHES MEXICO, S.A. DE C.V." || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.") {
+                                if ($value["razonSocial"] == "FLEX FINISHES MEXICO" || $value["razonSocial"] == "PINTURAS Y COMPLEMENTOS DE PUEBLA") {
 
                                 	 $actualizacionFacturaAtencion = "UPDATE atencionaclientes set serieFactura = '".$value["serie"]."',folioFactura = '".str_replace(',','',$value["folio"])."',saldoFacturado = '".$importeSurtido."',statusFacturacion = 1  where serie = '".$serie."' and folio = '".$folio."'";
                                 	mysqli_query($conn, $actualizacionFacturaAtencion) or die("database error:".mysqli_error($conn));
