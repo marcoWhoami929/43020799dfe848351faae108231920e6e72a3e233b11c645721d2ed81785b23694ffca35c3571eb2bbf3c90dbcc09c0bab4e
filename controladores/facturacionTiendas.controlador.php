@@ -983,6 +983,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 			
 				$respuesta = ModeloFacturasTiendas::mdlCrearNuevoGasto($tabla, $datos);
+					$respuesta = ModeloFacturasTiendas::mdlCrearDesgloseGasto($folioGasto);
 				$respuesta = ModeloFacturasTiendas::mdlRegistroBitacoraAgregar($tabla2, $datos2);
 				$respuesta = ModeloFacturasTiendas::mdlCalcularImpuestos($tabla,$folioGasto);
 			
@@ -1262,7 +1263,37 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 						           "importeRetenciones" => $importeRetenciones,
 						           "rutaFactura" => $rutaFactura,
 						           "rutaXml" => $rutaXml,
+						           	"parciales" => $_POST["parciales"],
 						       	   "id" => $_POST["idGasto"]); 
+
+					$datos3 = array(
+				"folio" => $_POST["editarFolioGasto"],
+				"par1" => $_POST["parcial"],
+				"dpto1" => $_POST["departamentoParcial1"],
+				"par2" => $_POST["parcial2"],
+				"dpto2" => $_POST["departamentoParcial2"],
+				"par3" => $_POST["parcial3"],
+				"dpto3" => $_POST["departamentoParcial3"],
+				"par4" => $_POST["parcial4"],
+				"dpto4" => $_POST["departamentoParcial4"],
+				"par5" => $_POST["parcial5"],
+				"dpto5" => $_POST["departamentoParcial5"],
+				"par6" => $_POST["parcial6"],
+				"dpto6" => $_POST["departamentoParcial6"],
+				"par7" => $_POST["parcial7"],
+				"dpto7" => $_POST["departamentoParcial7"],
+				"par8" => $_POST["parcial8"],
+				"dpto8" => $_POST["departamentoParcial8"],
+				"par9" => $_POST["parcial9"],
+				"dpto9" => $_POST["departamentoParcial9"],
+				"par10" => $_POST["parcial10"],
+				"dpto10" => $_POST["departamentoParcial10"],
+				"par11" => $_POST["parcial11"],
+				"dpto11" => $_POST["departamentoParcial11"],
+				"par12" => $_POST["parcial12"],
+				"dpto12" => $_POST["departamentoParcial12"]
+			);
+
 					
 					if ($response == 2) {
 
@@ -1322,6 +1353,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 									   "folio" => $folioGasto);
 
 					$respuesta = ModeloFacturasTiendas::mdlEditarGasto($tabla, $datos);
+						$respuesta1 = ModeloFacturasTiendas::mdlEditarDesgloseGasto($datos3);
 					$respuesta2 = ModeloFacturasTiendas::mdlRegistroBitacoraAgregar($tabla2, $datos2);
 					$respuesta3 = ModeloFacturasTiendas::mdlCalcularImpuestos($tabla,$folioGasto);
 				
@@ -2119,7 +2151,18 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 		return $respuesta;
 	}
+/*=============================================
+	ACTUALIZAR OBSERVACIONES FACTURA TIENDAS
+	=============================================*/
+	static public function ctrActualizarObservacionesFactura($item, $valor, $item2, $valor2)
+	{
 
+		$tabla = "facturastiendas";
+
+		$respuesta = ModeloFacturasTiendas::mdlActualizarObservacionesFactura($tabla, $item, $valor, $item2, $valor2);
+
+		return $respuesta;
+	}
 
 
 }

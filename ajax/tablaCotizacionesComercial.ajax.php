@@ -62,6 +62,11 @@ class TablaCotizacionesComercial{
         $valor2 = "COSG";
 
         break;
+       case 'Sucursal Acatepec':
+
+        $valor2 = "ZNCT";
+
+        break;
         default:
 
         $valor2 = "ALL";

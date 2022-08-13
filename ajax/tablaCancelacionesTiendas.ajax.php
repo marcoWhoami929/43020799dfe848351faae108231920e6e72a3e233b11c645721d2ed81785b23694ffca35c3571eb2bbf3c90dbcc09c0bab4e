@@ -76,6 +76,11 @@ class TablaCancelacionesTiendas{
         $valor = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+        break;
     }
 
  		$cancelacionesTiendas = ControladorFacturasTiendas::ctrMostrarCancelacionesTiendas($item, $valor);

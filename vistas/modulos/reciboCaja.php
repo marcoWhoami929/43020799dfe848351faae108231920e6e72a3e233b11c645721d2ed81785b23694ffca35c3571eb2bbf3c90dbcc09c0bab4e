@@ -158,11 +158,10 @@
                             case 'Sucursal Santiago':
                                 $serie = "RCSG";
                                 break;
-
-                            
-                            default:
-                                # code...
+                             case 'Sucursal Acatepec':
+                                $serie = "RCAC";
                                 break;
+
                         }
 
 

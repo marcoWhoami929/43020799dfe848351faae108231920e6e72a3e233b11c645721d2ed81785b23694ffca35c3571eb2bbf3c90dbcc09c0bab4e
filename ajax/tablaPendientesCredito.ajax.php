@@ -52,6 +52,9 @@ class TablaPendientesCredito{
         case 'FCRM':
           $usuario = "Sucursal Reforma";
           break;
+        case 'FCCT':
+          $usuario = "Sucursal Acatepec";
+          break;
  
       }
 

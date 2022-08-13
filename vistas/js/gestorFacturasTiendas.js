@@ -1676,7 +1676,504 @@ $(".tablaGastosTiendas").on("click", ".btnEditarDatosGastos", function(){
               div2.style.display = "none";
 
             }
+ if (respuesta["departamento"] === "DESGLOSE") {
+        document.getElementById("divDesglose").style.display = "";
+        $("#parciales").val(respuesta["parciales"]);
+        $("#parcial").val(respuesta["par1"]);
+        $("#departamentoParcial1").val(respuesta["dpto1"]);
+        $("#parcial2").val(respuesta["par2"]);
+        $("#departamentoParcial2").val(respuesta["dpto2"]);
+        $("#parcial3").val(respuesta["par3"]);
+        $("#departamentoParcial3").val(respuesta["dpto3"]);
+        $("#parcial4").val(respuesta["par4"]);
+        $("#departamentoParcial4").val(respuesta["dpto4"]);
+        $("#parcial5").val(respuesta["par5"]);
+        $("#departamentoParcial5").val(respuesta["dpto5"]);
+        $("#parcial6").val(respuesta["par6"]);
+        $("#departamentoParcial6").val(respuesta["dpto6"]);
+        $("#parcial7").val(respuesta["par7"]);
+        $("#departamentoParcial7").val(respuesta["dpto7"]);
+        $("#parcial8").val(respuesta["par8"]);
+        $("#departamentoParcial8").val(respuesta["dpto8"]);
+        $("#parcial9").val(respuesta["par9"]);
+        $("#departamentoParcial9").val(respuesta["dpto9"]);
+        $("#parcial10").val(respuesta["par10"]);
+        $("#departamentoParcial10").val(respuesta["dpto10"]);
+        $("#parcial11").val(respuesta["par11"]);
+        $("#departamentoParcial11").val(respuesta["dpto11"]);
+        $("#parcial12").val(respuesta["par12"]);
+        $("#departamentoParcial12").val(respuesta["dpto12"]);
+      }
+      var valor1 = respuesta["parciales"];
+      if (valor1 == 0) {
+        div1 = document.getElementById("1");
+        div1.style.display = "none";
 
+        div2 = document.getElementById("2");
+        div2.style.display = "none";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "none";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "none";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "none";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 1) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "none";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "none";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "none";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "none";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 2) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "none";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "none";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "none";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 3) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "none";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "none";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 4) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "none";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 5) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "none";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 6) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "none";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 7) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "none";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 8) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "none";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 9) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "none";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 10) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "none";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 11) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "none";
+      } else if (valor1 == 12) {
+        div1 = document.getElementById("1");
+        div1.style.display = "";
+
+        div2 = document.getElementById("2");
+        div2.style.display = "";
+
+        div3 = document.getElementById("3");
+        div3.style.display = "";
+
+        div4 = document.getElementById("4");
+        div4.style.display = "";
+
+        div5 = document.getElementById("5");
+        div5.style.display = "";
+
+        div6 = document.getElementById("6");
+        div6.style.display = "";
+
+        div7 = document.getElementById("7");
+        div7.style.display = "";
+
+        div8 = document.getElementById("8");
+        div8.style.display = "";
+
+        div9 = document.getElementById("9");
+        div9.style.display = "";
+
+        div10 = document.getElementById("10");
+        div10.style.display = "";
+
+        div11 = document.getElementById("11");
+        div11.style.display = "";
+
+        div12 = document.getElementById("12");
+        div12.style.display = "";
+      }
 
 
 
@@ -2559,7 +3056,10 @@ $(".minimizarGastos").on("click",function(){
           break;
         case 'Rutas':
           var conceptoFactura = "ALL";
-          break;  
+          break; 
+        case "Sucursal Acatepec":
+          var conceptoFactura = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+        break; 
 
       }
       listaFacturasSaldosRemanentes = $(".tablaListaFacturasSaldosRemanentes").DataTable({
@@ -2667,6 +3167,9 @@ $("#btnGenerarAjusteRemanentes").on("click", function(){
               case 'Rutas':
                 var conceptoFactura = "ALL";
                 break;  
+              case "Sucursal Acatepec":
+                var conceptoFactura = "Factura Acatepec";
+              break;
             }
 
             var datos = new FormData();
@@ -4062,7 +4565,9 @@ $("#generarCorteCaja").on("click", function() {
       case 'Rutas':
         var concepto = "ALL";
         break;  
-    
+      case 'Sucursal Acatepec':
+        var concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+        break;
     }
 
     pendientesPago = $(".tablaPendientesPago").DataTable({
@@ -6098,6 +6603,54 @@ function actualizarFormasPago(id){
 
             });
             
+
+}
+function actualizarObservaciones(el){
+    var row = $(el).parents("tr");
+  let idFactura = row.find(".inputObservaciones").attr("idFactura");
+
+  var observaciones = row.find(".inputObservaciones").val();
+
+
+  var datos = new FormData();
+  datos.append("idFacturaTiendaObs", idFactura);
+  datos.append("observacionesFactura", observaciones);
+  
+  $.ajax({
+    url: "ajax/facturacionTiendas.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function (respuesta) {
+      if ((respuesta = "ok")) {
+        alerta = document.getElementById("successFormaPago");
+        alerta.style.display = "";
+        $("#successFormaPago").addClass("alert-success");
+        document.getElementById("msgSuccessOrError").innerHTML =
+          "<strong>Observaciones agregadas correctamente</strong>.";
+
+        setTimeout(function () {
+          alerta.style.display = "none";
+        }, 3000);
+        facturasTiendas.ajax.reload();
+      } else {
+        alerta = document.getElementById("successFormaPago");
+        alerta.style.display = "";
+        $("#successFormaPago").addClass("alert-danger");
+        document.getElementById("msgSuccessOrError").innerHTML =
+          "<strong>Upps !!!,No se pudo agregar las observaciones</strong>.";
+
+        setTimeout(function () {
+          alerta.style.display = "none";
+        }, 3000);
+        facturasTiendas.ajax.reload();
+      }
+    },
+  });
+  
 
 }
 /*=============================================

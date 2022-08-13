@@ -62,6 +62,11 @@ class TablaFacturasCrm{
         $valor2 = "FACTURA SANTIAGO V 3.3";
 
         break;
+        case 'Sucursal Acatepec':
+
+        $valor2 = "FACTURA ACATEPEC V 3.3";
+
+        break;
         default:
 
         $valor2 = "ALL";

@@ -96,6 +96,11 @@ class TablaFacturacionTiendasAbonoParcial{
         $valor2 = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor2 = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+        break;
     }
     $item3 = "fechaFactura";
     if($_GET["fechaFin"] != "") {

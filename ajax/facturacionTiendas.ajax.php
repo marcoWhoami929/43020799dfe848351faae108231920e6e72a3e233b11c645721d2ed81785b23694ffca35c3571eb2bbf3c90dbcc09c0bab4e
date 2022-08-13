@@ -460,6 +460,11 @@ class AjaxFacturacionTiendas{
 		        $departamento2 = "INDUSTRIAL";
 
 		        break;
+		       case 'Sucursal Acatepec':
+
+		        $departamento2 = "ACATEPEC";
+
+		        break;
 			}
 			$movimiento = 'id';
 			$movimientoBanco  = $this->idMovimientoBancario;
@@ -525,6 +530,12 @@ class AjaxFacturacionTiendas{
 		    $departamento = "INDUSTRIAL";
 
 		    break;
+		   case 'Sucursal Acatepec':
+
+	        $valorIdSucursal = "80";
+	        $departamento = "ACATEPEC";
+
+	        break;
 		}
 
 
@@ -962,6 +973,9 @@ class AjaxFacturacionTiendas{
  			case 'Factura Torres':
  				$serie = 'AJTO';
  				break;
+ 			case 'Factura Acatepec':
+ 				$serie = 'AJAC';
+ 				break;
  			
  		}
 
@@ -1167,6 +1181,9 @@ class AjaxFacturacionTiendas{
             case 'Rutas':
                 $concepto = "ALL";
                 break;
+            case 'Sucursal Acatepec':
+				$concepto = "'Factura Acatepec','Factura Acatepec'";
+				break;
 		
 		}
 
@@ -1410,6 +1427,9 @@ class AjaxFacturacionTiendas{
             case 'Rutas':
                 $concepto = "ALL";
                 break;
+            case 'Sucursal Acatepec':
+				$concepto = "Factura Acatepec";
+				break;
 		
 		}
 
@@ -1841,6 +1861,11 @@ class AjaxFacturacionTiendas{
 		        $departamento2 = "INDUSTRIAL";
 
 		        break;
+		      case 'Sucursal Acatepec':
+
+		        $departamento2 = "ACATEPEC";
+
+		        break;
 			}
 			$tabla = $this->bancoMovimiento;
 			$movimiento = 'id';
@@ -1906,6 +1931,12 @@ class AjaxFacturacionTiendas{
 		    $departamento = "INDUSTRIAL";
 
 		    break;
+		  case 'Sucursal Acatepec':
+
+	        $valorIdSucursal = "80";
+	        $departamento = "ACATEPEC";
+
+	        break;
 		}
 
 
@@ -2217,7 +2248,9 @@ class AjaxFacturacionTiendas{
                     case 'Sucursal Santiago':
                         $serie = "FCST";
                         break;
- 
+ 					case 'Sucursal Acatepec':
+                        $serie = "FCCT";
+                        break;
                 }
 			
 		
@@ -2392,6 +2425,9 @@ class AjaxFacturacionTiendas{
 								break;
 							case 'FCTO':
 								$concepto = "Factura Torres";
+								break;
+							case 'FCCT':
+								$concepto = "Factura Acatepec";
 								break;
 						
 						}
@@ -2582,6 +2618,9 @@ class AjaxFacturacionTiendas{
 			case 'FCCA':
 				$tabla = "facturastiendas";
 				break;
+			case 'FCCT':
+				$tabla = "facturastiendas";
+				break;
 			default:
 				$tabla = "facturasgenerales";
 				break;
@@ -2590,7 +2629,21 @@ class AjaxFacturacionTiendas{
 		echo json_encode($actualizar);
 	}
 
-	
+	public $idFacturaTiendaObs;
+	public $observacionesFactura;
+	public function ajaxActualizarObservacionesFactura()
+	{
+
+		$item = "id";
+		$valor = $this->idFacturaTiendaObs;
+
+		$item2 = "observaciones";
+		$valor2 = $this->observacionesFactura;
+
+		$respuesta = ControladorFacturasTiendas::ctrActualizarObservacionesFactura($item, $valor, $item2, $valor2);
+
+		echo json_encode($respuesta);
+	}
 
 }
 
@@ -2894,4 +2947,14 @@ if (isset($_POST["idFacturaCrm"])) {
 	$vincularFacturaCrm->serieFacturaCrm = $_POST["serieFacturaCrm"];
 	$vincularFacturaCrm->accion = $_POST["accion"];
 	$vincularFacturaCrm->ajaxActualizarFacturaVinculadaCrm();
+}
+/*=============================================
+ACTUALIZAR OBSERVACIONES FACTURA TIENDAS
+=============================================*/
+if (isset($_POST["idFacturaTiendaObs"])) {
+
+	$actualizarObservaciones = new AjaxFacturacionTiendas();
+	$actualizarObservaciones->idFacturaTiendaObs = $_POST["idFacturaTiendaObs"];
+	$actualizarObservaciones->observacionesFactura = $_POST["observacionesFactura"];
+	$actualizarObservaciones->ajaxActualizarObservacionesFactura();
 }

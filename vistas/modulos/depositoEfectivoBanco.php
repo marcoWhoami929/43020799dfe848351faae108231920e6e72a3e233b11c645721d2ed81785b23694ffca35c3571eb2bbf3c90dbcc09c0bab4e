@@ -1,6 +1,6 @@
 e<?php
 error_reporting(0);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sucursal Acatepec"){
 
 
 
@@ -199,6 +199,11 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                   case 'Rutas':
 
                     $valor2 = "ALL";
+
+                    break;
+                  case 'Sucursal Acatepec':
+
+                    $valor2 = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
 
                     break;
                 }

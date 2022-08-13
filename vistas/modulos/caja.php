@@ -258,6 +258,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -542,6 +543,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -596,6 +598,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -647,6 +650,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -698,6 +702,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -752,6 +757,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -803,6 +809,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -854,6 +861,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -907,6 +915,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -958,6 +967,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1009,6 +1019,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1062,6 +1073,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1113,6 +1125,7 @@ MODAL AGREGAR
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1455,6 +1468,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1768,6 +1782,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
 
 
                         </select>
@@ -1821,6 +1836,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1872,6 +1888,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1927,6 +1944,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1978,6 +1996,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2029,6 +2048,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2084,6 +2104,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2135,6 +2156,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2186,6 +2208,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2240,6 +2263,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2291,6 +2315,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -2342,6 +2367,7 @@ MODAL EDITAR DATOS
                           <option value="MAYOREO">MAYOREO</option>
                            <option value="COMPRAS">COMPRAS</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
 
                           
                         </select>

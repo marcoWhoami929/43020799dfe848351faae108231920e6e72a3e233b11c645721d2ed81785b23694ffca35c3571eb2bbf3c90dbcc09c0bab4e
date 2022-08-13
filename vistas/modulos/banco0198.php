@@ -224,7 +224,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ban
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
-                
+                 <option value="ACATEPEC">ACATEPEC</option>
               </select>
             </div>
 
@@ -531,6 +531,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -848,6 +849,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -898,6 +900,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -948,6 +951,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1002,6 +1006,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1052,6 +1057,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1102,6 +1108,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1156,6 +1163,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1206,6 +1214,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1256,6 +1265,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1309,6 +1319,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1359,6 +1370,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>
@@ -1409,6 +1421,7 @@ MODAL EDITAR DATOS
                 <option value="XONACA" disabled>XONACA</option>
                 <option value="MAYOREO">MAYOREO</option>
                 <option value="ECOMMERCE">ECOMMERCE</option>
+                 <option value="ACATEPEC">ACATEPEC</option>
                         </select>
 
                       </div>

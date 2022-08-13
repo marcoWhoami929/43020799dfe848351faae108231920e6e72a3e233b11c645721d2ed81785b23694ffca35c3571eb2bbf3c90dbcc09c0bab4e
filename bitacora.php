@@ -19,6 +19,8 @@ require_once "controladores/banco0840.controlador.php";
 require_once "modelos/banco0840.modelo.php";
 require_once "controladores/banco1340.controlador.php";
 require_once "modelos/banco1340.modelo.php";
+require_once "controladores/banco7338.controlador.php";
+require_once "modelos/banco7338.modelo.php";
 /*****************BANCOS **********/
 /*****************ATENCION A CLIENTES **********/
 require_once "controladores/atencion.controlador.php";
@@ -230,6 +232,14 @@ if(isset($_GET['funcion']) && !empty($_GET['funcion'])) {
         case 'funcion36':
             $registroBitacora = new ControladorFacturasTiendas();
             $registroBitacora -> ctrRegistroBitacoraAgregarFacturas();
+            break;
+        case 'funcion37': 
+            $registroBitacora =  new ControladorBanco7338();
+            $registroBitacora -> ctrRegistroBitacoraReporte();
+            break;
+         case 'funcion38':
+            $registroBitacora = new ControladorBanco7338();
+            $registroBitacora -> ctrRegistroBitacoraAgregar();
             break;
     }
 }

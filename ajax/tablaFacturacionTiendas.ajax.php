@@ -97,6 +97,11 @@ class TablaFacturacionTiendas{
         $valor2 = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor2 = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+        break;
     }
     $item3 = "fechaFactura";
     if($_GET["fechaFin"] != "") {
@@ -217,7 +222,8 @@ class TablaFacturacionTiendas{
 
           $formaPago ="";
       }
-      
+      $observaciones = "<textarea  class='form-control inputObservaciones' rows='4' cols='50' idFactura = '" . $facturacionTiendas[$i]["id"] . "'>" . $facturacionTiendas[$i]["observaciones"] . "</textarea><button type='button' class='btn btn-success' onclick='actualizarObservaciones(this)'><i class='fa fa-refresh'></i></button>";
+      //$observaciones = "<input type='text' class='form-control inputObservaciones'  value='" . $facturacionTiendas[$i]["observaciones"] . "'  idFactura = '" . $facturacionTiendas[$i]["id"] . "'><button type='button' class='btn btn-success' onclick='actualizarObservaciones(this)'><i class='fa fa-refresh'></i></button>";
 	 		/*=============================================
 			DEVOLVER DATOS JSON
 			=============================================*/
@@ -243,7 +249,8 @@ class TablaFacturacionTiendas{
                   "'.$facturacionTiendas[$i]["formaPago"].'",
                   "'.$facturacionTiendas[$i]["agente"].'",
                   "'.$estatus." ".$acciones.'",
-                  "'.$formaPago.'"],';
+                  "'.$formaPago.'",
+                  "' . $observaciones .  '"],';
 
 	     	}
 

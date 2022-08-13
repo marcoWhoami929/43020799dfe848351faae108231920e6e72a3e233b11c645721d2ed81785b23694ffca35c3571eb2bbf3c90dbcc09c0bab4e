@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" ){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sucursal Acatepec"){
 
 
 
@@ -87,7 +87,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" ||  $_SESSION["nombre"] == "Guadalupe Hernandez" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sucursal Acatepec") {
               
               echo '<a href="vistas/modulos/reportes.php?reporteGastos=gastos">
 
@@ -236,6 +236,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                        <option value="MAYOREO">MAYOREO</option>
                                       <option value="COMPRAS">COMPRAS</option>
                                        <option value="ECOMMERCE">ECOMMERCE</option>
+                                        <option value="ACATEPEC">ACATEPEC</option>
                                 </select>
 
                               </div>
@@ -691,6 +692,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                      <option value="MAYOREO">MAYOREO</option>
                                     <option value="COMPRAS">COMPRAS</option>
                                     <option value="ECOMMERCE">ECOMMERCE</option>
+                                     <option value="ACATEPEC">ACATEPEC</option>
                                 </select>
                                 <input type="hidden" name="idGasto" id="idGasto">
                                 <input type="hidden" name="editarFolioGasto" id="editarFolioGasto">
@@ -1038,12 +1040,675 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                                 </div>
                                 
                               </div>
+                              
                                
                              </div>
+                               <div id="divDesglose" style="display:none">
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                              <!-- ENTRADA PARA PARCIALES -->
+                              <span style="font-weight: bold">Número de Parciales</span>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                                <select class="form-control" onchange="parcialesOnChangeCaja(this)" id="parciales" name="parciales">
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                  <option value="11">11</option>
+                                  <option value="12">12</option>
+
+
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+
 
                         </div>
+                    
                         
-                        
+                             <!---->
+                               <div class="row">
+                          <div id="1" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial" placeholder="0.00" id="parcial">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial1" id="departamentoParcial1">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="2" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial2" placeholder="0.00" id="parcial2">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial2" id="departamentoParcial2">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="3" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial3" placeholder="0.00" id="parcial3">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial3" id="departamentoParcial3">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div id="4" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial4" placeholder="0.00" id="parcial4">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial4" id="departamentoParcial4">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="5" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial5" placeholder="0.00" id="parcial5">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial5" id="departamentoParcial5">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="6" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial6" placeholder="0.00" id="parcial6">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial6" id="departamentoParcial6">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div id="7" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial7" placeholder="0.00" id="parcial7">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial7" id="departamentoParcial7">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="8" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial8" placeholder="0.00" id="parcial8">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial8" id="departamentoParcial8">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="9" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial9" placeholder="0.00" id="parcial9">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial9" id="departamentoParcial9">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                         <div class="row">
+                          <div id="10" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial10" placeholder="0.00" id="parcial10">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial10" id="departamentoParcial10">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="11" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial11" placeholder="0.00" id="parcial11">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial11" id="departamentoParcial11">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                   <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div id="12" style="display:none">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+
+                              <!-- ENTRADA PARA EL PARCIAL -->
+                              <span style="font-weight: bold">Parcial</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="parcial12" placeholder="0.00" id="parcial12">
+
+                              </div>
+
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                              <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                              <span style="font-weight: bold">Departamento</span>
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                                <select class="form-control" name="departamentoParcial12" id="departamentoParcial12">
+
+                                  <option value="">Elegir Departamento</option>
+
+                                  <option value="ADMINISTRACION">ADMINISTRACION</option>
+                                  <option value="DESGLOSE">DESGLOSE</option>
+                                  <option value="RUTAS">RUTAS</option>
+                                  <option value="CAPU">CAPU</option>
+                                  <option value="CEDIS">CEDIS</option>
+                                  <option value="DIAGONAL">DIAGONAL</option>
+                                  <option value="INDUSTRIAL">INDUSTRIAL</option>
+                                  <option value="LAS TORRES">LAS TORRES</option>
+                                  <option value="MAYORAZGO">MAYORAZGO</option>
+                                  <option value="MGA">MGA</option>
+                                  <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                                  <option value="OPERACIONES">OPERACIONES</option>
+                                  <option value="REFORMA">REFORMA</option>
+                                  <option value="SAN MANUEL">SAN MANUEL</option>
+                                  <option value="SANTIAGO">SANTIAGO</option>
+                                  <option value="VENTAS">VENTAS</option>
+                                  <option value="VERGEL">VERGEL</option>
+                                  <option value="XONACA">XONACA</option>
+                                  <option value="MAYOREO">MAYOREO</option>
+                                  <option value="COMPRAS">COMPRAS</option>
+                                  <option value="ECOMMERCE">ECOMMERCE</option>
+                                  <option value="ACATEPEC">ACATEPEC</option>
+                                </select>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                             <!---->
                       </div>
                      
 

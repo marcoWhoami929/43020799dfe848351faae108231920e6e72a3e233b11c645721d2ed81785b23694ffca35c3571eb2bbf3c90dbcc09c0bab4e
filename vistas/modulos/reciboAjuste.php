@@ -204,6 +204,11 @@
                     $areaCorregida = "FACTURAS INDUSTRIAL";
 
                     break;
+                    case 'AJAC':
+                    
+                    $areaCorregida = "FACTURAS SUCURSAL ACATEPEC";
+
+                    break;
                 }
             ?>
             <tr>

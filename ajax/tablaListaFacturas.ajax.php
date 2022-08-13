@@ -74,6 +74,11 @@ class TablaListaFacturasTiendas{
         $valor = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+        break;
     }
 
  		$listaFacturas = ControladorFacturasTiendas::ctrMostrarListaFacturasTiendas($item, $valor);

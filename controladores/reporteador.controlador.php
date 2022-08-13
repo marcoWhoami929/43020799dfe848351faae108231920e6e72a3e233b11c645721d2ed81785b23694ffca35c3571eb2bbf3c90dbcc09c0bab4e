@@ -278,7 +278,7 @@ class ControladorReporteador
 					if ($value["parciales"] == 0 || $value["parciales"] == 1) {
 					} else {
 
-						if ($value["departamento"] ==  "SANTIAGO" || $value["departamento"] ==  "REFORMA" || $value["departamento"] ==  "SAN MANUEL" || $value["departamento"] ==  "LAS TORRES" || $value["departamento"] ==  "CAPU") {
+						if ($value["departamento"] ==  "SANTIAGO" || $value["departamento"] ==  "REFORMA" || $value["departamento"] ==  "SAN MANUEL" || $value["departamento"] ==  "LAS TORRES" || $value["departamento"] ==  "CAPU" || $value["departamento"] ==  "ACATEPEC") {
 
 
 							$tablaB = $tabla;
@@ -679,7 +679,7 @@ class ControladorReporteador
 
 					if ($value["parciales"] == 0 || $value["parciales"] == 1) {
 					} else {
-						if ($value["departamento"] ==  "SANTIAGO" || $value["departamento"] ==  "REFORMA" || $value["departamento"] ==  "SAN MANUEL" || $value["departamento"] ==  "LAS TORRES"  || $value["departamento"] ==  "CAPU") {
+						if ($value["departamento"] ==  "SANTIAGO" || $value["departamento"] ==  "REFORMA" || $value["departamento"] ==  "SAN MANUEL" || $value["departamento"] ==  "LAS TORRES"  || $value["departamento"] ==  "CAPU" || $value["departamento"] ==  "ACATEPEC") {
 
 							$tablaB = $tabla;
 							$item = "idMovimientoBanco";

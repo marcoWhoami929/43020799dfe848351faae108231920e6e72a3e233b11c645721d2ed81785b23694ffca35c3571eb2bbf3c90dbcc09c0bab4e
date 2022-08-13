@@ -55,7 +55,7 @@ MENU
 
 }
 
-if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Capu" ) {
+if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Acatepec") {
 
   echo '<li><a href="cotizador"><i class="fa fa-calculator" aria-hidden="true"></i><span>Cotizador</span></a></li>';
 
@@ -180,9 +180,9 @@ if (isset($_SESSION["cotizador"]) == 0) {
 ?>
 
 <?php
-if (isset($_SESSION["cotizador"]) == 0) {
+if (isset($_SESSION["cotizador"]) == 0 ) {
 
-  if($_SESSION["perfil"] == "Administrador General"){
+  if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Aydé Flores"){
 
     echo '<li class="treeview">
 
@@ -392,7 +392,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
   echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
 
 
- }if($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez"){
+ }if($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sucursal Acatepec"){
 
   if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {
 
@@ -561,7 +561,7 @@ if ($_SESSION["perfil"] == "Credito y Cobranza") {
 
  </li>';
 
- if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Capu" ) {
+ if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Acatepec") {
 
 
  }else{

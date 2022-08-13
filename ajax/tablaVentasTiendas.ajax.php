@@ -90,6 +90,11 @@ class TablaVentasTiendas{
         $valor2 = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor2 = "Factura Acatepec";
+
+        break;
     }
   
  		$ventasTiendas = ControladorFacturasTiendas::ctrMostrarVentasDiarioTiendas($item, $valor,$item2, $valor2);

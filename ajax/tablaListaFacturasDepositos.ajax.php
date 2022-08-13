@@ -68,6 +68,11 @@ class TablaListaFacturasDepositos{
 
       $valor = "ALL";
       break;
+      case 'Sucursal Acatepec':
+
+      $valor = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+      break;
     }
     $item2 = 'idMovimientoBanco';
     $idMovimientoBanco = $_GET["idMovimientoBanco"];

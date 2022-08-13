@@ -61,14 +61,25 @@ class TablaImportesVenta{
 
 	        break;
 	      case 'Mayoreo':
-            $valor2 =  "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
-            break;
-          case 'Industrial':
-            $valor2 = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
-            break;
-           case 'Rutas':
-            $valor2 = "ALL";
-            break;
+            
+          $valor2 =  "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
+          
+          break;
+        case 'Industrial':
+            
+          $valor2 = "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
+            
+          break;
+        case 'Rutas':
+            
+          $valor2 = "ALL";
+            
+          break;
+        case 'Sucursal Acatepec':
+
+	        $valor2 = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+	        break;
 	    }
 
  		$importesVenta = ControladorFacturasTiendas::ctrMostrarFacturasImporteVenta($item, $valor,$item2, $valor2);

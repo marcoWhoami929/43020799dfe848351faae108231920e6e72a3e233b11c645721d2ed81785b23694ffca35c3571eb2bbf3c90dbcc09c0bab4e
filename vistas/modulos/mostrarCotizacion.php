@@ -224,7 +224,20 @@ function conocerDiaSemanaFecha($fecha) {
                     $metodoPago = $value["formaPago"];
                     $fechaEntrega = $value["fechaEntrega"];
                     
-
+                    if($value["empresa"] == 'FLEX'){    
+                         $empresaEmisor = "FLEX FINISHES MEXICO S.A. DE C.V.";
+                         $rfcEmisor = "FFM111006P64";
+                         $matriz = "Ejido 5970";
+                         $coloniaEmisor = "San Baltazar Linda Vista. C.P. 72550 Localidad Puebla";
+                         $logoEmisor = "<img class='logo' src='../img/plantilla/logoFlex.png' />";
+                    }else{
+                      
+                        $empresaEmisor = "PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.";
+                         $rfcEmisor = "PCP970822467";
+                          $matriz = "Libertad 5973";
+                           $coloniaEmisor = "San Baltazar Campeche C.P 72550 Localidad Puebla";
+                        $logoEmisor = "<img class='logo' src='../img/plantilla/logo.png' />";
+                    }
 
                         $item = "rfc";
                         $valor = $rfc;
@@ -304,7 +317,7 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <b class="titulo">PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.</b>
+                        <b class="titulo"><?php echo  $empresaEmisor ?></b>
                     </th>
                     <th>
                         <b class="cotizacion">COTIZACION</b>
@@ -332,16 +345,16 @@ function conocerDiaSemanaFecha($fecha) {
             <thead>
                 <tr>
                     <th>
-                        <img class="logo" src="../img/plantilla/logo.png" />
+                        <?php echo  $logoEmisor ?>
                     </th>
                     <th>
-                        <b class="rfc">PCP970822467</b> <b class="nroPedido">Serie:<b class="numFolio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMA</b></b>
+                        <b class="rfc"><?php echo  $rfcEmisor ?></b> <b class="nroPedido">Serie:<b class="numFolio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMA</b></b>
                         <br>
                         <b class="dir1">Régimen General de Ley Personas Morales</b>  <b class="pedido">Folio: <b class="numFolio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $folio ?></b></b>
                         <br>
-                        <b class="matriz">Matriz:</b><b class="matriz1">Libertad 5973</b>
+                        <b class="matriz">Matriz:</b><b class="matriz1"><?php echo  $matriz ?></b>
                         <br>
-                        <b class="direccion"><strong class="direccion" style="font-weight: bold;">Col.</strong>San Baltazar Campeche <strong>C.P</strong> 72550 <strong>Localidad</strong> Puebla</b>
+                        <b class="direccion"><strong class="direccion" style="font-weight: bold;">Col.</strong><?php echo  $coloniaEmisor ?></b>
                         <br>
                         <b class="direccion1">(Heroica Puebla) <strong>Municipio</strong> Puebla</b>
                         <br>

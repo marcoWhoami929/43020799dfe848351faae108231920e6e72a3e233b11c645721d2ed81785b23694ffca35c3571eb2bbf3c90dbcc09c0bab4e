@@ -227,7 +227,7 @@ class TablaFacturacion{
                               
       }else{
 
-         if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles"  || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Diego Ávila") {
+         if ($_SESSION["perfil"]=="Administrador General" || $_SESSION["perfil"]=="Facturacion" || $_SESSION["nombre"] == "Miguel Gutierrez Angeles"  || $_SESSION["nombre"] == "Mauricio Anaya" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Diego Ávila") {
                           
         if ($facturacion[$i]["status"] != 1 || $facturacion[$i]["habilitado"] != 2) {
 

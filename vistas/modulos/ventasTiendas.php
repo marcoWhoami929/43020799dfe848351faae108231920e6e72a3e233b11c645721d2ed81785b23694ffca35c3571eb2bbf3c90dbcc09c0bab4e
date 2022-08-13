@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza"){
+if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Sucursal Acatepec"){
 
 
 
@@ -73,7 +73,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
         <?php 
 
-            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza") {
+            if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Annet Landa Alvarado" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["nombre"] == "Sucursal Acatepec") {
 
               if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
                                         
@@ -127,7 +127,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
           ?>
            <?php
-              if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez") {?>
+              if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucursal Santiago" || $_SESSION["nombre"] == "Sucursal Capu" || $_SESSION["nombre"] == "Sucursal Las Torres" || $_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Rocio Martínez Morales" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Sucursal Acatepec") {?>
                   <?php
                   echo '<div class="container col-lg-12 col-md-12 col-sm-12"><br>
                     <h5 style="font-weight: bold;font-size: 25px">Búsqueda por Día de Venta</h5><br>
@@ -193,12 +193,12 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                         <div class="col-lg-3">';?>
                           <?php
                           if (isset($_POST["sucursalVenta"])) {
-                             echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="'.$_POST["sucursalVenta"].'">'.$_POST["sucursalVenta"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
+                             echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="'.$_POST["sucursalVenta"].'">'.$_POST["sucursalVenta"].'</option><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Sucursal Acatepec">Sucursal Acatepec</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
                             
 
                           }else {
 
-                               echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
+                               echo '<select class="form-control" name="sucursalVenta" id="sucursalVenta"><option value="Sucursal San Manuel">Sucursal San Manuel</option><option value="Sucursal Capu">Sucursal Capu</option><option value="Sucursal Reforma">Sucursal Reforma</option><option value="Sucursal Santiago">Sucursal Santiago</option><option value="Sucursal Las Torres">Sucursal Las Torres</option><option value="Sucursal Acatepec">Sucursal Acatepec</option><option value="Industrial">Industrial</option><option value="Mayoreo">Mayoreo</option><option value="Rutas">Rutas</option></select>';
 
                            }
                           ?>
@@ -386,6 +386,11 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
 
                     $valor2 = "ALL";
                     
+                    break;
+                  case 'Sucursal Acatepec':
+
+                    $valor2 = "Factura Acatepec";
+
                     break;
                 }
                 

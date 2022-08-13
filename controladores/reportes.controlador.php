@@ -37218,6 +37218,9 @@ class ControladorReportes{
            			case 'Rutas':
                			$concepto = 'ALL';
                 		break;
+                	case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+						break;
 				
 				}
 
@@ -37257,7 +37260,9 @@ class ControladorReportes{
 					case 'Sin Tienda':
 						$concepto = null;
 						break;
-
+					case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+						break;
 				}
 				
 				
@@ -37418,7 +37423,9 @@ class ControladorReportes{
 					case 'Sucursal Las Torres':
 						$concepto = 'FACTURA TORRES';
 						break;
-					
+					case 'Sucursal Acatepec':
+						$concepto = 'Factura Acatepec';
+						break;
 					default:
 						
 						break;
@@ -37565,7 +37572,9 @@ class ControladorReportes{
            			case 'Rutas':
                			$concepto = 'ALL';
                 		break;
-				
+					case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+						break;
 				}
 
 			}else{
@@ -37603,6 +37612,9 @@ class ControladorReportes{
                 		break;
 					case 'Sin Tienda':
 						$concepto = null;
+						break;
+					case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
 						break;
 
 				}
@@ -37766,7 +37778,9 @@ class ControladorReportes{
            			case 'Rutas':
                			$concepto = 'ALL';
                 		break;
-				
+					case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+						break;
 				}
 
 			}else{
@@ -37805,7 +37819,9 @@ class ControladorReportes{
 					case 'Sin Tienda':
 						$concepto = null;
 						break;
-
+					case 'Sucursal Acatepec':
+						$concepto = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+						break;
 				}
 				
 				
@@ -38249,10 +38265,10 @@ class ControladorReportes{
                                 $serie = "DPSG";
                                 break;
 
-                            
-                            default:
-                                # code...
+                             case 'Sucursal Acatepec':
+                                $serie = "DPAC";
                                 break;
+                            
                         }
 
 					echo utf8_decode("<tr>
@@ -38324,9 +38340,8 @@ class ControladorReportes{
 				      case 'Sucursal Las Torres':
 				        $serie = 'AJTR';
 				        break;
-				      
-				      default:
-				        # code...
+				      case 'Sucursal Acatepec':
+				        $serie = 'AJAC';
 				        break;
 				    }
 					$item = "serieAjuste";

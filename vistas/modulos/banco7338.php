@@ -218,6 +218,7 @@ if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Ba
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                             </select>
                         </div>
 
@@ -523,6 +524,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 
                                             </select>
 
@@ -841,6 +843,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -891,6 +894,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -941,6 +945,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -995,6 +1000,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1045,6 +1051,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1095,6 +1102,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1149,6 +1157,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1199,6 +1208,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                                 </div>
@@ -1249,6 +1259,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1302,6 +1313,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1352,6 +1364,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -1402,6 +1415,7 @@ MODAL EDITAR DATOS
                           <option value="XONACA" disabled>XONACA</option>
                           <option value="MAYOREO">MAYOREO</option>
                           <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
                                                 </select>
 
                                             </div>
@@ -2079,7 +2093,7 @@ $(document).ready(function(){
             method: "GET",
             async: false,
             data: {
-                funcion: "funcion1"
+                funcion: "funcion37"
             },
             dataType: "json",
             success: function(respuesta) {
@@ -2094,7 +2108,7 @@ $(document).ready(function(){
             method: "GET",
             async: false,
             data: {
-                funcion: "funcion2"
+                funcion: "funcion38"
             },
             dataType: "json",
             success: function(respuesta) {

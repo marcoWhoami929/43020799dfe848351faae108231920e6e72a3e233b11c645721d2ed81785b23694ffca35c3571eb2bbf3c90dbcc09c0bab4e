@@ -89,6 +89,11 @@ class TablaCobrosTiendas{
                     $valor2 = "ALL";
                     
                     break;
+                   case 'Sucursal Acatepec':
+
+                    $valor2 = "Factura Acatepec";
+
+                    break;
                 }
 
     $cobrosTiendas = ControladorFacturasTiendas::ctrMostrarCobrosDiarioTiendas($item, $valor,$item2, $valor2);

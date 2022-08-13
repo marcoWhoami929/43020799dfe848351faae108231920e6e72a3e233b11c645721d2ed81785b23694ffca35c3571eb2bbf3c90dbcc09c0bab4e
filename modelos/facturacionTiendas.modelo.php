@@ -1350,7 +1350,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where $item = :$item ORDER BY reembolsado = 0 and aprobada = 1 desc");
+			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where $item = :$item ORDER BY id desc");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 
@@ -1421,6 +1421,24 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 		$stmt = null;
 
 	}
+	static public function mdlCrearDesgloseGasto($folioGasto)
+	{
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO desglosegastos(serie,folio) VALUES('SGM','" . $folioGasto . "')");
+
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt->close();
+
+		$stmt = null;
+	}
 	/*=============================================
 	CALCULAR IMPUESTOS
 	=============================================*/
@@ -1475,9 +1493,10 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT des.par1,des.dpto1,des.par2,des.dpto2,des.par3,des.dpto3,des.par4,des.dpto4,des.par5,des.dpto5,des.par6,des.dpto6,des.par7,des.dpto7,des.par8,des.dpto8,des.par9,des.dpto9,des.par10,des.dpto10,des.par11,des.dpto11,des.par12,des.dpto12,gas.* FROM $tabla as gas INNER JOIN desglosegastos as des ON gas.serieGasto = des.serie and gas.folioGasto = des.folio WHERE  gas.$item = :$item");
 
-			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
 
 			$stmt -> execute();
 
@@ -1502,7 +1521,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 	=============================================*/
 	static public function mdlEditarGasto($tabla,$datos){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set departamento = :departamento, grupo = :grupo,subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, importeGasto = :importeGasto, acreedor = :acreedor, numeroDocumento = :numeroDocumento, folioFiscal = :folioFiscal, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones, rutaFactura = :rutaFactura, rutaXml = :rutaXml where id = :id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set departamento = :departamento, grupo = :grupo,subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, importeGasto = :importeGasto, acreedor = :acreedor, numeroDocumento = :numeroDocumento, folioFiscal = :folioFiscal, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones, rutaFactura = :rutaFactura, rutaXml = :rutaXml,parciales = :parciales where id = :id");
 
 			$stmt->bindParam(":departamento", $datos["departamento"], PDO::PARAM_STR);
 			$stmt->bindParam(":grupo", $datos["grupo"], PDO::PARAM_STR);
@@ -1520,6 +1539,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 			$stmt->bindParam(":importeRetenciones", $datos["importeRetenciones"], PDO::PARAM_STR);
 			$stmt->bindParam(":rutaFactura", $datos["rutaFactura"], PDO::PARAM_STR);
 			$stmt->bindParam(":rutaXml", $datos["rutaXml"], PDO::PARAM_STR);
+			$stmt->bindParam(":parciales", $datos["parciales"], PDO::PARAM_STR);
 			$stmt->bindParam(":id", $datos["id"], PDO::PARAM_STR);
 
 
@@ -1537,6 +1557,53 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 			$stmt = null;
 
 
+	}
+	/*=============================================
+	EDITAR DESGLOSE GASTOS
+	=============================================*/
+	static public function mdlEditarDesgloseGasto($datos2)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE desglosegastos set par1 = :par1,dpto1 = :dpto1,par2 = :par2,dpto2 = :dpto2,par3 = :par3,dpto3 = :dpto3,par4 = :par4,dpto4 = :dpto4,par5 = :par5,dpto5 = :dpto5,par6 = :par6,dpto6 = :dpto6,par7 = :par7,dpto7 = :dpto7,par8 = :par8,dpto8 = :dpto8,par9 = :par9,dpto9 = :dpto9,par10 = :par10,dpto10 = :dpto10,par11 = :par11,dpto11 = :dpto11,par12 = :par12,dpto12 = :dpto12 where folio = :folio");
+
+		$stmt->bindParam(":folio", $datos2["folio"], PDO::PARAM_STR);
+		$stmt->bindParam(":par1", $datos2["par1"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto1", $datos2["dpto1"], PDO::PARAM_STR);
+		$stmt->bindParam(":par2", $datos2["par2"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto2", $datos2["dpto2"], PDO::PARAM_STR);
+		$stmt->bindParam(":par3", $datos2["par3"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto3", $datos2["dpto3"], PDO::PARAM_STR);
+		$stmt->bindParam(":par4", $datos2["par4"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto4", $datos2["dpto4"], PDO::PARAM_STR);
+		$stmt->bindParam(":par5", $datos2["par5"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto5", $datos2["dpto5"], PDO::PARAM_STR);
+		$stmt->bindParam(":par6", $datos2["par6"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto6", $datos2["dpto6"], PDO::PARAM_STR);
+		$stmt->bindParam(":par7", $datos2["par7"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto7", $datos2["dpto7"], PDO::PARAM_STR);
+		$stmt->bindParam(":par8", $datos2["par8"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto8", $datos2["dpto8"], PDO::PARAM_STR);
+		$stmt->bindParam(":par9", $datos2["par9"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto9", $datos2["dpto9"], PDO::PARAM_STR);
+		$stmt->bindParam(":par10", $datos2["par10"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto10", $datos2["dpto10"], PDO::PARAM_STR);
+		$stmt->bindParam(":par11", $datos2["par11"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto11", $datos2["dpto11"], PDO::PARAM_STR);
+		$stmt->bindParam(":par12", $datos2["par12"], PDO::PARAM_STR);
+		$stmt->bindParam(":dpto12", $datos2["dpto12"], PDO::PARAM_STR);
+
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt->close();
+
+		$stmt = null;
 	}
 	static public function mdlDesgloseAbonosBancarios($tabla,$item,$valor){
 
@@ -1722,9 +1789,9 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 	}
 	static public function mdlObtenerDatosGasto($tabla,$item,$valor){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT des.par1,des.dpto1,des.par2,des.dpto2,des.par3,des.dpto3,des.par4,des.dpto4,des.par5,des.dpto5,des.par6,des.dpto6,des.par7,des.dpto7,des.par8,des.dpto8,des.par9,des.dpto9,des.par10,des.dpto10,des.par11,des.dpto11,des.par12,des.dpto12,gas.* FROM $tabla as gas INNER JOIN desglosegastos as des ON gas.serieGasto = des.serie and gas.folioGasto = des.folio WHERE  gas.$item = :$item");
 
-			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
+		$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 
 			$stmt -> execute();
 
@@ -1737,7 +1804,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 	static public function mdlGenerarNuevoGastoCaja($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(departamento, grupo, subgrupo, mes, fecha, descripcion, cargo, abono, saldo, ultimoSaldo, comprobacion, diferencia, parciales, serie, folio, numeroMovimiento, acreedor, concepto, numeroDocumento, importe, importeRetenciones, importeParciales, tieneIva, tieneRetenciones, tipoRetencion, iva, retIva, retIsr, retIva2, retIsr2, retIva3, retIsr3, fechaOriginal) VALUES(:departamento, :grupo, :subgrupo, :mes, :fecha, :descripcion, :cargo, :abono, :saldo, :ultimoSaldo, :comprobacion, :diferencia, :parciales, :serie, :folio, :numeroMovimiento, :acreedor, :concepto, :numeroDocumento, :importe, :importeRetenciones, :importeParciales, :tieneIva, :tieneRetenciones, :tipoRetencion, :iva, :retIva, :retIsr, :retIva2, :retIsr2, :retIva3, :retIsr3, :fechaOriginal)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(departamento, grupo, subgrupo, mes, fecha, descripcion, cargo, abono, saldo, ultimoSaldo, comprobacion, diferencia, parciales,parcial,departamentoParcial1,parcial2,departamentoParcial2,parcial3,departamentoParcial3,parcial4,departamentoParcial4,parcial5,departamentoParcial5,parcial6,departamentoParcial6,parcial7,departamentoParcial7,parcial8,departamentoParcial8,parcial9,departamentoParcial9,parcial10,departamentoParcial10,parcial11,departamentoParcial11,parcial12,departamentoParcial12,serie, folio, numeroMovimiento, acreedor, concepto, numeroDocumento, importe, importeRetenciones, importeParciales, tieneIva, tieneRetenciones, tipoRetencion, iva, retIva, retIsr, retIva2, retIsr2, retIva3, retIsr3, fechaOriginal) VALUES(:departamento, :grupo, :subgrupo, :mes, :fecha, :descripcion, :cargo, :abono, :saldo, :ultimoSaldo, :comprobacion, :diferencia, :parciales, :parcial1,:departamentoParcial1,:parcial2,:departamentoParcial2,:parcial3,:departamentoParcial3,:parcial4,:departamentoParcial4,:parcial5,:departamentoParcial5,:parcial6,:departamentoParcial6,:parcial7,:departamentoParcial7,:parcial8,:departamentoParcial8,:parcial9,:departamentoParcial9,:parcial10,:departamentoParcial10,:parcial11,:departamentoParcial11,:parcial12,:departamentoParcial12,:serie, :folio, :numeroMovimiento, :acreedor, :concepto, :numeroDocumento, :importe, :importeRetenciones, :importeParciales, :tieneIva, :tieneRetenciones, :tipoRetencion, :iva, :retIva, :retIsr, :retIva2, :retIsr2, :retIva3, :retIsr3, :fechaOriginal)");
 
 		$stmt->bindParam(":departamento", $datos["departamento"], PDO::PARAM_STR);
 		$stmt->bindParam(":grupo", $datos["grupo"], PDO::PARAM_STR);
@@ -1752,6 +1819,30 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 		$stmt->bindParam(":comprobacion", $datos["comprobacion"], PDO::PARAM_STR);
 		$stmt->bindParam(":diferencia", $datos["diferencia"], PDO::PARAM_STR);
 		$stmt->bindParam(":parciales", $datos["parciales"], PDO::PARAM_INT);
+		$stmt->bindParam(":parcial1", $datos["parcial1"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial1", $datos["departamentoParcial1"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial2", $datos["parcial2"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial2", $datos["departamentoParcial2"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial3", $datos["parcial3"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial3", $datos["departamentoParcial3"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial4", $datos["parcial4"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial4", $datos["departamentoParcial4"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial5", $datos["parcial5"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial5", $datos["departamentoParcial5"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial6", $datos["parcial6"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial6", $datos["departamentoParcial6"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial7", $datos["parcial7"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial7", $datos["departamentoParcial7"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial8", $datos["parcial8"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial8", $datos["departamentoParcial8"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial9", $datos["parcial9"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial9", $datos["departamentoParcial9"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial10", $datos["parcial10"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial10", $datos["departamentoParcial10"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial11", $datos["parcial11"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial11", $datos["departamentoParcial11"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial12", $datos["parcial12"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial12", $datos["departamentoParcial12"], PDO::PARAM_STR);
 		$stmt->bindParam(":serie", $datos["serie"], PDO::PARAM_STR);
 		$stmt->bindParam(":folio", $datos["folio"], PDO::PARAM_STR);
 		$stmt->bindParam(":numeroMovimiento", $datos["numeroMovimiento"], PDO::PARAM_STR);
@@ -3160,6 +3251,25 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 		$stmt->close();
 
 		$stmt = null;
+	}
+	/*=============================================
+	ACTUALIZAR OBSERVACIONES FACTURA TIENDAS
+	=============================================*/
+	static public function mdlActualizarObservacionesFactura($tabla, $item, $valor, $item2, $valor2)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set $item2 = :$item2 where $item = :$item");
+
+		$stmt->bindParam(":" . $item, $valor, PDO::PARAM_INT);
+		$stmt->bindParam(":" . $item2, $valor2, PDO::PARAM_STR);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
 	}
 
 }

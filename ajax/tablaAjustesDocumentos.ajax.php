@@ -24,6 +24,9 @@ class TablaDocumentosAjustados{
       case 'Sucursal Las Torres':
         $serie = 'AJTR';
         break;
+      case 'Sucursal Acatepec':
+        $serie = 'AJAC';
+        break;
       case 'Rocio Martínez Morales':
         $serie = 'AJRU';
         break;

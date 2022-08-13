@@ -59,6 +59,11 @@ class TablaDepositosBanco{
         $valor2 = "ALL";
         
         break;
+      case 'Sucursal Acatepec':
+
+        $valor2 = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+        break;
     }
 
  	$depositarBanco = ControladorFacturasTiendas::ctrMostrarEfectivoADepositarBanco($item, $valor,$item2,$valor2);
