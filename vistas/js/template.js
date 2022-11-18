@@ -18,7 +18,7 @@ $(function () {
   ruta = url.split("/");
   switch (ruta[1]) {
     case "backorder":
-      $("#periodo").val(mm.replace("0", ""));
+      $("#periodo").val(mm);
       cargarBackorder(1);
       loadClients(1);
       break;

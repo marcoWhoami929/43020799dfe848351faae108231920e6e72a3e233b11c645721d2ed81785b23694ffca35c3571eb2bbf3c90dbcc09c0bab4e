@@ -246,7 +246,27 @@ if (isset($_SESSION["cotizador"]) == 0) {
 
 }
 
+}else{
+  echo '<li class="treeview">
+
+  <a href="#">
+  <i class="fa fa-bar-chart" aria-hidden="true"></i>
+  <span style="width:200px;">Indicadores</span>
+  <span class="pull-right-container">
+  <i class="fa fa-angle-left pull-right"></i>
+  </span>
+  </a>
+
+  <ul class="treeview-menu" style="z-index: 101; width:200px;">
+
+
+    <li><a href="backorder"><i class="fa fa-th" aria-hidden="true"></i><span>Backorder</span></a></li>
+  
+  </ul>
+
+  </li>';
 }
+
 
 ?>
 <?php
@@ -351,8 +371,8 @@ if (isset($_SESSION["cotizador"]) == 0) {
 if (isset($_SESSION["cotizador"]) == 0) {
 
  if ($_SESSION["perfil"] == "Administrador General" || $_SESSION["perfil"] == "Atencion a Clientes" || $_SESSION["perfil"] == "Almacen" || $_SESSION["perfil"] == "Laboratorio de Color" || $_SESSION["perfil"] == "Facturacion" || $_SESSION["perfil"] == "Compras" || $_SESSION["perfil"] == "Logistica" || $_SESSION["perfil"] ==  "Generador de Reportes" || $_SESSION["perfil"] ==  "Visualizador" || $_SESSION["nombre"] == "Sebastián Rodríguez" || $_SESSION["perfil"] == "Bancos" || $_SESSION["perfil"] == "Credito y Cobranza" || $_SESSION["perfil"] == "Contabilidad" ) {
-
-   echo '<li class="treeview">
+ 
+  echo '<li class="treeview">
 
    <a href="#">
    <i class="fa fa-ticket" aria-hidden="true"><span class="label label-warning count" style="position: fixed;z-index: 200;width:30px;height:30px;font-size:16px;margin-left:10px;margin-top:-30px"></span></i>
@@ -377,6 +397,7 @@ if (isset($_SESSION["cotizador"]) == 0) {
    </li>';
 
    echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
+  
 
  }if ( $_SESSION["nombre"] == "Aydé Flores") {
 
@@ -537,6 +558,12 @@ if ($_SESSION["perfil"] == "Credito y Cobranza") {
 
 }else{
 
+   if($_SESSION["nombre"] === "Adrian Aguilera Rosete"){ 
+     echo '<li><a href="facturasCrm"><i class="fa fa-btc" aria-hidden="true"></i><span>Facturas CRM</span></a></li>';
+    echo '<li><a href="cotizacionesComercial"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Cotizaciones Comercial</span></a></li>';
+
+  }else{ 
+
  echo '<li class="treeview">
 
  <a href="#">
@@ -567,6 +594,10 @@ if ($_SESSION["perfil"] == "Credito y Cobranza") {
  }else{
   echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
 }
+
+     
+
+  }
 
 
 

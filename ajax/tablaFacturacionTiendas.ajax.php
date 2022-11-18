@@ -246,7 +246,7 @@ class TablaFacturacionTiendas{
                   "$ '.number_format($facturacionTiendas[$i]["pendiente"],2).'",
                   "$ '.number_format($facturacionTiendas[$i]["pagado"],2).'",
                   "'.$facturacionTiendas[$i]["fechaCobro"].'",
-                  "'.$facturacionTiendas[$i]["formaPago"].'",
+                  "'.rtrim($facturacionTiendas[$i]["formaPago"]).'",
                   "'.$facturacionTiendas[$i]["agente"].'",
                   "'.$estatus." ".$acciones.'",
                   "'.$formaPago.'",

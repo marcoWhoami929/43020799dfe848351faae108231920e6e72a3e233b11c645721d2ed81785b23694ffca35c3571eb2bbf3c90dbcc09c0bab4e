@@ -2121,12 +2121,11 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 				$fechaFinal = $datos["fechaFinAjuste"];
 
 				$concepto = $datos["concepto"];
+				$valorAjuste = $datos["valorAjuste"];
 
-				$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.pendiente,ft.total,ab.idMovimientoBanco FROM $tabla ft INNER JOIN abonos ab ON ft.serie = ab.serieFactura and ft.folio = ab.folioFactura WHERE fechaFactura BETWEEN '$fechaInicial' and '$fechaFinal' and FORMAT(pendiente,2) <= :valorAjuste and pendiente != 0 and concepto in($concepto) AND ft.seriePedido != 'OTRT'  GROUP by ft.folio");
+				$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.pendiente,ft.total,ab.idMovimientoBanco FROM $tabla ft INNER JOIN abonos ab ON ft.serie = ab.serieFactura and ft.folio = ab.folioFactura WHERE ft.fechaFactura BETWEEN '$fechaInicial' and '$fechaFinal' and FORMAT(ft.pendiente,2) <= $valorAjuste  and ft.pendiente != 0 and ft.concepto in($concepto) AND ft.seriePedido != 'OTRT'  GROUP by ft.folio");
 
 
-				$stmt -> bindParam(":valorAjuste",$datos["valorAjuste"],PDO::PARAM_STR);
-				$stmt -> bindParam(":concepto",$datos["concepto"],PDO::PARAM_STR);
 
 				$stmt -> execute();
 

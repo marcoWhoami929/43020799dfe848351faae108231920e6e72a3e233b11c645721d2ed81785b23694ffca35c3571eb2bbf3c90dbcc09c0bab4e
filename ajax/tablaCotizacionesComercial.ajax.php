@@ -39,32 +39,37 @@ class TablaCotizacionesComercial{
     switch ($usuario) {
       case 'Sucursal San Manuel':
 
-        $valor2 = "COSM";
+        $valor2 = "ZNSN";
 
         break;
       case 'Sucursal Capu':
 
-        $valor2 = "COCP";
+        $valor2 = "ZNCA";
 
         break;
       case 'Sucursal Reforma':
 
-        $valor2 = "CORF";
+        $valor2 = "ZNRM";
 
         break;
       case 'Sucursal Las Torres':
 
-        $valor2 = "ZCTR";
+        $valor2 = "ZNTO";
 
         break;
       case 'Sucursal Santiago':
 
-        $valor2 = "COSG";
+        $valor2 = "ZNST";
 
         break;
        case 'Sucursal Acatepec':
 
         $valor2 = "ZNCT";
+
+        break;
+         case 'Adrian Aguilera Rosete':
+
+        $valor2 = "ZNSN";
 
         break;
         default:

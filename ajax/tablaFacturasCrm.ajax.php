@@ -39,32 +39,37 @@ class TablaFacturasCrm{
     switch ($usuario) {
       case 'Sucursal San Manuel':
 
-        $valor2 = "FACTURA SAN MANUEL V 3.3";
+        $valor2 = "Factura San Manuel";
 
         break;
       case 'Sucursal Capu':
 
-        $valor2 = "FACTURA CAPU V 3.3";
+        $valor2 = "Factura Capu";
 
         break;
       case 'Sucursal Reforma':
 
-        $valor2 = "FACTURA REFORMA V 3.3";
+        $valor2 = "Factura Reforma";
 
         break;
       case 'Sucursal Las Torres':
 
-        $valor2 = "FACTURA TORRES";
+        $valor2 = "Factura Torres";
 
         break;
       case 'Sucursal Santiago':
 
-        $valor2 = "FACTURA SANTIAGO V 3.3";
+        $valor2 = "Factura Santiago";
 
         break;
         case 'Sucursal Acatepec':
 
-        $valor2 = "FACTURA ACATEPEC V 3.3";
+        $valor2 = "Factura Acatepec";
+
+        break;
+          case 'Adrian Aguilera Rosete':
+
+        $valor2 = "Factura San Manuel";
 
         break;
         default:

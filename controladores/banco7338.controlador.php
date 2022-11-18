@@ -3296,7 +3296,7 @@ class ControladorBanco7338
         $datos2 = array(
             "usuario" => $_SESSION['nombre'],
             "accion" => 'Importación de Datos Banco 7338',
-            "idBanco" => '1'
+            "idBanco" => '9'
         );
 
 
