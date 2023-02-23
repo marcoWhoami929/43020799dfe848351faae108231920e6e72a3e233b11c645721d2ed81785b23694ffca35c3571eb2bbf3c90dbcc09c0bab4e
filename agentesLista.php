@@ -7,26 +7,29 @@
 	}
 
 	function comprobar($cod){
-		$con = mysqli_connect('127.0.0.1','mat','matriz');
-		mysqli_select_db($con,'matriz');
-		mysqli_set_charset($con, "utf8"); //formato de datos utf8
+		include("modelos/conexion-api-server-pinturas.modelo.php");
 
-		$sql = mysqli_query($con,"SELECT * FROM agentes WHERE codigo = '".$cod."'");
-		$agentes = array();
-		$contar = mysqli_num_rows($sql);
-		if ($contar == 0) {
-			$agentes[] = array('codigoCliente'=> 'y', 'nombreCliente' => 'El Agente no existe', 'resultado' => 0);
-		}else{
-			while ($row = mysqli_fetch_row($sql)) {
-			    $codigoAgente = $row[1];
-			    $nombreAgente = $row[2];
-			   
 
-			    $agentes[] = array('nombreAgente'=> $nombreAgente, 'resultado'=>1);
-			}
+	$agente =  "SELECT CIDAGENTE,CCODIGOAGENTE,CNOMBREAGENTE FROM [adDEKKERLAB].[dbo].[admAgentes] WHERE CIDAGENTE != 0 and CTIPOAGENTE = 1 and CCODIGOAGENTE = '".$cod."'";
+
+
+	$ejecutar = sqlsrv_query($conne, $agente);
+	$i = 0;
+
+	if (sqlsrv_has_rows($ejecutar) === false) {
+		echo null;
+	} else {
+		while ($value = sqlsrv_fetch_array($ejecutar)) {
+
+			$agentes[$i] = array(
+				"nombreAgente" => $value["CNOMBREAGENTE"],
+				"resultado" => 1
+			);
+			$i++;
 		}
-		$json_string = json_encode($agentes);
-		echo $json_string;
+		echo json_encode($agentes);
 	}
 
-?>
+
+	
+	}

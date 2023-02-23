@@ -447,7 +447,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $tabla =  $_SESSION["bancoNuevoElegido"];
@@ -680,7 +680,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $tabla =  $_SESSION["bancoNuevoElegido"];
@@ -833,11 +833,11 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 
 	}
-	static public function ctrObtenerAbonoRealizadoDeposito($item,$valor){
+	static public function ctrObtenerAbonoRealizadoDeposito($item,$valor,$bancoAccion){
 
 			$tabla = "depositostiendas";
 
-			$respuesta = ModeloFacturasTiendas::mdlObtenerAbonoRealizadoDeposito($tabla,$item,$valor);
+			$respuesta = ModeloFacturasTiendas::mdlObtenerAbonoRealizadoDeposito($tabla,$item,$valor,$bancoAccion);
 
 			return $respuesta;
 
@@ -873,7 +873,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $tabla =  $_SESSION["bancoNuevoElegido"];
@@ -911,7 +911,7 @@ static public function ctrMostrarFacturasAbonoParcial($item,$valor,$item2,$valor
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $tabla =  $_SESSION["bancoNuevoElegido"];

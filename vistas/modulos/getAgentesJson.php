@@ -1,10 +1,28 @@
 <?php
-require_once "../../db_connectCot.php";
 
-$sql = "SELECT id,codigo,nombre FROM agentes WHERE codigo LIKE '%".$_GET['q']."%' OR nombre LIKE '%".$_GET['q']."%'"; 
-$result = $conn->query($sql);
-$json = [];
-while($row = $result->fetch_assoc()){
-     $json[] = ['id'=>$row['codigo'], 'text'=>$row['nombre']];
+
+include("../../modelos/conexion-api-server-pinturas.modelo.php");
+if (isset($_GET['q'])) {
+     $sWhere = "and CNOMBREAGENTE LIKE '%" . $_GET['q'] . "%' ";
+} else {
+     $sWhere = "";
 }
-echo json_encode($json);
+
+$mostrarAgentes =  "SELECT CIDAGENTE,CCODIGOAGENTE,CNOMBREAGENTE FROM [adDEKKERLAB].[dbo].[admAgentes] WHERE CIDAGENTE != 0 and CTIPOAGENTE = 1 $sWhere";
+
+$ejecutar = sqlsrv_query($conne, $mostrarAgentes);
+$i = 0;
+
+if (sqlsrv_has_rows($ejecutar) === false) {
+     echo null;
+} else {
+     while ($value = sqlsrv_fetch_array($ejecutar)) {
+
+          $agentes[$i] = array(
+               "id" => $value["CCODIGOAGENTE"],
+               "text" => $value["CNOMBREAGENTE"]
+          );
+          $i++;
+     }
+     echo json_encode($agentes);
+}

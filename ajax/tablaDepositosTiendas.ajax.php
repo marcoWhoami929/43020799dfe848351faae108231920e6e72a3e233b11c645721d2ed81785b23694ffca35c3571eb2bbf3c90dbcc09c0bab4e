@@ -26,7 +26,7 @@ class TablaDepositosTiendas{
           $valor2 = null;
 
       }else{
-          if($_SESSION["nombre"] == "Sucursal Reforma"){
+          if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
                 $_SESSION["bancoNuevoElegido"] = $_GET["bancoNuevo"];
 

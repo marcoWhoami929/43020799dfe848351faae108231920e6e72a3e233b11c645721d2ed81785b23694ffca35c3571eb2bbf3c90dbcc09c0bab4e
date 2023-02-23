@@ -18,6 +18,7 @@ class loadReports
     public $vista;
     public $clasificacion;
     public $clientes;
+    public $producto;
     public $per_page;
     public $page;
     public $estatus;
@@ -43,6 +44,23 @@ class loadReports
         $obtenerReporte = new ControladorReporteador();
         $obtenerReporte->ctrDescargarReporteBackorder($search);
     }
+     public function reporteListadoProductos()
+    {
+        
+        $marca = $this->marca;
+        $campoOrden = $this->campoOrden;
+        $per_page = $this->per_page;
+        $page = $this->page;
+        $orden = $this->orden;
+        $page = (isset($page) && !empty($page)) ? $page : 1;
+        $offset = ($page - 1) * $per_page;
+        $clasificacion = $this->clasificacion;
+        $periodo = $this->periodo;
+        $producto = $this->producto;
+        $search = array("marca" => $marca, "producto" => $producto, "clasificacion" => $clasificacion, "periodo" => $periodo, "campoOrden" => $campoOrden, "orden" => $orden, "per_page" => $per_page, "offset" => $offset);
+        $obtenerReporte = new ControladorReporteador();
+        $obtenerReporte->ctrDescargarReporteListadoProductos($search);
+    }
 }
 
 if (isset($_GET["reporteadorNew"])) {
@@ -62,4 +80,17 @@ if (isset($_GET["reporteadorNew"])) {
     $reporte->estatus = $_GET["estatus"];
     $reporte->clientes = $_GET["clientes"];
     $reporte->reporteBackorder();
+}
+if (isset($_GET["reporteadorListadoProductos"])) {
+    $reporteListado = new loadReports();
+    $reporteListado->marca = $_GET["marca"];
+    $reporteListado->campoOrden = $_GET["campoOrden"];
+    $reporteListado->per_page = $_GET["per_page"];
+    $reporteListado->page = $_GET["page"];
+    $reporteListado->orden = $_GET["orden"];
+    $reporteListado->page = $_GET["page"];
+    $reporteListado->clasificacion = $_GET["clasificacion"];
+    $reporteListado->periodo = $_GET["periodo"];
+    $reporteListado->producto = $_GET["producto"];
+    $reporteListado->reporteListadoProductos();
 }

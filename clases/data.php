@@ -488,6 +488,54 @@ class data extends Conexion
         $query = $query->fetchAll();
         return $query;
     }
+      public function getProductos($search, $aColumns)
+    {
+        $offset = $search['offset'];
+        $per_page = $search['per_page'];
+        if ($search["producto"] != "") {
+            $sWhere = "WHERE (";
+            for ($i = 0; $i < count($aColumns); $i++) {
+                $sWhere .= $aColumns[$i] . " LIKE '%" . $search["producto"] . "%' OR ";
+            }
+            $sWhere = substr_replace($sWhere, "", -3);
+            $sWhere .= ')';
+        } else {
+            $sWhere = "";
+        }
+
+        $sql = "WITH listaProductos AS(
+    SELECT CCODIGOPRODUCTO
+        ,CNOMBREPRODUCTO
+
+    FROM [adDEKKERLAB].[dbo].[admProductos]),
+          listadoProductos AS(
+                SELECT * FROM listaProductos AS lc  $sWhere 
+          
+          )
+          select * from listadoProductos ORDER BY CCODIGOPRODUCTO ASC OFFSET $offset ROWS FETCH NEXT $per_page ROWS ONLY";
+
+
+        $query = $this->mysqli->query($sql);
+
+        $sql1 = "WITH listaProductos AS(
+    SELECT CCODIGOPRODUCTO
+        ,CNOMBREPRODUCTO
+
+    FROM [adDEKKERLAB].[dbo].[admProductos]),
+    listadoProductos AS(
+          SELECT * FROM listaProductos AS lc  $sWhere 
+    
+    )
+    select * from listadoProductos ORDER BY CCODIGOPRODUCTO ASC";
+
+        $nums_row = $this->countAll($sql1);
+
+        //Set counter
+        $this->setCounter($nums_row);
+
+        $query = $query->fetchAll();
+        return $query;
+    }
     public function getDetalleProductosPedido($tabla, $search)
     {
         $offset = $search['offset'];
@@ -621,6 +669,173 @@ class data extends Conexion
         } else {
             return "error";
         }
+    }
+
+    function getListadoProductos($search)
+    {
+        $offset = $search['offset'];
+        $per_page = $search['per_page'];
+
+        $orden = $search['orden'];
+        $campoOrden = $search['campoOrden'];
+
+         /***CODIGOS DE PRODUCTOS */
+          $codigos = explode(',', $search['producto']);
+          $codigoProducto = "";
+          for ($i = 0; $i < count($codigos); $i++) {
+               $codigoProducto .= "'" . $codigos[$i] . "', ";
+          }
+          $codigoProducto = substr($codigoProducto, 0, -2);
+
+
+        $sWhere = " CIDPRODUCTO !=0";
+       
+        if ($search["marca"] != "") {
+            $sWhere .= " and MARCA = '" . $search["marca"] . "'";
+        }
+      
+        if ($search["clasificacion"] != "") {
+            $sWhere .= " and CLASIFICACION = '" . $search["clasificacion"] . "'";
+        }
+        
+
+        if ($search["producto"] != "") {
+               $sWhere .= " and CCODIGOPRODUCTO in(" . $codigoProducto . ") ";
+        }
+        
+        $almacen1 = 1;
+        $almacen2 = 1;
+        $ejercicio = 9;
+        $periodo = $search['periodo'];
+
+        $sql = "WITH productos as(SELECT 
+                              aprod.CIDPRODUCTO
+                              ,aprod.CCODIGOPRODUCTO
+                              ,aprod.CNOMBREPRODUCTO
+                              ,amed.CNOMBREUNIDAD as 'UNIDAD'
+                              ,acla2.CVALORCLASIFICACION as 'MARCA'
+                              ,dbo.existenciasTotales(aprod.CIDPRODUCTO,$periodo) as 'EXISTENCIAS'
+                              ,dbo.rotacion(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "','" . $almacen2 . "','" . $ejercicio . "') AS 'ROTACION'
+                              ,
+                              CASE 
+                              WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 74.99
+                              THEN
+                              'A'
+                               WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 49.99 AND CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) < 75
+                              THEN
+                              'B'
+                               WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 24.99 AND CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) < 50
+                              THEN
+                              'C'
+                              ELSE
+                              'D'
+                              END  as 'CLASIFICACION'
+
+                             
+                                FROM [adDEKKERLAB].[dbo].[admProductos] as aprod INNER JOIN [adDEKKERLAB].[dbo].[admExistenciaCosto] as aexis ON aprod.CIDPRODUCTO = aexis.CIDPRODUCTO INNER JOIN [adDEKKERLAB].[dbo].[admUnidadesMedidaPeso] as amed ON aprod.CIDUNIDADBASE = amed.CIDUNIDAD INNER JOIN [adDEKKERLAB].[dbo].[admClasificacionesValores] as acla ON aprod.CIDVALORCLASIFICACION3 = acla.CIDVALORCLASIFICACION INNER JOIN [adDEKKERLAB].[dbo].[admClasificacionesValores] as acla2 ON aprod.CIDVALORCLASIFICACION1 = acla2.CIDVALORCLASIFICACION WHERE aexis.CIDALMACEN = '" . $almacen1 . "' and aexis.CIDEJERCICIO = 3 )
+                                SELECT CIDPRODUCTO,CCODIGOPRODUCTO,CNOMBREPRODUCTO,UNIDAD,MARCA,EXISTENCIAS,ROTACION,CLASIFICACION FROM productos WHERE $sWhere order by $campoOrden $orden OFFSET $offset ROWS FETCH NEXT $per_page ROWS ONLY";
+
+        $query = $this->mysqli->query($sql);
+        
+
+        $sql1 = "WITH productos as(SELECT 
+                              aprod.CIDPRODUCTO
+                              ,aprod.CCODIGOPRODUCTO
+                              ,aprod.CNOMBREPRODUCTO
+                              ,amed.CNOMBREUNIDAD as 'UNIDAD'
+                              ,acla2.CVALORCLASIFICACION as 'MARCA'
+                              ,dbo.existenciasTotales(aprod.CIDPRODUCTO,$periodo) as 'EXISTENCIAS'
+                              ,dbo.rotacion(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "','" . $almacen2 . "','" . $ejercicio . "') AS 'ROTACION'
+                              ,
+                              CASE 
+                              WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 74.99
+                              THEN
+                              'A'
+                               WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 49.99 AND CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) < 75
+                              THEN
+                              'B'
+                               WHEN CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) > 24.99 AND CAST(dbo.rotacionBackorder(aprod.CCODIGOPRODUCTO,'" . $almacen1 . "') AS DECIMAL(10,2)) < 50
+                              THEN
+                              'C'
+                              ELSE
+                              'D'
+                              END  as 'CLASIFICACION'
+
+                             
+                                FROM [adDEKKERLAB].[dbo].[admProductos] as aprod INNER JOIN [adDEKKERLAB].[dbo].[admExistenciaCosto] as aexis ON aprod.CIDPRODUCTO = aexis.CIDPRODUCTO INNER JOIN [adDEKKERLAB].[dbo].[admUnidadesMedidaPeso] as amed ON aprod.CIDUNIDADBASE = amed.CIDUNIDAD INNER JOIN [adDEKKERLAB].[dbo].[admClasificacionesValores] as acla ON aprod.CIDVALORCLASIFICACION3 = acla.CIDVALORCLASIFICACION INNER JOIN [adDEKKERLAB].[dbo].[admClasificacionesValores] as acla2 ON aprod.CIDVALORCLASIFICACION1 = acla2.CIDVALORCLASIFICACION WHERE aexis.CIDALMACEN = '" . $almacen1 . "' and aexis.CIDEJERCICIO = 3 )
+                                SELECT CIDPRODUCTO,CCODIGOPRODUCTO,CNOMBREPRODUCTO,UNIDAD,MARCA,EXISTENCIAS,ROTACION,CLASIFICACION FROM productos WHERE $sWhere order by $campoOrden $orden";
+
+        $nums_row = $this->countAll($sql1);
+
+        //Set counter
+        $this->setCounter($nums_row);
+
+        $query = $query->fetchAll();
+        return $query;
+    }
+    function getExistenciasProducto($search)
+    {
+        $offset = $search['offset'];
+        $per_page = $search['per_page'];
+        $idProducto = $search["idProducto"];
+        $periodo = $search["periodo"];
+        $ejercicio = $search["ejercicio"];
+
+        $sWhere = " exis.CIDPRODUCTO = $idProducto and exis.CIDEJERCICIO = $ejercicio";
+
+        $periodo = $search['periodo'];
+
+        $sql = "WITH productos as(SELECT  exis.CIDALMACEN
+        ,alm.CNOMBREALMACEN
+
+        ,CENTRADASPERIODO$periodo-CSALIDASPERIODO$periodo as 'EXISTENCIAS'
+    FROM [adDEKKERLAB].[dbo].[admExistenciaCosto] as exis LEFT OUTER JOIN [adDEKKERLAB].[dbo].[admAlmacenes] as alm ON exis.CIDALMACEN = alm.CIDALMACEN WHERE $sWhere)
+                                SELECT * FROM productos order by CIDALMACEN asc OFFSET $offset ROWS FETCH NEXT $per_page ROWS ONLY";
+
+        $query = $this->mysqli->query($sql);
+
+
+        $sql1 = "WITH productos as(SELECT  exis.CIDALMACEN
+        ,alm.CNOMBREALMACEN
+
+        ,CENTRADASPERIODO$periodo-CSALIDASPERIODO$periodo as 'EXISTENCIAS'
+    FROM [adDEKKERLAB].[dbo].[admExistenciaCosto] as exis LEFT OUTER JOIN [adDEKKERLAB].[dbo].[admAlmacenes] as alm ON exis.CIDALMACEN = alm.CIDALMACEN WHERE $sWhere)
+                                SELECT * FROM productos order by CIDALMACEN asc";
+
+        $nums_row = $this->countAll($sql1);
+
+        //Set counter
+        $this->setCounter($nums_row);
+
+        $query = $query->fetchAll();
+        return $query;
+    }
+    function getPreciosProducto($search)
+    {
+        $offset = $search['offset'];
+        $per_page = $search['per_page'];
+        $idProducto = $search["idProducto"];
+
+        $sWhere = " CIDPRODUCTO = $idProducto";
+
+        $sql = "WITH precios as(SELECT CIDPRODUCTO,CPRECIO1,CPRECIO2,CPRECIO3,CPRECIO4,CPRECIO5,CPRECIO6,CPRECIO7,CPRECIO8
+        FROM [adDEKKERLAB].[dbo].[admProductos] WHERE $sWhere)
+                                SELECT * FROM precios ORDER BY CIDPRODUCTO asc OFFSET $offset ROWS FETCH NEXT $per_page ROWS ONLY";
+
+        $query = $this->mysqli->query($sql);
+
+
+        $sql1 = "WITH precios as(SELECT CIDPRODUCTO,CPRECIO1,CPRECIO2,CPRECIO3,CPRECIO4,CPRECIO5,CPRECIO6,CPRECIO7,CPRECIO8
+        FROM [adDEKKERLAB].[dbo].[admProductos] WHERE $sWhere)
+                                SELECT * FROM precios ORDER BY CIDPRODUCTO asc";
+
+        $nums_row = $this->countAll($sql1);
+
+        //Set counter
+        $this->setCounter($nums_row);
+
+        $query = $query->fetchAll();
+        return $query;
     }
     function setCounter($counter)
     {

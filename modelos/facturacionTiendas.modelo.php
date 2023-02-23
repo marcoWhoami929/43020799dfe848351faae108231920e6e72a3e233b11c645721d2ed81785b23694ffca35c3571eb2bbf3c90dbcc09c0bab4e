@@ -530,7 +530,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 			$movimiento = $valor;
 			
 
-			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE banc.$item LIKE '%$movimiento%' and dep.estatus IS NULL and YEAR(STR_TO_DATE(banc.fecha, '%d/%m/%Y')) = '2022' and banc.cargo = 0  order by banc.id desc");
+			$stmt = Conexion::conectar()->prepare("SELECT banc.id,banc.mes,banc.fecha,banc.descripcion,banc.abono,IF(ISNULL(dep.estatus),'POR IDENTIFICAR',dep.estatus) as estatus,IF(ISNULL(dep.saldoPendiente),banc.abono,dep.saldoPendiente) as saldoPendiente,IF(ISNULL(dep.idMovimientoBanco),'',dep.idMovimientoBanco) as idMovimientoBanco,IF(ISNULL(dep.conceptoFacturas),'',dep.conceptoFacturas) as conceptoFacturas,IF(ISNULL(dep.montoFacturas),'',dep.montoFacturas) as montoFacturas,IF(ISNULL(dep.clientesFacturas),'',dep.clientesFacturas) as clientesFacturas,IF(ISNULL(dep.abonadoDeposito),'',dep.abonadoDeposito) as abonadoDeposito,IF(ISNULL(dep.parciales),'',dep.parciales) as parciales,IF(ISNULL(dep.totalDocumentos),'',dep.totalDocumentos) as totalDocumentos,IF(ISNULL(dep.span),'',dep.span) as span, dep.reciboGenerado as reciboGenerado from $tabla banc LEFT OUTER JOIN depositostiendas dep ON banc.id = dep.idMovimientoBanco and banc.banco = dep.banco WHERE banc.$item LIKE '%$movimiento%' and dep.estatus IS NULL and YEAR(STR_TO_DATE(banc.fecha, '%d/%m/%Y')) in('2022','2023') and banc.cargo = 0  order by banc.id desc");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 
@@ -562,7 +562,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $banco =  $_SESSION["bancoNuevoElegido"];
@@ -607,7 +607,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $banco =  $_SESSION["bancoNuevoElegido"];
@@ -1145,7 +1145,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 	}
 	static public function mdlObtenerAbonadoFacturaAbonos($tabla,$item,$valor,$item2,$valor2){
 
-			$stmt = Conexion::conectar()->prepare("SELECT IF(MIN(pendienteFactura) IS NULL,0,MIN(pendienteFactura)) as pendienteFactura, IF(MAX(numeroParcial) IS NULL,1,MAX(numeroParcial)) numeroParcial from $tabla where $item = :$item and $item2 = :$item2");
+			$stmt = Conexion::conectar()->prepare("SELECT IF(MIN(pendienteFactura) IS NULL,0,MIN(pendienteFactura)) as pendienteFactura, IF(MAX(numeroParcial) IS NULL,1,MAX(numeroParcial)) numeroParcial,banco from $tabla where $item = :$item and $item2 = :$item2");
 
 			$stmt -> bindParam(":".$item,$valor,PDO::PARAM_STR);
 			$stmt -> bindParam(":".$item2,$valor2,PDO::PARAM_STR);
@@ -1199,7 +1199,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 
 	}
-	static public function mdlObtenerAbonoRealizadoDeposito($tabla,$item,$valor){
+	static public function mdlObtenerAbonoRealizadoDeposito($tabla,$item,$valor,$bancoAccion){
 
 			$datosFactura = $valor;
 
@@ -1210,25 +1210,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 			//$stmt = Conexion::conectar()->prepare("SELECT id,idMovimientoBanco,saldoPendiente,totalDocumentos,abonadoDeposito,estatus,montoFacturas from $tabla where $item LIKE '%$datosFactura%'");
 
-			 if ($serie != "FASG" && $serie != "FAND" && $serie != "FACD" && $serie != "FAPB" && $serie != "FCST") {
-        
-		        if($_SESSION["nombre"] == "Sucursal Reforma"){
-                  
-	              
-	                $banco =  $_SESSION["bancoNuevoElegido"];
-
-	            }else{
-	                
-	                $banco = "banco0198";
-
-	            }
-		      }else if($serie == "FAPB"){
-
-		        $banco = "banco3450";
-		      }else{
-
-		        $banco = "banco6278";
-		      }
+			 $banco = $bancoAccion;
 
 			if ($_SESSION["nombre"] == "Diego Ávila" || $_SESSION["nombre"] == "Aurora Fernandez" || $_SESSION["nombre"] == "Rocio Martínez Morales") {
 
@@ -1926,7 +1908,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 	}
 	static public function mdlMostrarAbonos($tabla,$item,$valor){
 
-			$stmt = Conexion::conectar()->prepare("SELECT a.*, ad.nombre as creadorAbono from $tabla a INNER JOIN administradores ad ON a.creadorAbono = ad.id WHERE a.creadorAbono = ad.id");
+			$stmt = Conexion::conectar()->prepare("SELECT a.*, ad.nombre as creadorAbono from $tabla a INNER JOIN administradores ad ON a.creadorAbono = ad.id WHERE a.creadorAbono = ad.id ORDER BY a.id desc ");
 
 			$stmt -> execute();
 
@@ -1958,7 +1940,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $banco =  $_SESSION["bancoNuevoElegido"];
@@ -2025,7 +2007,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 
 			}else{
 
-				if($_SESSION["nombre"] == "Sucursal Reforma"){
+				if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
 	              
 	                $banco =  $_SESSION["bancoNuevoElegido"];
@@ -2123,7 +2105,7 @@ static public function mdlMostrarFacturasAbonoParcial($tabla,$item,$valor,$item2
 				$concepto = $datos["concepto"];
 				$valorAjuste = $datos["valorAjuste"];
 
-				$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.pendiente,ft.total,ab.idMovimientoBanco FROM $tabla ft INNER JOIN abonos ab ON ft.serie = ab.serieFactura and ft.folio = ab.folioFactura WHERE ft.fechaFactura BETWEEN '$fechaInicial' and '$fechaFinal' and FORMAT(ft.pendiente,2) <= $valorAjuste  and ft.pendiente != 0 and ft.concepto in($concepto) AND ft.seriePedido != 'OTRT'  GROUP by ft.folio");
+				$stmt = Conexion::conectar()->prepare("SELECT ft.id,ft.serie,ft.folio,ft.fechaFactura,ft.nombreCliente,ft.pendiente,ft.total,ab.idMovimientoBanco FROM $tabla ft INNER JOIN abonos ab ON ft.serie = ab.serieFactura and ft.folio = ab.folioFactura WHERE ft.fechaFactura BETWEEN '$fechaInicial' and '$fechaFinal' and ft.pendiente <= $valorAjuste  and ft.pendiente != 0 and ft.concepto in($concepto) AND ft.seriePedido != 'OTRT'  GROUP by ft.folio");
 
 
 

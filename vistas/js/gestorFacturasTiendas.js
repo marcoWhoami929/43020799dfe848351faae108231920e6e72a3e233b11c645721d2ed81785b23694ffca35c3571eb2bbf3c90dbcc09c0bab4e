@@ -2692,7 +2692,7 @@ abonosDocumentos = $(".tablaAbonosDocumentos").DataTable({
    "processing": true,
     "iDisplayLength": 10,
     "fixedHeader": true,
-    "order": [[ 0, "asc" ]],
+    "order": [[ 0, "desc" ]],
     /*"scrollX": true,*/
      "lengthMenu": [[10, 25, 50, 100, 150,200, 300, -1], [10, 25, 50, 100, 150,200, 300, "All"]],
    "language": {
@@ -3113,35 +3113,46 @@ $("#btnGenerarAjusteRemanentes").on("click", function(){
           var fechaInicioAjuste =  $("#fechaInicioAjuste").val();
           var fechaFinAjuste =  $("#fechaFinAjuste").val();
           var concepto = document.getElementById("sucursalAjuste").value;
-          switch (concepto) {
-              case "Sucursal San Manuel":
-                var conceptoFactura = "Factura San Manuel";
-                break;
-              case "Sucursal Capu":
-                var conceptoFactura = "Factura Capu";
-              break;
-              case "Sucursal Reforma":
-                var conceptoFactura = "Factura Reforma";
-              break;
-              case "Sucursal Las Torres":
-                var conceptoFactura = "Factura Torres";
-              break;
-              case "Sucursal Santiago":
-                var conceptoFactura = "Factura Santiago";
-              break;
-              case 'Industrial':
-                var conceptoFactura = "Factura Industrial";
-                break;
-              case 'Mayoreo':
-                var conceptoFactura = "Factura Mayoreo";
-                break;
-              case 'Rutas':
-                var conceptoFactura = "ALL";
-                break;  
-              case "Sucursal Acatepec":
-                var conceptoFactura = "Factura Acatepec";
-              break;
-            }
+           switch (concepto) {
+          case "Sucursal San Manuel":
+            var conceptoFactura =
+              "'FACTURA SAN MANUEL V 3.3','Factura San Manuel'";
+
+            break;
+          case "Sucursal Capu":
+            var conceptoFactura = "'FACTURA CAPU V 3.3','Factura Capu'";
+
+            break;
+          case "Sucursal Reforma":
+            var conceptoFactura = "'FACTURA REFORMA V 3.3','Factura Reforma'";
+
+            break;
+          case "Sucursal Las Torres":
+            var conceptoFactura = "'FACTURA TORRES','Factura Torres'";
+
+            break;
+          case "Sucursal Santiago":
+            var conceptoFactura = "'FACTURA SANTIAGO V 3.3','Factura Santiago'";
+
+            break;
+          case "Mayoreo":
+            var conceptoFactura = "'FACTURA MAYOREO V 3.3','Factura Mayoreo'";
+
+            break;
+          case "Industrial":
+            var conceptoFactura =
+              "'FACTURA INDUSTRIAL V 3.3','Factura Industrial'";
+
+            break;
+          case "Rutas":
+            var conceptoFactura = "ALL";
+
+            break;
+          case "Sucursal Acatepec":
+            var conceptoFactura = "'FACTURA ACATEPEC V 3.3','Factura Acatepec'";
+
+            break;
+        }
 
             var datos = new FormData();
             datos.append('valorAjuste',valorAjuste);

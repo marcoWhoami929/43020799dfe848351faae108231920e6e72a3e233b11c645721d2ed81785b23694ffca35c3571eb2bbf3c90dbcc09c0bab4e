@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(E_ALL);
 session_start();
 require_once "../controladores/facturacionTiendas.controlador.php";
 require_once "../modelos/facturacionTiendas.modelo.php";
@@ -12,7 +12,7 @@ class TablaAbonosDocumentos{
     	$valor = null;
 
  		$abonos = ControladorFacturasTiendas::ctrMostrarAbonos($item, $valor);
-
+ 	
 
  		$datosJson = '{
 		 
@@ -35,7 +35,7 @@ class TablaAbonosDocumentos{
                   		  "$ '.number_format($abonos[$i]["totalAbono"],2).'",
                   		  "$ '.number_format($abonos[$i]["pendienteFactura"],2).'",
                   		  "'.$abonos[$i]["fechaAbono"].'",
-                  		  "'.$abonos[$i]["conceptoAbono"].'",
+                  		  "'.trim($abonos[$i]["conceptoAbono"]).'",
                   		  "'.$abonos[$i]["creadorAbono"].'"],';
 
 	     	}

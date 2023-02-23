@@ -338,7 +338,7 @@ class AjaxFacturacionTiendas{
 
 				}else{
 
-					if($_SESSION["nombre"] == "Sucursal Reforma"){
+					if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
 		                  
 		                $bancoElegidoMovi = $_SESSION["bancoNuevoElegido"];
 
@@ -664,7 +664,7 @@ class AjaxFacturacionTiendas{
 
 		}else{
 
-			if($_SESSION["nombre"] == "Sucursal Reforma"){
+			if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                   
                 $bancoElegidoMov = $_SESSION["bancoNuevoElegido"];
 
@@ -798,7 +798,9 @@ class AjaxFacturacionTiendas{
 				/***************************************************/
 				$item = 'conceptoFacturas';
 				$valor = $serieFactura." ".$folioFactura;
-				$verAbonoDepositoBancario = ControladorFacturasTiendas::ctrObtenerAbonoRealizadoDeposito($item,$valor);
+				$bancoAccion = $verAbonadoFactura[0]["banco"];
+
+				$verAbonoDepositoBancario = ControladorFacturasTiendas::ctrObtenerAbonoRealizadoDeposito($item,$valor,$bancoAccion);
 
 				$idDeposito = $verAbonoDepositoBancario[0]["id"];
 				$idMovimientoBancarioDeposito = $verAbonoDepositoBancario[0]["idMovimientoBanco"];
@@ -806,7 +808,8 @@ class AjaxFacturacionTiendas{
 				$totalDocumentosDeposito = $verAbonoDepositoBancario[0]["totalDocumentos"];
 				$abonadoDepositoDeposito = $verAbonoDepositoBancario[0]["abonadoDeposito"];
 				$estatusDeposito = $verAbonoDepositoBancario[0]["estatus"];
-				$bancoElegi = $verAbonoDepositoBancario[0]["banco"];
+				//$bancoElegi = $verAbonoDepositoBancario[0]["banco"];
+				$bancoElegi = $bancoAccion;
 
 				$totalFactura = $verAbonoDepositoBancario[0]["total"];
 				$pagadoFactura = number_format(str_replace(',','',$verAbonoDepositoBancario[0]["pagado"]),2, '.', '');
@@ -863,7 +866,7 @@ class AjaxFacturacionTiendas{
 											'estatus' => $estatusFinal);
 
 
-				$saldarFacturaDeposito = ControladorFacturasTiendas::ctrSaldarFacturaDeposito($datosDepositoFinal);
+				//$saldarFacturaDeposito = ControladorFacturasTiendas::ctrSaldarFacturaDeposito($datosDepositoFinal);
 				/***************************************************/
 
 				$datosAbono = array('idMovimientoBanco' => $movimientoBanco,
@@ -922,62 +925,41 @@ class AjaxFacturacionTiendas{
 
  		}
 
-
- 		
- 		switch ($this->concepto) {
- 			case 'FACTURA SAN MANUEL V 3.3':
- 				$serie = 'AJSM';
- 				break;
- 			case 'FACTURA REFORMA V 3.3':
- 				$serie = 'AJRF';
- 				break;
- 			case 'FACTURA CAPU V 3.3':
- 				$serie = 'AJCP';
- 				break;
- 			case 'FACTURA SANTIAGO V 3.3':
- 				$serie = 'AJSG';
- 				break;
- 			case 'FACTURA TORRES':
- 				$serie = 'AJTR';
- 				break;
- 			case 'ALL':
- 				$serie = 'AJRU';
- 				break;
- 			case 'FACTURA MAYOREO V 3.3':
- 				$serie = 'AJCD';
- 				break;
- 			case 'FACTURA INDUSTRIAL V 3.3':
- 				$serie = 'AJND';
- 				break;
- 			case 'Factura Industrial':
- 				$serie = 'AJIN';
- 				break;
- 			case 'Factura Mayoreo':
- 				$serie = 'AJMY';
- 				break;
- 			case 'Factura Capu':
- 				$serie = 'AJCA';
- 				break;
- 			case 'Factura Santiago':
- 				$serie = 'AJST';
- 				break;
- 			case 'Factura Ecommerce':
- 				$serie = 'AJEC';
- 				break;
- 			case 'Factura Reforma':
- 				$serie = 'AJRM';
- 				break;
- 			case 'Factura San Manuel':
- 				$serie = 'AJSN';
- 				break;
- 			case 'Factura Torres':
- 				$serie = 'AJTO';
- 				break;
- 			case 'Factura Acatepec':
- 				$serie = 'AJAC';
- 				break;
- 			
- 		}
+switch ($serieFactura) {
+			case 'FASM':
+				$serie = 'AJSM';
+				break;
+			case 'FCSN':
+				$serie = 'AJSM';
+				break;
+			case 'FARF':
+				$serie = 'AJRF';
+				break;
+			case 'FCRM':
+				$serie = 'AJRF';
+				break;
+			case 'FACP':
+				$serie = 'AJCP';
+				break;
+			case 'FCCA':
+				$serie = 'AJCP';
+				break;
+			case 'FASG':
+				$serie = 'AJSG';
+				break;
+			case 'FCST':
+				$serie = 'AJSG';
+				break;
+			case 'FATR':
+				$serie = 'AJTR';
+				break;
+			case 'FCTO':
+				$serie = 'AJTR';
+				break;
+			case 'FCCT':
+				$serie = 'AJAC';
+				break;
+		}
 
 
  		$rutaArchivo = "ajustes/".$serie."-".$folioAjuste.".txt";

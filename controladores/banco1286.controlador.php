@@ -3215,6 +3215,8 @@ class ControladorBanco1286{
 					           "departamentoParcial11" => $_POST["editarDepartamentoParcial11"],
 					           "parcial12" => $_POST["editarParcial12"],
 					           "departamentoParcial12" => $_POST["editarDepartamentoParcial12"],
+					           "parcial13" => $_POST["editarParcial13"],
+					           "departamentoParcial13" => $_POST["editarDepartamentoParcial13"],
 					           "acreedor" => $_POST["editarAcreedor"],
 					           "concepto" => $_POST["editarConcepto"],
 					           "numeroDocumento" => $_POST["editarNumeroDocumento"],

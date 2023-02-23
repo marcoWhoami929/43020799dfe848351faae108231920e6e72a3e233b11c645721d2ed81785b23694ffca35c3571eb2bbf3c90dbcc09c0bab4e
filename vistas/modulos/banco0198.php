@@ -643,7 +643,8 @@ MODAL EDITAR DATOS
                                     <option value="Separacion">Separacion</option>
                                     <option value="Indemnizacion">Indemnizacion</option>
                                     <option value="Subsidio Empleo (SP)">Subsidio Empleo (SP)</option>
-                                    <option value="PTU">PTU</option>         
+                                    <option value="PTU">PTU</option>      
+                                     
                             </select>
 
                       </div>

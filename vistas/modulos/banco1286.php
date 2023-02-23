@@ -639,7 +639,7 @@ MODAL EDITAR DATOS
                           <option value="10">10</option>
                           <option value="11">11</option>
                           <option value="12">12</option>
-
+                          <option value="13">13</option>
                           
                         </select>
 
@@ -1271,6 +1271,57 @@ MODAL EDITAR DATOS
                       </div>
                   </div>
                   </div>
+                   <div id="13P" style="display: none">
+                  <div class="col-lg-2">
+
+                    <!-- ENTRADA PARA EL PARCIAL -->
+                     <span style="font-weight: bold">Parcial</span>
+                      <div class="input-group">
+              
+                        <span class="input-group-addon"><i class="fa fa-dollar"></i></span> 
+
+                        <input type="text" class="form-control input-lg" name="editarParcial13" placeholder="0.00" id="editarParcial13">
+                        
+                      </div>
+
+                  </div>
+                  <div class="col-lg-2">
+                     <!-- ENTRADA PARA SELECCIONAR EL DEPARTAMENTO -->
+                      <span style="font-weight: bold">Departamento</span>
+                     <div class="input-group">
+              
+                        <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                        <select class="form-control" name="editarDepartamentoParcial13" id="editarDepartamentoParcial13">
+                          
+                          <option value="" id="editarDepartamentoParcial13">Elegir Departamento</option>
+
+                          <option value="ADMINISTRACION">ADMINISTRACION</option>
+                          <option value="DESGLOSE">DESGLOSE</option>
+                          <option value="RUTAS" disabled>RUTAS</option>
+                          <option value="CAPU">CAPU</option>
+                          <option value="CEDIS" disabled>CEDIS</option>
+                          <option value="DIAGONAL" disabled>DIAGONAL</option>
+                          <option value="INDUSTRIAL">INDUSTRIAL</option>
+                          <option value="LAS TORRES">LAS TORRES</option>
+                          <option value="MAYORAZGO" disabled>MAYORAZGO</option>
+                          <option value="MGA">MGA</option>
+                          <option value="NO IDENTIFICADO">NO IDENTIFICADO</option>
+                          <option value="OPERACIONES">OPERACIONES</option>
+                          <option value="REFORMA">REFORMA</option>
+                          <option value="SAN MANUEL">SAN MANUEL</option>
+                          <option value="SANTIAGO">SANTIAGO</option>
+                          <option value="VENTAS">VENTAS</option>
+                          <option value="VERGEL" disabled>VERGEL</option>
+                          <option value="XONACA" disabled>XONACA</option>
+                          <option value="MAYOREO">MAYOREO</option>
+                          <option value="ECOMMERCE">ECOMMERCE</option>
+                           <option value="ACATEPEC">ACATEPEC</option>
+                        </select>
+
+                      </div>
+                  </div>
+                  </div>
                 </div>
                 <br>
                 <div class="row">
@@ -1684,6 +1735,20 @@ MODAL VER PARCIALES
                 <span style="font-weight: bold">Departamento</span>
                   <div class="input-group">
                   <input type="text" class="form-control input-lg" id="cantDepartamento12" name="cantDepartamento12" readonly style="border: none;background: white">
+                  </div>
+                </div>
+            </div>
+            <div id="13Par" style="display: none;">
+              <div class="col-lg-3">
+                <span style="font-weight: bold">Parcial 13</span>
+                  <div class="input-group">
+                  <input type="text" class="form-control input-lg" id="cantParcial13" name="cantParcial13" readonly style="border: none;background: white">
+                  </div>
+              </div>
+               <div class="col-lg-3">
+                <span style="font-weight: bold">Departamento</span>
+                  <div class="input-group">
+                  <input type="text" class="form-control input-lg" id="cantDepartamento13" name="cantDepartamento13" readonly style="border: none;background: white">
                   </div>
                 </div>
             </div>

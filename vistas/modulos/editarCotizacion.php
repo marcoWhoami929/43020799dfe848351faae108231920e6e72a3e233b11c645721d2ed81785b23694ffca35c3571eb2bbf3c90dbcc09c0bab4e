@@ -177,7 +177,7 @@ PÁGINA DE INICIO
                         </select>
                       </div>
                       </div>
-                      <?php echo $rest; echo $longitud; ?>
+                   
                       <div class="form-group" style="margin-top: -5px">
                       <label class="control-label col-sm-2" style="text-align: left;">Nombre:</label>
                       <div class="col-lg-5 col-sm-5" id="divNombre">          

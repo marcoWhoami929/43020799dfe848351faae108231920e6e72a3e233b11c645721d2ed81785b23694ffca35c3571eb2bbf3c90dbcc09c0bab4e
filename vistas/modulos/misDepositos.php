@@ -96,7 +96,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
         </div>
         <br>
         <?php 
-            if ($_SESSION["nombre"] == "Sucursal Reforma") {
+            if ($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec") {
 
                 echo "<div class='col-lg-12 col-md-12 col-sm-12'>
                       <select class='form-control' id='bancoNuevoElegido'>
@@ -282,7 +282,7 @@ if($_SESSION["perfil"] == "Administrador General" || $_SESSION["nombre"] == "Suc
                              <h3>Terminación Bancaria:</h3>
                              <span style="font-weight:bold;color:#2667ce;font-size:22px"><?php 
                              if($_SESSION["nombre"] != "Sucursal Santiago"){
-                              if($_SESSION["nombre"] == "Sucursal Reforma"){
+                              if($_SESSION["nombre"] == "Sucursal Reforma" || $_SESSION["nombre"] == "Sucursal Acatepec"){
                                   switch ($_SESSION["bancoNuevoElegido"]) {
                                     case 'banco0198':
                                       $banco = "0198";

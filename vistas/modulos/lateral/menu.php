@@ -9,6 +9,7 @@ MENU
     if (isset($_SESSION["cotizador"]) == 1) {
 
 
+
     }else{
 
       echo '<li class="active"><a href="inicio"><i class="fa fa-home"></i> <span>Inicio</span></a></li>';
@@ -60,6 +61,7 @@ if ($_SESSION["nombre"] == "Sucursal San Manuel" || $_SESSION["nombre"] == "Sucu
   echo '<li><a href="cotizador"><i class="fa fa-calculator" aria-hidden="true"></i><span>Cotizador</span></a></li>';
 
   echo '<li><a href="reporteCotizacion"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span>Análisis de Cotizaciones</span></a></li>';
+
 
 }
 }
@@ -397,6 +399,8 @@ if (isset($_SESSION["cotizador"]) == 0) {
    </li>';
 
    echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
+   echo '<li><a href="productosListado"><i class="fa fa-product-hunt"></i><span>Listado Productos</a></li>';
+
   
 
  }if ( $_SESSION["nombre"] == "Aydé Flores") {
@@ -593,6 +597,8 @@ if ($_SESSION["perfil"] == "Credito y Cobranza") {
 
  }else{
   echo '<li><a href="estatusPedidos"><i class="fa fa-spinner"></i><span>Estatus de pedidos</a></li>';
+    echo '<li><a href="productosListado"><i class="fa fa-product-hunt"></i><span>Listado Productos</a></li>';
+
 }
 
      

@@ -6547,7 +6547,7 @@ class ModeloBanco1286{
 	=============================================*/
 	static public function mdlCalcularImporteParciales($tabla){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12)");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla set importeParciales = (parcial+parcial2+parcial3+parcial4+parcial5+parcial6+parcial7+parcial8+parcial9+parcial10+parcial11+parcial12+parcial13)");
 
 			if ($stmt -> execute()) {
 
@@ -6955,7 +6955,7 @@ class ModeloBanco1286{
 
 	static public function mdlEditarDatos1286($tabla, $datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET departamento = :departamento, grupo = :grupo, subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, cargo = :cargo, abono = :abono, saldo = :saldo,  serie = :serie, folio = :folio, parciales = :parciales, parcial = :parcial, departamentoParcial1 = :departamentoParcial1, parcial2 = :parcial2, departamentoParcial2 = :departamentoParcial2, parcial3 = :parcial3, departamentoParcial3 = :departamentoParcial3, parcial4 = :parcial4, departamentoParcial4 = :departamentoParcial4, parcial5 = :parcial5, departamentoParcial5 = :departamentoParcial5, parcial6 = :parcial6, departamentoParcial6 = :departamentoParcial6, parcial7 = :parcial7, departamentoParcial7 = :departamentoParcial7, parcial8 = :parcial8, departamentoParcial8 = :departamentoParcial8, parcial9 = :parcial9, departamentoParcial9 = :departamentoParcial9, parcial10 = :parcial10, departamentoParcial10 = :departamentoParcial10, parcial11 = :parcial11, departamentoParcial11 = :departamentoParcial11, parcial12 = :parcial12, departamentoParcial12 = :departamentoParcial12,  acreedor = :acreedor, concepto = :concepto, numeroDocumento = :numeroDocumento, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET departamento = :departamento, grupo = :grupo, subgrupo = :subgrupo, mes = :mes, fecha = :fecha, descripcion = :descripcion, cargo = :cargo, abono = :abono, saldo = :saldo,  serie = :serie, folio = :folio, parciales = :parciales, parcial = :parcial, departamentoParcial1 = :departamentoParcial1, parcial2 = :parcial2, departamentoParcial2 = :departamentoParcial2, parcial3 = :parcial3, departamentoParcial3 = :departamentoParcial3, parcial4 = :parcial4, departamentoParcial4 = :departamentoParcial4, parcial5 = :parcial5, departamentoParcial5 = :departamentoParcial5, parcial6 = :parcial6, departamentoParcial6 = :departamentoParcial6, parcial7 = :parcial7, departamentoParcial7 = :departamentoParcial7, parcial8 = :parcial8, departamentoParcial8 = :departamentoParcial8, parcial9 = :parcial9, departamentoParcial9 = :departamentoParcial9, parcial10 = :parcial10, departamentoParcial10 = :departamentoParcial10, parcial11 = :parcial11, departamentoParcial11 = :departamentoParcial11, parcial12 = :parcial12, departamentoParcial12 = :departamentoParcial12, parcial13 = :parcial13, departamentoParcial13 = :departamentoParcial13, acreedor = :acreedor, concepto = :concepto, numeroDocumento = :numeroDocumento, tieneIva = :tieneIva, tieneRetenciones = :tieneRetenciones, tipoRetencion = :tipoRetencion, importeRetenciones = :importeRetenciones WHERE id = :id");
 
 		
 		$stmt->bindParam(":departamento", $datos["departamento"], PDO::PARAM_STR);
@@ -6994,6 +6994,8 @@ class ModeloBanco1286{
 		$stmt->bindParam(":departamentoParcial11", $datos["departamentoParcial11"], PDO::PARAM_STR);
 		$stmt->bindParam(":parcial12", $datos["parcial12"], PDO::PARAM_STR);
 		$stmt->bindParam(":departamentoParcial12", $datos["departamentoParcial12"], PDO::PARAM_STR);
+		$stmt->bindParam(":parcial13", $datos["parcial13"], PDO::PARAM_STR);
+		$stmt->bindParam(":departamentoParcial13", $datos["departamentoParcial13"], PDO::PARAM_STR);
 		$stmt->bindParam(":acreedor", $datos["acreedor"], PDO::PARAM_STR);
 		$stmt->bindParam(":concepto", $datos["concepto"], PDO::PARAM_STR);
 		$stmt->bindParam(":numeroDocumento", $datos["numeroDocumento"], PDO::PARAM_STR);

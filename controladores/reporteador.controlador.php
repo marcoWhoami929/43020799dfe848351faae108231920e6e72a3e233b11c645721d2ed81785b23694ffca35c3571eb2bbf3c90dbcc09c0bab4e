@@ -985,4 +985,78 @@ class ControladorReporteador
 
 		echo "</table>";
 	}
+		/**
+	 * REPORTEADOR LISTADO PRODUCTOS
+	 */
+	public function ctrDescargarReporteListadoProductos($search)
+	{
+		$database = new data();
+
+		$reporte = $database->getListadoProductos($search);
+
+		/*=============================================
+			CREAMOS EL ARCHIVO DE EXCEL
+			=============================================*/
+
+		$nombre = "listado/productos" . '.xls';
+
+		header('Expires: 0');
+		header('Cache-control: private');
+		header('Content-type: application/vnd.ms-excel'); // Archivo de Excel
+		header("Cache-Control: cache, must-revalidate");
+		header('Content-Description: File Transfer');
+		header('Last-Modified: ' . date('D, d M Y H:i:s'));
+		header("Pragma: public");
+		header('Content-Disposition:; filename="' . $nombre . '"');
+		header("Content-Transfer-Encoding: binary");
+
+		$arregloHeaders = ['ID', 'CODIGO', 'NOMBRE PRODUCTO', 'UNIDAD MEDIDA', 'MARCA', 'EXISTENCIAS', 'CLASIFICACION'];
+
+
+		echo utf8_decode("<table>");
+		echo "<tr>
+					<th colspan='7' style='font-weight:bold; background:#17202A; color:white;'>SAN FRANCISCO DEKKERLAB</th>
+					</tr>
+
+					<tr>
+					<th colspan='7' style='font-weight:bold; background:#17202A; color:white;'>R E P O R T E &nbsp; D E &nbsp; P R O D U C T O S&nbsp</th>
+					</tr>
+
+					<tr>
+					<th colspan='18' style='font-weight:bold; background:#17202A; color:white;'>$nombreEmpresa</th>
+					</tr>";
+		echo utf8_decode("<tr>");
+		for ($i = 0; $i < count($arregloHeaders); $i++) {
+			echo utf8_decode("<td style='font-weight:bold; background:#000000; color:white;'></td>");
+		}
+		echo utf8_decode("</tr>");
+		echo utf8_decode("<tr>");
+
+		foreach ($arregloHeaders as $key => $value) {
+
+			echo utf8_decode("<td style='font-weight:bold; background:#000000; color:white;'>" . $value . "</td>");
+		}
+		echo utf8_decode("</tr>");
+
+		foreach ($reporte as $key => $value) {
+			 
+ 
+
+			$codigoProducto = "=\"" . $value["CCODIGOPRODUCTO"] . "\"";
+			$style = 'mso-number-format:"@";';
+			echo utf8_decode("<tr>
+										<td style='color:black;'>" . $value["CIDPRODUCTO"] . "</td>
+									    <td style='" . $style . "'>" . $value["CCODIGOPRODUCTO"] . "</td>
+				 						<td style='color:black;'>" . $value["CNOMBREPRODUCTO"] . "</td>
+										 <td style='color:black;'>" . $value["UNIDAD"] . "</td>
+										 <td style='color:black;'>" . $value["MARCA"] . "</td>
+										 <td style='color:black;'>" . bcdiv($value["EXISTENCIAS"], '1', 2) . "</td>
+										 <td style='color:black;'>" . $value["CLASIFICACION"] . "</td>
+										
+										</tr>");
+		}
+
+
+		echo "</table>";
+	}
 }

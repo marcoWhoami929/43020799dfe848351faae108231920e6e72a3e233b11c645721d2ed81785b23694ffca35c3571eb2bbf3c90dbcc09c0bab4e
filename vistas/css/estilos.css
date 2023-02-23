@@ -236,3 +236,8 @@ form.form_contact input[type="submit"]:hover{
 
 	float: right;
 }
+/*MODAL*/
+#nombreProductoSearch {
+  width: 100%;
+  margin-left: 10%;
+}

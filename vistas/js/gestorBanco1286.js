@@ -149,6 +149,8 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
       $("#editarDepartamentoParcial11").val(respuesta["departamentoParcial11"]);
       $("#editarParcial12").val(respuesta["parcial12"]);
       $("#editarDepartamentoParcial12").val(respuesta["departamentoParcial12"]);
+      $("#editarParcial13").val(respuesta["parcial13"]);
+      $("#editarDepartamentoParcial13").val(respuesta["departamentoParcial13"]);
       $("#editarFolio").val(respuesta["folio"]);
       $("#editarSerie").val(respuesta["serie"]);
       $("#select2-editarAcreedor-container").val(respuesta["acreedor"]);
@@ -211,6 +213,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
          }
 
          else if (valor1 == 1) {
@@ -251,6 +256,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 2) {
 
          div1 = document.getElementById("1P");
@@ -288,6 +296,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
 
           div12 = document.getElementById("12P");
           div12.style.display = "none";
+
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
 
         }else if (valor1 == 3) {
 
@@ -327,6 +338,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 4) {
 
          div1 = document.getElementById("1P");
@@ -365,6 +379,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 5) {
 
           div1 = document.getElementById("1P");
@@ -402,6 +419,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
 
           div12 = document.getElementById("12P");
           div12.style.display = "none";
+
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
 
         }
         else if (valor1 == 6) {
@@ -442,6 +462,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }
         else if (valor1 == 7) {
         
@@ -481,6 +504,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 8) {
           div1 = document.getElementById("1P");
           div1.style.display = "";
@@ -517,6 +543,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
 
           div12 = document.getElementById("12P");
           div12.style.display = "none";
+
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
 
         }else if (valor1 == 9) {
           
@@ -555,6 +584,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
 
           div12 = document.getElementById("12P");
           div12.style.display = "none";
+
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
 
 
         }else if (valor1 == 10) {
@@ -595,6 +627,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 11) {
           
           div1 = document.getElementById("1P");
@@ -633,6 +668,9 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
           div12 = document.getElementById("12P");
           div12.style.display = "none";
 
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
         }else if (valor1 == 12) {
           
           div1 = document.getElementById("1P");
@@ -670,6 +708,50 @@ $(".tablaBanco1286").on("click", ".btnEditarDatos", function(){
 
           div12 = document.getElementById("12P");
           div12.style.display = "";
+
+           div13 = document.getElementById("13P");
+          div13.style.display = "none";
+
+        }else if (valor1 == 13) {
+          
+          div1 = document.getElementById("1P");
+          div1.style.display = "";
+
+          div2 = document.getElementById("2P");
+          div2.style.display = "";
+
+          div3 = document.getElementById("3P");
+          div3.style.display = "";
+
+          div4 = document.getElementById("4P");
+          div4.style.display = "";
+
+          div5 = document.getElementById("5P");
+          div5.style.display = "";
+
+          div6 = document.getElementById("6P");
+          div6.style.display = "";
+
+          div7 = document.getElementById("7P");
+          div7.style.display = "";
+
+          div8 = document.getElementById("8P");
+          div8.style.display = "";
+
+          div9 = document.getElementById("9P");
+          div9.style.display = "";
+
+          div10 = document.getElementById("10P");
+          div10.style.display = "";
+
+          div11 = document.getElementById("11P");
+          div11.style.display = "";
+
+          div12 = document.getElementById("12P");
+          div12.style.display = "";
+
+          div13 = document.getElementById("13P");
+          div13.style.display = "";
 
         }
      
@@ -727,6 +809,8 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
       $("#cantDepartamento11").val(respuesta["departamentoParcial11"]);
       $("#cantParcial12").val(respuesta["parcial12"]);
       $("#cantDepartamento12").val(respuesta["departamentoParcial12"]);
+        $("#cantParcial13").val(respuesta["parcial13"]);
+      $("#cantDepartamento13").val(respuesta["departamentoParcial13"]);
 
        var parcial1 = document.getElementById("cantParcial1").value;
       var parcial2 = document.getElementById("cantParcial2").value;
@@ -740,9 +824,10 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
       var parcial10 = document.getElementById("cantParcial10").value;
       var parcial11 = document.getElementById("cantParcial11").value;
       var parcial12 = document.getElementById("cantParcial12").value;
+      var parcial13 = document.getElementById("cantParcial13").value;
 
 
-      var suma = parseFloat(parcial1) + parseFloat(parcial2) + parseFloat(parcial3) + parseFloat(parcial4) + parseFloat(parcial5) + parseFloat(parcial6) + parseFloat(parcial7) + parseFloat(parcial8) + parseFloat(parcial9) + parseFloat(parcial10) + parseFloat(parcial11) + parseFloat(parcial12);
+      var suma = parseFloat(parcial1) + parseFloat(parcial2) + parseFloat(parcial3) + parseFloat(parcial4) + parseFloat(parcial5) + parseFloat(parcial6) + parseFloat(parcial7) + parseFloat(parcial8) + parseFloat(parcial9) + parseFloat(parcial10) + parseFloat(parcial11) + parseFloat(parcial12) + parseFloat(parcial13);
       
       $("#totalParciales").val("$"+suma.toFixed(2));
       
@@ -786,6 +871,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
          }
 
          else if (valor == 1) {
@@ -826,6 +914,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
 
         }else if (valor == 2) {
          
@@ -865,6 +956,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 3) {
 
          div1 = document.getElementById("1Par");
@@ -902,6 +996,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 4) {
 
@@ -941,6 +1038,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 5) {
 
          div1 = document.getElementById("1Par");
@@ -978,6 +1078,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 6) {
 
@@ -1017,6 +1120,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 7) {
 
          div1 = document.getElementById("1Par");
@@ -1055,6 +1161,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 8) {
 
          div1 = document.getElementById("1Par");
@@ -1092,6 +1201,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }
         else if (valor == 9) {
@@ -1132,6 +1244,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 10) {
 
          div1 = document.getElementById("1Par");
@@ -1169,6 +1284,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 11) {
 
@@ -1208,6 +1326,9 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 12) {
 
          div1 = document.getElementById("1Par");
@@ -1245,6 +1366,50 @@ $(".tablaBanco1286").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
+        }else if (valor == 13) {
+
+         div1 = document.getElementById("1Par");
+              div1.style.display = "";
+
+         div2 = document.getElementById("2Par");
+           div2.style.display = "";
+
+        div3 = document.getElementById("3Par");
+           div3.style.display = "";
+
+        div4 = document.getElementById("4Par");
+           div4.style.display = "";
+
+        div5 = document.getElementById("5Par");
+           div5.style.display = "";
+
+        div6 = document.getElementById("6Par");
+           div6.style.display = "";
+
+        div7 = document.getElementById("7Par");
+           div7.style.display = "";
+
+        div8 = document.getElementById("8Par");
+           div8.style.display = "";
+
+        div9 = document.getElementById("9Par");
+           div9.style.display = "";
+
+        div10 = document.getElementById("10Par");
+           div10.style.display = "";
+
+        div11 = document.getElementById("11Par");
+           div11.style.display = "";
+
+        div12 = document.getElementById("12Par");
+           div12.style.display = "";
+
+           div13 = document.getElementById("13Par");
+           div13.style.display = "";
 
         }
     
@@ -1302,6 +1467,8 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
       $("#cantDepartamento11").val(respuesta["departamentoParcial11"]);
       $("#cantParcial12").val(respuesta["parcial12"]);
       $("#cantDepartamento12").val(respuesta["departamentoParcial12"]);
+       $("#cantParcial13").val(respuesta["parcial12"]);
+      $("#cantDepartamento13").val(respuesta["departamentoParcial13"]);
 
        var parcial1 = document.getElementById("cantParcial1").value;
       var parcial2 = document.getElementById("cantParcial2").value;
@@ -1315,9 +1482,10 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
       var parcial10 = document.getElementById("cantParcial10").value;
       var parcial11 = document.getElementById("cantParcial11").value;
       var parcial12 = document.getElementById("cantParcial12").value;
+       var parcial13 = document.getElementById("cantParcial13").value;
 
 
-      var suma = parseFloat(parcial1) + parseFloat(parcial2) + parseFloat(parcial3) + parseFloat(parcial4) + parseFloat(parcial5) + parseFloat(parcial6) + parseFloat(parcial7) + parseFloat(parcial8) + parseFloat(parcial9) + parseFloat(parcial10) + parseFloat(parcial11) + parseFloat(parcial12);
+      var suma = parseFloat(parcial1) + parseFloat(parcial2) + parseFloat(parcial3) + parseFloat(parcial4) + parseFloat(parcial5) + parseFloat(parcial6) + parseFloat(parcial7) + parseFloat(parcial8) + parseFloat(parcial9) + parseFloat(parcial10) + parseFloat(parcial11) + parseFloat(parcial12)+ parseFloat(parcial13);
       
       $("#totalParciales").val("$"+suma.toFixed(2));
       
@@ -1361,6 +1529,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+            div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
          }
 
          else if (valor == 1) {
@@ -1401,6 +1572,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
 
         }else if (valor == 2) {
          
@@ -1440,6 +1614,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 3) {
 
          div1 = document.getElementById("1Par");
@@ -1477,6 +1654,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 4) {
 
@@ -1516,6 +1696,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 5) {
 
          div1 = document.getElementById("1Par");
@@ -1553,6 +1736,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 6) {
 
@@ -1592,6 +1778,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 7) {
 
          div1 = document.getElementById("1Par");
@@ -1630,6 +1819,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 8) {
 
          div1 = document.getElementById("1Par");
@@ -1667,6 +1859,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }
         else if (valor == 9) {
@@ -1707,6 +1902,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 10) {
 
          div1 = document.getElementById("1Par");
@@ -1744,6 +1942,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
 
         }else if (valor == 11) {
 
@@ -1783,6 +1984,9 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
         div12 = document.getElementById("12Par");
            div12.style.display = "none";
 
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
         }else if (valor == 12) {
 
          div1 = document.getElementById("1Par");
@@ -1820,6 +2024,50 @@ $(".tablaBanco1286Credito").on("click", ".btnVerParciales", function(){
 
         div12 = document.getElementById("12Par");
            div12.style.display = "";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "none";
+
+        }else if (valor == 13) {
+
+         div1 = document.getElementById("1Par");
+              div1.style.display = "";
+
+         div2 = document.getElementById("2Par");
+           div2.style.display = "";
+
+        div3 = document.getElementById("3Par");
+           div3.style.display = "";
+
+        div4 = document.getElementById("4Par");
+           div4.style.display = "";
+
+        div5 = document.getElementById("5Par");
+           div5.style.display = "";
+
+        div6 = document.getElementById("6Par");
+           div6.style.display = "";
+
+        div7 = document.getElementById("7Par");
+           div7.style.display = "";
+
+        div8 = document.getElementById("8Par");
+           div8.style.display = "";
+
+        div9 = document.getElementById("9Par");
+           div9.style.display = "";
+
+        div10 = document.getElementById("10Par");
+           div10.style.display = "";
+
+        div11 = document.getElementById("11Par");
+           div11.style.display = "";
+
+        div12 = document.getElementById("12Par");
+           div12.style.display = "";
+
+              div13 = document.getElementById("13Par");
+           div13.style.display = "";
 
         }
     

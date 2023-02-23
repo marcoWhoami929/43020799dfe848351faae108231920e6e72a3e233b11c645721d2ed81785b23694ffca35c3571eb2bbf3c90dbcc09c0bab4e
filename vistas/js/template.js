@@ -8,7 +8,7 @@ if (dd < 10) {
 }
 
 if (mm < 10) {
-  mm = "0" + mm;
+  mm = mm;
 }
 $(function () {
    $(".modal").on("shown.bs.modal", function () {
@@ -18,9 +18,16 @@ $(function () {
   ruta = url.split("/");
   switch (ruta[1]) {
     case "backorder":
+   
       $("#periodo").val(mm);
       cargarBackorder(1);
       loadClients(1);
+      break;
+    case "productosListado":
+      
+      $("#periodo").val(mm);
+      cargarListadoProductos(1);
+      loadProductosVenta(1);
       break;
   }
 });
@@ -43,7 +50,7 @@ function cargarBackorder(page) {
     var cliente = "";
   } else {
     if (arreglo == "[]") {
-      var cliente = "";
+      var cliente = "[]";
     } else {
       var cliente = JSON.stringify(arreglo);
     }
@@ -76,6 +83,54 @@ function cargarBackorder(page) {
   $("#loader").fadeIn("slow");
   $.ajax({
     url: "ajax/backorder.ajax.php",
+    data: parametros,
+    beforeSend: function (objeto) {
+      $("#loader").html("Buscando...");
+    },
+    success: function (data) {
+      $(".data").html(data).fadeIn("slow");
+      $("#loader").html("");
+    },
+  });
+}
+function cargarListadoProductos(page) {
+  var per_page = 500;
+  var vista = "cargarListadoProductos";
+  var campo = $("#campoOrden").val();
+  var orden = $("#orden").val();
+  var marca = $("#marca").val();
+  var clasificacion = $("#clasificacion").val();
+  var periodo = $("#periodo").val();
+  var arregloProductos = JSON.parse(localStorage.getItem("arrayProductos"));
+  if (arregloProductos === null) {
+    localStorage.setItem("arrayProductos", "[]");
+    var producto = "";
+  } else {
+
+    if (arregloProductos.length === 0 ) {
+      var producto = "";
+    } else {
+      var producto = arregloProductos.toString();
+    }
+  }
+
+
+
+  var parametros = {
+    action: "productosListado",
+    page: page,
+    per_page: per_page,
+    marca: marca,
+    producto: producto,
+    clasificacion: clasificacion,
+    periodo: periodo,
+    campo: campo,
+    orden: orden,
+    vista: vista,
+  };
+  $("#loader").fadeIn("slow");
+  $.ajax({
+    url: "ajax/productosListado.ajax.php",
     data: parametros,
     beforeSend: function (objeto) {
       $("#loader").html("Buscando...");
@@ -164,6 +219,56 @@ function generarReporteNew(vista) {
     "&vista=" +
     vista;
 }
+
+function generarReporteListadoProductos(vista) {
+  var campo = $("#campoOrden").val();
+  var orden = $("#orden").val();
+  var marca = $("#marca").val();
+  var page = 1;
+  var per_page = 2000;
+  var clasificacion = $("#clasificacion").val();
+  var periodo = $("#periodo").val();
+  
+  var arregloProductos = JSON.parse(localStorage.getItem("arrayProductos"));
+  if (arregloProductos === null) {
+    localStorage.setItem("arrayProductos", "[]");
+    var producto = "";
+  } else {
+
+    if (arregloProductos.length === 0 ) {
+      var producto = "";
+    } else {
+      var producto = arregloProductos.toString();
+    }
+  }
+
+  location.href =
+    "vistas/modulos/reporteador.php?reporteadorListadoProductos=" +
+    
+    "&per_page=" +
+    per_page +
+    "&page=" +
+    page +
+   
+    "&campoOrden=" +
+    campo +
+    "&orden=" +
+    orden +
+    "&marca=" +
+    marca +
+  
+    "&clasificacion=" +
+    clasificacion +
+    "&periodo=" +
+    periodo +
+   
+    "&producto=" +
+    producto +
+    "&vista=" +
+    vista;
+}
+
+
 function detalleProductos(idDocumento, empresa) {
   var page = 1;
   var per_page = 500;
@@ -210,6 +315,33 @@ function loadClients(page) {
     },
     success: function (data) {
       $(".outer_div").html(data).fadeIn("slow");
+      $("#loader2").html("");
+    },
+  });
+}
+/****BUSCADOR DE PRODUCTOS */
+function loadProductosVenta(page) {
+  var producto = $("#nombreProductoSearch").val();
+  var vista = $("#clasificacionVenta").val();
+  var vista2 = $("#clasificacionVenta2").val();
+  var per_page = "10";
+  var parametros = {
+    action: "busquedaProductos",
+    page: page,
+    producto: producto,
+    vista: vista,
+    vista2: vista2,
+    per_page: per_page,
+  };
+  $("#loader2").fadeIn("slow");
+  $.ajax({
+    url: "ajax/productosListado.ajax.php",
+    data: parametros,
+    beforeSend: function (objeto) {
+      $("#loader2").html("Cargando...");
+    },
+    success: function (data) {
+      $(".outer_div2").html(data).fadeIn("slow");
       $("#loader2").html("");
     },
   });
@@ -285,6 +417,9 @@ function validateItemArray(array, item, nombreArreglo) {
       case "backorder":
         cargarBackorder(1);
         break;
+        case "productosListado":
+        cargarListadoProductos(1);
+        break;
     }
   } else if (array.indexOf(item) > -1) {
     localStorage.setItem("" + nombreArreglo + "", JSON.stringify(array));
@@ -305,6 +440,9 @@ function removeItemFromArregloBusqueda(array, item, nombreArreglo) {
     case "backorder":
       cargarBackorder(1);
       break;
+    case "productosListado":
+        cargarListadoProductos(1);
+        break;
   }
 }
 function agregarBackorder(
@@ -393,4 +531,59 @@ function eliminarBackorder(serie,folio,codigoProducto,unidades){
     },
   });
 
+}
+/**
+ * NUEVO MODULO EXISTENCIAS COSTOS PRODUCTOS
+ */
+function obtenerExistenciasProducto(idProducto) {
+  var vista = "obtenerExistenciasProducto";
+  var periodo = $("#periodo").val();
+  var ejercicio = 3;
+
+  $("#loaderExistencias").fadeIn("slow");
+  var parametros = {
+    action: "existenciasProducto",
+    page: 1,
+    per_page: 50,
+    idProducto: idProducto,
+    vista: vista,
+    periodo: periodo,
+    ejercicio: ejercicio,
+  };
+  obtenerPreciosProducto(idProducto);
+  $.ajax({
+    url: "ajax/productosListado.ajax.php",
+    data: parametros,
+    beforeSend: function (objeto) {
+      $("#loaderExistencias").html("Buscando...");
+    },
+    success: function (data) {
+      $(".existenciasProducto").html(data).fadeIn("slow");
+      $("#loaderExistencias").html("");
+    },
+  });
+}
+function obtenerPreciosProducto(idProducto) {
+  var vista = "obtenerPreciosProducto";
+
+  $("#loaderExistencias").fadeIn("slow");
+  var parametros = {
+    action: "preciosProducto",
+    page: 1,
+    per_page: 1,
+    idProducto: idProducto,
+    vista: vista,
+  };
+
+  $.ajax({
+    url: "ajax/productosListado.ajax.php",
+    data: parametros,
+    beforeSend: function (objeto) {
+      $("#loaderExistencias").html("Buscando...");
+    },
+    success: function (data) {
+      $(".preciosProducto").html(data).fadeIn("slow");
+      $("#loaderExistencias").html("");
+    },
+  });
 }
